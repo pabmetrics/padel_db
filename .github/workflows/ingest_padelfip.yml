@@ -1,0 +1,33 @@
+name: ingest_padelfip
+
+on:
+  schedule:
+    # Lunes 06:45 hora española, entre F1 (06:00) y F2 (06:30+ejecución) — doc 01 §5
+    - cron: "45 5 * * 1"
+  workflow_dispatch: {}
+
+jobs:
+  ingest_padelfip:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Instalar dependencias
+        run: pip install -r requirements.txt
+
+      - name: Ingesta F3 (ranking oficial, top 10 M/F, padelfip.com)
+        run: python -m ingest.padelfip.ranking
+
+      - name: Commit del nuevo snapshot
+        run: |
+          git config user.name "padeldb-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add bronze/padelfip
+          git diff --cached --quiet || git commit -m "ingest_padelfip: snapshot semanal $(date -u +%F)"
+          git push

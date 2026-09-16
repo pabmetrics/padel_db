@@ -70,6 +70,14 @@ def build() -> Path:
             if not jugador_id:
                 continue
             f2_match = f2_by_jugador_id.get(jugador_id)
+            # El ranking oficial tiene empates: parejas con los mismos puntos
+            # comparten posición (ej. Galán y Chingotto, ambos #3, 17-18/09/2026,
+            # verificado también contra F3/padelfip). El orden de lista de F1
+            # (posicion_lista) rompe esos empates en 1,2,3,4... — no es la
+            # posición real. F2 sí trae el ranking oficial con empates, así que
+            # se usa como fuente de la posición cuando hay cruce; posicion_lista
+            # de F1 queda solo de referencia/fallback.
+            posicion_oficial = f2_match["ranking"] if f2_match and f2_match.get("ranking") is not None else item["posicion_lista"]
             rows.append(
                 {
                     "fecha_ranking": fecha_ranking,
@@ -77,7 +85,8 @@ def build() -> Path:
                     "sexo": GENDER_TO_SEXO.get(item.get("gender"), "?"),
                     "jugador_id": jugador_id,
                     "jugador_nombre": nombres.get(jugador_id, item["full_name"]),
-                    "posicion": item["posicion_lista"],
+                    "posicion": posicion_oficial,
+                    "posicion_lista_f1": item["posicion_lista"],
                     "puntos": f2_match["points"] if f2_match else None,
                     "puntos_diff_semana": f2_match["points_diff"] if f2_match else None,
                     # padelapi da ranking_diff = ranking_actual - ranking_anterior (positivo
