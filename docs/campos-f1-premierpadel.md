@@ -37,6 +37,16 @@ Usado por `client.players.get(slug)`. Confirmado con datos reales (Agustín Tapi
 
 La tabla que genera `transform/build_silver.py` de momento tiene `posicion` (derivada del orden de lista) pero `puntos = NULL`, documentado explícitamente como hueco. Rellenar `puntos` en bloque para las primeras ~500 fichas de cada género requeriría 500 llamadas a `getplayerdetails` por género y por snapshot: se deja para Fase 1, evaluando entonces si compensa frente a padelapi (F2), que si ofrece rankings con puntos en su plan gratuito.
 
+## Endpoint `getfanapptournaments` (calendario)
+
+Usado por `ingest/premierpadel/tournaments.py` (Fase 1). Funciona bien: da `event_code`, `slug`, `name`/`full_name`, `city`, `country`, `tournament_type` (P1/P2/MAJOR/FINALS), `start_date`/`end_date`, `status`. `event_code` es la clave de cruce con el historial de torneos de F2 (ver `docs/campos-f2-padelapi.md`): el `key_name` de un torneo en el detalle de jugador de padelapi (`FIP-2025-3603`) lleva el mismo número que el `event_code` de F1 (`"3603"`).
+
+## Endpoints de cuadro/resultados (`tournaments.draw`, `tournaments.results`) — no fiables
+
+Probado en vivo el 17/09/2026 contra el Paris Major (id 270, 7-13 sept 2026, ya finalizado con Tapia/Coello campeones según F2). **Ambos endpoints devolvieron vacío** (`main_draw: []`, `matches: []`, solo la estructura de rondas sin partidos) pese a que el calendario lista el torneo correctamente. El campo `updated_at` del torneo se quedó en julio, antes de empezar — este endpoint de "fan app" no parece recibir los resultados reales una vez juega el torneo.
+
+**Implicación para el plan de montaje**: `fact_partido` no se puede construir de forma fiable desde F1 con este SDK. La fuente que sí funciona para partidos es F2 (`/players/{id}/matches`, gratuito, probado con 456 partidos reales de un jugador — ver `docs/campos-f2-padelapi.md`). Fase 1/2 deberían construir `fact_partido` desde F2, no desde F1, invirtiendo la expectativa inicial del documento de arquitectura (que asumía F1 como fuente primaria también para partidos, no solo para ranking).
+
 ## Pendiente de Fase 0
 
 - Probar `padelapi.org` (F2): alta en el plan gratuito y una llamada a `/players/{id}/stats` — requiere una cuenta que solo puede crear una persona, no está hecho todavía.

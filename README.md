@@ -15,16 +15,20 @@ Este repo se construye siguiendo estos documentos (en `docs/`), que son la fuent
 
 ## Estado
 
-**Fase 0 — Cimientos** (ver `docs/padel-datos-04-seguimiento.md` para el detalle actualizado). Repositorio recién creado; pendiente decidir stack de almacenamiento (Databricks Free Edition vs GitHub Actions + DuckDB), montar el primer conector (`pypadel`) y generar el primer snapshot de ranking en bronze.
+**Fase 1 — Núcleo del circuito**, en curso (ver `docs/padel-datos-04-seguimiento.md` para el detalle actualizado). Stack: GitHub Actions + DuckDB + Parquet. Conectores F1 (premierpadel.com, vía `pypadel`) y F2 (padelapi.org) dados de alta y funcionando; `dim_jugador`, `fact_ranking_semanal` y dos tablas gold (`ranking_movimientos_semana`, `perfil_top100`) generándose de verdad, con tests de calidad en verde y el primer gráfico automático de `#RankingLunes`.
 
 ## Estructura del repositorio
 
 ```
 padel-datos/
 ├── ingest/            # un conector por fuente; cada uno escribe en bronze
-├── transform/          # silver y gold (SQL + PySpark); tests de calidad
+├── bronze/            # snapshots crudos, append-only
+├── silver/             # entidades canónicas (dim_jugador, fact_ranking_semanal…)
+├── gold/               # una fila = un dato publicable
+├── transform/          # scripts que construyen silver y gold; tests de calidad
 ├── data/manual/         # CSV curados: alias de jugadores, puntos/prize money, informes anuales
 ├── content/            # chart_factory, copy_factory, plantillas, prompts
+├── queue/              # candidatos de gráfico/texto para revisión humana
 ├── publish/            # flujos de publicación (siempre con aprobación humana)
 ├── site/               # web estática (Astro) que lee el export de gold
 ├── tests/

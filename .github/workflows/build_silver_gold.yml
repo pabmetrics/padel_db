@@ -1,0 +1,52 @@
+name: build_silver_gold
+
+on:
+  schedule:
+    # Lunes 08:00 hora española, tras ingest_ranking (07:00) e ingest_padelapi
+    # (07:30) — doc 01 §5.
+    - cron: "0 7 * * 1"
+  workflow_dispatch: {}
+
+jobs:
+  build_silver_gold:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Instalar dependencias
+        run: pip install -r requirements.txt
+
+      - name: Silver — dim_jugador y map_jugador_fuente (cruce F1+F2)
+        run: python transform/build_dim_jugador.py
+
+      - name: Silver — fact_ranking_semanal definitivo
+        run: python transform/build_fact_ranking_semanal.py
+
+      - name: Silver — dim_torneo
+        run: python transform/build_dim_torneo.py
+
+      - name: Tests de calidad (doc 01 §6) — el job falla si no pasan
+        run: python -m pytest tests/ -v
+
+      - name: Gold — ranking_movimientos_semana
+        run: python transform/build_gold_ranking_movimientos.py
+
+      - name: Gold — perfil_top100
+        run: python transform/build_gold_perfil_top100.py
+
+      - name: Gráfico de #RankingLunes a la cola
+        run: python content/chart_factory/ranking_moves.py
+
+      - name: Commit de silver, gold y la cola
+        run: |
+          git config user.name "padeldb-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add silver gold queue
+          git diff --cached --quiet || git commit -m "build_silver_gold: $(date -u +%F)"
+          git push
