@@ -1,0 +1,36 @@
+name: ingest_ranking
+
+on:
+  schedule:
+    # Lunes 07:00 hora española (05:00/06:00 UTC según horario de verano) — doc 01 §5
+    - cron: "0 6 * * 1"
+  workflow_dispatch: {}
+
+jobs:
+  ingest_ranking:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Instalar dependencias
+        run: pip install -r requirements.txt
+
+      - name: Ingesta F1 (ranking premierpadel.com)
+        run: python ingest/premierpadel/rankings.py --gender both --max-pages 25
+
+      - name: Construir fact_ranking_semanal
+        run: python transform/build_silver.py
+
+      - name: Commit del nuevo snapshot
+        run: |
+          git config user.name "padeldb-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add bronze/premierpadel/rankings silver/fact_ranking_semanal
+          git diff --cached --quiet || git commit -m "ingest_ranking: snapshot semanal $(date -u +%F)"
+          git push
