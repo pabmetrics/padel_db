@@ -15,7 +15,9 @@ Reescrito el 17/09/2026 tras encontrar que el primer enfoque (tabla genérica po
 - "FIP Silver Cyprus **I**" casaba con "FIP Silver Cyprus **II**" (edición distinta).
 - "FIP Silver Oeiras" casaba con "FIP **Bronze** Oeiras" (categoría distinta).
 
-Los tres se descartaron explícitamente en vez de arriesgar una cifra mal cruzada — con dinero real, un cruce dudoso es peor que un hueco documentado. El CSV final tiene 52 torneos verificados (16 Premier Padel, 36 FIP Tour) de los ~65 que hay en `fact_partido`; el resto (principalmente FIP Silver sin coincidencia clara, como "3f Elettronica Porto St'elpidio", "Betclic", "Hoganas") queda sin premio conocido.
+Los tres se descartaron explícitamente en vez de arriesgar una cifra mal cruzada — con dinero real, un cruce dudoso es peor que un hueco documentado.
+
+**Actualización (17/09/2026, misma sesión):** el usuario resolvió a mano los 13 torneos que habían quedado sin cruzar (los 9 sin coincidencia automática + los 3 descartados + 1 más), pasando el enlace exacto de cada uno. Dos de ellos confirman que la discrepancia de categoría no siempre es un error de cruce: "FIP Silver Oeiras" y "FIP Silver Westerbork" (nombres tal como los da padelapi) enlazan de verdad a páginas `fip-bronze-*` de la FIP, con bolsas de 8.500 € y 5.000 € — tamaño típico de Bronze, no de Silver. Es padelapi quien etiqueta mal la categoría de estos dos torneos concretos, no un fallo del cruce. Con esto, `data/manual/prize_torneo_slugs_2026.csv` cubre los **65 de 65** torneos de `fact_partido`.
 
 ## Bugs de formato de número encontrados y corregidos
 
@@ -29,4 +31,4 @@ Un primer intento de parseo con una expresión regular ingenua leía "1.406€" 
 
 ## Cobertura de `gold.ganancias_temporada`
 
-Con datos reales por torneo (no una estimación por categoría), la tabla cubre significativamente más que antes: 1.657 jugadores (frente a 143 con el enfoque anterior, que solo cubría Premier Padel Major/P1/P2). Sigue siendo parcial — los ~13-15 torneos sin cruce verificado no aportan ganancias — pero cada cifra que sí aparece es la real de ese torneo concreto, no una aproximación.
+Con datos reales por torneo y los 65 torneos ya cubiertos, la tabla pasó de 143 jugadores (enfoque genérico original, solo Premier Padel Major/P1/P2) a 1.894 — con cada cifra siendo la real de ese torneo concreto, no una aproximación por categoría.
