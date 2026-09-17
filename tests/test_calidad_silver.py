@@ -208,6 +208,19 @@ def test_fact_resultado_torneo_rondas_conocidas() -> None:
     for r in rows:
         assert r["ronda_alcanzada"] in rondas_validas, f"Ronda desconocida: {r}"
         assert r["puntos_ganados"] is None or r["puntos_ganados"] > 0
+        assert r["fuente_resultado"] in ("padelapi", "padelearnings_respaldo")
+
+
+def test_resultado_alternativo_sin_jugador_igual_a_compañero() -> None:
+    """Una pareja no puede tener el mismo jugador dos veces."""
+
+    path = SILVER_ROOT / "resultado_alternativo" / "data.json"
+    if not path.exists():
+        pytest.skip("resultado_alternativo todavía no se ha generado")
+    rows = json.loads(path.read_text(encoding="utf-8"))
+    for r in rows:
+        if r.get("compañero_id"):
+            assert r["jugador_id"] != r["compañero_id"], f"Jugador emparejado consigo mismo: {r}"
 
 
 def test_puntos_a_defender_8sem_incluye_4sem() -> None:

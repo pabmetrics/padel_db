@@ -13,12 +13,21 @@ Limitaciones reales conocidas (17/09/2026):
 from __future__ import annotations
 
 import json
+import re
 from pathlib import Path
 from typing import Any
+
+from unidecode import unidecode
+
+
+def normalize_name(name: str) -> str:
+    ascii_name = unidecode(name or "").lower().strip()
+    return re.sub(r"[^a-z0-9]+", " ", ascii_name).strip()
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 FACT_PARTIDO = REPO_ROOT / "silver" / "fact_partido" / "data.json"
 DIM_PUNTOS = REPO_ROOT / "silver" / "dim_puntos_categoria" / "data.json"
+RESULTADO_ALTERNATIVO = REPO_ROOT / "silver" / "resultado_alternativo" / "data.json"
 OUT_PATH = REPO_ROOT / "silver" / "fact_resultado_torneo" / "data.json"
 
 NIVEL_PADELAPI_A_CATEGORIA = {
@@ -51,9 +60,11 @@ def build() -> Path:
     dim_dir = REPO_ROOT / "silver" / "dim_jugador"
     dt_dirs = sorted((p for p in dim_dir.glob("dt=*") if p.is_dir()), key=lambda p: p.name)
     nombres: dict[str, str] = {}
+    sexo_por_jugador: dict[str, str] = {}
     if dt_dirs:
         filas = json.loads((dt_dirs[-1] / "data.json").read_text(encoding="utf-8"))
         nombres = {r["jugador_id"]: r["nombre_canonico"] for r in filas}
+        sexo_por_jugador = {r["jugador_id"]: r["sexo"] for r in filas}
 
     # (torneo_id, pareja_key) -> mejor partido (por orden de ronda)
     mejor_partido: dict[tuple[str, tuple[str, str]], dict[str, Any]] = {}
@@ -86,11 +97,59 @@ def build() -> Path:
                     "jugador_2_id": pareja[1],
                 }
 
+    # Metadatos de torneo (nombre/nivel) por torneo_id, tomados de cualquier
+    # partido de ese torneo — hacen falta incluso para partidos con `winner`
+    # oculto, que no llegan a mejor_partido pero sí traen esta metadata.
+    torneo_id_por_nombre: dict[str, str] = {}
+    nombre_canonico_por_torneo_id: dict[str, str] = {}
+    nivel_por_torneo_id: dict[str, str | None] = {}
+    fecha_max_por_torneo_id: dict[str, str] = {}
+    for p in partidos:
+        torneo_id_por_nombre[normalize_name(p["torneo_nombre"])] = p["torneo_id"]
+        nombre_canonico_por_torneo_id.setdefault(p["torneo_id"], p["torneo_nombre"])
+        nivel_por_torneo_id.setdefault(p["torneo_id"], p.get("torneo_nivel_padelapi"))
+        fecha_max_por_torneo_id[p["torneo_id"]] = max(fecha_max_por_torneo_id.get(p["torneo_id"], ""), p["fecha"])
+
+    parejas_cubiertas: set[tuple[str, tuple[str, str]]] = set(mejor_partido.keys())
+
+    # Respaldo (padelearnings.com) para torneos donde padelapi oculta el
+    # `winner`: solo se añade una pareja si esta fuente NO la cubrió ya (así
+    # no hay doble conteo cuando el ocultamiento es parcial, ej. Cancún).
+    if RESULTADO_ALTERNATIVO.exists():
+        alternativos = json.loads(RESULTADO_ALTERNATIVO.read_text(encoding="utf-8"))
+        vistos_alt: set[tuple[str, tuple[str, str]]] = set()
+        for r in alternativos:
+            torneo_id = torneo_id_por_nombre.get(normalize_name(r["torneo_nombre"]))
+            compañero_id = r.get("compañero_id")
+            if not torneo_id or not compañero_id:
+                continue
+            pareja = tuple(sorted((r["jugador_id"], compañero_id)))
+            clave = (torneo_id, pareja)
+            if clave in parejas_cubiertas or clave in vistos_alt:
+                continue
+            vistos_alt.add(clave)
+            sexo = sexo_por_jugador.get(r["jugador_id"])
+            mejor_partido[clave] = {
+                "_orden": None,
+                "_es_ganador": r["ronda_alcanzada"] == "W",
+                "_ronda_alternativa": r["ronda_alcanzada"],
+                "torneo_id": torneo_id,
+                "torneo_nombre": nombre_canonico_por_torneo_id.get(torneo_id, r["torneo_nombre"]),
+                "torneo_nivel_padelapi": nivel_por_torneo_id.get(torneo_id),
+                "categoria_partido": "men" if sexo == "M" else "women" if sexo == "F" else None,
+                "ronda": None,
+                "fecha": fecha_max_por_torneo_id.get(torneo_id),
+                "jugador_1_id": pareja[0],
+                "jugador_2_id": pareja[1],
+            }
+
     rows: list[dict[str, Any]] = []
     niveles_sin_mapear: set[str] = set()
 
     for datos in mejor_partido.values():
-        if datos["ronda"] == "Finals":
+        if "_ronda_alternativa" in datos:
+            ronda_alcanzada = datos["_ronda_alternativa"]
+        elif datos["ronda"] == "Finals":
             ronda_alcanzada = "W" if datos["_es_ganador"] else "F"
         else:
             ronda_alcanzada = RONDA_CODIGO[datos["ronda"]]
@@ -118,6 +177,7 @@ def build() -> Path:
                 "ronda_alcanzada": ronda_alcanzada,
                 "puntos_ganados": puntos,
                 "fecha": datos["fecha"],
+                "fuente_resultado": "padelearnings_respaldo" if "_ronda_alternativa" in datos else "padelapi",
                 "fuente_txt": "padelapi.org + FIP Ranking Point Table 2026 · elaboración propia",
             }
         )
@@ -128,7 +188,8 @@ def build() -> Path:
     OUT_PATH.write_text(json.dumps(rows, indent=2, ensure_ascii=False), encoding="utf-8")
 
     con_puntos = sum(1 for r in rows if r["puntos_ganados"] is not None)
-    print(f"fact_resultado_torneo: {len(rows)} resultados de pareja ({con_puntos} con puntos calculados)")
+    de_respaldo = sum(1 for r in rows if r["fuente_resultado"] == "padelearnings_respaldo")
+    print(f"fact_resultado_torneo: {len(rows)} resultados de pareja ({con_puntos} con puntos calculados, {de_respaldo} de la fuente de respaldo)")
     if niveles_sin_mapear:
         print(f"  Niveles de torneo sin mapear a la tabla de puntos: {sorted(niveles_sin_mapear)}")
     print(f"-> {OUT_PATH.relative_to(REPO_ROOT)}")

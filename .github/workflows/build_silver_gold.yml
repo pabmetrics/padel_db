@@ -40,6 +40,12 @@ jobs:
       - name: Silver — dim_puntos_categoria (data/manual/puntos_prize_2026.csv)
         run: python transform/build_dim_puntos_categoria.py
 
+      - name: Ingesta resultados de respaldo — Premier Padel (padelearnings.com)
+        run: python -m ingest.matchresults.premierpadel
+
+      - name: Silver — resultado_alternativo (para cuando F2 oculta el ganador)
+        run: python transform/build_resultado_alternativo.py
+
       - name: Silver — fact_resultado_torneo
         run: python transform/build_fact_resultado_torneo.py
 
@@ -89,6 +95,6 @@ jobs:
         run: |
           git config user.name "padeldb-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add bronze/prizemoney silver gold queue site/data site/img
+          git add bronze/prizemoney bronze/matchresults silver gold queue site/data site/img
           git diff --cached --quiet || git commit -m "build_silver_gold: $(date -u +%F)"
           git push
