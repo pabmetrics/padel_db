@@ -211,12 +211,13 @@ def test_fact_resultado_torneo_rondas_conocidas() -> None:
         assert r["fuente_resultado"] in ("padelapi", "padelearnings_respaldo")
 
 
-def test_resultado_alternativo_sin_jugador_igual_a_compañero() -> None:
+@pytest.mark.parametrize("nombre_tabla", ["resultado_alternativo", "resultado_alternativo_fip"])
+def test_resultado_alternativo_sin_jugador_igual_a_compañero(nombre_tabla: str) -> None:
     """Una pareja no puede tener el mismo jugador dos veces."""
 
-    path = SILVER_ROOT / "resultado_alternativo" / "data.json"
+    path = SILVER_ROOT / nombre_tabla / "data.json"
     if not path.exists():
-        pytest.skip("resultado_alternativo todavía no se ha generado")
+        pytest.skip(f"{nombre_tabla} todavía no se ha generado")
     rows = json.loads(path.read_text(encoding="utf-8"))
     for r in rows:
         if r.get("compañero_id"):

@@ -28,6 +28,7 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 FACT_PARTIDO = REPO_ROOT / "silver" / "fact_partido" / "data.json"
 DIM_PUNTOS = REPO_ROOT / "silver" / "dim_puntos_categoria" / "data.json"
 RESULTADO_ALTERNATIVO = REPO_ROOT / "silver" / "resultado_alternativo" / "data.json"
+RESULTADO_ALTERNATIVO_FIP = REPO_ROOT / "silver" / "resultado_alternativo_fip" / "data.json"
 OUT_PATH = REPO_ROOT / "silver" / "fact_resultado_torneo" / "data.json"
 
 NIVEL_PADELAPI_A_CATEGORIA = {
@@ -112,13 +113,16 @@ def build() -> Path:
 
     parejas_cubiertas: set[tuple[str, tuple[str, str]]] = set(mejor_partido.keys())
 
-    # Respaldo (padelearnings.com) para torneos donde padelapi oculta el
-    # `winner`: solo se añade una pareja si esta fuente NO la cubrió ya (así
-    # no hay doble conteo cuando el ocultamiento es parcial, ej. Cancún).
-    if RESULTADO_ALTERNATIVO.exists():
-        alternativos = json.loads(RESULTADO_ALTERNATIVO.read_text(encoding="utf-8"))
-        vistos_alt: set[tuple[str, tuple[str, str]]] = set()
-        for r in alternativos:
+    # Respaldo para torneos donde padelapi oculta el `winner` (ventana móvil
+    # de ~180 días, ver docs/campos-f2-padelapi.md): padelearnings.com para
+    # Premier Padel, el widget de padelfip.com para FIP Tour. Solo se añade
+    # una pareja si ninguna fuente ya vista la cubrió (así no hay doble
+    # conteo cuando el ocultamiento es parcial, ej. Cancún).
+    vistos_alt: set[tuple[str, tuple[str, str]]] = set()
+    for fuente_path in (RESULTADO_ALTERNATIVO, RESULTADO_ALTERNATIVO_FIP):
+        if not fuente_path.exists():
+            continue
+        for r in json.loads(fuente_path.read_text(encoding="utf-8")):
             torneo_id = torneo_id_por_nombre.get(normalize_name(r["torneo_nombre"]))
             compañero_id = r.get("compañero_id")
             if not torneo_id or not compañero_id:
@@ -128,7 +132,7 @@ def build() -> Path:
             if clave in parejas_cubiertas or clave in vistos_alt:
                 continue
             vistos_alt.add(clave)
-            sexo = sexo_por_jugador.get(r["jugador_id"])
+            sexo = r.get("sexo") or sexo_por_jugador.get(r["jugador_id"])
             mejor_partido[clave] = {
                 "_orden": None,
                 "_es_ganador": r["ronda_alcanzada"] == "W",

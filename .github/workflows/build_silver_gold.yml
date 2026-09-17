@@ -43,8 +43,14 @@ jobs:
       - name: Ingesta resultados de respaldo — Premier Padel (padelearnings.com)
         run: python -m ingest.matchresults.premierpadel
 
+      - name: Ingesta resultados de respaldo — FIP Tour (widget de padelfip.com)
+        run: python -m ingest.matchresults.fip
+
       - name: Silver — resultado_alternativo (para cuando F2 oculta el ganador)
         run: python transform/build_resultado_alternativo.py
+
+      - name: Silver — resultado_alternativo_fip
+        run: python transform/build_resultado_alternativo_fip.py
 
       - name: Silver — fact_resultado_torneo
         run: python transform/build_fact_resultado_torneo.py
