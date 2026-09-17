@@ -35,7 +35,7 @@ Este chat es el orquestador del proyecto: no toca código ni configura redes (es
 | Gold: `forma_reciente` | Hecho | `transform/build_gold_forma_reciente.py`. % victorias y racha de los últimos 56 días, 1.120 jugadores con partidos en la ventana |
 | Primer gráfico automático (#RankingLunes) | Hecho | `content/chart_factory/ranking_moves.py`, versión mínima (no es aún el `chart_factory` de marca completo de Fase 4) → `queue/<fecha>/ranking_movimientos_{m,f}_16x9.png` |
 | Fábrica de contenido completa (`chart_factory`, `copy_factory`) | Pendiente | Fase 4 |
-| Web (Astro + Cloudflare Pages) | Pendiente | — |
+| Web (Astro + Cloudflare Pages) | Preview provisional | `site/index.html` estático (sin build), pedido por el usuario para ver el avance desde ya. Lee `site/data/*.json` y `site/img/*.png`, generados por `transform/export_web.py` (no es el `export_web` ni el stack definitivos de Fase 4) |
 | Proyecto Cowork "PadelDB" y tarea programada | Pendiente | Depende de que exista la cola (`queue/`) de verdad (Fase 4) |
 
 ---
