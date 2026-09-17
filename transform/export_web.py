@@ -27,6 +27,7 @@ GOLD_TABLES = [
     "h2h",
     "torneo_sorpresas",
     "puntos_a_defender",
+    "ganancias_temporada",
 ]
 
 

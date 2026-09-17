@@ -215,3 +215,22 @@ def test_puntos_a_defender_8sem_incluye_4sem() -> None:
     rows = json.loads((dt_dir / "data.json").read_text(encoding="utf-8"))
     for r in rows:
         assert r["puntos_a_defender_8sem"] >= r["puntos_a_defender_4sem"] >= 0
+
+
+def test_dim_prize_categoria_coherente() -> None:
+    path = SILVER_ROOT / "dim_prize_categoria" / "data.json"
+    if not path.exists():
+        pytest.skip("dim_prize_categoria todavía no se ha generado")
+    rows = json.loads(path.read_text(encoding="utf-8"))
+    for r in rows:
+        if r["prize_money_pareja_eur"] is not None:
+            assert r["prize_money_pareja_eur"] > 0
+        assert r["pool_min_eur"] <= r["pool_max_eur"]
+
+
+def test_ganancias_temporada_no_negativa() -> None:
+    dt_dir = _latest_dir(REPO_ROOT / "gold" / "ganancias_temporada")
+    rows = json.loads((dt_dir / "data.json").read_text(encoding="utf-8"))
+    for r in rows:
+        assert r["ganancias_conocidas_eur"] >= 0
+        assert r["n_torneos_con_premio_conocido"] >= 1

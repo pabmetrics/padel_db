@@ -255,6 +255,33 @@ async function renderSorpresas() {
   );
 }
 
+const fmtEur = new Intl.NumberFormat("es-ES", { style: "currency", currency: "EUR", maximumFractionDigits: 0 });
+
+async function renderGanancias() {
+  const data = await getJSON("data/ganancias_temporada.json");
+  const target = document.getElementById("ganancias-tabla");
+  const filas = data
+    .filter((r) => r.publicable)
+    .sort((a, b) => b.ganancias_conocidas_eur - a.ganancias_conocidas_eur)
+    .slice(0, 20);
+  if (!filas.length) {
+    target.appendChild(empty("Sin datos todavía."));
+    return;
+  }
+  const rows = filas.map((r) => [
+    td(r.jugador_nombre),
+    td(r.sexo === "M" ? "M" : r.sexo === "F" ? "F" : "—"),
+    td(fmtEur.format(r.ganancias_conocidas_eur), { num: true }),
+    td(String(r.n_torneos_con_premio_conocido), { num: true }),
+  ]);
+  target.appendChild(
+    table(
+      [{ label: "Jugador" }, { label: "Sexo" }, { label: "Ganancias (parcial)", num: true }, { label: "Torneos", num: true }],
+      rows
+    )
+  );
+}
+
 function setupTabs() {
   document.querySelectorAll(".table-tabs").forEach((tabGroup) => {
     const buttons = tabGroup.querySelectorAll(".tab-btn");
@@ -277,3 +304,4 @@ renderPerfil();
 renderParejas();
 renderH2H();
 renderSorpresas();
+renderGanancias();

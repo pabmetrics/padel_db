@@ -43,6 +43,9 @@ jobs:
       - name: Silver — fact_resultado_torneo
         run: python transform/build_fact_resultado_torneo.py
 
+      - name: Silver — dim_prize_categoria (data/manual/prize_money_2026.csv)
+        run: python transform/build_dim_prize_categoria.py
+
       - name: Tests de calidad (doc 01 §6) — el job falla si no pasan
         run: python -m pytest tests/ -v
 
@@ -66,6 +69,9 @@ jobs:
 
       - name: Gold — puntos_a_defender
         run: python transform/build_gold_puntos_a_defender.py
+
+      - name: Gold — ganancias_temporada
+        run: python transform/build_gold_ganancias_temporada.py
 
       - name: Gráfico de #RankingLunes a la cola
         run: python content/chart_factory/ranking_moves.py
