@@ -157,3 +157,32 @@ def test_forma_reciente_porcentajes_validos() -> None:
     for r in rows:
         assert 0 <= r["pct_victorias_8sem"] <= 100
         assert 0 <= r["victorias_8sem"] <= r["partidos_8sem"]
+
+
+def test_dim_pareja_coherente() -> None:
+    path = SILVER_ROOT / "dim_pareja" / "data.json"
+    if not path.exists():
+        pytest.skip("dim_pareja todavía no se ha generado")
+    rows = json.loads(path.read_text(encoding="utf-8"))
+    ids = [r["pareja_id"] for r in rows]
+    assert len(ids) == len(set(ids)), "pareja_id duplicado"
+    for r in rows:
+        assert r["jugador_1_id"] != r["jugador_2_id"], f"Pareja consigo mismo: {r}"
+        assert r["fecha_inicio"] <= r["fecha_fin"], f"fecha_inicio posterior a fecha_fin: {r}"
+
+
+def test_h2h_victorias_suman_el_total() -> None:
+    dt_dir = _latest_dir(REPO_ROOT / "gold" / "h2h")
+    rows = json.loads((dt_dir / "data.json").read_text(encoding="utf-8"))
+    for r in rows:
+        assert r["victorias_pareja_1"] + r["victorias_pareja_2"] == r["total_enfrentamientos"]
+
+
+def test_torneo_sorpresas_semilla_ganadora_peor() -> None:
+    """Por definición, una 'sorpresa' es que gane la semilla numéricamente
+    peor situada (número más alto)."""
+
+    dt_dir = _latest_dir(REPO_ROOT / "gold" / "torneo_sorpresas")
+    rows = json.loads((dt_dir / "data.json").read_text(encoding="utf-8"))
+    for r in rows:
+        assert r["semilla_ganador"] > r["semilla_perdedor"], f"No es una sorpresa real: {r}"

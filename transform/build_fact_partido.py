@@ -101,6 +101,9 @@ def build() -> Path:
             team_1 = [_jugador_ref(p, jugador_por_id_fuente) for p in match["players"]["team_1"]]
             team_2 = [_jugador_ref(p, jugador_por_id_fuente) for p in match["players"]["team_2"]]
             ganador = match.get("winner")
+            seeds = match.get("seeds") or {}
+            semilla_1 = int(seeds["team_1"]) if seeds.get("team_1") and str(seeds["team_1"]).isdigit() else None
+            semilla_2 = int(seeds["team_2"]) if seeds.get("team_2") and str(seeds["team_2"]).isdigit() else None
 
             # Ruido confirmado en la fuente (17/09/2026, 1 de 3.291 partidos):
             # el "winner" declarado por padelapi a veces no coincide con quién
@@ -126,6 +129,8 @@ def build() -> Path:
                     "equipo_1_jugador_2": team_1[1] if len(team_1) > 1 else None,
                     "equipo_2_jugador_1": team_2[0] if len(team_2) > 0 else None,
                     "equipo_2_jugador_2": team_2[1] if len(team_2) > 1 else None,
+                    "semilla_equipo_1": semilla_1,
+                    "semilla_equipo_2": semilla_2,
                     "ganador": ganador,
                     "sets_equipo_1": sets_a,
                     "sets_equipo_2": sets_b,

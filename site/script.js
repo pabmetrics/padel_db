@@ -165,6 +165,96 @@ async function renderPerfil() {
   });
 }
 
+async function renderParejas() {
+  const data = await getJSON("data/parejas_duracion.json");
+  const target = document.getElementById("parejas-tabla");
+  const filas = data
+    .filter((r) => r.activa && r.publicable)
+    .sort((a, b) => b.n_torneos - a.n_torneos)
+    .slice(0, 15);
+  if (!filas.length) {
+    target.appendChild(empty("Sin datos todavía."));
+    return;
+  }
+  const rows = filas.map((r) => [
+    td(`${r.jugador_1_nombre} / ${r.jugador_2_nombre}`),
+    td(r.categoria === "men" ? "M" : r.categoria === "women" ? "F" : "—"),
+    td(String(r.n_torneos), { num: true }),
+    td(String(r.n_partidos), { num: true }),
+    td(`${r.duracion_dias} días${r.posible_inicio_anterior_a_datos ? "+" : ""}`, { num: true }),
+  ]);
+  target.appendChild(
+    table(
+      [
+        { label: "Pareja" },
+        { label: "Cat." },
+        { label: "Torneos", num: true },
+        { label: "Partidos", num: true },
+        { label: "Duración", num: true },
+      ],
+      rows
+    )
+  );
+}
+
+async function renderH2H() {
+  const data = await getJSON("data/h2h.json");
+  const target = document.getElementById("h2h-tabla");
+  const filas = data
+    .filter((r) => r.publicable)
+    .sort((a, b) => b.total_enfrentamientos - a.total_enfrentamientos)
+    .slice(0, 15);
+  if (!filas.length) {
+    target.appendChild(empty("Sin datos todavía."));
+    return;
+  }
+  const rows = filas.map((r) => [
+    td(r.pareja_1),
+    td(String(r.victorias_pareja_1), { num: true }),
+    td("—"),
+    td(String(r.victorias_pareja_2), { num: true }),
+    td(r.pareja_2),
+  ]);
+  target.appendChild(
+    table(
+      [
+        { label: "Pareja 1" },
+        { label: "V.", num: true },
+        { label: "" },
+        { label: "V.", num: true },
+        { label: "Pareja 2" },
+      ],
+      rows
+    )
+  );
+}
+
+async function renderSorpresas() {
+  const data = await getJSON("data/torneo_sorpresas.json");
+  const target = document.getElementById("sorpresas-tabla");
+  const filas = data
+    .filter((r) => r.publicable)
+    .sort((a, b) => b.diferencia_semillas - a.diferencia_semillas)
+    .slice(0, 15);
+  if (!filas.length) {
+    target.appendChild(empty("Sin sorpresas detectadas todavía."));
+    return;
+  }
+  const rows = filas.map((r) => [
+    td(r.torneo_nombre),
+    td(r.ronda || "—"),
+    td(`${r.equipo_ganador} (${r.semilla_ganador})`, { cls: "up" }),
+    td(`${r.equipo_perdedor} (${r.semilla_perdedor})`, { cls: "down" }),
+    td(r.marcador_txt || "—"),
+  ]);
+  target.appendChild(
+    table(
+      [{ label: "Torneo" }, { label: "Ronda" }, { label: "Gana" }, { label: "Elimina a" }, { label: "Marcador" }],
+      rows
+    )
+  );
+}
+
 function setupTabs() {
   document.querySelectorAll(".table-tabs").forEach((tabGroup) => {
     const buttons = tabGroup.querySelectorAll(".tab-btn");
@@ -184,3 +274,6 @@ setupTabs();
 renderRanking();
 renderForma();
 renderPerfil();
+renderParejas();
+renderH2H();
+renderSorpresas();

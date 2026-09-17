@@ -19,7 +19,14 @@ QUEUE_ROOT = REPO_ROOT / "queue"
 SITE_DATA = REPO_ROOT / "site" / "data"
 SITE_IMG = REPO_ROOT / "site" / "img"
 
-GOLD_TABLES = ["ranking_movimientos_semana", "perfil_top100", "forma_reciente"]
+GOLD_TABLES = [
+    "ranking_movimientos_semana",
+    "perfil_top100",
+    "forma_reciente",
+    "parejas_duracion",
+    "h2h",
+    "torneo_sorpresas",
+]
 
 
 def _latest_dir(root: Path) -> Path | None:

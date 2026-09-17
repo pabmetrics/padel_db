@@ -34,6 +34,9 @@ jobs:
       - name: Silver — fact_partido (desde partidos por torneo de F2)
         run: python transform/build_fact_partido.py
 
+      - name: Silver — dim_pareja (SCD2, desde fact_partido)
+        run: python transform/build_dim_pareja.py
+
       - name: Tests de calidad (doc 01 §6) — el job falla si no pasan
         run: python -m pytest tests/ -v
 
@@ -45,6 +48,15 @@ jobs:
 
       - name: Gold — forma_reciente
         run: python transform/build_gold_forma_reciente.py
+
+      - name: Gold — parejas_duracion
+        run: python transform/build_gold_parejas_duracion.py
+
+      - name: Gold — h2h
+        run: python transform/build_gold_h2h.py
+
+      - name: Gold — torneo_sorpresas
+        run: python transform/build_gold_torneo_sorpresas.py
 
       - name: Gráfico de #RankingLunes a la cola
         run: python content/chart_factory/ranking_moves.py
