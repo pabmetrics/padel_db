@@ -1,22 +1,32 @@
-# Prize money 2026 — fuentes y limitaciones
+# Prize money 2026 — fuentes, conectores y hallazgos
 
-`data/manual/prize_money_2026.csv`, cargado el 17/09/2026 a partir de dos fuentes que aportó el usuario:
+Reescrito el 17/09/2026 tras encontrar que el primer enfoque (tabla genérica por categoría, ver historial de este documento en git) no coincidía con los datos reales de un jugador concreto (`padelearnings.com/players/agustin-tapia`), que el usuario señaló. El enfoque actual usa **cifras reales por torneo**, scrapeadas con dos conectores nuevos, en vez de una tabla aproximada por categoría.
 
-- **Premier Padel** (Major/P1/P2): [padelearnings.com/padel-prize-money](https://padelearnings.com/padel-prize-money). Extraído del HTML renderizado (no del resumen de la herramienta de lectura web, que en una primera pasada dio cifras dudosas para el FIP Tour — se verificó bajando el HTML crudo y comprobando los números literalmente en la página antes de usarlos). Cifras **fijas y exactas** por pareja y ronda: bolsa total 525.000 € (Major), 260.000 € (P1), 147.500 € (P2), reparto igual entre cuadro masculino y femenino. Solo cubre Winner/Final/Semifinal/Cuartos/R16 — la fuente no desglosa R32, R64 ni clasificación.
-- **FIP Tour** (Platinum/Gold/Silver/Bronze): [padel-magazine.es](https://padel-magazine.es/Distribuci%C3%B3n-de-premios-en-met%C3%A1lico-del-FIP-Tour-y-montos-por-categor%C3%ADa-de-torneo/). Solo la **tabla** de la página es fiable (los porcentajes de cada fila suman 100%, comprobado); el texto del artículo debajo de la tabla tiene un error evidente de plantilla/traducción (repite el mismo rango de euros para todas las rondas) y se ha ignorado por completo.
+## Conectores
 
-## Por qué el FIP Tour no tiene una cifra fija por pareja
+- `ingest/prizemoney/premierpadel.py`: para Premier Padel (Major/P1/P2), lee `data/manual/prize_torneo_slugs_2026.csv` y descarga `https://padelearnings.com/tournaments/<slug>`, con la tabla "Prize money breakdown per round" de cada torneo. **Hallazgo real**: en Major el reparto es igual para M y F, pero en P1/P2 **no** — la página general de resumen decía que sí ("equal prize money at all events"), pero cada torneo concreto (ej. Madrid P1 2026: 26.000 €/jugador en categoría masculina, 17.000 €/jugador en femenina) lo contradice.
+- `ingest/prizemoney/fip.py`: para FIP Tour (Platinum/Gold/Silver/Bronze), lee el mismo CSV y descarga `https://www.padelfip.com/events/<slug>/` (fuente oficial de la FIP, no un tercero), con su propia tabla "Prize distribution per tournament round" y bolsa total **fija** por torneo (no un rango como daba la tabla genérica de padel-magazine.es, que se ha dejado de usar). **Hallazgo real**: en FIP Silver, la ronda R32 no paga nada (0 €) en todos los torneos comprobados.
 
-La tabla del FIP Tour da un **porcentaje de la bolsa total** para cada ronda (ej. Platino: Winner 20%, R32 19%), no un importe por pareja. Ese porcentaje se reparte entre **todas las parejas que llegaron a esa ronda**, y cuántas son depende del tamaño del cuadro de cada torneo concreto (que varía). Además, la bolsa total del FIP Tour se da como un rango (ej. Platino: 120.000–150.000 €), no una cifra fija por torneo como en Premier Padel.
+## El mapeo torneo → página de premios es curación manual
 
-Calcular un importe por pareja exigiría dos datos que no tenemos: la bolsa exacta de cada torneo concreto y el tamaño de su cuadro. Antes que inventar una cifra con supuestos no verificados, se ha dejado `prize_money_pareja_eur` vacío para estas filas — el porcentaje y el rango de bolsa quedan guardados por si en el futuro se consigue el dato exacto por torneo.
+`data/manual/prize_torneo_slugs_2026.csv` asocia cada `torneo_nombre` (tal como aparece en nuestro propio `fact_partido`, vía padelapi) con el slug de su página de premios. El cruce automático por nombre normalizado (mismo método que `alias_jugadores.csv`) dio **falsos positivos peligrosos** entre categorías y ediciones distintas:
 
-## Implicación para `gold.ganancias_temporada`
+- "FIP Gold San Luis" casaba con la página de "FIP **Silver** San Luis" (categoría distinta, incluso el nombre visible en el listado).
+- "FIP Silver Cyprus **I**" casaba con "FIP Silver Cyprus **II**" (edición distinta).
+- "FIP Silver Oeiras" casaba con "FIP **Bronze** Oeiras" (categoría distinta).
 
-Con esta fuente, `ganancias_temporada` solo puede calcular cifras reales para resultados de **Premier Padel Major/P1/P2** en las rondas W/F/SF/QF/R16. Quedan sin importe (no en cero, en `NULL`, para no confundir "no cobró" con "no sabemos cuánto cobró"):
+Los tres se descartaron explícitamente en vez de arriesgar una cifra mal cruzada — con dinero real, un cruce dudoso es peor que un hueco documentado. El CSV final tiene 52 torneos verificados (16 Premier Padel, 36 FIP Tour) de los ~65 que hay en `fact_partido`; el resto (principalmente FIP Silver sin coincidencia clara, como "3f Elettronica Porto St'elpidio", "Betclic", "Hoganas") queda sin premio conocido.
 
-- Resultados de **Premier Padel Finals** (torneo de fin de temporada) — ninguna de las dos fuentes lo cubre.
-- Resultados de **FIP Tour** (Platinum/Gold/Silver/Bronze) — bloqueado por lo explicado arriba.
-- Rondas **R32, R64 y clasificación** de cualquier categoría — ninguna fuente las desglosa.
+## Bugs de formato de número encontrados y corregidos
 
-Es una tabla parcial pero honesta, no una tabla completa con huecos rellenados a ojo.
+La tabla de premios de padelfip.com mezcla, dentro de la misma tabla, tres formatos de número sin avisar:
+
+- `421,88€` — coma decimal.
+- `1.406€` — punto de millar.
+- `337.50€` — punto **decimal** (no de millar, pese a tener el mismo aspecto que el caso anterior).
+
+Un primer intento de parseo con una expresión regular ingenua leía "1.406€" como "1" y "337.50€" como "33.750" — ambos absurdos, detectados porque rompían la comprobación de que ganar una ronda posterior siempre paga más (`tests/test_calidad_silver.py::test_prize_por_torneo_positivo_y_monotono`). La función `_parse_euros` en `ingest/prizemoney/fip.py` distingue por la cantidad de dígitos tras el separador (2 → decimal, se descarta; 3 → millar, se une) en vez de asumir un convenio fijo.
+
+## Cobertura de `gold.ganancias_temporada`
+
+Con datos reales por torneo (no una estimación por categoría), la tabla cubre significativamente más que antes: 1.657 jugadores (frente a 143 con el enfoque anterior, que solo cubría Premier Padel Major/P1/P2). Sigue siendo parcial — los ~13-15 torneos sin cruce verificado no aportan ganancias — pero cada cifra que sí aparece es la real de ese torneo concreto, no una aproximación.

@@ -217,15 +217,32 @@ def test_puntos_a_defender_8sem_incluye_4sem() -> None:
         assert r["puntos_a_defender_8sem"] >= r["puntos_a_defender_4sem"] >= 0
 
 
-def test_dim_prize_categoria_coherente() -> None:
-    path = SILVER_ROOT / "dim_prize_categoria" / "data.json"
+def test_prize_por_torneo_positivo_y_monotono() -> None:
+    """Cifras reales por torneo (padelearnings.com / padelfip.com): siempre
+    positivas, y dentro de un mismo torneo+sexo, ganar debe pagar más que
+    perder en una ronda anterior."""
+
+    path = SILVER_ROOT / "prize_por_torneo" / "data.json"
     if not path.exists():
-        pytest.skip("dim_prize_categoria todavía no se ha generado")
+        pytest.skip("prize_por_torneo todavía no se ha generado")
     rows = json.loads(path.read_text(encoding="utf-8"))
+    orden = {"R64": 0, "R32": 1, "R16": 2, "QF": 3, "SF": 4, "F": 5, "W": 6}
     for r in rows:
-        if r["prize_money_pareja_eur"] is not None:
-            assert r["prize_money_pareja_eur"] > 0
-        assert r["pool_min_eur"] <= r["pool_max_eur"]
+        # FIP Silver no paga nada por perder en R32 (confirmado en vivo,
+        # 17/09/2026, consistente en todos los FIP Silver del dataset) —
+        # >= 0, no > 0.
+        assert r["prize_money_jugador_eur"] >= 0
+
+    por_torneo: dict[tuple[str, str], list[dict]] = {}
+    for r in rows:
+        por_torneo.setdefault((r["torneo_nombre_norm"], r["sexo"]), []).append(r)
+    for filas in por_torneo.values():
+        filas.sort(key=lambda r: orden.get(r["ronda"], -1))
+        anterior = None
+        for r in filas:
+            if anterior is not None:
+                assert r["prize_money_jugador_eur"] >= anterior, f"Premio no monótono: {filas}"
+            anterior = r["prize_money_jugador_eur"]
 
 
 def test_ganancias_temporada_no_negativa() -> None:
