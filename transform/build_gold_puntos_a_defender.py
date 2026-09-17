@@ -3,12 +3,13 @@
 Una fila = un jugador con puntos que caducan (ranking rodante a 52 semanas)
 en las próximas 4/8 semanas.
 
-Aviso real (17/09/2026): con solo 180 días de fact_resultado_torneo hacia
-atrás, ningún resultado actual caduca todavía (caducarían ~un año después
-de haberse ganado, muy por delante de la ventana de 4-8 semanas). Esta tabla
-sale vacía o casi vacía hasta que el backfill de partidos cubra un año
-completo (Fase 5, doc 01 §8: "Backfill"). El cálculo es correcto y queda
-listo para cuando haya datos suficientes — no es un error de este script.
+Aviso real (17-18/09/2026): con ~240 días de fact_resultado_torneo hacia
+atrás (ampliado desde 180 el 18/09), ningún resultado actual caduca todavía
+(caducarían ~un año después de haberse ganado, muy por delante de la
+ventana de 4-8 semanas). Esta tabla sale vacía o casi vacía hasta que el
+backfill de partidos cubra un año completo (Fase 5, doc 01 §8: "Backfill").
+El cálculo es correcto y queda listo para cuando haya datos suficientes —
+no es un error de este script.
 """
 
 from __future__ import annotations
@@ -88,7 +89,7 @@ def build() -> Path:
 
     print(
         f"puntos_a_defender: {len(rows)} jugadores con puntos que caducan en las próximas 8 semanas "
-        f"(con los datos actuales, {CICLO_RANKING_DIAS} días de ciclo de ranking y solo 180 días de "
+        f"(con los datos actuales, {CICLO_RANKING_DIAS} días de ciclo de ranking y solo ~240 días de "
         f"histórico, se espera que sean pocos o ninguno)"
     )
     print(f"-> {out_file.relative_to(REPO_ROOT)}")
