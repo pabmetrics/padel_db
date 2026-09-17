@@ -41,9 +41,27 @@ def build() -> Path:
     resultados = json.loads(FACT_RESULTADO.read_text(encoding="utf-8"))
     prize_rows = json.loads(PRIZE_POR_TORNEO.read_text(encoding="utf-8"))
 
-    prize_por_clave: dict[tuple[str, str, str], int] = {}
+    # La mayoría de claves (nombre, sexo, ronda) tienen un único valor. Unas
+    # pocas tienen más de uno porque el mismo nombre corresponde a varias
+    # ediciones distintas del torneo en el año (ej. dos "FIP Silver Damac
+    # Dubai" con bolsas distintas, 17/09/2026) — ahí se guarda un dict por
+    # mes_aprox y se desambigua más abajo por la fecha real del resultado.
+    grupos: dict[tuple[str, str, str], list[dict[str, Any]]] = defaultdict(list)
     for p in prize_rows:
-        prize_por_clave[(p["torneo_nombre_norm"], p["sexo"], p["ronda"])] = p["prize_money_jugador_eur"]
+        grupos[(p["torneo_nombre_norm"], p["sexo"], p["ronda"])].append(p)
+
+    prize_por_clave: dict[tuple[str, str, str], int | dict[str, int]] = {}
+    for clave, filas in grupos.items():
+        if len(filas) == 1:
+            prize_por_clave[clave] = filas[0]["prize_money_jugador_eur"]
+        else:
+            prize_por_clave[clave] = {f["mes_aprox"]: f["prize_money_jugador_eur"] for f in filas if f.get("mes_aprox")}
+
+    def _premio(clave: tuple[str, str, str], fecha: str | None) -> int | None:
+        valor = prize_por_clave.get(clave)
+        if valor is None or isinstance(valor, int):
+            return valor
+        return valor.get(fecha[:7]) if fecha else None
 
     dim_dir = REPO_ROOT / "silver" / "dim_jugador"
     dt_dirs = sorted((p for p in dim_dir.glob("dt=*") if p.is_dir()), key=lambda p: p.name)
@@ -60,9 +78,9 @@ def build() -> Path:
     for r in resultados:
         torneo_norm = normalize_name(r["torneo_nombre"])
         sexo_prize = SEXO_PARTIDO_A_PRIZE.get(r.get("categoria_sexo"))
-        premio = prize_por_clave.get((torneo_norm, sexo_prize, r["ronda_alcanzada"]))
+        premio = _premio((torneo_norm, sexo_prize, r["ronda_alcanzada"]), r.get("fecha"))
         if premio is None:
-            premio = prize_por_clave.get((torneo_norm, "ambos", r["ronda_alcanzada"]))
+            premio = _premio((torneo_norm, "ambos", r["ronda_alcanzada"]), r.get("fecha"))
         if premio is None:
             continue
         torneos_con_premio.add(r["torneo_nombre"])

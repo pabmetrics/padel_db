@@ -74,9 +74,18 @@ def _parse_euros(text: str) -> int | None:
     return int(entero) if entero.isdigit() else None
 
 
-def load_slugs() -> list[tuple[str, str]]:
+def load_slugs() -> list[tuple[str, str, str | None]]:
+    """(nombre, slug, mes_aprox). `mes_aprox` ("AAAA-MM") solo está informado
+    cuando el mismo nombre corresponde a varias ediciones distintas del
+    torneo (ej. dos "FIP Silver Damac Dubai" en 2026) — desambigua cuál es
+    cuál al construir prize_por_torneo."""
+
     with SLUGS_CSV.open(encoding="utf-8") as f:
-        return [(row["torneo_nombre_bronze"], row["slug"]) for row in csv.DictReader(f) if row["fuente"] == "padelfip"]
+        return [
+            (row["torneo_nombre_bronze"], row["slug"], row.get("mes_aprox") or None)
+            for row in csv.DictReader(f)
+            if row["fuente"] == "padelfip"
+        ]
 
 
 def parse_event(html: str) -> tuple[list[dict[str, Any]], int | None]:
@@ -103,15 +112,17 @@ def parse_event(html: str) -> tuple[list[dict[str, Any]], int | None]:
 def fetch_all() -> list[dict[str, Any]]:
     items: list[dict[str, Any]] = []
     with httpx.Client(timeout=20, follow_redirects=True, headers={"User-Agent": USER_AGENT}) as client:
-        for torneo_nombre, slug in load_slugs():
+        for torneo_nombre, slug, mes_aprox in load_slugs():
             response = client.get(f"https://www.padelfip.com/events/{slug}/")
             if response.status_code != 200:
                 print(f"  {torneo_nombre}: HTTP {response.status_code}, saltado")
                 continue
             rows, pool_eur = parse_event(response.text)
             for row in rows:
-                items.append({"torneo_nombre_bronze": torneo_nombre, "slug": slug, "pool_eur": pool_eur, **row})
-            print(f"  {torneo_nombre}: {len(rows)} filas, bolsa {pool_eur}")
+                items.append(
+                    {"torneo_nombre_bronze": torneo_nombre, "slug": slug, "mes_aprox": mes_aprox, "pool_eur": pool_eur, **row}
+                )
+            print(f"  {torneo_nombre}{' (' + mes_aprox + ')' if mes_aprox else ''}: {len(rows)} filas, bolsa {pool_eur}")
             time.sleep(0.3)
     return items
 

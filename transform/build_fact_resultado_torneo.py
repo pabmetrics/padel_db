@@ -101,15 +101,36 @@ def build() -> Path:
     # Metadatos de torneo (nombre/nivel) por torneo_id, tomados de cualquier
     # partido de ese torneo — hacen falta incluso para partidos con `winner`
     # oculto, que no llegan a mejor_partido pero sí traen esta metadata.
-    torneo_id_por_nombre: dict[str, str] = {}
+    # Dos torneos distintos pueden compartir nombre (ej. dos ediciones de
+    # "FIP Silver Damac Dubai" con distinto torneo_id) — se guardan TODOS los
+    # ids candidatos por nombre y se desambigua por censo de jugadores, no
+    # por "el último que se ha visto al iterar".
+    torneo_ids_por_nombre: dict[str, set[str]] = {}
     nombre_canonico_por_torneo_id: dict[str, str] = {}
     nivel_por_torneo_id: dict[str, str | None] = {}
     fecha_max_por_torneo_id: dict[str, str] = {}
+    censo_por_torneo_id: dict[str, set[str]] = {}
     for p in partidos:
-        torneo_id_por_nombre[normalize_name(p["torneo_nombre"])] = p["torneo_id"]
+        torneo_ids_por_nombre.setdefault(normalize_name(p["torneo_nombre"]), set()).add(p["torneo_id"])
         nombre_canonico_por_torneo_id.setdefault(p["torneo_id"], p["torneo_nombre"])
         nivel_por_torneo_id.setdefault(p["torneo_id"], p.get("torneo_nivel_padelapi"))
         fecha_max_por_torneo_id[p["torneo_id"]] = max(fecha_max_por_torneo_id.get(p["torneo_id"], ""), p["fecha"])
+        censo = censo_por_torneo_id.setdefault(p["torneo_id"], set())
+        for slot in ("equipo_1_jugador_1", "equipo_1_jugador_2", "equipo_2_jugador_1", "equipo_2_jugador_2"):
+            jugador = p.get(slot)
+            if jugador and jugador.get("jugador_id"):
+                censo.add(jugador["jugador_id"])
+
+    def resolver_torneo_id(nombre: str, jugador_id: str, compañero_id: str) -> str | None:
+        candidatos = torneo_ids_por_nombre.get(normalize_name(nombre))
+        if not candidatos:
+            return None
+        if len(candidatos) == 1:
+            return next(iter(candidatos))
+        # nombre ambiguo (varias ediciones): solo vale si el censo de UNA
+        # sola de ellas contiene a los dos jugadores.
+        que_encajan = [tid for tid in candidatos if {jugador_id, compañero_id} <= censo_por_torneo_id.get(tid, set())]
+        return que_encajan[0] if len(que_encajan) == 1 else None
 
     parejas_cubiertas: set[tuple[str, tuple[str, str]]] = set(mejor_partido.keys())
 
@@ -123,9 +144,11 @@ def build() -> Path:
         if not fuente_path.exists():
             continue
         for r in json.loads(fuente_path.read_text(encoding="utf-8")):
-            torneo_id = torneo_id_por_nombre.get(normalize_name(r["torneo_nombre"]))
             compañero_id = r.get("compañero_id")
-            if not torneo_id or not compañero_id:
+            if not compañero_id:
+                continue
+            torneo_id = resolver_torneo_id(r["torneo_nombre"], r["jugador_id"], compañero_id)
+            if not torneo_id:
                 continue
             pareja = tuple(sorted((r["jugador_id"], compañero_id)))
             clave = (torneo_id, pareja)

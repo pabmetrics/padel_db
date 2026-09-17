@@ -31,4 +31,6 @@ Un primer intento de parseo con una expresión regular ingenua leía "1.406€" 
 
 ## Cobertura de `gold.ganancias_temporada`
 
-Con datos reales por torneo y los 65 torneos ya cubiertos, la tabla pasó de 143 jugadores (enfoque genérico original, solo Premier Padel Major/P1/P2) a 1.894 — con cada cifra siendo la real de ese torneo concreto, no una aproximación por categoría.
+Con datos reales por torneo y los 74 torneos ya cubiertos (72 con premio + resultados de respaldo para Premier Padel y FIP Tour, ver `docs/campos-f2-padelapi.md`), la tabla pasó de 143 jugadores (enfoque genérico original) a 2.007.
+
+**Resuelto (18/09/2026)**: dos ediciones distintas de "FIP Silver Damac Dubai" (febrero y junio de 2026) comparten el mismo nombre, y de verdad tienen bolsas distintas (20.000 € / Winner 1.600 € en febrero; 25.000 € / Winner 2.000 € en junio — confirmado en las dos páginas oficiales de padelfip.com). `data/manual/prize_torneo_slugs_2026.csv` admite una columna `mes_aprox` para estos casos: cuando el mismo nombre tiene más de una fila de premios, `build_gold_ganancias_temporada.py` elige la que corresponde al mes real del resultado en vez de una cualquiera. Es el único torneo del dataset con esta ambigüedad; si aparece otro caso igual, el mismo mecanismo lo cubre añadiendo una fila más al CSV.

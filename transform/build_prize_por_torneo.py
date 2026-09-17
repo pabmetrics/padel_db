@@ -51,6 +51,7 @@ def build() -> Path:
             {
                 "torneo_nombre_norm": normalize_name(item["torneo_nombre_bronze"]),
                 "torneo_nombre": item["torneo_nombre_bronze"],
+                "mes_aprox": item.get("mes_aprox"),
                 "sexo": item["sexo"],
                 "ronda": item["ronda"],
                 "prize_money_jugador_eur": item["jugador_eur"],
