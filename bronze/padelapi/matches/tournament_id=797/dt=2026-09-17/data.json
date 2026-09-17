@@ -1,0 +1,3787 @@
+{
+  "source": "padelapi",
+  "endpoint": "/tournaments/797/matches",
+  "ingest_ts": "2026-09-17T11:58:56.422166+00:00",
+  "sha256": "62a9e03d4b15030d09dce8197a04972041590aad9bd1c3b49650b0856aca26c8",
+  "tournament": {
+    "id": 797,
+    "name": "FIP Silver Betclic",
+    "country": "CI",
+    "level": "fip_silver",
+    "start_date": "2026-04-01",
+    "end_date": "2026-04-05"
+  },
+  "n_items": 44,
+  "items": [
+    {
+      "id": 8040,
+      "self": "/api/matches/8040",
+      "name": "Jofre/Gala - Araujo/Graca",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 2,
+      "round_name": "Semifinals",
+      "index": 0,
+      "seeds": {
+        "team_1": "1",
+        "team_2": "5"
+      },
+      "played_at": "2026-04-04",
+      "schedule_label": "Not before 4:00 PM",
+      "scheduled_at": "2026-04-04T18:00:00+02:00",
+      "scheduled_at_local": "2026-04-04T16:00:00+00:00",
+      "court": "Central Court",
+      "court_order": 2,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "2"
+        },
+        {
+          "team_1": "6",
+          "team_2": "4"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 155,
+            "self": "/api/players/155",
+            "name": "Inigo Jofre",
+            "side": "backhand",
+            "connections": {
+              "pair": "/api/pairs/155-151"
+            }
+          },
+          {
+            "id": 151,
+            "self": "/api/players/151",
+            "name": "David Gala",
+            "side": "backhand",
+            "connections": {
+              "pair": "/api/pairs/155-151"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 301,
+            "self": "/api/players/301",
+            "name": "Pedro Araujo",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/301-1244"
+            }
+          },
+          {
+            "id": 1244,
+            "self": "/api/players/1244",
+            "name": "Pedro Graca",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/301-1244"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-04-23T14:12:28+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/797",
+        "headtohead": "/api/matches/8040/headtohead",
+        "prev": "/api/matches/8073",
+        "next": "/api/matches/8074"
+      }
+    },
+    {
+      "id": 8041,
+      "self": "/api/matches/8041",
+      "name": "Medina/Garcia - Fernandez/Gonzalez",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 2,
+      "round_name": "Semifinals",
+      "index": 1,
+      "seeds": {
+        "team_1": "4",
+        "team_2": "2"
+      },
+      "played_at": "2026-04-04",
+      "schedule_label": "Not before 4:00 PM",
+      "scheduled_at": "2026-04-04T18:00:00+02:00",
+      "scheduled_at_local": "2026-04-04T16:00:00+00:00",
+      "court": "Court 1",
+      "court_order": 2,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "2"
+        },
+        {
+          "team_1": "6",
+          "team_2": "1"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 31,
+            "self": "/api/players/31",
+            "name": "Christian Medina Murphy",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/31-32"
+            }
+          },
+          {
+            "id": 32,
+            "self": "/api/players/32",
+            "name": "Alberto Garcia Jimenez",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/31-32"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 108,
+            "self": "/api/players/108",
+            "name": "Antonio Fernandez",
+            "side": "backhand",
+            "connections": {
+              "pair": "/api/pairs/108-233"
+            }
+          },
+          {
+            "id": 233,
+            "self": "/api/players/233",
+            "name": "Jose Luis Gonzalez",
+            "side": "drive",
+            "connections": {
+              "pair": "/api/pairs/108-233"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-04-23T14:12:34+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/797",
+        "headtohead": "/api/matches/8041/headtohead",
+        "prev": "/api/matches/8072"
+      }
+    },
+    {
+      "id": 8042,
+      "self": "/api/matches/8042",
+      "name": "Jofre/Gala - Medina/Garcia",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 1,
+      "round_name": "Finals",
+      "index": 0,
+      "seeds": {
+        "team_1": "1",
+        "team_2": "4"
+      },
+      "played_at": "2026-04-04",
+      "schedule_label": "After suitable rest",
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Central Court",
+      "court_order": 4,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "1"
+        },
+        {
+          "team_1": "6",
+          "team_2": "2"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 155,
+            "self": "/api/players/155",
+            "name": "Inigo Jofre",
+            "side": "backhand",
+            "connections": {
+              "pair": "/api/pairs/155-151"
+            }
+          },
+          {
+            "id": 151,
+            "self": "/api/players/151",
+            "name": "David Gala",
+            "side": "backhand",
+            "connections": {
+              "pair": "/api/pairs/155-151"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 31,
+            "self": "/api/players/31",
+            "name": "Christian Medina Murphy",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/31-32"
+            }
+          },
+          {
+            "id": 32,
+            "self": "/api/players/32",
+            "name": "Alberto Garcia Jimenez",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/31-32"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-04-23T14:12:31+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/797",
+        "headtohead": "/api/matches/8042/headtohead",
+        "prev": "/api/matches/8074"
+      }
+    },
+    {
+      "id": 8072,
+      "self": "/api/matches/8072",
+      "name": "Bidahorria/Caparros - Fernandez/Guerra",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 2,
+      "round_name": "Semifinals",
+      "index": 0,
+      "seeds": {
+        "team_1": "1",
+        "team_2": "4"
+      },
+      "played_at": "2026-04-04",
+      "schedule_label": "Starting at 9:00 AM",
+      "scheduled_at": "2026-04-04T11:00:00+02:00",
+      "scheduled_at_local": "2026-04-04T09:00:00+00:00",
+      "court": "Court 1",
+      "court_order": 1,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "4"
+        },
+        {
+          "team_1": "6",
+          "team_2": "4"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 451,
+            "self": "/api/players/451",
+            "name": "Julieta Evangelina Bidahorria",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/451-437"
+            }
+          },
+          {
+            "id": 437,
+            "self": "/api/players/437",
+            "name": "Marta Caparros Maldonado",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/451-437"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 1611,
+            "self": "/api/players/1611",
+            "name": "Carla Fernandez Gonzalez",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1611-1612"
+            }
+          },
+          {
+            "id": 1612,
+            "self": "/api/players/1612",
+            "name": "Nerea Guerra Santana",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1611-1612"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-04-23T14:12:32+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/797",
+        "headtohead": "/api/matches/8072/headtohead",
+        "next": "/api/matches/8041"
+      }
+    },
+    {
+      "id": 8073,
+      "self": "/api/matches/8073",
+      "name": "Manquillo/Lujan - Collombon/Montes",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 2,
+      "round_name": "Semifinals",
+      "index": 1,
+      "seeds": {
+        "team_1": "3",
+        "team_2": "2"
+      },
+      "played_at": "2026-04-04",
+      "schedule_label": "Starting at 3:00 PM",
+      "scheduled_at": "2026-04-04T17:00:00+02:00",
+      "scheduled_at_local": "2026-04-04T15:00:00+00:00",
+      "court": "Central Court",
+      "court_order": 1,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "7",
+          "team_2": "6"
+        },
+        {
+          "team_1": "6",
+          "team_2": "1"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 464,
+            "self": "/api/players/464",
+            "name": "Letizia Maria Manquillo Alarza",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/464-431"
+            }
+          },
+          {
+            "id": 431,
+            "self": "/api/players/431",
+            "name": "Laura Lujan Rodriguez",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/464-431"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 392,
+            "self": "/api/players/392",
+            "name": "Alix Collombon",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/392-396"
+            }
+          },
+          {
+            "id": 396,
+            "self": "/api/players/396",
+            "name": "Jana Montes Cabruja",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/392-396"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-04-23T14:12:26+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/797",
+        "headtohead": "/api/matches/8073/headtohead",
+        "next": "/api/matches/8040"
+      }
+    },
+    {
+      "id": 8074,
+      "self": "/api/matches/8074",
+      "name": "Bidahorria/Caparros - Manquillo/Lujan",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 1,
+      "round_name": "Finals",
+      "index": 0,
+      "seeds": {
+        "team_1": "1",
+        "team_2": "3"
+      },
+      "played_at": "2026-04-04",
+      "schedule_label": "After suitable rest",
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Central Court",
+      "court_order": 3,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "3"
+        },
+        {
+          "team_1": "6",
+          "team_2": "4"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 451,
+            "self": "/api/players/451",
+            "name": "Julieta Evangelina Bidahorria",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/451-437"
+            }
+          },
+          {
+            "id": 437,
+            "self": "/api/players/437",
+            "name": "Marta Caparros Maldonado",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/451-437"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 464,
+            "self": "/api/players/464",
+            "name": "Letizia Maria Manquillo Alarza",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/464-431"
+            }
+          },
+          {
+            "id": 431,
+            "self": "/api/players/431",
+            "name": "Laura Lujan Rodriguez",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/464-431"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-04-23T14:12:29+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/797",
+        "headtohead": "/api/matches/8074/headtohead",
+        "prev": "/api/matches/8040",
+        "next": "/api/matches/8042"
+      }
+    },
+    {
+      "id": 8028,
+      "self": "/api/matches/8028",
+      "name": "Jofre/Gala - Zumelzu/Zumelzu",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 8,
+      "round_name": "Round of 16",
+      "index": 0,
+      "seeds": {
+        "team_1": "1",
+        "team_2": "Q"
+      },
+      "played_at": "2026-04-03",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Court 1",
+      "court_order": 2,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "1"
+        },
+        {
+          "team_1": "6",
+          "team_2": "0"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 155,
+            "self": "/api/players/155",
+            "name": "Inigo Jofre",
+            "side": "backhand",
+            "connections": {
+              "pair": "/api/pairs/155-151"
+            }
+          },
+          {
+            "id": 151,
+            "self": "/api/players/151",
+            "name": "David Gala",
+            "side": "backhand",
+            "connections": {
+              "pair": "/api/pairs/155-151"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 1681,
+            "self": "/api/players/1681",
+            "name": "Joris Zumelzu",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1681-1682"
+            }
+          },
+          {
+            "id": 1682,
+            "self": "/api/players/1682",
+            "name": "Thomas Zumelzu",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1681-1682"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-04-23T14:12:03+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/797",
+        "headtohead": "/api/matches/8028/headtohead",
+        "prev": "/api/matches/8065",
+        "next": "/api/matches/8062"
+      }
+    },
+    {
+      "id": 8029,
+      "self": "/api/matches/8029",
+      "name": "Felix/Dolo - Oliver/Hachem",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 8,
+      "round_name": "Round of 16",
+      "index": 1,
+      "seeds": {
+        "team_1": null,
+        "team_2": "8"
+      },
+      "played_at": "2026-04-03",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Court 2",
+      "court_order": 2,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "2",
+          "team_2": "6"
+        },
+        {
+          "team_1": "4",
+          "team_2": "6"
+        }
+      ],
+      "winner": "team_2",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 1683,
+            "self": "/api/players/1683",
+            "name": "Bommanhin Felix Ange Romaric Boblei",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1683-1684"
+            }
+          },
+          {
+            "id": 1684,
+            "self": "/api/players/1684",
+            "name": "Mohamed Dolo",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1683-1684"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 543,
+            "self": "/api/players/543",
+            "name": "Luis Oliver Artigas",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/543-1641"
+            }
+          },
+          {
+            "id": 1641,
+            "self": "/api/players/1641",
+            "name": "Maher Hachem",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/543-1641"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-04-23T14:12:15+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/797",
+        "headtohead": "/api/matches/8029/headtohead",
+        "prev": "/api/matches/8064",
+        "next": "/api/matches/8060"
+      }
+    },
+    {
+      "id": 8030,
+      "self": "/api/matches/8030",
+      "name": "Araujo/Graca - Ange/Sadry",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 8,
+      "round_name": "Round of 16",
+      "index": 2,
+      "seeds": {
+        "team_1": "5",
+        "team_2": "LL"
+      },
+      "played_at": "2026-04-03",
+      "schedule_label": "Starting at 10:00 AM",
+      "scheduled_at": "2026-04-03T12:00:00+02:00",
+      "scheduled_at_local": "2026-04-03T10:00:00+00:00",
+      "court": "Court 3",
+      "court_order": 2,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "0"
+        },
+        {
+          "team_1": "6",
+          "team_2": "0"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 301,
+            "self": "/api/players/301",
+            "name": "Pedro Araujo",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/301-1244"
+            }
+          },
+          {
+            "id": 1244,
+            "self": "/api/players/1244",
+            "name": "Pedro Graca",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/301-1244"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 1644,
+            "self": "/api/players/1644",
+            "name": "Ehouman Ange Imran",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1644-1645"
+            }
+          },
+          {
+            "id": 1645,
+            "self": "/api/players/1645",
+            "name": "Saleh Sadry Salah",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1644-1645"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-04-23T14:12:22+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/797",
+        "headtohead": "/api/matches/8030/headtohead",
+        "prev": "/api/matches/8066",
+        "next": "/api/matches/8063"
+      }
+    },
+    {
+      "id": 8031,
+      "self": "/api/matches/8031",
+      "name": "Varo/Ezzedine - Belluati/Castro",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 8,
+      "round_name": "Round of 16",
+      "index": 3,
+      "seeds": {
+        "team_1": null,
+        "team_2": "3"
+      },
+      "played_at": "2026-04-03",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Central Court",
+      "court_order": 2,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "7"
+        },
+        {
+          "team_1": "1",
+          "team_2": "6"
+        }
+      ],
+      "winner": "team_2",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 145,
+            "self": "/api/players/145",
+            "name": "Antonio Varo Ramos",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/145-1648"
+            }
+          },
+          {
+            "id": 1648,
+            "self": "/api/players/1648",
+            "name": "Wael Ezzedine",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/145-1648"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 161,
+            "self": "/api/players/161",
+            "name": "Juan Cruz Belluati",
+            "side": "drive",
+            "connections": {
+              "pair": "/api/pairs/161-15"
+            }
+          },
+          {
+            "id": 15,
+            "self": "/api/players/15",
+            "name": "Boris Castro Garcia",
+            "side": "backhand",
+            "connections": {
+              "pair": "/api/pairs/161-15"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-04-23T14:11:51+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/797",
+        "headtohead": "/api/matches/8031/headtohead",
+        "prev": "/api/matches/8067",
+        "next": "/api/matches/8061"
+      }
+    },
+    {
+      "id": 8032,
+      "self": "/api/matches/8032",
+      "name": "Medina/Garcia - Ka/Ait Oumelloul",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 8,
+      "round_name": "Round of 16",
+      "index": 4,
+      "seeds": {
+        "team_1": "4",
+        "team_2": null
+      },
+      "played_at": "2026-04-03",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Court 3",
+      "court_order": 4,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "3"
+        },
+        {
+          "team_1": "6",
+          "team_2": "3"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 31,
+            "self": "/api/players/31",
+            "name": "Christian Medina Murphy",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/31-32"
+            }
+          },
+          {
+            "id": 32,
+            "self": "/api/players/32",
+            "name": "Alberto Garcia Jimenez",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/31-32"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 1656,
+            "self": "/api/players/1656",
+            "name": "Oumar Ka",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1656-1685"
+            }
+          },
+          {
+            "id": 1685,
+            "self": "/api/players/1685",
+            "name": "Youssef Ait Oumelloul",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1656-1685"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-04-23T14:12:25+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/797",
+        "headtohead": "/api/matches/8032/headtohead",
+        "prev": "/api/matches/8063"
+      }
+    },
+    {
+      "id": 8033,
+      "self": "/api/matches/8033",
+      "name": "Lageat/Lageat - Gayone/Rivero",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 8,
+      "round_name": "Round of 16",
+      "index": 5,
+      "seeds": {
+        "team_1": "Q",
+        "team_2": "6"
+      },
+      "played_at": "2026-04-03",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Court 1",
+      "court_order": 4,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "2",
+          "team_2": "6"
+        },
+        {
+          "team_1": "0",
+          "team_2": "6"
+        }
+      ],
+      "winner": "team_2",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 1665,
+            "self": "/api/players/1665",
+            "name": "Frederic Lageat",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1665-1666"
+            }
+          },
+          {
+            "id": 1666,
+            "self": "/api/players/1666",
+            "name": "Fabrice Lageat",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1665-1666"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 39,
+            "self": "/api/players/39",
+            "name": "Manuel Gayone",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/39-768"
+            }
+          },
+          {
+            "id": 768,
+            "self": "/api/players/768",
+            "name": "Mateo Rivero",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/39-768"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-04-23T14:12:06+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/797",
+        "headtohead": "/api/matches/8033/headtohead",
+        "prev": "/api/matches/8062",
+        "next": "/api/matches/8070"
+      }
+    },
+    {
+      "id": 8034,
+      "self": "/api/matches/8034",
+      "name": "Ramirez/Najib - Joel/Malick",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 8,
+      "round_name": "Round of 16",
+      "index": 6,
+      "seeds": {
+        "team_1": "7",
+        "team_2": null
+      },
+      "played_at": "2026-04-03",
+      "schedule_label": "Starting at 5:00 PM",
+      "scheduled_at": "2026-04-03T19:00:00+02:00",
+      "scheduled_at_local": "2026-04-03T17:00:00+00:00",
+      "court": "Court 2",
+      "court_order": 4,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "1"
+        },
+        {
+          "team_1": "6",
+          "team_2": "0"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 293,
+            "self": "/api/players/293",
+            "name": "Fran Ramirez Navas",
+            "side": "backhand",
+            "connections": {
+              "pair": "/api/pairs/293-1669"
+            }
+          },
+          {
+            "id": 1669,
+            "self": "/api/players/1669",
+            "name": "Fakih Najib",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/293-1669"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 1674,
+            "self": "/api/players/1674",
+            "name": "Ibrahim Joel Tresor Ouédraogo",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1674-1675"
+            }
+          },
+          {
+            "id": 1675,
+            "self": "/api/players/1675",
+            "name": "Tinde Malick Souleyman",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1674-1675"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-04-23T14:12:19+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/797",
+        "headtohead": "/api/matches/8034/headtohead",
+        "prev": "/api/matches/8060"
+      }
+    },
+    {
+      "id": 8035,
+      "self": "/api/matches/8035",
+      "name": "Redondo/Elloumi - Fernandez/Gonzalez",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 8,
+      "round_name": "Round of 16",
+      "index": 7,
+      "seeds": {
+        "team_1": null,
+        "team_2": "2"
+      },
+      "played_at": "2026-04-03",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Central Court",
+      "court_order": 4,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "1",
+          "team_2": "6"
+        },
+        {
+          "team_1": "1",
+          "team_2": "6"
+        }
+      ],
+      "winner": "team_2",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 1676,
+            "self": "/api/players/1676",
+            "name": "Javier Redondo Mendez",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1676-1677"
+            }
+          },
+          {
+            "id": 1677,
+            "self": "/api/players/1677",
+            "name": "Mehdi Elloumi",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1676-1677"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 108,
+            "self": "/api/players/108",
+            "name": "Antonio Fernandez",
+            "side": "backhand",
+            "connections": {
+              "pair": "/api/pairs/108-233"
+            }
+          },
+          {
+            "id": 233,
+            "self": "/api/players/233",
+            "name": "Jose Luis Gonzalez",
+            "side": "drive",
+            "connections": {
+              "pair": "/api/pairs/108-233"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-04-23T14:11:54+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/797",
+        "headtohead": "/api/matches/8035/headtohead",
+        "prev": "/api/matches/8061",
+        "next": "/api/matches/8071"
+      }
+    },
+    {
+      "id": 8036,
+      "self": "/api/matches/8036",
+      "name": "Jofre/Gala - Oliver/Hachem",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 4,
+      "round_name": "Quarter",
+      "index": 0,
+      "seeds": {
+        "team_1": "1",
+        "team_2": "8"
+      },
+      "played_at": "2026-04-03",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Court 1",
+      "court_order": 6,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "3"
+        },
+        {
+          "team_1": "6",
+          "team_2": "1"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 155,
+            "self": "/api/players/155",
+            "name": "Inigo Jofre",
+            "side": "backhand",
+            "connections": {
+              "pair": "/api/pairs/155-151"
+            }
+          },
+          {
+            "id": 151,
+            "self": "/api/players/151",
+            "name": "David Gala",
+            "side": "backhand",
+            "connections": {
+              "pair": "/api/pairs/155-151"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 543,
+            "self": "/api/players/543",
+            "name": "Luis Oliver Artigas",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/543-1641"
+            }
+          },
+          {
+            "id": 1641,
+            "self": "/api/players/1641",
+            "name": "Maher Hachem",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/543-1641"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-04-23T14:12:09+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/797",
+        "headtohead": "/api/matches/8036/headtohead",
+        "prev": "/api/matches/8070",
+        "next": "/api/matches/8068"
+      }
+    },
+    {
+      "id": 8037,
+      "self": "/api/matches/8037",
+      "name": "Araujo/Graca - Belluati/Castro",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 4,
+      "round_name": "Quarter",
+      "index": 1,
+      "seeds": {
+        "team_1": "5",
+        "team_2": "3"
+      },
+      "played_at": "2026-04-03",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Central Court",
+      "court_order": 6,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "3"
+        },
+        {
+          "team_1": "6",
+          "team_2": "2"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 301,
+            "self": "/api/players/301",
+            "name": "Pedro Araujo",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/301-1244"
+            }
+          },
+          {
+            "id": 1244,
+            "self": "/api/players/1244",
+            "name": "Pedro Graca",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/301-1244"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 161,
+            "self": "/api/players/161",
+            "name": "Juan Cruz Belluati",
+            "side": "drive",
+            "connections": {
+              "pair": "/api/pairs/161-15"
+            }
+          },
+          {
+            "id": 15,
+            "self": "/api/players/15",
+            "name": "Boris Castro Garcia",
+            "side": "backhand",
+            "connections": {
+              "pair": "/api/pairs/161-15"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-04-23T14:11:57+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/797",
+        "headtohead": "/api/matches/8037/headtohead",
+        "prev": "/api/matches/8071",
+        "next": "/api/matches/8069"
+      }
+    },
+    {
+      "id": 8038,
+      "self": "/api/matches/8038",
+      "name": "Medina/Garcia - Gayone/Rivero",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 4,
+      "round_name": "Quarter",
+      "index": 2,
+      "seeds": {
+        "team_1": "4",
+        "team_2": "6"
+      },
+      "played_at": "2026-04-03",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Central Court",
+      "court_order": 8,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "3"
+        },
+        {
+          "team_1": "6",
+          "team_2": "4"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 31,
+            "self": "/api/players/31",
+            "name": "Christian Medina Murphy",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/31-32"
+            }
+          },
+          {
+            "id": 32,
+            "self": "/api/players/32",
+            "name": "Alberto Garcia Jimenez",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/31-32"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 39,
+            "self": "/api/players/39",
+            "name": "Manuel Gayone",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/39-768"
+            }
+          },
+          {
+            "id": 768,
+            "self": "/api/players/768",
+            "name": "Mateo Rivero",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/39-768"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-04-23T14:12:00+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/797",
+        "headtohead": "/api/matches/8038/headtohead",
+        "prev": "/api/matches/8069"
+      }
+    },
+    {
+      "id": 8061,
+      "self": "/api/matches/8061",
+      "name": "Kouamé/Coulibaly - Sanchez/Salhab",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 8,
+      "round_name": "Round of 16",
+      "index": 1,
+      "seeds": {
+        "team_1": null,
+        "team_2": "7"
+      },
+      "played_at": "2026-04-03",
+      "schedule_label": "Not before 4:00 PM",
+      "scheduled_at": "2026-04-03T18:00:00+02:00",
+      "scheduled_at_local": "2026-04-03T16:00:00+00:00",
+      "court": "Central Court",
+      "court_order": 3,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "4",
+          "team_2": "6"
+        },
+        {
+          "team_1": "2",
+          "team_2": "6"
+        }
+      ],
+      "winner": "team_2",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 1688,
+            "self": "/api/players/1688",
+            "name": "Jauresse Kouamé",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1688-1687"
+            }
+          },
+          {
+            "id": 1687,
+            "self": "/api/players/1687",
+            "name": "Sadjo Coulibaly",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1688-1687"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 1371,
+            "self": "/api/players/1371",
+            "name": "Cayetana Sanchez Vera",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1371-1689"
+            }
+          },
+          {
+            "id": 1689,
+            "self": "/api/players/1689",
+            "name": "Lilia Salhab",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1371-1689"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-04-23T14:11:52+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/797",
+        "headtohead": "/api/matches/8061/headtohead",
+        "prev": "/api/matches/8031",
+        "next": "/api/matches/8035"
+      }
+    },
+    {
+      "id": 8062,
+      "self": "/api/matches/8062",
+      "name": "Sanchez/Chamli - Salloub/Omeis",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 8,
+      "round_name": "Round of 16",
+      "index": 2,
+      "seeds": {
+        "team_1": "5",
+        "team_2": null
+      },
+      "played_at": "2026-04-03",
+      "schedule_label": "Not before 4:00 PM",
+      "scheduled_at": "2026-04-03T18:00:00+02:00",
+      "scheduled_at_local": "2026-04-03T16:00:00+00:00",
+      "court": "Court 1",
+      "court_order": 3,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "1"
+        },
+        {
+          "team_1": "6",
+          "team_2": "1"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 569,
+            "self": "/api/players/569",
+            "name": "Ana Cristina Sanchez Perez",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/569-548"
+            }
+          },
+          {
+            "id": 548,
+            "self": "/api/players/548",
+            "name": "Dora Chamli",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/569-548"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 1691,
+            "self": "/api/players/1691",
+            "name": "Lara Salloub",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1691-1690"
+            }
+          },
+          {
+            "id": 1690,
+            "self": "/api/players/1690",
+            "name": "Kinda Omeis",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1691-1690"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-04-23T14:12:05+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/797",
+        "headtohead": "/api/matches/8062/headtohead",
+        "prev": "/api/matches/8028",
+        "next": "/api/matches/8033"
+      }
+    },
+    {
+      "id": 8063,
+      "self": "/api/matches/8063",
+      "name": "Byad/Gautier - Fernandez/Guerra",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 8,
+      "round_name": "Round of 16",
+      "index": 3,
+      "seeds": {
+        "team_1": null,
+        "team_2": "4"
+      },
+      "played_at": "2026-04-03",
+      "schedule_label": "Not before 4:00 PM",
+      "scheduled_at": "2026-04-03T18:00:00+02:00",
+      "scheduled_at_local": "2026-04-03T16:00:00+00:00",
+      "court": "Court 3",
+      "court_order": 3,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "0",
+          "team_2": "6"
+        },
+        {
+          "team_1": "0",
+          "team_2": "6"
+        }
+      ],
+      "winner": "team_2",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 1692,
+            "self": "/api/players/1692",
+            "name": "Afaf Byad",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1692-1693"
+            }
+          },
+          {
+            "id": 1693,
+            "self": "/api/players/1693",
+            "name": "Gaelle Gautier",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1692-1693"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 1611,
+            "self": "/api/players/1611",
+            "name": "Carla Fernandez Gonzalez",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1611-1612"
+            }
+          },
+          {
+            "id": 1612,
+            "self": "/api/players/1612",
+            "name": "Nerea Guerra Santana",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1611-1612"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-04-23T14:12:23+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/797",
+        "headtohead": "/api/matches/8063/headtohead",
+        "prev": "/api/matches/8030",
+        "next": "/api/matches/8032"
+      }
+    },
+    {
+      "id": 8064,
+      "self": "/api/matches/8064",
+      "name": "Manquillo/Lujan - Akkouch/Ezzeddine",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 8,
+      "round_name": "Round of 16",
+      "index": 4,
+      "seeds": {
+        "team_1": "3",
+        "team_2": null
+      },
+      "played_at": "2026-04-03",
+      "schedule_label": "Starting at 9:00 AM",
+      "scheduled_at": "2026-04-03T11:00:00+02:00",
+      "scheduled_at_local": "2026-04-03T09:00:00+00:00",
+      "court": "Court 2",
+      "court_order": 1,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "0"
+        },
+        {
+          "team_1": "6",
+          "team_2": "0"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 464,
+            "self": "/api/players/464",
+            "name": "Letizia Maria Manquillo Alarza",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/464-431"
+            }
+          },
+          {
+            "id": 431,
+            "self": "/api/players/431",
+            "name": "Laura Lujan Rodriguez",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/464-431"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 1696,
+            "self": "/api/players/1696",
+            "name": "Mariam Akkouch",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1696-1697"
+            }
+          },
+          {
+            "id": 1697,
+            "self": "/api/players/1697",
+            "name": "Fatima Ezzeddine",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1696-1697"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-04-23T14:12:14+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/797",
+        "headtohead": "/api/matches/8064/headtohead",
+        "next": "/api/matches/8029"
+      }
+    },
+    {
+      "id": 8065,
+      "self": "/api/matches/8065",
+      "name": "Rochet/Rochet - Uriarte/Ntanou",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 8,
+      "round_name": "Round of 16",
+      "index": 5,
+      "seeds": {
+        "team_1": null,
+        "team_2": "8"
+      },
+      "played_at": "2026-04-03",
+      "schedule_label": "Starting at 9:00 AM",
+      "scheduled_at": "2026-04-03T11:00:00+02:00",
+      "scheduled_at_local": "2026-04-03T09:00:00+00:00",
+      "court": "Court 1",
+      "court_order": 1,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "0",
+          "team_2": "6"
+        },
+        {
+          "team_1": "0",
+          "team_2": "6"
+        }
+      ],
+      "winner": "team_2",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 1699,
+            "self": "/api/players/1699",
+            "name": "Chloe Rochet",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1699-1698"
+            }
+          },
+          {
+            "id": 1698,
+            "self": "/api/players/1698",
+            "name": "Capucine Rochet",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1699-1698"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 1701,
+            "self": "/api/players/1701",
+            "name": "Leire Uriarte Medina",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1701-1700"
+            }
+          },
+          {
+            "id": 1700,
+            "self": "/api/players/1700",
+            "name": "Christina-Styliani Ntanou",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1701-1700"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-04-23T14:12:02+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/797",
+        "headtohead": "/api/matches/8065/headtohead",
+        "next": "/api/matches/8028"
+      }
+    },
+    {
+      "id": 8067,
+      "self": "/api/matches/8067",
+      "name": "Fawaz/Bahri - Collombon/Montes",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 8,
+      "round_name": "Round of 16",
+      "index": 7,
+      "seeds": {
+        "team_1": null,
+        "team_2": "2"
+      },
+      "played_at": "2026-04-03",
+      "schedule_label": "Starting at 9:00 AM",
+      "scheduled_at": "2026-04-03T11:00:00+02:00",
+      "scheduled_at_local": "2026-04-03T09:00:00+00:00",
+      "court": "Central Court",
+      "court_order": 1,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "1",
+          "team_2": "6"
+        },
+        {
+          "team_1": "1",
+          "team_2": "6"
+        }
+      ],
+      "winner": "team_2",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 1705,
+            "self": "/api/players/1705",
+            "name": "Melina Fawaz",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1705-1704"
+            }
+          },
+          {
+            "id": 1704,
+            "self": "/api/players/1704",
+            "name": "Ferdaous Bahri",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1705-1704"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 392,
+            "self": "/api/players/392",
+            "name": "Alix Collombon",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/392-396"
+            }
+          },
+          {
+            "id": 396,
+            "self": "/api/players/396",
+            "name": "Jana Montes Cabruja",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/392-396"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-04-23T14:11:49+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/797",
+        "headtohead": "/api/matches/8067/headtohead",
+        "next": "/api/matches/8031"
+      }
+    },
+    {
+      "id": 8068,
+      "self": "/api/matches/8068",
+      "name": "Bidahorria/Caparros - Sanchez/Salhab",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 4,
+      "round_name": "Quarter",
+      "index": 0,
+      "seeds": {
+        "team_1": "1",
+        "team_2": "7"
+      },
+      "played_at": "2026-04-03",
+      "schedule_label": "Not before 8:30 PM",
+      "scheduled_at": "2026-04-03T22:30:00+02:00",
+      "scheduled_at_local": "2026-04-03T20:30:00+00:00",
+      "court": "Court 1",
+      "court_order": 7,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "0"
+        },
+        {
+          "team_1": "6",
+          "team_2": "1"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 451,
+            "self": "/api/players/451",
+            "name": "Julieta Evangelina Bidahorria",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/451-437"
+            }
+          },
+          {
+            "id": 437,
+            "self": "/api/players/437",
+            "name": "Marta Caparros Maldonado",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/451-437"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 1371,
+            "self": "/api/players/1371",
+            "name": "Cayetana Sanchez Vera",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1371-1689"
+            }
+          },
+          {
+            "id": 1689,
+            "self": "/api/players/1689",
+            "name": "Lilia Salhab",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1371-1689"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-04-23T14:12:11+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/797",
+        "headtohead": "/api/matches/8068/headtohead",
+        "prev": "/api/matches/8036",
+        "next": "/api/matches/8039"
+      }
+    },
+    {
+      "id": 8069,
+      "self": "/api/matches/8069",
+      "name": "Sanchez/Chamli - Fernandez/Guerra",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 4,
+      "round_name": "Quarter",
+      "index": 1,
+      "seeds": {
+        "team_1": "5",
+        "team_2": "4"
+      },
+      "played_at": "2026-04-03",
+      "schedule_label": "Not before 8:30 PM",
+      "scheduled_at": "2026-04-03T22:30:00+02:00",
+      "scheduled_at_local": "2026-04-03T20:30:00+00:00",
+      "court": "Central Court",
+      "court_order": 7,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "3",
+          "team_2": "6"
+        },
+        {
+          "team_1": "3",
+          "team_2": "6"
+        }
+      ],
+      "winner": "team_2",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 569,
+            "self": "/api/players/569",
+            "name": "Ana Cristina Sanchez Perez",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/569-548"
+            }
+          },
+          {
+            "id": 548,
+            "self": "/api/players/548",
+            "name": "Dora Chamli",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/569-548"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 1611,
+            "self": "/api/players/1611",
+            "name": "Carla Fernandez Gonzalez",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1611-1612"
+            }
+          },
+          {
+            "id": 1612,
+            "self": "/api/players/1612",
+            "name": "Nerea Guerra Santana",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1611-1612"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-04-23T14:11:59+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/797",
+        "headtohead": "/api/matches/8069/headtohead",
+        "prev": "/api/matches/8037",
+        "next": "/api/matches/8038"
+      }
+    },
+    {
+      "id": 8070,
+      "self": "/api/matches/8070",
+      "name": "Manquillo/Lujan - Uriarte/Ntanou",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 4,
+      "round_name": "Quarter",
+      "index": 2,
+      "seeds": {
+        "team_1": "3",
+        "team_2": "8"
+      },
+      "played_at": "2026-04-03",
+      "schedule_label": "Not before 6:30 PM",
+      "scheduled_at": "2026-04-03T20:30:00+02:00",
+      "scheduled_at_local": "2026-04-03T18:30:00+00:00",
+      "court": "Court 1",
+      "court_order": 5,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "1"
+        },
+        {
+          "team_1": "6",
+          "team_2": "0"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 464,
+            "self": "/api/players/464",
+            "name": "Letizia Maria Manquillo Alarza",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/464-431"
+            }
+          },
+          {
+            "id": 431,
+            "self": "/api/players/431",
+            "name": "Laura Lujan Rodriguez",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/464-431"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 1701,
+            "self": "/api/players/1701",
+            "name": "Leire Uriarte Medina",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1701-1700"
+            }
+          },
+          {
+            "id": 1700,
+            "self": "/api/players/1700",
+            "name": "Christina-Styliani Ntanou",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1701-1700"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-04-23T14:12:08+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/797",
+        "headtohead": "/api/matches/8070/headtohead",
+        "prev": "/api/matches/8033",
+        "next": "/api/matches/8036"
+      }
+    },
+    {
+      "id": 8071,
+      "self": "/api/matches/8071",
+      "name": "Santamaria/Diaz - Collombon/Montes",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 4,
+      "round_name": "Quarter",
+      "index": 3,
+      "seeds": {
+        "team_1": "6",
+        "team_2": "2"
+      },
+      "played_at": "2026-04-03",
+      "schedule_label": "Not before 6:30 PM",
+      "scheduled_at": "2026-04-03T20:30:00+02:00",
+      "scheduled_at_local": "2026-04-03T18:30:00+00:00",
+      "court": "Central Court",
+      "court_order": 5,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "1",
+          "team_2": "6"
+        },
+        {
+          "team_1": "1",
+          "team_2": "6"
+        }
+      ],
+      "winner": "team_2",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 705,
+            "self": "/api/players/705",
+            "name": "Ainize Santamaria Landa",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/705-1527"
+            }
+          },
+          {
+            "id": 1527,
+            "self": "/api/players/1527",
+            "name": "Jimena Diaz De La Iglesia",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/705-1527"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 392,
+            "self": "/api/players/392",
+            "name": "Alix Collombon",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/392-396"
+            }
+          },
+          {
+            "id": 396,
+            "self": "/api/players/396",
+            "name": "Jana Montes Cabruja",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/392-396"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-04-23T14:11:55+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/797",
+        "headtohead": "/api/matches/8071/headtohead",
+        "prev": "/api/matches/8035",
+        "next": "/api/matches/8037"
+      }
+    },
+    {
+      "id": 7727,
+      "self": "/api/matches/7727",
+      "name": "Jofre/Gala - Durand/Kowere",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 16,
+      "round_name": "Round of 32",
+      "index": 0,
+      "seeds": {
+        "team_1": "1",
+        "team_2": null
+      },
+      "played_at": "2026-04-02",
+      "schedule_label": "Starting at 4:00 PM",
+      "scheduled_at": "2026-04-02T18:00:00+02:00",
+      "scheduled_at_local": "2026-04-02T16:00:00+00:00",
+      "court": "Central Court",
+      "court_order": 1,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "0"
+        },
+        {
+          "team_1": "6",
+          "team_2": "4"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 155,
+            "self": "/api/players/155",
+            "name": "Inigo Jofre",
+            "side": "backhand",
+            "connections": {
+              "pair": "/api/pairs/155-151"
+            }
+          },
+          {
+            "id": 151,
+            "self": "/api/players/151",
+            "name": "David Gala",
+            "side": "backhand",
+            "connections": {
+              "pair": "/api/pairs/155-151"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 1467,
+            "self": "/api/players/1467",
+            "name": "Valentin Durand",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1467-1468"
+            }
+          },
+          {
+            "id": 1468,
+            "self": "/api/players/1468",
+            "name": "Meda Kowere Baizoum Joel",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1467-1468"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-04-23T14:11:23+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/797",
+        "headtohead": "/api/matches/7727/headtohead",
+        "next": "/api/matches/8004"
+      }
+    },
+    {
+      "id": 7728,
+      "self": "/api/matches/7728",
+      "name": "Williams/Paul - Zumelzu/Zumelzu",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 16,
+      "round_name": "Round of 32",
+      "index": 1,
+      "seeds": {
+        "team_1": null,
+        "team_2": "Q"
+      },
+      "played_at": "2026-04-02",
+      "schedule_label": "Starting at 4:00 PM",
+      "scheduled_at": "2026-04-02T18:00:00+02:00",
+      "scheduled_at_local": "2026-04-02T16:00:00+00:00",
+      "court": "Court 3",
+      "court_order": 1,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "4",
+          "team_2": "6"
+        },
+        {
+          "team_1": "6",
+          "team_2": "7"
+        }
+      ],
+      "winner": "team_2",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 1469,
+            "self": "/api/players/1469",
+            "name": "Ariel Williams Carrasco Paricollo",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1469-1742"
+            }
+          },
+          {
+            "id": 1742,
+            "self": "/api/players/1742",
+            "name": "Jean Paul Nassar",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1469-1742"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 1681,
+            "self": "/api/players/1681",
+            "name": "Joris Zumelzu",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1681-1682"
+            }
+          },
+          {
+            "id": 1682,
+            "self": "/api/players/1682",
+            "name": "Thomas Zumelzu",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1681-1682"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-04-23T14:11:43+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/797",
+        "headtohead": "/api/matches/7728/headtohead",
+        "next": "/api/matches/8002"
+      }
+    },
+    {
+      "id": 7943,
+      "self": "/api/matches/7943",
+      "name": "Hussein/Ferzle - Felix/Dolo",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 16,
+      "round_name": "Round of 32",
+      "index": 2,
+      "seeds": {
+        "team_1": null,
+        "team_2": null
+      },
+      "played_at": "2026-04-02",
+      "schedule_label": "Starting at 4:00 PM",
+      "scheduled_at": "2026-04-02T18:00:00+02:00",
+      "scheduled_at_local": "2026-04-02T16:00:00+00:00",
+      "court": "Court 2",
+      "court_order": 1,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "7",
+          "team_2": "6"
+        },
+        {
+          "team_1": "5",
+          "team_2": "7"
+        },
+        {
+          "team_1": "1",
+          "team_2": "6"
+        }
+      ],
+      "winner": "team_2",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 1607,
+            "self": "/api/players/1607",
+            "name": "Hallak Hussein",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1607-1743"
+            }
+          },
+          {
+            "id": 1743,
+            "self": "/api/players/1743",
+            "name": "Darryl Ferzle",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1607-1743"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 1683,
+            "self": "/api/players/1683",
+            "name": "Bommanhin Felix Ange Romaric Boblei",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1683-1684"
+            }
+          },
+          {
+            "id": 1684,
+            "self": "/api/players/1684",
+            "name": "Mohamed Dolo",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1683-1684"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-04-23T14:11:37+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/797",
+        "headtohead": "/api/matches/7943/headtohead",
+        "next": "/api/matches/8001"
+      }
+    },
+    {
+      "id": 8000,
+      "self": "/api/matches/8000",
+      "name": "Franzen/Ghozael - Oliver/Hachem",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 16,
+      "round_name": "Round of 32",
+      "index": 3,
+      "seeds": {
+        "team_1": null,
+        "team_2": "8"
+      },
+      "played_at": "2026-04-02",
+      "schedule_label": "Starting at 4:00 PM",
+      "scheduled_at": "2026-04-02T18:00:00+02:00",
+      "scheduled_at_local": "2026-04-02T16:00:00+00:00",
+      "court": "Court 1",
+      "court_order": 1,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "1",
+          "team_2": "6"
+        },
+        {
+          "team_1": "1",
+          "team_2": "6"
+        }
+      ],
+      "winner": "team_2",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 1639,
+            "self": "/api/players/1639",
+            "name": "Wael Franzen Bourgi",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1639-1640"
+            }
+          },
+          {
+            "id": 1640,
+            "self": "/api/players/1640",
+            "name": "Rayan Ghozael",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1639-1640"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 543,
+            "self": "/api/players/543",
+            "name": "Luis Oliver Artigas",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/543-1641"
+            }
+          },
+          {
+            "id": 1641,
+            "self": "/api/players/1641",
+            "name": "Maher Hachem",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/543-1641"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-04-23T14:11:31+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/797",
+        "headtohead": "/api/matches/8000/headtohead",
+        "next": "/api/matches/8003"
+      }
+    },
+    {
+      "id": 8001,
+      "self": "/api/matches/8001",
+      "name": "Araujo/Graca - El Amine/Fawaz",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 16,
+      "round_name": "Round of 32",
+      "index": 4,
+      "seeds": {
+        "team_1": "5",
+        "team_2": "Q"
+      },
+      "played_at": "2026-04-02",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Court 2",
+      "court_order": 2,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "0"
+        },
+        {
+          "team_1": "6",
+          "team_2": "0"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 301,
+            "self": "/api/players/301",
+            "name": "Pedro Araujo",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/301-1244"
+            }
+          },
+          {
+            "id": 1244,
+            "self": "/api/players/1244",
+            "name": "Pedro Graca",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/301-1244"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 1642,
+            "self": "/api/players/1642",
+            "name": "Wael El Amine",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1642-1643"
+            }
+          },
+          {
+            "id": 1643,
+            "self": "/api/players/1643",
+            "name": "Wassim Fawaz",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1642-1643"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-04-23T14:11:39+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/797",
+        "headtohead": "/api/matches/8001/headtohead",
+        "prev": "/api/matches/7943",
+        "next": "/api/matches/8006"
+      }
+    },
+    {
+      "id": 8002,
+      "self": "/api/matches/8002",
+      "name": "Ange/Sadry - Damergie/Alex",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 16,
+      "round_name": "Round of 32",
+      "index": 5,
+      "seeds": {
+        "team_1": "LL",
+        "team_2": null
+      },
+      "played_at": "2026-04-02",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Court 3",
+      "court_order": 2,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "1"
+        },
+        {
+          "team_1": "6",
+          "team_2": "4"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 1644,
+            "self": "/api/players/1644",
+            "name": "Ehouman Ange Imran",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1644-1645"
+            }
+          },
+          {
+            "id": 1645,
+            "self": "/api/players/1645",
+            "name": "Saleh Sadry Salah",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1644-1645"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 1646,
+            "self": "/api/players/1646",
+            "name": "Maher Damergie",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1646-1647"
+            }
+          },
+          {
+            "id": 1647,
+            "self": "/api/players/1647",
+            "name": "Khalil Alex",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1646-1647"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-04-23T14:11:45+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/797",
+        "headtohead": "/api/matches/8002/headtohead",
+        "prev": "/api/matches/7728",
+        "next": "/api/matches/8022"
+      }
+    },
+    {
+      "id": 8003,
+      "self": "/api/matches/8003",
+      "name": "Varo/Ezzedine - Hyjazi/Lethuilier",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 16,
+      "round_name": "Round of 32",
+      "index": 6,
+      "seeds": {
+        "team_1": null,
+        "team_2": null
+      },
+      "played_at": "2026-04-02",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Court 1",
+      "court_order": 2,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "2"
+        },
+        {
+          "team_1": "6",
+          "team_2": "3"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 145,
+            "self": "/api/players/145",
+            "name": "Antonio Varo Ramos",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/145-1648"
+            }
+          },
+          {
+            "id": 1648,
+            "self": "/api/players/1648",
+            "name": "Wael Ezzedine",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/145-1648"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 1649,
+            "self": "/api/players/1649",
+            "name": "Anthony Hyjazi",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1649-1650"
+            }
+          },
+          {
+            "id": 1650,
+            "self": "/api/players/1650",
+            "name": "Victor Lethuilier",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1649-1650"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-04-23T14:11:33+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/797",
+        "headtohead": "/api/matches/8003/headtohead",
+        "prev": "/api/matches/8000",
+        "next": "/api/matches/8005"
+      }
+    },
+    {
+      "id": 8004,
+      "self": "/api/matches/8004",
+      "name": "Biron/Berrahou - Belluati/Castro",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 16,
+      "round_name": "Round of 32",
+      "index": 7,
+      "seeds": {
+        "team_1": null,
+        "team_2": "3"
+      },
+      "played_at": "2026-04-02",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Central Court",
+      "court_order": 2,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "2",
+          "team_2": "6"
+        },
+        {
+          "team_1": "1",
+          "team_2": "6"
+        }
+      ],
+      "winner": "team_2",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 870,
+            "self": "/api/players/870",
+            "name": "Julien Biron",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/870-1651"
+            }
+          },
+          {
+            "id": 1651,
+            "self": "/api/players/1651",
+            "name": "Hamza Berrahou",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/870-1651"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 161,
+            "self": "/api/players/161",
+            "name": "Juan Cruz Belluati",
+            "side": "drive",
+            "connections": {
+              "pair": "/api/pairs/161-15"
+            }
+          },
+          {
+            "id": 15,
+            "self": "/api/players/15",
+            "name": "Boris Castro Garcia",
+            "side": "backhand",
+            "connections": {
+              "pair": "/api/pairs/161-15"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-04-23T14:11:25+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/797",
+        "headtohead": "/api/matches/8004/headtohead",
+        "prev": "/api/matches/7727",
+        "next": "/api/matches/8023"
+      }
+    },
+    {
+      "id": 8005,
+      "self": "/api/matches/8005",
+      "name": "Medina/Garcia - Khalaf/Ryan",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 16,
+      "round_name": "Round of 32",
+      "index": 8,
+      "seeds": {
+        "team_1": "4",
+        "team_2": null
+      },
+      "played_at": "2026-04-02",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Court 1",
+      "court_order": 3,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "0"
+        },
+        {
+          "team_1": "6",
+          "team_2": "0"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 31,
+            "self": "/api/players/31",
+            "name": "Christian Medina Murphy",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/31-32"
+            }
+          },
+          {
+            "id": 32,
+            "self": "/api/players/32",
+            "name": "Alberto Garcia Jimenez",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/31-32"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 1652,
+            "self": "/api/players/1652",
+            "name": "Mohamed Khalaf",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1652-1653"
+            }
+          },
+          {
+            "id": 1653,
+            "self": "/api/players/1653",
+            "name": "Dany Ryan El Riz",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1652-1653"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-04-23T14:11:34+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/797",
+        "headtohead": "/api/matches/8005/headtohead",
+        "prev": "/api/matches/8003",
+        "next": "/api/matches/8025"
+      }
+    },
+    {
+      "id": 8006,
+      "self": "/api/matches/8006",
+      "name": "Lewis/Hallal - Ka/Ait Oumelloul",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 16,
+      "round_name": "Round of 32",
+      "index": 9,
+      "seeds": {
+        "team_1": null,
+        "team_2": null
+      },
+      "played_at": "2026-04-02",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Court 2",
+      "court_order": 3,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "1",
+          "team_2": "6"
+        },
+        {
+          "team_1": "3",
+          "team_2": "6"
+        }
+      ],
+      "winner": "team_2",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 1654,
+            "self": "/api/players/1654",
+            "name": "Aaron Lewis Joseph Besnainou",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1654-1655"
+            }
+          },
+          {
+            "id": 1655,
+            "self": "/api/players/1655",
+            "name": "Hussein Hallal",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1654-1655"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 1656,
+            "self": "/api/players/1656",
+            "name": "Oumar Ka",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1656-1685"
+            }
+          },
+          {
+            "id": 1685,
+            "self": "/api/players/1685",
+            "name": "Youssef Ait Oumelloul",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1656-1685"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-04-23T14:11:40+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/797",
+        "headtohead": "/api/matches/8006/headtohead",
+        "prev": "/api/matches/8001",
+        "next": "/api/matches/8027"
+      }
+    },
+    {
+      "id": 8022,
+      "self": "/api/matches/8022",
+      "name": "Zarour/Zeid - Lageat/Lageat",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 16,
+      "round_name": "Round of 32",
+      "index": 10,
+      "seeds": {
+        "team_1": "Q",
+        "team_2": "Q"
+      },
+      "played_at": "2026-04-02",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Court 3",
+      "court_order": 3,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "2",
+          "team_2": "6"
+        },
+        {
+          "team_1": "3",
+          "team_2": "6"
+        }
+      ],
+      "winner": "team_2",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 1663,
+            "self": "/api/players/1663",
+            "name": "Kamel Zarour",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1663-1664"
+            }
+          },
+          {
+            "id": 1664,
+            "self": "/api/players/1664",
+            "name": "Abou Zeid Karim",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1663-1664"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 1665,
+            "self": "/api/players/1665",
+            "name": "Frederic Lageat",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1665-1666"
+            }
+          },
+          {
+            "id": 1666,
+            "self": "/api/players/1666",
+            "name": "Fabrice Lageat",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1665-1666"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-04-23T14:11:46+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/797",
+        "headtohead": "/api/matches/8022/headtohead",
+        "prev": "/api/matches/8002",
+        "next": "/api/matches/8024"
+      }
+    },
+    {
+      "id": 8023,
+      "self": "/api/matches/8023",
+      "name": "Daffe/Houedessou - Gayone/Rivero",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 16,
+      "round_name": "Round of 32",
+      "index": 11,
+      "seeds": {
+        "team_1": null,
+        "team_2": "6"
+      },
+      "played_at": "2026-04-02",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Central Court",
+      "court_order": 3,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "1",
+          "team_2": "6"
+        },
+        {
+          "team_1": "2",
+          "team_2": "6"
+        }
+      ],
+      "winner": "team_2",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 1667,
+            "self": "/api/players/1667",
+            "name": "Mouhamed Daffe",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1667-1668"
+            }
+          },
+          {
+            "id": 1668,
+            "self": "/api/players/1668",
+            "name": "Hugo Houedessou",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1667-1668"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 39,
+            "self": "/api/players/39",
+            "name": "Manuel Gayone",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/39-768"
+            }
+          },
+          {
+            "id": 768,
+            "self": "/api/players/768",
+            "name": "Mateo Rivero",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/39-768"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-04-23T14:11:27+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/797",
+        "headtohead": "/api/matches/8023/headtohead",
+        "prev": "/api/matches/8004",
+        "next": "/api/matches/8026"
+      }
+    },
+    {
+      "id": 8024,
+      "self": "/api/matches/8024",
+      "name": "Ramirez/Najib - Gamaliel/Mkanna",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 16,
+      "round_name": "Round of 32",
+      "index": 12,
+      "seeds": {
+        "team_1": "7",
+        "team_2": null
+      },
+      "played_at": "2026-04-02",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Court 3",
+      "court_order": 4,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "0"
+        },
+        {
+          "team_1": "6",
+          "team_2": "2"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 293,
+            "self": "/api/players/293",
+            "name": "Fran Ramirez Navas",
+            "side": "backhand",
+            "connections": {
+              "pair": "/api/pairs/293-1669"
+            }
+          },
+          {
+            "id": 1669,
+            "self": "/api/players/1669",
+            "name": "Fakih Najib",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/293-1669"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 1670,
+            "self": "/api/players/1670",
+            "name": "Ange Gamaliel Nguessan",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1670-1671"
+            }
+          },
+          {
+            "id": 1671,
+            "self": "/api/players/1671",
+            "name": "Zein Mkanna",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1670-1671"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-04-23T14:11:48+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/797",
+        "headtohead": "/api/matches/8024/headtohead",
+        "prev": "/api/matches/8022"
+      }
+    },
+    {
+      "id": 8025,
+      "self": "/api/matches/8025",
+      "name": "Nael/Khodr - Joel/Malick",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 16,
+      "round_name": "Round of 32",
+      "index": 13,
+      "seeds": {
+        "team_1": null,
+        "team_2": null
+      },
+      "played_at": "2026-04-02",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Court 1",
+      "court_order": 4,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "4",
+          "team_2": "6"
+        },
+        {
+          "team_1": "2",
+          "team_2": "6"
+        }
+      ],
+      "winner": "team_2",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 1672,
+            "self": "/api/players/1672",
+            "name": "Ghaddar Nael",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1672-1673"
+            }
+          },
+          {
+            "id": 1673,
+            "self": "/api/players/1673",
+            "name": "Berro Khodr Karim",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1672-1673"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 1674,
+            "self": "/api/players/1674",
+            "name": "Ibrahim Joel Tresor Ouédraogo",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1674-1675"
+            }
+          },
+          {
+            "id": 1675,
+            "self": "/api/players/1675",
+            "name": "Tinde Malick Souleyman",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1674-1675"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-04-23T14:11:36+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/797",
+        "headtohead": "/api/matches/8025/headtohead",
+        "prev": "/api/matches/8005"
+      }
+    },
+    {
+      "id": 8026,
+      "self": "/api/matches/8026",
+      "name": "Redondo/Elloumi - Guinaldo/Badreddine",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 16,
+      "round_name": "Round of 32",
+      "index": 14,
+      "seeds": {
+        "team_1": null,
+        "team_2": null
+      },
+      "played_at": "2026-04-02",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Central Court",
+      "court_order": 4,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "2"
+        },
+        {
+          "team_1": "6",
+          "team_2": "4"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 1676,
+            "self": "/api/players/1676",
+            "name": "Javier Redondo Mendez",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1676-1677"
+            }
+          },
+          {
+            "id": 1677,
+            "self": "/api/players/1677",
+            "name": "Mehdi Elloumi",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1676-1677"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 1386,
+            "self": "/api/players/1386",
+            "name": "Alejandro Guinaldo Martin",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1386-1678"
+            }
+          },
+          {
+            "id": 1678,
+            "self": "/api/players/1678",
+            "name": "Adam Badreddine",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1386-1678"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-04-23T14:11:28+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/797",
+        "headtohead": "/api/matches/8026/headtohead",
+        "prev": "/api/matches/8023",
+        "next": "/api/matches/8053"
+      }
+    },
+    {
+      "id": 8027,
+      "self": "/api/matches/8027",
+      "name": "Michel/Fakhry - Fernandez/Gonzalez",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 16,
+      "round_name": "Round of 32",
+      "index": 15,
+      "seeds": {
+        "team_1": null,
+        "team_2": "2"
+      },
+      "played_at": "2026-04-02",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Court 2",
+      "court_order": 4,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "0",
+          "team_2": "6"
+        },
+        {
+          "team_1": "0",
+          "team_2": "6"
+        }
+      ],
+      "winner": "team_2",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 1679,
+            "self": "/api/players/1679",
+            "name": "Mohamed Michel Hussein Khachab",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1679-1680"
+            }
+          },
+          {
+            "id": 1680,
+            "self": "/api/players/1680",
+            "name": "Tamer Fakhry",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1679-1680"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 108,
+            "self": "/api/players/108",
+            "name": "Antonio Fernandez",
+            "side": "backhand",
+            "connections": {
+              "pair": "/api/pairs/108-233"
+            }
+          },
+          {
+            "id": 233,
+            "self": "/api/players/233",
+            "name": "Jose Luis Gonzalez",
+            "side": "drive",
+            "connections": {
+              "pair": "/api/pairs/108-233"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-04-23T14:11:42+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/797",
+        "headtohead": "/api/matches/8027/headtohead",
+        "prev": "/api/matches/8006"
+      }
+    },
+    {
+      "id": 8053,
+      "self": "/api/matches/8053",
+      "name": "Hojeij/Zammarie - Akkouch/Ezzeddine",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 16,
+      "round_name": "Round of 32",
+      "index": 9,
+      "seeds": {
+        "team_1": null,
+        "team_2": null
+      },
+      "played_at": "2026-04-02",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Central Court",
+      "court_order": 5,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "1",
+          "team_2": "6"
+        },
+        {
+          "team_1": "1",
+          "team_2": "6"
+        }
+      ],
+      "winner": "team_2",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 1694,
+            "self": "/api/players/1694",
+            "name": "Fayza Hojeij",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1694-1695"
+            }
+          },
+          {
+            "id": 1695,
+            "self": "/api/players/1695",
+            "name": "Christelle Zammarie",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1694-1695"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 1696,
+            "self": "/api/players/1696",
+            "name": "Mariam Akkouch",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1696-1697"
+            }
+          },
+          {
+            "id": 1697,
+            "self": "/api/players/1697",
+            "name": "Fatima Ezzeddine",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1696-1697"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-04-23T14:11:30+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/797",
+        "headtohead": "/api/matches/8053/headtohead",
+        "prev": "/api/matches/8026"
+      }
+    }
+  ]
+}

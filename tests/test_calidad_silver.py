@@ -31,6 +31,14 @@ def dim_jugador_rows() -> list[dict]:
 
 
 @pytest.fixture(scope="module")
+def fact_partido_rows() -> list[dict]:
+    path = SILVER_ROOT / "fact_partido" / "data.json"
+    if not path.exists():
+        pytest.skip("fact_partido todavía no se ha generado")
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+@pytest.fixture(scope="module")
 def fact_ranking_con() -> duckdb.DuckDBPyConnection:
     dt_dir = _latest_dir(SILVER_ROOT / "fact_ranking_semanal")
     con = duckdb.connect()
@@ -105,3 +113,47 @@ def test_puntos_no_negativos(fact_ranking_con: duckdb.DuckDBPyConnection) -> Non
         "SELECT COUNT(*) FROM fact_ranking_semanal WHERE puntos < 0"
     ).fetchone()[0]
     assert negativos == 0
+
+
+def test_partido_id_unico(fact_partido_rows: list[dict]) -> None:
+    ids = [r["partido_id"] for r in fact_partido_rows]
+    duplicados = {i for i in ids if ids.count(i) > 1}
+    assert not duplicados, f"partido_id duplicado: {duplicados}"
+
+
+def test_partido_marcador_sin_sets_imposibles(fact_partido_rows: list[dict]) -> None:
+    """Nunca más de 3 sets por lado (doc 01 §6: 'sin marcadores imposibles:
+    sets > 3, juegos negativos')."""
+
+    for r in fact_partido_rows:
+        assert r["sets_equipo_1"] is None or 0 <= r["sets_equipo_1"] <= 3
+        assert r["sets_equipo_2"] is None or 0 <= r["sets_equipo_2"] <= 3
+
+
+def test_partido_ganador_coherente_con_el_marcador(fact_partido_rows: list[dict]) -> None:
+    """El ganador declarado por la fuente debería tener más sets que el rival.
+    Se ha confirmado en vivo (17/09/2026) que padelapi se equivoca en un
+    partido puntual (1 de 3.291) — se tolera una tasa muy baja de esta
+    incoherencia, ya marcada como `marcador_incoherente` por
+    build_fact_partido.py, en vez de exigir cero (que fallaría por un dato
+    ajeno que no controlamos) o mirar para otro lado (que dejaría pasar un
+    fallo de cruce real si la tasa creciera)."""
+
+    con_marcador = [r for r in fact_partido_rows if r["sets_equipo_1"] is not None]
+    incoherentes = [r for r in con_marcador if r["marcador_incoherente"]]
+    tasa = len(incoherentes) / len(con_marcador) if con_marcador else 0
+    assert tasa <= 0.01, f"Demasiados marcadores incoherentes con el ganador: {tasa:.1%} ({incoherentes[:5]})"
+
+
+def test_partido_sin_fechas_futuras(fact_partido_rows: list[dict]) -> None:
+    hoy = date.today().isoformat()
+    futuros = [r["partido_id"] for r in fact_partido_rows if r["fecha"] > hoy]
+    assert not futuros, f"Partidos con fecha futura: {futuros[:5]}"
+
+
+def test_forma_reciente_porcentajes_validos() -> None:
+    dt_dir = _latest_dir(REPO_ROOT / "gold" / "forma_reciente")
+    rows = json.loads((dt_dir / "data.json").read_text(encoding="utf-8"))
+    for r in rows:
+        assert 0 <= r["pct_victorias_8sem"] <= 100
+        assert 0 <= r["victorias_8sem"] <= r["partidos_8sem"]

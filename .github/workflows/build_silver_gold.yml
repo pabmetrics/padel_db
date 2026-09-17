@@ -31,6 +31,9 @@ jobs:
       - name: Silver — dim_torneo
         run: python transform/build_dim_torneo.py
 
+      - name: Silver — fact_partido (desde partidos por torneo de F2)
+        run: python transform/build_fact_partido.py
+
       - name: Tests de calidad (doc 01 §6) — el job falla si no pasan
         run: python -m pytest tests/ -v
 
@@ -39,6 +42,9 @@ jobs:
 
       - name: Gold — perfil_top100
         run: python transform/build_gold_perfil_top100.py
+
+      - name: Gold — forma_reciente
+        run: python transform/build_gold_forma_reciente.py
 
       - name: Gráfico de #RankingLunes a la cola
         run: python content/chart_factory/ranking_moves.py
