@@ -37,6 +37,12 @@ jobs:
       - name: Silver — dim_pareja (SCD2, desde fact_partido)
         run: python transform/build_dim_pareja.py
 
+      - name: Silver — dim_puntos_categoria (data/manual/puntos_prize_2026.csv)
+        run: python transform/build_dim_puntos_categoria.py
+
+      - name: Silver — fact_resultado_torneo
+        run: python transform/build_fact_resultado_torneo.py
+
       - name: Tests de calidad (doc 01 §6) — el job falla si no pasan
         run: python -m pytest tests/ -v
 
@@ -57,6 +63,9 @@ jobs:
 
       - name: Gold — torneo_sorpresas
         run: python transform/build_gold_torneo_sorpresas.py
+
+      - name: Gold — puntos_a_defender
+        run: python transform/build_gold_puntos_a_defender.py
 
       - name: Gráfico de #RankingLunes a la cola
         run: python content/chart_factory/ranking_moves.py

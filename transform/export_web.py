@@ -26,6 +26,7 @@ GOLD_TABLES = [
     "parejas_duracion",
     "h2h",
     "torneo_sorpresas",
+    "puntos_a_defender",
 ]
 
 

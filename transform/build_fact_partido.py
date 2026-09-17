@@ -121,6 +121,7 @@ def build() -> Path:
                     "partido_id": f"M2{match['id']}",
                     "torneo_id": torneo_id,
                     "torneo_nombre": payload["tournament"]["name"],
+                    "torneo_nivel_padelapi": payload["tournament"].get("level"),
                     "categoria": match.get("category"),
                     "fase": match.get("draw"),
                     "ronda": match.get("round_name"),

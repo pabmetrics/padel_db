@@ -186,3 +186,32 @@ def test_torneo_sorpresas_semilla_ganadora_peor() -> None:
     rows = json.loads((dt_dir / "data.json").read_text(encoding="utf-8"))
     for r in rows:
         assert r["semilla_ganador"] > r["semilla_perdedor"], f"No es una sorpresa real: {r}"
+
+
+def test_dim_puntos_categoria_sin_duplicados_y_positiva() -> None:
+    path = SILVER_ROOT / "dim_puntos_categoria" / "data.json"
+    if not path.exists():
+        pytest.skip("dim_puntos_categoria todavía no se ha generado")
+    rows = json.loads(path.read_text(encoding="utf-8"))
+    claves = [(r["circuito"], r["categoria"], r["temporada"], r["ronda"]) for r in rows]
+    assert len(claves) == len(set(claves)), "Fila duplicada en dim_puntos_categoria"
+    for r in rows:
+        assert r["puntos"] > 0
+
+
+def test_fact_resultado_torneo_rondas_conocidas() -> None:
+    path = SILVER_ROOT / "fact_resultado_torneo" / "data.json"
+    if not path.exists():
+        pytest.skip("fact_resultado_torneo todavía no se ha generado")
+    rows = json.loads(path.read_text(encoding="utf-8"))
+    rondas_validas = {"W", "F", "SF", "QF", "R16", "R32", "R64", "BQ", "LQ", "Q2", "Q1", "3RD", "4TH"}
+    for r in rows:
+        assert r["ronda_alcanzada"] in rondas_validas, f"Ronda desconocida: {r}"
+        assert r["puntos_ganados"] is None or r["puntos_ganados"] > 0
+
+
+def test_puntos_a_defender_8sem_incluye_4sem() -> None:
+    dt_dir = _latest_dir(REPO_ROOT / "gold" / "puntos_a_defender")
+    rows = json.loads((dt_dir / "data.json").read_text(encoding="utf-8"))
+    for r in rows:
+        assert r["puntos_a_defender_8sem"] >= r["puntos_a_defender_4sem"] >= 0
