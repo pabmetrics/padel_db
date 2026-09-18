@@ -1,0 +1,51 @@
+name: ingest_licencias
+
+on:
+  schedule:
+    # Día 1 de cada mes, 07:15 — doc 01 §5 (ingest_anual, F7/F8). El CSD
+    # publica su informe una vez al año, pero la FEP tiene datos en vivo
+    # que suben durante el año, así que se comprueba mensualmente en vez
+    # de solo una vez.
+    - cron: "15 6 1 * *"
+  workflow_dispatch: {}
+
+jobs:
+  ingest_licencias:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Instalar dependencias
+        run: pip install -r requirements.txt
+
+      - name: Ingesta F7 — licencias históricas (CSD)
+        run: python -m ingest.csd.licencias
+
+      - name: Ingesta F8 — licencias en vivo (FEP)
+        run: python -m ingest.fep.licencias
+
+      - name: Silver — fact_licencias
+        run: python transform/build_fact_licencias.py
+
+      - name: Tests de calidad
+        run: python -m pytest tests/ -v
+
+      - name: Gold — licencias_nacional
+        run: python transform/build_gold_licencias_nacional.py
+
+      - name: Export a la preview estática de site/
+        run: python transform/export_web.py
+
+      - name: Commit
+        run: |
+          git config user.name "padeldb-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add bronze/csd bronze/fep silver/fact_licencias gold/licencias_nacional site/data site/img
+          git diff --cached --quiet || git commit -m "ingest_licencias: $(date -u +%F)"
+          git push

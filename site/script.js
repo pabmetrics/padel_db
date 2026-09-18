@@ -309,6 +309,25 @@ async function renderPistas() {
   );
 }
 
+async function renderLicencias() {
+  const data = await getJSON("data/licencias_nacional.json");
+  const target = document.getElementById("licencias-tabla");
+  const filas = data
+    .filter((r) => r.sexo === "total" && r.publicable)
+    .sort((a, b) => b.anio - a.anio || a.fuente.localeCompare(b.fuente))
+    .slice(0, 20);
+  if (!filas.length) {
+    target.appendChild(empty("Sin datos todavía."));
+    return;
+  }
+  const rows = filas.map((r) => [
+    td(String(r.anio), { num: true }),
+    td(r.fuente === "csd" ? "CSD" : "FEP (en vivo)"),
+    td(fmt.format(r.licencias), { num: true }),
+  ]);
+  target.appendChild(table([{ label: "Año", num: true }, { label: "Fuente" }, { label: "Licencias", num: true }], rows));
+}
+
 function setupTabs() {
   document.querySelectorAll(".table-tabs").forEach((tabGroup) => {
     const buttons = tabGroup.querySelectorAll(".tab-btn");
@@ -333,3 +352,4 @@ renderH2H();
 renderSorpresas();
 renderGanancias();
 renderPistas();
+renderLicencias();

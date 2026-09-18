@@ -29,6 +29,7 @@ GOLD_TABLES = [
     "puntos_a_defender",
     "ganancias_temporada",
     "pistas_provincia",
+    "licencias_nacional",
 ]
 
 

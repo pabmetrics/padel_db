@@ -31,10 +31,14 @@ OSM mezcla dos formas de mapear lo mismo: unos usuarios etiquetan cada pista ind
 
 `elementos_por_10000_hab` en el gold usa `n_elementos_osm` porque es la métrica más completa de las tres, con esta salvedad documentada. La cobertura de OSM además es desigual por zona (doc 01 §6, riesgo ya anticipado) — más completa en ciudades grandes, más floja en zonas rurales.
 
-## F7 (CSD, licencias) — bloqueado por un problema real del propio sitio
+## F7 (CSD, licencias) y F8 (FEP, licencias) — resueltos, ver docs/campos-licencias-padel.md
 
-Probado el 18/09/2026: `www.csd.gob.es` da error de certificado TLS (`certificate signature failure`) tanto con `httpx` como con la herramienta de lectura web — no es un problema de este proyecto, el sitio del CSD tiene un certificado mal encadenado ahora mismo. No se ha forzado sin verificar el certificado (no es buena práctica dejarlo así en un conector que corre solo). Pendiente de reintentar más adelante, por si es un fallo temporal de su lado.
+**Actualización 18/09/2026**: el "error de certificado TLS" de `csd.gob.es` descrito más abajo era un falso positivo — el usuario confirmó que el sitio le funcionaba bien en su navegador, y resultó ser un desajuste entre el almacén de certificados de `certifi` (el que usa `httpx` por defecto) y el almacén nativo de Windows, no un problema del sitio. Se resolvió con el paquete `truststore`. Además, la URL de FEP que se había descartado por "sin tabla estructurada" no era la única página de esa fuente: `Datos_Federacion.asp?Id=0` sí tiene datos estructurados (un bloque Highcharts con la serie completa). Los dos conectores (`ingest/csd/licencias.py`, `ingest/fep/licencias.py`) y las tablas `fact_licencias`/`gold.licencias_nacional` ya están construidos — ver `docs/campos-licencias-padel.md` para el detalle completo. El texto original de esta sección se conserva abajo como registro de lo que se probó esa noche.
 
-## F8 (FEP, padelfederacion.es) — explorado, aparcado por baja confianza
+---
 
-El sitio funciona (es una web antigua tipo ASP.NET con redirección por meta-refresh, no HTTP — hay que pedir `/Home` directamente, no la raíz). Pero el doc de arquitectura ya avisaba de que esta fuente son "licencias al día (noticias)" — datos mencionados en artículos de prensa de la propia federación, sin una tabla ni endpoint estructurado. Montar un scraper que interprete cifras de licencias dentro de texto libre de noticias tiene mucha más probabilidad de arrastrar un número mal leído que las fuentes tabulares que sí se han usado esta sesión. Se ha preferido no montarlo esta noche a arriesgar un dato de licencias mal extraído.
+*Registro original (18/09/2026, sesión nocturna sin supervisión):*
+
+*F7 — probado con `www.csd.gob.es`: daba error de certificado TLS (`certificate signature failure`) tanto con `httpx` como con la herramienta de lectura web. Se concluyó (incorrectamente) que era un problema del propio sitio y se dejó pendiente de reintentar.*
+
+*F8 — el sitio funciona (es una web antigua tipo ASP.NET con redirección por meta-refresh, no HTTP — hay que pedir `/Home` directamente, no la raíz). Pero la sección explorada esa noche fueron las noticias de la federación, sin tabla ni endpoint estructurado, así que se aparcó por baja confianza.*

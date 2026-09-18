@@ -295,3 +295,31 @@ def test_pistas_provincia_ratio_coherente() -> None:
         assert r["poblacion"] > 0
         esperado = round(r["n_elementos_padel_osm"] / r["poblacion"] * 10000, 2)
         assert r["elementos_por_10000_hab"] == esperado
+
+
+def test_fact_licencias_positivas_y_sin_clave_duplicada() -> None:
+    path = SILVER_ROOT / "fact_licencias" / "data.json"
+    if not path.exists():
+        pytest.skip("fact_licencias todavía no se ha generado")
+    rows = json.loads(path.read_text(encoding="utf-8"))
+    claves = [(r["anio"], r["fuente"], r["sexo"]) for r in rows]
+    assert len(claves) == len(set(claves)), "(año, fuente, sexo) duplicado en fact_licencias"
+    for r in rows:
+        assert r["licencias"] > 0
+        assert r["fuente"] in ("csd", "fep")
+        assert r["anio"] <= date.today().year
+
+
+def test_fact_licencias_hombres_mas_mujeres_igual_total() -> None:
+    path = SILVER_ROOT / "fact_licencias" / "data.json"
+    if not path.exists():
+        pytest.skip("fact_licencias todavía no se ha generado")
+    rows = json.loads(path.read_text(encoding="utf-8"))
+    por_clave: dict[tuple[int, str], dict[str, int]] = {}
+    for r in rows:
+        por_clave.setdefault((r["anio"], r["fuente"]), {})[r["sexo"]] = r["licencias"]
+    for (anio, fuente), valores in por_clave.items():
+        if "M" not in valores or "F" not in valores or "total" not in valores:
+            continue
+        suma = valores["M"] + valores["F"] + valores.get("sin_especificar", 0)
+        assert suma == valores["total"], f"{fuente} {anio}: hombres+mujeres(+sin especificar) != total"
