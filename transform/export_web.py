@@ -28,6 +28,7 @@ GOLD_TABLES = [
     "torneo_sorpresas",
     "puntos_a_defender",
     "ganancias_temporada",
+    "pistas_provincia",
 ]
 
 

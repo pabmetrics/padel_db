@@ -1,0 +1,54 @@
+name: ingest_territorio
+
+on:
+  schedule:
+    # Día 1 de cada mes, 07:00 — doc 01 §5 (ingest_pistas)
+    - cron: "0 6 1 * *"
+  workflow_dispatch: {}
+
+jobs:
+  ingest_territorio:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Instalar dependencias
+        run: pip install -r requirements.txt
+
+      - name: Ingesta F9 — pistas de pádel (OpenStreetMap)
+        run: python -m ingest.osm.pistas
+
+      - name: Ingesta F9 — límites de provincias (OpenStreetMap)
+        run: python -m ingest.osm.provincias
+
+      - name: Ingesta F10 — población por provincia (INE)
+        run: python -m ingest.ine.poblacion_provincia
+
+      - name: Silver — dim_provincia
+        run: python transform/build_dim_provincia.py
+
+      - name: Silver — fact_pistas (cruce espacial)
+        run: python transform/build_fact_pistas.py
+
+      - name: Tests de calidad
+        run: python -m pytest tests/ -v
+
+      - name: Gold — pistas_provincia
+        run: python transform/build_gold_pistas_provincia.py
+
+      - name: Export a la preview estática de site/
+        run: python transform/export_web.py
+
+      - name: Commit
+        run: |
+          git config user.name "padeldb-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add bronze/osm bronze/ine silver/dim_provincia silver/fact_pistas gold/pistas_provincia site/data site/img
+          git diff --cached --quiet || git commit -m "ingest_territorio: $(date -u +%F)"
+          git push

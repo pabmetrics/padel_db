@@ -265,3 +265,33 @@ def test_ganancias_temporada_no_negativa() -> None:
     for r in rows:
         assert r["ganancias_conocidas_eur"] >= 0
         assert r["n_torneos_con_premio_conocido"] >= 1
+
+
+def test_dim_provincia_poblacion_positiva() -> None:
+    path = SILVER_ROOT / "dim_provincia" / "data.json"
+    if not path.exists():
+        pytest.skip("dim_provincia todavía no se ha generado")
+    rows = json.loads(path.read_text(encoding="utf-8"))
+    ids = [r["provincia_id"] for r in rows]
+    assert len(ids) == len(set(ids)), "provincia_id duplicado"
+    for r in rows:
+        assert r["poblacion"] is None or r["poblacion"] > 0
+
+
+def test_fact_pistas_no_negativo() -> None:
+    path = SILVER_ROOT / "fact_pistas" / "data.json"
+    if not path.exists():
+        pytest.skip("fact_pistas todavía no se ha generado")
+    rows = json.loads(path.read_text(encoding="utf-8"))
+    for r in rows:
+        assert r["n_elementos_osm"] >= r["n_elementos_pitch"] >= 0
+        assert r["n_elementos_osm"] >= r["n_ubicaciones"] >= 0
+
+
+def test_pistas_provincia_ratio_coherente() -> None:
+    dt_dir = _latest_dir(REPO_ROOT / "gold" / "pistas_provincia")
+    rows = json.loads((dt_dir / "data.json").read_text(encoding="utf-8"))
+    for r in rows:
+        assert r["poblacion"] > 0
+        esperado = round(r["n_elementos_padel_osm"] / r["poblacion"] * 10000, 2)
+        assert r["elementos_por_10000_hab"] == esperado

@@ -282,6 +282,33 @@ async function renderGanancias() {
   );
 }
 
+async function renderPistas() {
+  const data = await getJSON("data/pistas_provincia.json");
+  const target = document.getElementById("pistas-tabla");
+  const filas = data.filter((r) => r.publicable).slice(0, 20);
+  if (!filas.length) {
+    target.appendChild(empty("Sin datos todavía."));
+    return;
+  }
+  const rows = filas.map((r) => [
+    td(r.provincia_nombre),
+    td(String(r.n_elementos_padel_osm), { num: true }),
+    td(String(r.poblacion), { num: true }),
+    td(String(r.elementos_por_10000_hab), { num: true }),
+  ]);
+  target.appendChild(
+    table(
+      [
+        { label: "Provincia" },
+        { label: "Pistas/clubes (OSM)", num: true },
+        { label: "Población", num: true },
+        { label: "Por 10.000 hab.", num: true },
+      ],
+      rows
+    )
+  );
+}
+
 function setupTabs() {
   document.querySelectorAll(".table-tabs").forEach((tabGroup) => {
     const buttons = tabGroup.querySelectorAll(".tab-btn");
@@ -305,3 +332,4 @@ renderParejas();
 renderH2H();
 renderSorpresas();
 renderGanancias();
+renderPistas();
