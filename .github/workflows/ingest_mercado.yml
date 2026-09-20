@@ -1,0 +1,53 @@
+name: ingest_mercado
+
+on:
+  schedule:
+    # Día 2 de cada mes, 07:00 — doc 01 §5 (ingest_trends, mensual). F5/F6
+    # (informes anuales) no tienen cron propio: son PDF que se transcriben
+    # a mano cuando sale una edición nueva, no algo que reingerir solo.
+    - cron: "0 6 2 * *"
+  workflow_dispatch: {}
+
+jobs:
+  ingest_mercado:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Instalar dependencias
+        run: pip install -r requirements.txt
+
+      - name: Ingesta F12 — interés de búsqueda (Google Trends, países en expansión)
+        run: python -m ingest.google_trends.interes_padel
+
+      - name: Silver — fact_mercado_pais (F5/F6, desde CSV manual)
+        run: python transform/build_fact_mercado_pais.py
+
+      - name: Silver — fact_trends
+        run: python transform/build_fact_trends.py
+
+      - name: Tests de calidad
+        run: python -m pytest tests/ -v
+
+      - name: Gold — mercado_pais
+        run: python transform/build_gold_mercado_pais.py
+
+      - name: Gold — trends_geo
+        run: python transform/build_gold_trends_geo.py
+
+      - name: Export a la preview estática de site/
+        run: python transform/export_web.py
+
+      - name: Commit
+        run: |
+          git config user.name "padeldb-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add bronze/google_trends silver/fact_mercado_pais silver/fact_trends gold/mercado_pais gold/trends_geo site/data site/img
+          git diff --cached --quiet || git commit -m "ingest_mercado: $(date -u +%F)"
+          git push

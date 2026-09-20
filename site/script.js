@@ -328,6 +328,44 @@ async function renderLicencias() {
   target.appendChild(table([{ label: "Año", num: true }, { label: "Fuente" }, { label: "Licencias", num: true }], rows));
 }
 
+async function renderMercado() {
+  const data = await getJSON("data/mercado_pais.json");
+  const target = document.getElementById("mercado-tabla");
+  const filas = data
+    .filter((r) => r.fuente === "fip" && r.pais === "GLOBAL" && r.publicable)
+    .concat(data.filter((r) => r.fuente === "playtomic" && r.pais === "GLOBAL" && r.publicable));
+  if (!filas.length) {
+    target.appendChild(empty("Sin datos todavía."));
+    return;
+  }
+  const rows = filas.map((r) => [
+    td(r.fuente === "fip" ? "FIP" : "Playtomic"),
+    td(r.categoria),
+    td(r.valor !== undefined ? fmt.format(r.valor) : "—", { num: true }),
+    td(r.contexto_txt || "—"),
+  ]);
+  target.appendChild(table([{ label: "Fuente" }, { label: "Categoría" }, { label: "Valor", num: true }, { label: "Contexto" }], rows));
+}
+
+async function renderTrends() {
+  const data = await getJSON("data/trends_geo.json");
+  const target = document.getElementById("trends-tabla");
+  const filas = data.filter((r) => r.publicable).sort((a, b) => (b.variacion_pct ?? -999) - (a.variacion_pct ?? -999));
+  if (!filas.length) {
+    target.appendChild(empty("Sin datos todavía."));
+    return;
+  }
+  const rows = filas.map((r) => [
+    td(r.pais),
+    td(r.clasificacion),
+    td(String(r.ratio_padel_tenis_reciente), { num: true }),
+    r.variacion_pct === null ? td("—", { num: true }) : delta(r.variacion_pct),
+  ]);
+  target.appendChild(
+    table([{ label: "País" }, { label: "Clasificación" }, { label: "Ratio pádel/tenis", num: true }, { label: "Var. trimestral %", num: true }], rows)
+  );
+}
+
 function setupTabs() {
   document.querySelectorAll(".table-tabs").forEach((tabGroup) => {
     const buttons = tabGroup.querySelectorAll(".tab-btn");
@@ -353,3 +391,5 @@ renderSorpresas();
 renderGanancias();
 renderPistas();
 renderLicencias();
+renderMercado();
+renderTrends();

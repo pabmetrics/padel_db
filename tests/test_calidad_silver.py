@@ -323,3 +323,27 @@ def test_fact_licencias_hombres_mas_mujeres_igual_total() -> None:
             continue
         suma = valores["M"] + valores["F"] + valores.get("sin_especificar", 0)
         assert suma == valores["total"], f"{fuente} {anio}: hombres+mujeres(+sin especificar) != total"
+
+
+def test_fact_mercado_pais_no_mezcla_fuentes() -> None:
+    path = SILVER_ROOT / "fact_mercado_pais" / "data.json"
+    if not path.exists():
+        pytest.skip("fact_mercado_pais todavía no se ha generado")
+    rows = json.loads(path.read_text(encoding="utf-8"))
+    for r in rows:
+        assert r["fuente"] in ("fip", "playtomic")
+        assert r["fuente"] in r["fuente_txt"].lower()
+        if r["fuente"] == "fip":
+            assert r["valor"] >= 0
+        if r["fuente"] == "playtomic" and r["pistas_por_100k_min"] is not None:
+            assert r["pistas_por_100k_min"] <= r["pistas_por_100k_max"]
+
+
+def test_trends_geo_ratio_no_negativo() -> None:
+    if not (REPO_ROOT / "gold" / "trends_geo").exists():
+        pytest.skip("trends_geo todavía no se ha generado")
+    dt_dir = _latest_dir(REPO_ROOT / "gold" / "trends_geo")
+    rows = json.loads((dt_dir / "data.json").read_text(encoding="utf-8"))
+    for r in rows:
+        if r["ratio_padel_tenis_reciente"] is not None:
+            assert r["ratio_padel_tenis_reciente"] >= 0

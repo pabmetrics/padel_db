@@ -30,6 +30,8 @@ GOLD_TABLES = [
     "ganancias_temporada",
     "pistas_provincia",
     "licencias_nacional",
+    "mercado_pais",
+    "trends_geo",
 ]
 
 
