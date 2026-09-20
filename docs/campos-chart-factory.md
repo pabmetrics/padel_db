@@ -119,16 +119,44 @@ módulo — quedaba sin ningún uso.
 
 ## Series migradas a la plantilla completa
 
-- `ranking_moves.py` (#RankingLunes) — ya existía en versión mínima,
-  reescrita sobre `marca.py`.
-- `ganancias.py` (Cierre de torneo / ganancias de temporada) — nueva.
+Las 10 tablas gold que existen a día de hoy tienen ya su gráfico:
 
-Pendientes de migrar a la plantilla completa (documentado como trabajo
-futuro, no bloqueante): perfil_top100, forma_reciente, parejas_duracion,
-h2h, torneo_sorpresas, pistas_provincia, licencias_nacional, mercado_pais,
-trends_geo. Todas tienen datos reales listos en `gold/`; falta solo
-escribir el `_dibujar()` específico de cada formato siguiendo el mismo
-patrón que `ranking_moves.py`/`ganancias.py`.
+- `ranking_moves.py` (#RankingLunes) — movimientos del ranking.
+- `ganancias.py` (Cierre de torneo) — ranking de ganancias de temporada.
+- `perfil.py` (Perfil del top 100) — nacionalidades del top 100, con una
+  tabla `NOMBRE_PAIS` que traduce los códigos ISO-3166-1 de F2 a nombre en
+  español (mostrar "ES" en un gráfico público no vale).
+- `forma_reciente.py` (Forma reciente) — % de victorias últimas 8 semanas,
+  con un mínimo de 8 partidos para evitar que un 100% con 1 partido salga
+  como líder.
+- `parejas.py` (#ParejasEnDatos) — parejas activas más longevas.
+- `h2h.py` (Cara a cara) — cruces más repetidos, barra apilada
+  cristal/coral para mostrar el reparto de victorias dentro del total.
+- `sorpresas.py` (El torneo en datos) — mayores sorpresas por diferencia
+  de semilla.
+- `pistas.py` (#MapaDelPádel) — pistas por 10.000 hab. por provincia.
+- `licencias.py` (Pádel Mercado) — serie temporal 2000-2025 (CSD) con el
+  dato en vivo de la FEP marcado aparte en Bola cuando hay un año
+  posterior al último de la serie CSD. Solo se dibuja el tramo 2000+: el
+  tramo suelto 1980-1985 (ver docs/campos-licencias-padel.md) se deja
+  fuera para no unir con una línea recta un hueco de 14 años sin dato.
+- `mercado.py` (Pádel Mercado) — comparación de dos cifras, FIP vs
+  Playtomic, sin promediarlas (doc 01 §6). La cifra de Playtomic vive en
+  `contexto_txt` (texto libre) porque el CSV manual no le dedicó una
+  columna numérica propia; el script comprueba que el texto exacto siga
+  ahí antes de usarla, para no hardcodear un número que deje de coincidir
+  con la fuente sin que nadie se entere.
+- `trends.py` (#MapaDelPádel) — variación trimestral del interés
+  pádel/tenis en los países en expansión.
+
+## Un glifo que no existe en IBM Plex Mono
+
+El símbolo Δ (usado en el título de `ranking_moves.py`, con Space Grotesk,
+donde sí existe) salió como un cuadrado vacío la primera vez que se probó
+también en una etiqueta con IBM Plex Mono (`sorpresas.py`) — esa instancia
+estática concreta no tiene ese glifo. Solución: no usar Δ fuera de Space
+Grotesk; las etiquetas de barra de `sorpresas.py` dicen simplemente "N
+puestos" en vez de "Δ N puestos".
 
 ## Exportación a Plotly/JSON para la web
 
