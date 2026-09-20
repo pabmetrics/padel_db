@@ -133,55 +133,38 @@ def nueva_figura(tamano: tuple[float, float], tema: Tema) -> tuple[plt.Figure, p
     return fig, ax
 
 
-def _ancho_texto_frac(fig: plt.Figure, texto: str, fontproperties: FontProperties, fontsize_pt: float) -> float:
-    """Ancho real del texto (en fracción de figura), midiendo con el mismo
-    TTF que se va a dibujar — así una píldora se ajusta al texto en vez de
-    calcularse con una estimación de caracteres que deja huecos o se queda
-    corta según la palabra."""
-    from PIL import ImageFont
-
-    size_px = round(fontsize_pt * fig.dpi / 72)
-    font = ImageFont.truetype(fontproperties.get_file(), size=size_px)
-    izq, _, der, _ = font.getbbox(texto)
-    ancho_px = der - izq
-    return ancho_px / (fig.get_size_inches()[0] * fig.dpi)
-
-
 def pildora_serie(fig: plt.Figure, texto: str, tema: Tema) -> None:
-    """Píldora de serie arriba a la izquierda: fondo cristal, texto pista,
-    siempre en el mismo sitio (doc 02 §1.2, punto 1). El ancho se ajusta al
-    texto real (medido con la propia fuente), no a una estimación por
-    número de caracteres — evita píldoras con demasiado aire alrededor de
-    frases largas como "Cierre de torneo"."""
-    fontsize = 12
-    padding_frac = 0.022
-    ancho_texto = _ancho_texto_frac(fig, texto, Fuentes.texto_medio(), fontsize)
-    ancho = ancho_texto + padding_frac * 2
-    alto = 0.055
-    x0, y0 = 0.045, 0.90
+    """Marca de serie arriba a la izquierda (doc 02 §1.2, punto 1): un
+    cuadrado cristal seguido del nombre de la serie en mayúsculas,
+    monoespaciado (IBM Plex Mono), sin caja de fondo — versión "minimal"
+    elegida tras comparar varias alternativas de píldora con el usuario
+    (ver docs/campos-chart-factory.md)."""
+    colores = colores_tema(tema)
+    fontsize = 12.5
+    x0, y0 = 0.045, 0.925
+    marca_w, marca_h = 0.014, 0.014
 
     fig.patches.append(
-        FancyBboxPatch(
-            (x0, y0),
-            ancho,
-            alto,
+        plt.Rectangle(
+            (x0, y0 - marca_h / 2),
+            marca_w,
+            marca_h,
             transform=fig.transFigure,
-            boxstyle="round,pad=0.01,rounding_size=0.02",
             facecolor=CRISTAL,
             edgecolor="none",
             zorder=5,
         )
     )
     fig.text(
-        x0 + ancho / 2,
-        y0 + alto / 2 + 0.002,
-        texto,
+        x0 + marca_w + 0.012,
+        y0,
+        texto.upper(),
         transform=fig.transFigure,
-        ha="center",
+        ha="left",
         va="center",
-        fontproperties=Fuentes.texto_medio(),
+        fontproperties=Fuentes.cifra(),
         fontsize=fontsize,
-        color=PISTA,
+        color=colores["texto_principal"],
         zorder=6,
     )
 

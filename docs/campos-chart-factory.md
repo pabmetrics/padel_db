@@ -98,15 +98,24 @@ cola (`queue/candidates.json`, doc 03 §6), el número de registro debería
 vivir ahí en vez de en un fichero aparte — este contador es la versión
 mínima mientras esa cola no se ha construido todavía.
 
-## Píldora de serie: ancho ajustado al texto real
+## Marca de serie: de píldora a marcador minimal
 
-La primera versión calculaba el ancho de la píldora a partir del número de
-caracteres del texto (una estimación), lo que dejaba frases largas como
-"Cierre de torneo" con demasiado aire a la derecha frente a series cortas
-como "#RankingLunes". Se sustituyó por una medición real: `_ancho_texto_frac()`
-carga el mismo TTF que se va a dibujar con `PIL.ImageFont` y mide el ancho
-exacto en píxeles del texto a ese tamaño de letra, así que la píldora se
-ajusta a cualquier frase con el mismo margen proporcional.
+La píldora rellena (fondo cristal, texto centrado) no acababa de convencer
+al usuario. Se generaron 5 alternativas sobre el mismo gráfico
+(#RankingLunes masculino 16:9) para comparar: píldora rellena (la
+original), píldora con solo contorno, marcador minimal (cuadrado cristal +
+texto en mayúsculas monoespaciado, sin caja), píldora invertida
+(fondo Pista, texto Bola) y texto grande subrayado sin caja. Se eligió el
+**marcador minimal**: un cuadrado cristal de acento fijo seguido del
+nombre de la serie en mayúsculas con IBM Plex Mono (el mismo tipo de letra
+que las cifras del gráfico, para que la marca de serie se lea como un
+"tag" técnico, no como un titular), sin fondo ni caja alrededor. Se adapta
+al tema oscuro con el texto en `texto_principal` (Arena) — el cuadrado de
+acento se mantiene siempre en Cristal, en los dos temas.
+
+De paso, al no depender ya de medir el ancho exacto del texto (necesario
+solo para dimensionar una píldora), se eliminó `_ancho_texto_frac()` del
+módulo — quedaba sin ningún uso.
 
 ## Series migradas a la plantilla completa
 
