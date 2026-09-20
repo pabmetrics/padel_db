@@ -53,6 +53,12 @@ TAMANO_X = (16.0, 9.0)  # -> 1600x900 a dpi=100
 TAMANO_IG = (10.8, 13.5)  # -> 1080x1350 a dpi=100
 DPI = 100
 
+# Posición del icono en el pie (fracción de figura; origen abajo-izquierda,
+# como el resto de coordenadas de `transFigure`).
+ICONO_X = 0.935
+ICONO_Y = 0.036
+ICONO_ALTO_PX = 24
+
 Tema = Literal["claro", "oscuro"]
 
 
@@ -127,15 +133,38 @@ def nueva_figura(tamano: tuple[float, float], tema: Tema) -> tuple[plt.Figure, p
     return fig, ax
 
 
+def _ancho_texto_frac(fig: plt.Figure, texto: str, fontproperties: FontProperties, fontsize_pt: float) -> float:
+    """Ancho real del texto (en fracción de figura), midiendo con el mismo
+    TTF que se va a dibujar — así una píldora se ajusta al texto en vez de
+    calcularse con una estimación de caracteres que deja huecos o se queda
+    corta según la palabra."""
+    from PIL import ImageFont
+
+    size_px = round(fontsize_pt * fig.dpi / 72)
+    font = ImageFont.truetype(fontproperties.get_file(), size=size_px)
+    izq, _, der, _ = font.getbbox(texto)
+    ancho_px = der - izq
+    return ancho_px / (fig.get_size_inches()[0] * fig.dpi)
+
+
 def pildora_serie(fig: plt.Figure, texto: str, tema: Tema) -> None:
     """Píldora de serie arriba a la izquierda: fondo cristal, texto pista,
-    siempre en el mismo sitio (doc 02 §1.2, punto 1)."""
-    ancho = 0.018 * (len(texto) + 3)
+    siempre en el mismo sitio (doc 02 §1.2, punto 1). El ancho se ajusta al
+    texto real (medido con la propia fuente), no a una estimación por
+    número de caracteres — evita píldoras con demasiado aire alrededor de
+    frases largas como "Cierre de torneo"."""
+    fontsize = 12
+    padding_frac = 0.022
+    ancho_texto = _ancho_texto_frac(fig, texto, Fuentes.texto_medio(), fontsize)
+    ancho = ancho_texto + padding_frac * 2
+    alto = 0.055
+    x0, y0 = 0.045, 0.90
+
     fig.patches.append(
         FancyBboxPatch(
-            (0.045, 0.90),
+            (x0, y0),
             ancho,
-            0.055,
+            alto,
             transform=fig.transFigure,
             boxstyle="round,pad=0.01,rounding_size=0.02",
             facecolor=CRISTAL,
@@ -144,14 +173,14 @@ def pildora_serie(fig: plt.Figure, texto: str, tema: Tema) -> None:
         )
     )
     fig.text(
-        0.045 + ancho / 2,
-        0.927,
+        x0 + ancho / 2,
+        y0 + alto / 2 + 0.002,
         texto,
         transform=fig.transFigure,
         ha="center",
         va="center",
         fontproperties=Fuentes.texto_medio(),
-        fontsize=12,
+        fontsize=fontsize,
         color=PISTA,
         zorder=6,
     )
@@ -182,54 +211,120 @@ def titulo_y_subtitulo(fig: plt.Figure, titulo: str, subtitulo: str, tema: Tema)
 
 
 _ICONO_CACHE: dict[Tema, "Image.Image"] = {}
+_FAVICON_SVG = BRAND_DIR / "padeldb-favicon.svg"
+_FAVICON_RENDER_PX = 480  # resolución de trabajo antes del downsample final
 
 
-def _icono(tema: Tema) -> "Image.Image":
-    """Icono de marca (`brand/padeldb-icon.png`, navy sobre transparente).
-    En tema oscuro se recolorea a Arena (icono en negativo), la regla que
-    ya fija doc 02 §1.2 para el icono sobre fondo Pista — no hay un fichero
-    `-negative` del icono suelto en `brand/` (solo del logo completo), así
-    que el recoloreado se hace aquí en vez de mantener un segundo PNG."""
+def _icono_favicon(tema: Tema) -> "Image.Image":
+    """Rasteriza `brand/padeldb-icon.png` no vale para el pie del gráfico:
+    a 24 px de alto, la rejilla de 12 puntos de la pala se convierte en
+    bloques — el detalle del icono completo excede lo que esos píxeles
+    pueden resolver, sea cual sea el filtro de reescalado (comprobado con
+    LANCZOS y con varios caminos de matplotlib, mismo resultado). El propio
+    sistema de marca ya prevé esto: `padeldb-favicon.svg` es la "versión
+    simplificada sin agujeros para tamaños pequeños" (doc 02 §1.2).
+
+    No hay una librería de rasterizado de SVG sin dependencias nativas
+    fiable en todos los entornos (cairosvg necesita libcairo del sistema;
+    no está garantizado en todos los runners de CI), así que este SVG
+    concreto —un único `<path>` más 3 `<rect>`, con una transformación
+    `translate·scale·translate` fija— se parsea a mano con `svg.path`
+    (puro Python) y se dibuja con matplotlib/Agg, que ya es una
+    dependencia del proyecto. Si el fichero cambia de estructura, esta
+    función falla explícitamente en vez de renderizar algo distinto sin
+    avisar."""
     if tema in _ICONO_CACHE:
         return _ICONO_CACHE[tema]
 
-    from PIL import Image
+    import re
+    import xml.etree.ElementTree as ET
+
     import numpy as np
+    from PIL import Image
+    from svg.path import parse_path
 
-    path = BRAND_DIR / "padeldb-icon.png"
-    if not path.exists():
-        raise FileNotFoundError(f"Falta el icono de marca: {path}")
-    img = Image.open(path).convert("RGBA")
+    if not _FAVICON_SVG.exists():
+        raise FileNotFoundError(f"Falta el favicon de marca: {_FAVICON_SVG}")
 
-    if tema == "oscuro":
-        arr = np.array(img)
-        arena_rgb = tuple(int(ARENA[i : i + 2], 16) for i in (1, 3, 5))
-        arr[..., 0] = arena_rgb[0]
-        arr[..., 1] = arena_rgb[1]
-        arr[..., 2] = arena_rgb[2]
-        img = Image.fromarray(arr, "RGBA")
+    ns = {"svg": "http://www.w3.org/2000/svg"}
+    root = ET.parse(_FAVICON_SVG).getroot()
+    grupo = root.find("svg:g", ns)
+    m = re.match(
+        r"translate\(([-\d.]+) ([-\d.]+)\)\s*scale\(([-\d.]+)\)\s*translate\(([-\d.]+) ([-\d.]+)\)",
+        grupo.attrib["transform"],
+    )
+    if not m:
+        raise ValueError(f"Transform de {_FAVICON_SVG} con una forma inesperada: {grupo.attrib['transform']}")
+    tx1, ty1, escala, tx2, ty2 = (float(v) for v in m.groups())
+
+    def transformar(px: float, py: float) -> tuple[float, float]:
+        return (px + tx2) * escala + tx1, (py + ty2) * escala + ty1
+
+    color = ARENA if tema == "oscuro" else PISTA
+    fig = plt.figure(figsize=(2, 2), dpi=_FAVICON_RENDER_PX / 2)
+    ax = fig.add_axes((0, 0, 1, 1))
+    fig.patch.set_alpha(0)
+
+    grupo_relleno = grupo.find("svg:g", ns)
+    for elem in grupo_relleno:
+        tag = elem.tag.split("}")[-1]
+        if tag == "path":
+            puntos = []
+            for seg in parse_path(elem.attrib["d"]):
+                for i in range(21):
+                    p = seg.point(i / 20)
+                    puntos.append(transformar(p.real, p.imag))
+            ax.add_patch(plt.Polygon(puntos, closed=True, facecolor=color, edgecolor="none"))
+        elif tag == "rect":
+            x, y = float(elem.attrib["x"]), float(elem.attrib["y"])
+            w, h = float(elem.attrib["width"]), float(elem.attrib["height"])
+            esquinas = [transformar(cx, cy) for cx, cy in ((x, y), (x + w, y), (x + w, y + h), (x, y + h))]
+            ax.add_patch(plt.Polygon(esquinas, closed=True, facecolor=color, edgecolor="none"))
+
+    ax.set_xlim(0, 1000)
+    ax.set_ylim(0, 1000)
+    ax.invert_yaxis()
+    ax.set_aspect("equal")
+    ax.axis("off")
+
+    fig.canvas.draw()
+    arr = np.asarray(fig.canvas.buffer_rgba())
+    img = Image.fromarray(arr, "RGBA")
+    plt.close(fig)
 
     _ICONO_CACHE[tema] = img
     return img
 
 
-def icono_marca(fig: plt.Figure, x: float, y: float, tema: Tema, alto_px: float = 24) -> None:
-    """Icono de marca a `alto_px` de alto (doc 02 §1.2, punto 6: '24 px')."""
-    from matplotlib.offsetbox import AnnotationBbox, OffsetImage
-    import numpy as np
+def guardar_figura(fig: plt.Figure, out_file: Path, tema: Tema) -> None:
+    """Guarda la figura y compone el icono de marca encima con Pillow, en
+    vez de dibujarlo dentro de matplotlib (`OffsetImage`/`imshow`): a los
+    tamaños pequeños del pie, componerlo aparte con un resize LANCZOS al
+    tamaño final exacto en píxeles da un resultado nítido y predecible,
+    frente al reescalado peor (o mal alineado en píxeles) de los caminos
+    internos de matplotlib."""
+    from PIL import Image
 
-    img = _icono(tema)
-    zoom = alto_px / img.height
-    imagebox = OffsetImage(np.array(img), zoom=zoom)
-    ab = AnnotationBbox(imagebox, (x, y), xycoords=fig.transFigure, frameon=False, box_alignment=(0.5, 0.5), zorder=6)
-    fig.add_artist(ab)
+    fig.savefig(out_file, facecolor=fig.get_facecolor())
+
+    icono = _icono_favicon(tema)
+    alto_px = round(ICONO_ALTO_PX)
+    ancho_px = round(icono.width * alto_px / icono.height)
+    icono_final = icono.resize((ancho_px, alto_px), Image.LANCZOS)
+
+    lienzo = Image.open(out_file).convert("RGBA")
+    x_px = round(ICONO_X * lienzo.width - ancho_px / 2)
+    y_px = round((1 - ICONO_Y) * lienzo.height - alto_px / 2)
+    lienzo.paste(icono_final, (x_px, y_px), icono_final)
+    lienzo.convert("RGB").save(out_file)
 
 
 def pildora_db(fig: plt.Figure, x: float, y: float, tema: Tema) -> None:
     """La píldora DB (doc 02 §1.2): firma compacta para miniaturas pequeñas
     donde el icono no cabe — rectángulo 2:1 cristal con 'DB' en IBM Plex
     Mono negrita en color pista. En el pie normal se usa el icono real
-    (`icono_marca`); esta píldora queda disponible para formatos pequeños."""
+    (compuesto en `guardar_figura`); esta píldora queda disponible para
+    formatos pequeños."""
     ancho, alto = 0.042, 0.032
     fig.patches.append(
         FancyBboxPatch(
@@ -247,13 +342,18 @@ def pildora_db(fig: plt.Figure, x: float, y: float, tema: Tema) -> None:
 
 
 def pie_de_grafico(fig: plt.Figure, fuente_txt: str, tema: Tema, registro: str | None = None) -> None:
-    """Pie fijo (doc 02 §1.2, punto 6): fuente a la izquierda, icono a
-    24 px y @padeldb a la derecha; número de registro arriba a la derecha."""
+    """Pie fijo (doc 02 §1.2, punto 6): número de registro (discreto, junto
+    a la fuente en vez de arriba a la derecha como marca el doc — se
+    mantiene el dato pero fuera del área del título, menos protagonismo),
+    fuente a la izquierda, hueco para el icono e @padeldb a la derecha. El
+    icono en sí no se dibuja aquí (ver `guardar_figura`): se compone con
+    Pillow sobre el PNG ya guardado, en la posición `ICONO_X`/`ICONO_Y`."""
     colores = colores_tema(tema)
+    texto_fuente = f"{registro} · Fuente: {fuente_txt}" if registro else f"Fuente: {fuente_txt}"
     fig.text(
         0.06,
         0.035,
-        f"Fuente: {fuente_txt}",
+        texto_fuente,
         transform=fig.transFigure,
         fontproperties=Fuentes.texto(),
         fontsize=9.5,
@@ -271,20 +371,6 @@ def pie_de_grafico(fig: plt.Figure, fuente_txt: str, tema: Tema, registro: str |
         ha="right",
         va="center",
     )
-    icono_marca(fig, 0.935, 0.036, tema)
-
-    if registro:
-        fig.text(
-            0.945,
-            0.955,
-            registro,
-            transform=fig.transFigure,
-            fontproperties=Fuentes.cifra_regular(),
-            fontsize=10,
-            color=colores["texto_secundario"],
-            ha="right",
-        )
-
 
 def limpiar_ejes(ax: plt.Axes, tema: Tema) -> None:
     colores = colores_tema(tema)

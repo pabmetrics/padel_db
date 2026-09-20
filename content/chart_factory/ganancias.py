@@ -14,6 +14,7 @@ from content.chart_factory.marca import (
     Fuentes,
     Tema,
     colores_tema,
+    guardar_figura,
     limpiar_ejes,
     nueva_figura,
     pie_de_grafico,
@@ -111,7 +112,7 @@ def build(sexo: str = "M") -> list[Path]:
     for tema, tamano, sufijo in (("claro", TAMANO_X, "16x9"), ("claro", TAMANO_IG, "4x5")):
         fig = _dibujar(top, sexo, fecha, tamano, tema, registro)
         out_file = out_dir / f"ganancias_temporada_{sexo.lower()}_{sufijo}.png"
-        fig.savefig(out_file, facecolor=fig.get_facecolor())
+        guardar_figura(fig, out_file, tema)
         plt.close(fig)
         salidas.append(out_file)
         print(f"{registro} {out_file.relative_to(REPO_ROOT)}")

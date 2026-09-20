@@ -46,24 +46,50 @@ Las tres familias son de Google Fonts bajo licencia SIL Open Font License
 1.1 (gratuitas para este uso, redistribución incluida); los TTF se bajaron
 del propio repositorio oficial `google/fonts` en GitHub.
 
-## El icono real
+## El icono real, y por qué no es `padeldb-icon.png`
 
 El usuario añadió `brand/` con el icono y el logo (SVG + PNG) al ratito de
-empezar esta fase. El pie de cada gráfico usa `brand/padeldb-icon.png`
-(`icono_marca()` en `marca.py`) a 24 px de alto, como pide doc 02 §1.2
-punto 6. No hay un `padeldb-icon-negative.png` suelto en `brand/` (solo el
-logo vertical completo tiene versión negativa) — para el tema oscuro,
-`_icono()` recolorea el PNG de Pista a Arena en memoria con Pillow/numpy
-(sustituir los píxeles RGB conservando el canal alfa), aplicando la misma
-regla de color que ya fija el doc para el icono en negativo, sin depender
-de que exista un segundo fichero.
+empezar esta fase. El primer intento usó `brand/padeldb-icon.png` (el
+icono completo, con la rejilla de 12 puntos de la pala) a 24 px de alto —
+y a ese tamaño la rejilla se convertía en bloques en vez de círculos,
+por mucho que se cuidara el reescalado (se probaron `OffsetImage`, ejes
+insertados con `imshow`, y un resize de Pillow con LANCZOS compuesto
+aparte con `paste()`; los tres dieron el mismo resultado, confirmado
+comparando los píxeles exactos). La causa no era el método de
+reescalado: a 24 px la rejilla de puntos simplemente no tiene resolución
+suficiente para leerse como círculos, sea cual sea el filtro.
+
+El propio sistema de marca ya preveía este problema: `brand/padeldb-favicon.svg`
+es, según su propia descripción en doc 02 §1.2, la "versión simplificada
+sin agujeros para tamaños pequeños" — un `<path>` de la P más 3 `<rect>`
+de las barras, sin la rejilla de puntos. `_icono_favicon()` en `marca.py`
+parsea ese SVG a mano (`svg.path`, puro Python, sin dependencias nativas
+de sistema como libcairo — se descartó `cairosvg` por eso, no está
+garantizado que el runner de CI tenga esa librería instalada) y lo dibuja
+con matplotlib/Agg a alta resolución, para reducirlo después con Pillow
+(LANCZOS) al tamaño final exacto. El resultado es nítido a 24 px. El icono
+completo (`padeldb-icon.png`) queda disponible en `brand/` para usos a
+tamaño grande (avatar, cabecera) que no son responsabilidad de
+`chart_factory`.
+
+Para el tema oscuro, la P se dibuja directamente en Arena en vez de Pista
+(no hace falta recolorear un PNG a posteriori, al ser un dibujo vectorial
+propio) — mismo criterio de "icono en negativo sobre fondo Pista" que fija
+el doc.
 
 La píldora de texto "DB" (`pildora_db()`) se mantiene en el módulo para
 su uso previsto por el propio doc: firma compacta en miniaturas donde el
 icono no cabe — no se usa ya en el pie estándar de un gráfico a tamaño
 completo.
 
-## Número de registro
+## Número de registro: en el pie, no arriba a la derecha
+
+El doc 02 §1.2 pide el número de registro "arriba a la derecha". Se probó
+así primero, pero quedaba como un elemento aislado que competía visualmente
+con el título; a petición del usuario, se movió al pie, como prefijo de la
+línea de fuente (`#0003 · Fuente: ...`) — mismo dato, correlativo y
+visible, pero integrado en el bloque de atribución en vez de flotando
+solo en una esquina.
 
 `content/chart_factory/registro.json` es un contador simple y persistente
 (commiteado, no en `.gitignore`): cada llamada a `siguiente_registro()`
@@ -71,6 +97,16 @@ incrementa y guarda. En la Fase 4 completa, cuando exista de verdad la
 cola (`queue/candidates.json`, doc 03 §6), el número de registro debería
 vivir ahí en vez de en un fichero aparte — este contador es la versión
 mínima mientras esa cola no se ha construido todavía.
+
+## Píldora de serie: ancho ajustado al texto real
+
+La primera versión calculaba el ancho de la píldora a partir del número de
+caracteres del texto (una estimación), lo que dejaba frases largas como
+"Cierre de torneo" con demasiado aire a la derecha frente a series cortas
+como "#RankingLunes". Se sustituyó por una medición real: `_ancho_texto_frac()`
+carga el mismo TTF que se va a dibujar con `PIL.ImageFont` y mide el ancho
+exacto en píxeles del texto a ese tamaño de letra, así que la píldora se
+ajusta a cualquier frase con el mismo margen proporcional.
 
 ## Series migradas a la plantilla completa
 
