@@ -93,7 +93,7 @@ def _dibujar(serie_csd: list[dict], punto_fep: dict | None, fecha: str, tamano: 
     ax.set_ylim(0, max(valores) * 1.2)
 
     pildora_serie(fig, "Pádel Mercado", tema)
-    titulo_y_subtitulo(
+    top_grafico = titulo_y_subtitulo(
         fig,
         f"De {primero['licencias']:,.0f} a {ultimo['licencias']:,.0f} licencias".replace(",", "."),
         f"Licencias federativas de pádel en España, {primero['anio']}-{ultimo['anio']}",
@@ -103,9 +103,9 @@ def _dibujar(serie_csd: list[dict], punto_fep: dict | None, fecha: str, tamano: 
     pie_de_grafico(fig, fuente_txt, tema, registro)
 
     if tamano == TAMANO_X:
-        fig.subplots_adjust(left=0.06, right=0.95, top=0.72, bottom=0.14)
+        fig.subplots_adjust(left=0.06, right=0.95, top=top_grafico, bottom=0.14)
     else:
-        fig.subplots_adjust(left=0.1, right=0.93, top=0.62, bottom=0.12)
+        fig.subplots_adjust(left=0.1, right=0.93, top=top_grafico, bottom=0.12)
 
     return fig
 

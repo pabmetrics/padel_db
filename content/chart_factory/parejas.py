@@ -65,7 +65,7 @@ def _dibujar(top: list[dict], categoria: str, fecha: str, tamano: tuple[float, f
     lider = top[0]
     cat_txt = "masculino" if categoria == "men" else "femenino"
     pildora_serie(fig, "#ParejasEnDatos", tema)
-    titulo_y_subtitulo(
+    top_grafico = titulo_y_subtitulo(
         fig,
         f"{lider['jugador_1_nombre']} / {lider['jugador_2_nombre']}, la pareja más longeva",
         f"Parejas activas por días juntos, circuito {cat_txt} · {fecha}",
@@ -74,9 +74,9 @@ def _dibujar(top: list[dict], categoria: str, fecha: str, tamano: tuple[float, f
     pie_de_grafico(fig, f"{FUENTE_TXT} — {fecha}", tema, registro)
 
     if tamano == TAMANO_X:
-        fig.subplots_adjust(left=0.24, right=0.95, top=0.72, bottom=0.1)
+        fig.subplots_adjust(left=0.24, right=0.95, top=top_grafico, bottom=0.1)
     else:
-        fig.subplots_adjust(left=0.3, right=0.93, top=0.62, bottom=0.09)
+        fig.subplots_adjust(left=0.3, right=0.93, top=top_grafico, bottom=0.09)
 
     return fig
 

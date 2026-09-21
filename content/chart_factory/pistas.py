@@ -63,7 +63,7 @@ def _dibujar(top: list[dict], fecha: str, tamano: tuple[float, float], tema: Tem
 
     lider = top[0]
     pildora_serie(fig, "#MapaDelPádel", tema)
-    titulo_y_subtitulo(
+    top_grafico = titulo_y_subtitulo(
         fig,
         f"{lider['provincia_nombre']} lidera con {lider['elementos_por_10000_hab']:.2f} pistas por 10.000 hab.",
         f"Pistas y clubes de pádel por provincia, top {N_PROVINCIAS} · {fecha}",
@@ -72,9 +72,9 @@ def _dibujar(top: list[dict], fecha: str, tamano: tuple[float, float], tema: Tem
     pie_de_grafico(fig, f"{FUENTE_TXT} — {fecha}", tema, registro)
 
     if tamano == TAMANO_X:
-        fig.subplots_adjust(left=0.16, right=0.95, top=0.72, bottom=0.1)
+        fig.subplots_adjust(left=0.16, right=0.95, top=top_grafico, bottom=0.1)
     else:
-        fig.subplots_adjust(left=0.22, right=0.93, top=0.62, bottom=0.09)
+        fig.subplots_adjust(left=0.22, right=0.93, top=top_grafico, bottom=0.09)
 
     return fig
 

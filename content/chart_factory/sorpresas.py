@@ -65,7 +65,7 @@ def _dibujar(top: list[dict], categoria: str, fecha: str, tamano: tuple[float, f
     lider = top[0]
     cat_txt = "masculino" if categoria == "men" else "femenino"
     pildora_serie(fig, "El torneo en datos", tema)
-    titulo_y_subtitulo(
+    top_grafico = titulo_y_subtitulo(
         fig,
         f"{lider['equipo_ganador']}, la mayor sorpresa de la temporada",
         f"Eliminaciones por diferencia de semilla, circuito {cat_txt} · {fecha}",
@@ -74,9 +74,9 @@ def _dibujar(top: list[dict], categoria: str, fecha: str, tamano: tuple[float, f
     pie_de_grafico(fig, f"{FUENTE_TXT} — {fecha}", tema, registro)
 
     if tamano == TAMANO_X:
-        fig.subplots_adjust(left=0.28, right=0.95, top=0.72, bottom=0.1)
+        fig.subplots_adjust(left=0.28, right=0.95, top=top_grafico, bottom=0.1)
     else:
-        fig.subplots_adjust(left=0.34, right=0.93, top=0.62, bottom=0.09)
+        fig.subplots_adjust(left=0.34, right=0.93, top=top_grafico, bottom=0.09)
 
     return fig
 

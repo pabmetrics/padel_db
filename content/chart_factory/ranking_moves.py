@@ -80,7 +80,7 @@ def _dibujar(top: list[dict], sexo: str, fecha: str, tamano: tuple[float, float]
     sexo_txt = "masculino" if sexo == "M" else "femenino"
     top_subida = max(top, key=lambda r: r["posicion_diff_semana"])
     pildora_serie(fig, "#RankingLunes", tema)
-    titulo_y_subtitulo(
+    top_grafico = titulo_y_subtitulo(
         fig,
         f"Δ +{int(top_subida['posicion_diff_semana'])}: la mayor subida de la semana",
         f"Movimientos del ranking {sexo_txt} · puestos ganados o perdidos, semana del {fecha}",
@@ -89,9 +89,9 @@ def _dibujar(top: list[dict], sexo: str, fecha: str, tamano: tuple[float, float]
     pie_de_grafico(fig, f"{FUENTE_TXT} — {fecha}", tema, registro)
 
     if tamano == TAMANO_X:
-        fig.subplots_adjust(left=0.22, right=0.95, top=0.72, bottom=0.1)
+        fig.subplots_adjust(left=0.22, right=0.95, top=top_grafico, bottom=0.1)
     else:
-        fig.subplots_adjust(left=0.28, right=0.93, top=0.62, bottom=0.09)
+        fig.subplots_adjust(left=0.28, right=0.93, top=top_grafico, bottom=0.09)
 
     return fig
 

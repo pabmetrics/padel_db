@@ -149,6 +149,32 @@ Las 10 tablas gold que existen a día de hoy tienen ya su gráfico:
 - `trends.py` (#MapaDelPádel) — variación trimestral del interés
   pádel/tenis en los países en expansión.
 
+## Título largo en 4:5: se salía del lienzo, y hueco enorme antes del gráfico
+
+Al revisar los primeros 4:5 (`torneo_sorpresas`), dos bugs reales en
+`marca.py`, no en cada gráfico:
+
+1. **El título se salía del lienzo.** `titulo_y_subtitulo()` dibujaba el
+   título en una sola línea a tamaño fijo (23pt), sin comprobar si cabía.
+   Con un título largo (nombres de jugadores incluidos) en el formato 4:5
+   (10.8" de ancho frente a las 16" del 16:9), el texto se cortaba fuera
+   del margen derecho. Arreglado con `_envolver_texto()`: mide el ancho
+   real del título con el mismo TTF que se va a dibujar (`PIL.ImageFont`,
+   no el estimador de `wrap=True` de matplotlib, que usa la fuente por
+   defecto) y lo parte en hasta 2 líneas; si con la letra normal (23pt) no
+   entra en 2 líneas, reintenta a 18pt.
+
+2. **Demasiado hueco entre el subtítulo y el gráfico en 4:5.** Cada script
+   fijaba `top=0.72` (16:9) / `top=0.62` (4:5) en `subplots_adjust` como
+   fracción de la altura — pero 0.62 de una figura de 13.5" (4:5) deja casi
+   2" de hueco en blanco, frente a las ~0.5" que deja 0.72 de una figura de
+   9" (16:9): la misma fracción no da el mismo hueco en pulgadas cuando el
+   alto del lienzo cambia tanto entre formatos. `titulo_y_subtitulo()`
+   ahora calcula dónde termina el bloque de texto (que además varía si el
+   título ocupa 1 o 2 líneas) y devuelve la fracción `top` que deja un hueco
+   fijo de 0.45" en cualquier formato — los 10 scripts de gráfico reciben
+   ese valor como `top_grafico` en vez de tener el número pegado a mano.
+
 ## Un glifo que no existe en IBM Plex Mono
 
 El símbolo Δ (usado en el título de `ranking_moves.py`, con Space Grotesk,

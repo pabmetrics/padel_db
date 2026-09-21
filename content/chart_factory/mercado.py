@@ -60,7 +60,7 @@ def _dibujar(fip_pistas: float, playtomic_pistas: float, fecha: str, tamano: tup
         ax.text(x, valor + max(valores) * 0.03, f"{valor:,.0f}".replace(",", "."), ha="center", va="bottom", fontproperties=Fuentes.cifra(), fontsize=14, color=colores["texto_principal"])
 
     pildora_serie(fig, "Pádel Mercado", tema)
-    titulo_y_subtitulo(
+    top_grafico = titulo_y_subtitulo(
         fig,
         f"{fip_pistas:,.0f} o {playtomic_pistas:,.0f} pistas: depende de a quién preguntes".replace(",", "."),
         f"Pistas de pádel en el mundo según dos informes de mercado independientes · {fecha}",
@@ -69,9 +69,9 @@ def _dibujar(fip_pistas: float, playtomic_pistas: float, fecha: str, tamano: tup
     pie_de_grafico(fig, f"FIP World Padel Report 2025 + Playtomic Global Padel Report 2026 · elaboración propia — {fecha}", tema, registro)
 
     if tamano == TAMANO_X:
-        fig.subplots_adjust(left=0.1, right=0.9, top=0.72, bottom=0.16)
+        fig.subplots_adjust(left=0.1, right=0.9, top=top_grafico, bottom=0.16)
     else:
-        fig.subplots_adjust(left=0.14, right=0.88, top=0.62, bottom=0.14)
+        fig.subplots_adjust(left=0.14, right=0.88, top=top_grafico, bottom=0.14)
 
     return fig
 

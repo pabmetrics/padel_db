@@ -12,8 +12,9 @@ estáticas generadas a partir de las variables de Google Fonts
 "Medium" de "Bold" por nombre — referenciar el fichero exacto evita
 cualquier ambigüedad de sustitución de fuente de matplotlib.
 
-Icono de marca: `brand/padeldb-icon.png` (icono en negativo, PNG con
-transparencia). El pie de cada gráfico lo usa a 24 px de alto (doc 02
+Icono de marca: `brand/padeldb-favicon.svg` (versión simplificada sin la
+rejilla de puntos, rasterizada a mano con `svg.path` + matplotlib — ver
+`_icono_favicon()`). El pie de cada gráfico lo usa a 24 px de alto (doc 02
 §1.2, punto 6); la píldora "DB" de texto queda como firma compacta para
 miniaturas pequeñas, tal como describe el propio doc, no como sustituto
 general del icono.
@@ -169,21 +170,72 @@ def pildora_serie(fig: plt.Figure, texto: str, tema: Tema) -> None:
     )
 
 
-def titulo_y_subtitulo(fig: plt.Figure, titulo: str, subtitulo: str, tema: Tema) -> None:
+MARGEN_IZQUIERDO = 0.06
+ANCHO_MAX_TITULO_FRAC = 1 - MARGEN_IZQUIERDO - 0.06
+GAP_SUBTITULO_GRAFICO_IN = 0.45
+
+
+def _envolver_texto(fig: plt.Figure, texto: str, fontproperties: FontProperties, fontsize_pt: float, ancho_max_frac: float) -> list[str]:
+    """Parte `texto` en las líneas que hagan falta para no salirse del
+    ancho disponible, midiendo con el mismo TTF que se va a dibujar (no
+    con `wrap=True` de matplotlib, que estima el ancho con la fuente por
+    defecto y no con la de marca)."""
+    from PIL import ImageFont
+
+    size_px = round(fontsize_pt * fig.dpi / 72)
+    font = ImageFont.truetype(fontproperties.get_file(), size=size_px)
+    ancho_max_px = ancho_max_frac * fig.get_size_inches()[0] * fig.dpi
+
+    palabras = texto.split(" ")
+    lineas: list[str] = []
+    actual = ""
+    for palabra in palabras:
+        candidato = f"{actual} {palabra}".strip()
+        izq, _, der, _ = font.getbbox(candidato)
+        if der - izq <= ancho_max_px or not actual:
+            actual = candidato
+        else:
+            lineas.append(actual)
+            actual = palabra
+    if actual:
+        lineas.append(actual)
+    return lineas
+
+
+def titulo_y_subtitulo(fig: plt.Figure, titulo: str, subtitulo: str, tema: Tema) -> float:
+    """Título (envuelto a un máximo de 2 líneas; si con la letra normal no
+    entra en 2, se reduce el tamaño) + subtítulo. Devuelve la fracción de
+    figura en la que debe empezar el área de dibujo del gráfico, a una
+    distancia fija **en pulgadas** del subtítulo — no una fracción fija de
+    la altura, que en el formato 4:5 (mucho más alto que el 16:9) dejaba un
+    hueco enorme entre el texto y el gráfico."""
     colores = colores_tema(tema)
+    altura_in = fig.get_size_inches()[1]
+
+    fontsize_titulo = 23
+    lineas = _envolver_texto(fig, titulo, Fuentes.titulo(), fontsize_titulo, ANCHO_MAX_TITULO_FRAC)
+    if len(lineas) > 2:
+        fontsize_titulo = 18
+        lineas = _envolver_texto(fig, titulo, Fuentes.titulo(), fontsize_titulo, ANCHO_MAX_TITULO_FRAC)[:2]
+
+    y = 0.83
+    paso = (fontsize_titulo * 1.25) / 72 / altura_in
+    for i, linea in enumerate(lineas):
+        fig.text(
+            MARGEN_IZQUIERDO,
+            y - i * paso,
+            linea,
+            transform=fig.transFigure,
+            fontproperties=Fuentes.titulo(),
+            fontsize=fontsize_titulo,
+            color=colores["texto_principal"],
+            ha="left",
+        )
+
+    y_subtitulo = y - (len(lineas) - 1) * paso - paso * 0.85
     fig.text(
-        0.06,
-        0.83,
-        titulo,
-        transform=fig.transFigure,
-        fontproperties=Fuentes.titulo(),
-        fontsize=23,
-        color=colores["texto_principal"],
-        ha="left",
-    )
-    fig.text(
-        0.06,
-        0.775,
+        MARGEN_IZQUIERDO,
+        y_subtitulo,
         subtitulo,
         transform=fig.transFigure,
         fontproperties=Fuentes.texto(),
@@ -191,6 +243,8 @@ def titulo_y_subtitulo(fig: plt.Figure, titulo: str, subtitulo: str, tema: Tema)
         color=colores["texto_secundario"],
         ha="left",
     )
+
+    return y_subtitulo - GAP_SUBTITULO_GRAFICO_IN / altura_in
 
 
 _ICONO_CACHE: dict[Tema, "Image.Image"] = {}

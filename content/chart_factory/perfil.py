@@ -76,7 +76,7 @@ def _dibujar(conteo: list[tuple[str, int]], sexo: str, fecha: str, tamano: tuple
     lider_pais, lider_n = conteo[0]
     sexo_txt = "masculino" if sexo == "M" else "femenino"
     pildora_serie(fig, "Perfil del top 100", tema)
-    titulo_y_subtitulo(
+    top_grafico = titulo_y_subtitulo(
         fig,
         f"{NOMBRE_PAIS.get(lider_pais, lider_pais)} domina el top 100 {sexo_txt} con {lider_n} jugadores",
         f"Nacionalidades del top 100 {sexo_txt}, top {N_PAISES} países · {fecha}",
@@ -85,9 +85,9 @@ def _dibujar(conteo: list[tuple[str, int]], sexo: str, fecha: str, tamano: tuple
     pie_de_grafico(fig, f"{FUENTE_TXT} — {fecha}", tema, registro)
 
     if tamano == TAMANO_X:
-        fig.subplots_adjust(left=0.16, right=0.95, top=0.72, bottom=0.1)
+        fig.subplots_adjust(left=0.16, right=0.95, top=top_grafico, bottom=0.1)
     else:
-        fig.subplots_adjust(left=0.22, right=0.93, top=0.62, bottom=0.09)
+        fig.subplots_adjust(left=0.22, right=0.93, top=top_grafico, bottom=0.09)
 
     return fig
 

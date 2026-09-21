@@ -65,7 +65,7 @@ def _dibujar(top: list[dict], sexo: str, fecha: str, tamano: tuple[float, float]
     lider = max(top, key=lambda r: r["pct_victorias_8sem"])
     sexo_txt = "masculino" if sexo == "M" else "femenino"
     pildora_serie(fig, "Forma reciente", tema)
-    titulo_y_subtitulo(
+    top_grafico = titulo_y_subtitulo(
         fig,
         f"{lider['jugador_nombre']}, el mejor porcentaje de victorias",
         f"% de victorias últimas 8 semanas, circuito {sexo_txt} (mín. {MIN_PARTIDOS} partidos) · {fecha}",
@@ -74,9 +74,9 @@ def _dibujar(top: list[dict], sexo: str, fecha: str, tamano: tuple[float, float]
     pie_de_grafico(fig, f"{FUENTE_TXT} — {fecha}", tema, registro)
 
     if tamano == TAMANO_X:
-        fig.subplots_adjust(left=0.18, right=0.95, top=0.72, bottom=0.1)
+        fig.subplots_adjust(left=0.18, right=0.95, top=top_grafico, bottom=0.1)
     else:
-        fig.subplots_adjust(left=0.24, right=0.93, top=0.62, bottom=0.09)
+        fig.subplots_adjust(left=0.24, right=0.93, top=top_grafico, bottom=0.09)
 
     return fig
 
