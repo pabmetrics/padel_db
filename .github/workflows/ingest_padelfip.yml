@@ -30,4 +30,10 @@ jobs:
           git config user.email "actions@users.noreply.github.com"
           git add bronze/padelfip
           git diff --cached --quiet || git commit -m "ingest_padelfip: snapshot semanal $(date -u +%F)"
-          git push
+          for intento in 1 2 3 4 5; do
+            git push && break
+            echo "push rechazado (otro job empujo a la vez), reintento con rebase ($intento/5)..."
+            git fetch origin main
+            git rebase origin/main
+            sleep $(( (RANDOM % 10) + 1 ))
+          done
