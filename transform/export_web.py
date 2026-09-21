@@ -65,7 +65,7 @@ def _latest_dir(root: Path) -> Path | None:
 def _escribir_csv(filas: list[dict[str, Any]], destino: Path) -> None:
     columnas = [k for k, v in filas[0].items() if not isinstance(v, (list, dict))]
     with destino.open("w", encoding="utf-8-sig", newline="") as f:
-        w = csv.DictWriter(f, fieldnames=columnas, extrasaction="ignore")
+        w = csv.DictWriter(f, fieldnames=columnas, extrasaction="ignore", lineterminator="\n")
         w.writeheader()
         w.writerows(filas)
 
