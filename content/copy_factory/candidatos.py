@@ -12,6 +12,8 @@ entonces, la vía de lectura de la cola es el propio repo de GitHub (doc 03
 
 from __future__ import annotations
 
+import argparse
+from datetime import date
 from pathlib import Path
 from typing import Callable
 
@@ -28,8 +30,9 @@ from content.chart_factory import (
     sorpresas,
     trends,
 )
+from content.copy_factory.calendario import cargar_torneos, series_del_dia
 from content.copy_factory.cola import anadir_candidato
-from content.copy_factory.copy_factory import generar_texto
+from content.copy_factory.copy_factory import _cliente, generar_texto
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 
@@ -92,20 +95,47 @@ def generar_candidato_simple(generador: Callable[[], dict]) -> Path:
     return _escribir_candidato(generador())
 
 
-def main() -> None:
+def main(argv: list[str] | None = None) -> int:
+    parser = argparse.ArgumentParser(description=__doc__.split("\n")[0])
+    parser.add_argument("--fecha", type=date.fromisoformat, default=date.today(),
+                        help="día para el que se decide qué series tocan (por defecto, hoy)")
+    parser.add_argument("--todas", action="store_true",
+                        help="ignora el calendario y genera todas las series (solo para pruebas)")
+    args = parser.parse_args(argv)
+
+    series = None if args.todas else series_del_dia(args.fecha, cargar_torneos())
+    if series is not None:
+        print(f"{args.fecha} ({args.fecha:%A}): series que tocan -> {sorted(series) or 'ninguna'}")
+
+    # Falla antes de dibujar nada: cada gráfico consume un número de registro.
+    _cliente()
+
+    errores = 0
     for nombre, (generador, valores) in GENERADORES_CON_PARAMETRO.items():
+        if series is not None and nombre not in series:
+            continue
         for valor in valores:
             try:
                 generar_candidato(generador, valor)
             except ValueError as e:
                 print(f"  descartado ({nombre}, {valor}): {e}")
+            except Exception as e:  # noqa: BLE001 - un fallo (API, red) no debe tumbar el resto
+                errores += 1
+                print(f"  ERROR ({nombre}, {valor}): {type(e).__name__}: {e}")
 
     for nombre, generador in GENERADORES_SIN_PARAMETRO.items():
+        if series is not None and nombre not in series:
+            continue
         try:
             generar_candidato_simple(generador)
         except ValueError as e:
             print(f"  descartado ({nombre}): {e}")
+        except Exception as e:  # noqa: BLE001
+            errores += 1
+            print(f"  ERROR ({nombre}): {type(e).__name__}: {e}")
+
+    return 1 if errores else 0
 
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())
