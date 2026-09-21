@@ -52,3 +52,15 @@ tarea programada de Cowork (doc 03 §6). No se enlazan desde ningún menú y
 - No publica nada en X ni en ninguna red: la web solo muestra datos.
 - Solo muestra filas `publicable` de gold.
 - No hay formulario de newsletter ni analítica propia todavía.
+
+## Publicación por secciones
+
+Ahora mismo solo está publicada la landing (`src/pages/index.astro`, sin navegación ni enlaces).
+El resto de secciones ya están hechas y viven en `src/pendientes/`, que Astro no enruta.
+
+- **Publicar una sección:** `git mv src/pendientes/ranking.astro src/pages/` (las guías van a
+  `src/pages/guias/`). Después, en `src/layouts/Base.astro` deja en `enlaces` solo las secciones ya
+  publicadas (la lista trae las 8, y un enlace a una sección aún pendiente daría 404). La navegación y el
+  pie completos salen en las páginas que no usan `minimo`; la landing sigue con `minimo` hasta que se lo quites.
+- **Datos y cola:** `scripts/despublicar.mjs` excluye `datos/` y `cola/` del despliegue.
+  Quita cada línea cuando publiques la página de descargas o conectes la tarea de Cowork.

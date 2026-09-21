@@ -91,7 +91,7 @@ main { padding-bottom: 3rem; }
 /* Tarjetas de series */
 .rejilla { display: grid; gap: 14px; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); margin: 1rem 0; }
 .tarjeta { background: var(--superficie); border: 1px solid var(--linea); padding: 16px; text-decoration: none; color: var(--texto); display: block; }
-.tarjeta:hover { border-color: var(--acento); }
+a.tarjeta:hover { border-color: var(--acento); }
 .tarjeta h3 { margin: 0 0 4px; }
 .tarjeta p { margin: 0; color: var(--texto-suave); font-size: 0.95rem; }
 .tarjeta .meta { font-family: var(--font-mono); font-size: 0.78rem; margin-top: 10px; color: var(--texto-suave); }

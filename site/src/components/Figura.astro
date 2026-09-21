@@ -1,11 +1,16 @@
 ---
 // Gráfico de la fábrica (PNG de site/public/img). Si el fichero aún no existe, no pinta nada.
+// `enlace={false}` lo muestra sin enlazar al PNG (la landing no lleva enlaces).
 import { existeImagen } from '../lib/datos.js';
-const { archivo, alt, pie } = Astro.props;
+const { archivo, alt, pie, enlace = true } = Astro.props;
 ---
 {existeImagen(archivo) && (
   <figure>
-    <a href={`/img/${archivo}`}><img src={`/img/${archivo}`} alt={alt} width="1600" height="900" loading="lazy" /></a>
+    {enlace ? (
+      <a href={`/img/${archivo}`}><img src={`/img/${archivo}`} alt={alt} width="1600" height="900" loading="lazy" /></a>
+    ) : (
+      <img src={`/img/${archivo}`} alt={alt} width="1600" height="900" loading="lazy" />
+    )}
     {pie && <figcaption>{pie}</figcaption>}
   </figure>
 )}

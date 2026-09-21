@@ -1,8 +1,10 @@
 ---
 import '../styles/global.css';
 
-const { titulo, descripcion = 'La base de datos abierta del pádel, y un gráfico al día que sale de ella.', noindex = false } = Astro.props;
+// `minimo`: landing sin navegación ni enlaces (mientras se publican las secciones poco a poco).
+const { titulo, descripcion = 'La base de datos abierta del pádel, y un gráfico al día que sale de ella.', noindex = false, minimo = false } = Astro.props;
 const ruta = Astro.url.pathname;
+const Marca = minimo ? 'div' : 'a';
 const enlaces = [
   ['/ranking/', 'Ranking'],
   ['/torneos/', 'Torneos'],
@@ -37,16 +39,16 @@ const canonica = new URL(ruta, Astro.site).href;
   <body>
     <header class="site-header">
       <div class="wrap">
-        <a class="marca" href="/" aria-label="PadelDB, inicio">
+        <Marca class="marca" href={minimo ? undefined : '/'} aria-label={minimo ? undefined : 'PadelDB, inicio'}>
           <!-- Icono del favicon (brand/padeldb-favicon.svg) con currentColor para que valga en cabecera oscura -->
           <svg viewBox="0 0 1000 1000" aria-hidden="true"><g transform="translate(56.12565445026178 50) scale(0.9424083769633508) translate(-213 -175)"><g fill="currentColor"><path d="M285 175 L855 175 A300 300 0 0 1 1155 475 L1155 605 A300 300 0 0 1 855 905 L790 905 C770 905 690 932 640 975 L640 825 Q640 800 665 800 L805 800 A230 230 0 0 0 1035 570 L1035 510 A230 230 0 0 0 805 280 L650 280 C610 280 585 300 565 318 L285 570 Z"/><rect x="213" y="955" width="112" height="175" rx="14"/><rect x="348" y="835" width="112" height="295" rx="14"/><rect x="483" y="695" width="117" height="435" rx="14"/></g></g></svg>
           <span><span class="padel">padel</span><span class="db">DB</span></span>
-        </a>
-        <nav aria-label="Principal">
+        </Marca>
+        {!minimo && <nav aria-label="Principal">
           {enlaces.map(([href, texto]) => (
             <a href={href} aria-current={ruta.startsWith(href) ? 'page' : undefined}>{texto}</a>
           ))}
-        </nav>
+        </nav>}
       </div>
     </header>
 
@@ -58,16 +60,22 @@ const canonica = new URL(ruta, Astro.site).href;
 
     <footer class="footer">
       <div class="wrap">
-        <div>
-          <strong>PadelDB</strong> · El pádel, en datos.<br />
-          Datos derivados con licencia <a href="https://creativecommons.org/licenses/by/4.0/deed.es">CC BY 4.0</a>: cita la fuente original y «PadelDB».
-        </div>
-        <div>
-          <a href="/metodologia/">Metodología y fuentes</a> ·
-          <a href="/metodologia/#correcciones">Política de correcciones</a> ·
-          <a href="/datos/">Descargas</a> ·
-          <a href="/sobre/">Sobre</a>
-        </div>
+        {minimo ? (
+          <div><strong>PadelDB</strong> · El pádel, en datos.</div>
+        ) : (
+          <>
+            <div>
+              <strong>PadelDB</strong> · El pádel, en datos.<br />
+              Datos derivados con licencia <a href="https://creativecommons.org/licenses/by/4.0/deed.es">CC BY 4.0</a>: cita la fuente original y «PadelDB».
+            </div>
+            <div>
+              <a href="/metodologia/">Metodología y fuentes</a> ·
+              <a href="/metodologia/#correcciones">Política de correcciones</a> ·
+              <a href="/datos/">Descargas</a> ·
+              <a href="/sobre/">Sobre</a>
+            </div>
+          </>
+        )}
       </div>
     </footer>
   </body>
