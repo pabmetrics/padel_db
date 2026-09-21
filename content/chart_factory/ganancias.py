@@ -16,6 +16,7 @@ from content.chart_factory.marca import (
     colores_tema,
     guardar_figura,
     limpiar_ejes,
+    margen_etiquetas_y,
     nueva_figura,
     pie_de_grafico,
     pildora_serie,
@@ -51,6 +52,7 @@ def _dibujar(top: list[dict], sexo: str, fecha: str, tamano: tuple[float, float]
     ax.barh(y_pos, valores, color=CRISTAL, height=0.6, zorder=3)
     ax.set_yticks(list(y_pos))
     ax.set_yticklabels(nombres, fontsize=12)
+    margen_izq = margen_etiquetas_y(fig, nombres, fontsize_pt=12)
     ax.xaxis.grid(True, color=colores["grid"], linewidth=0.6, alpha=0.6, zorder=0)
     ax.set_axisbelow(True)
     ax.set_xticks([])
@@ -83,9 +85,9 @@ def _dibujar(top: list[dict], sexo: str, fecha: str, tamano: tuple[float, float]
     pie_de_grafico(fig, f"padelearnings.com + padelfip.com + padelapi.org · elaboración propia — {fecha}", tema, registro)
 
     if tamano == TAMANO_X:
-        fig.subplots_adjust(left=0.2, right=0.95, top=top_grafico, bottom=0.1)
+        fig.subplots_adjust(left=margen_izq, right=0.95, top=top_grafico, bottom=0.1)
     else:
-        fig.subplots_adjust(left=0.26, right=0.93, top=top_grafico, bottom=0.09)
+        fig.subplots_adjust(left=margen_izq, right=0.93, top=top_grafico, bottom=0.09)
 
     return fig
 

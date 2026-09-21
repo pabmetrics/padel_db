@@ -175,6 +175,22 @@ Al revisar los primeros 4:5 (`torneo_sorpresas`), dos bugs reales en
    fijo de 0.45" en cualquier formato — los 10 scripts de gráfico reciben
    ese valor como `top_grafico` en vez de tener el número pegado a mano.
 
+## Mismo problema, en el margen izquierdo: nombres de jugadoras cortados
+
+Al revisar `h2h_women_4x5`, el margen izquierdo (donde van los nombres de
+las parejas) también estaba fijado a ojo por gráfico (`left=0.3`, `left=0.34`...),
+calculado mirando nombres de prueba concretos — con nombres de jugadoras
+reales más largos, el texto se salía por el borde izquierdo del lienzo.
+Mismo patrón de solución que el título: `margen_etiquetas_y()` en
+`marca.py` mide el ancho real de la etiqueta más larga del eje Y (si es de
+dos líneas, la línea más larga de cada una) con el mismo TTF que se va a
+dibujar, y devuelve el margen izquierdo que hace falta — con un tope
+(`max_frac=0.42`) para que un nombre absurdamente largo no deje el área de
+dibujo reducida a nada. Aplicado a los 8 gráficos con etiquetas de texto en
+el eje Y (`ranking_moves`, `ganancias`, `perfil`, `forma_reciente`,
+`parejas`, `h2h`, `sorpresas`, `pistas`, `trends`); antes cada uno tenía su
+propio par de números `left=` fijos para 16:9 y 4:5.
+
 ## Un glifo que no existe en IBM Plex Mono
 
 El símbolo Δ (usado en el título de `ranking_moves.py`, con Space Grotesk,

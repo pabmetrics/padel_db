@@ -409,6 +409,33 @@ def pie_de_grafico(fig: plt.Figure, fuente_txt: str, tema: Tema, registro: str |
         va="center",
     )
 
+def margen_etiquetas_y(fig: plt.Figure, etiquetas: list[str], fontsize_pt: float = 12, max_frac: float = 0.42, min_frac: float = 0.12) -> float:
+    """Margen izquierdo necesario para que las etiquetas del eje Y (nombres
+    de jugadores, parejas, provincias...) no se corten — mide el ancho real
+    de la línea más larga de cada etiqueta (las hay de dos líneas, p.ej.
+    "pareja 1\\nvs pareja 2") con el mismo TTF que se va a dibujar, igual
+    que `_envolver_texto` para los títulos. Antes cada gráfico fijaba el
+    margen a ojo con un número distinto por formato; con nombres reales de
+    jugadoras más largos que los de prueba, el margen se quedaba corto y
+    el texto salía cortado por la izquierda en vez de verse completo.
+    Limitado a `max_frac` para que un nombre desmesuradamente largo no deje
+    el área de dibujo reducida a nada — a partir de ahí, matplotlib recorta
+    igualmente, pero es un caso extremo que no se ha visto con datos reales."""
+    from PIL import ImageFont
+
+    size_px = round(fontsize_pt * fig.dpi / 72)
+    font = ImageFont.truetype(Fuentes.texto().get_file(), size=size_px)
+    max_ancho_px = 0
+    for etiqueta in etiquetas:
+        for linea in etiqueta.split("\n"):
+            izq, _, der, _ = font.getbbox(linea)
+            max_ancho_px = max(max_ancho_px, der - izq)
+
+    fig_w_px = fig.get_size_inches()[0] * fig.dpi
+    frac = max_ancho_px / fig_w_px + 0.035
+    return min(max(frac, min_frac), max_frac)
+
+
 def limpiar_ejes(ax: plt.Axes, tema: Tema) -> None:
     colores = colores_tema(tema)
     for spine in ("top", "right", "left", "bottom"):
