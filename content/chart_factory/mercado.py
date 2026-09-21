@@ -18,6 +18,7 @@ from content.chart_factory.marca import (
     Tema,
     colores_tema,
     guardar_figura,
+    MARGEN_DERECHO,
     limpiar_ejes,
     nueva_figura,
     pie_de_grafico,
@@ -69,9 +70,9 @@ def _dibujar(fip_pistas: float, playtomic_pistas: float, fecha: str, tamano: tup
     pie_de_grafico(fig, f"FIP World Padel Report 2025 + Playtomic Global Padel Report 2026 · elaboración propia — {fecha}", tema, registro)
 
     if tamano == TAMANO_X:
-        fig.subplots_adjust(left=0.1, right=0.9, top=top_grafico, bottom=0.16)
+        fig.subplots_adjust(left=0.1, right=1 - MARGEN_DERECHO, top=top_grafico, bottom=0.16)
     else:
-        fig.subplots_adjust(left=0.14, right=0.88, top=top_grafico, bottom=0.14)
+        fig.subplots_adjust(left=0.14, right=1 - MARGEN_DERECHO, top=top_grafico, bottom=0.14)
 
     return fig
 

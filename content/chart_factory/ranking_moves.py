@@ -23,6 +23,7 @@ from content.chart_factory.marca import (
     Tema,
     colores_tema,
     guardar_figura,
+    MARGEN_DERECHO,
     limpiar_ejes,
     margen_etiquetas_y,
     nueva_figura,
@@ -91,9 +92,9 @@ def _dibujar(top: list[dict], sexo: str, fecha: str, tamano: tuple[float, float]
     pie_de_grafico(fig, f"{FUENTE_TXT} — {fecha}", tema, registro)
 
     if tamano == TAMANO_X:
-        fig.subplots_adjust(left=margen_izq, right=0.95, top=top_grafico, bottom=0.1)
+        fig.subplots_adjust(left=margen_izq, right=1 - MARGEN_DERECHO, top=top_grafico, bottom=0.1)
     else:
-        fig.subplots_adjust(left=margen_izq, right=0.93, top=top_grafico, bottom=0.09)
+        fig.subplots_adjust(left=margen_izq, right=1 - MARGEN_DERECHO, top=top_grafico, bottom=0.09)
 
     return fig
 

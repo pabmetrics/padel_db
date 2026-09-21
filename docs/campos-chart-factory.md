@@ -191,6 +191,25 @@ el eje Y (`ranking_moves`, `ganancias`, `perfil`, `forma_reciente`,
 `parejas`, `h2h`, `sorpresas`, `pistas`, `trends`); antes cada uno tenía su
 propio par de números `left=` fijos para 16:9 y 4:5.
 
+## Composición descentrada: margen izquierdo pegado al borde, derecho con aire
+
+Con `margen_etiquetas_y()` ya funcionando (texto sin cortar), el usuario
+notó que la composición no quedaba centrada: las etiquetas del eje Y
+llegaban justo hasta el borde izquierdo del lienzo (el margen se calculaba
+solo con el ancho del texto más un pequeño respiro, sin el margen exterior
+que sí respetan el título, el subtítulo y el pie), mientras que a la
+derecha quedaba el hueco fijo de `right=0.95`/`0.93` hasta el borde. Dos
+cambios en `marca.py`:
+
+- `margen_etiquetas_y()` ahora suma `MARGEN_IZQUIERDO` (0.06, la misma
+  constante que ya usan título/subtítulo/pie) al ancho del texto, en vez de
+  solo un respiro de 0.035 — la etiqueta más larga queda con el mismo aire
+  a su izquierda que el título tiene sobre el suyo.
+- Se añadió `MARGEN_DERECHO` (0.06) y se sustituyeron los `right=0.95`,
+  `right=0.93`, `right=0.9`, `right=0.88`... (un número distinto por
+  gráfico y formato) por `right=1 - MARGEN_DERECHO` en los 11 scripts, para
+  que los dos lados respeten siempre el mismo margen exterior.
+
 ## Un glifo que no existe en IBM Plex Mono
 
 El símbolo Δ (usado en el título de `ranking_moves.py`, con Space Grotesk,

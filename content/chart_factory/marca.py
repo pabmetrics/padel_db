@@ -171,6 +171,7 @@ def pildora_serie(fig: plt.Figure, texto: str, tema: Tema) -> None:
 
 
 MARGEN_IZQUIERDO = 0.06
+MARGEN_DERECHO = 0.06
 ANCHO_MAX_TITULO_FRAC = 1 - MARGEN_IZQUIERDO - 0.06
 GAP_SUBTITULO_GRAFICO_IN = 0.45
 
@@ -420,7 +421,14 @@ def margen_etiquetas_y(fig: plt.Figure, etiquetas: list[str], fontsize_pt: float
     el texto salía cortado por la izquierda en vez de verse completo.
     Limitado a `max_frac` para que un nombre desmesuradamente largo no deje
     el área de dibujo reducida a nada — a partir de ahí, matplotlib recorta
-    igualmente, pero es un caso extremo que no se ha visto con datos reales."""
+    igualmente, pero es un caso extremo que no se ha visto con datos reales.
+
+    El resultado incluye `MARGEN_IZQUIERDO` (el mismo margen exterior que
+    respetan el título, el subtítulo y el pie): sin él, la etiqueta más
+    larga quedaba pegada al borde izquierdo del lienzo — cabía entera, pero
+    sin aire, mientras que a la derecha sí quedaba el hueco de
+    `MARGEN_DERECHO` hasta el borde. Con los dos lados usando el mismo
+    margen exterior, la composición queda centrada de verdad."""
     from PIL import ImageFont
 
     size_px = round(fontsize_pt * fig.dpi / 72)
@@ -432,7 +440,8 @@ def margen_etiquetas_y(fig: plt.Figure, etiquetas: list[str], fontsize_pt: float
             max_ancho_px = max(max_ancho_px, der - izq)
 
     fig_w_px = fig.get_size_inches()[0] * fig.dpi
-    frac = max_ancho_px / fig_w_px + 0.035
+    gap_texto_barra = 0.02
+    frac = MARGEN_IZQUIERDO + max_ancho_px / fig_w_px + gap_texto_barra
     return min(max(frac, min_frac), max_frac)
 
 
