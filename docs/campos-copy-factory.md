@@ -97,6 +97,42 @@ como pistas/licencias/mercado/trends), `candidatos.py` separa
 `GENERADORES_CON_PARAMETRO` de `GENERADORES_SIN_PARAMETRO` en vez de
 forzar una única firma común.
 
+## Endurecimiento tras la primera cola real de GitHub Actions (21/09/2026)
+
+El primer `content_candidates` en Actions produjo dos textos que rompían las
+reglas sin que ninguna comprobación saltara: "la jugadora argentina"
+(nacionalidad que no estaba en `values`), "refleja su desempeño" y
+"movimiento destacado" (especulación y valoración), una línea de fuente sin
+el prefijo "Fuente:", y un nombre ("Juan Zamorà Perez") que nadie había
+contrastado. Cambios:
+
+- **Fuente y hashtags los añade el código**, no el modelo: el modelo solo
+  escribe el cuerpo (`Fuente: {fuente_txt}` va siempre, y siempre igual).
+- **`verificaciones.py`** rechaza (con `ValueError`) adjetivos valorativos,
+  especulación, peticiones de interacción, gentilicios y "mundial"/"récord"
+  cuando los datos no los traen, más de un emoji o uno que no esté al inicio,
+  y nombres con la grafía alterada ("Galán" cuando el dato dice "Galan").
+  Las listas de palabras son cortas a propósito: mejor dejar pasar un
+  adjetivo raro que bloquear texto correcto. Un fallo provoca **un reintento**
+  diciéndole al modelo qué regla incumplió; si falla otra vez, se descarta.
+- **La comprobación de cifras ya incluye los números de una cifra**: antes
+  ignoraba los de un solo dígito, así que "sube 4 puestos" con `delta=3` pasaba.
+- **`nombres.py`**: cada nombre (también dentro de las parejas "A / B") se
+  contrasta con `silver/map_jugador_fuente`. Si F1 y F2 escriben distinto al
+  mismo jugador y `alias_jugadores.csv` no dice cuál es la buena, el candidato
+  queda `publicable: false`, sin borrador y con un aviso. Hoy son 11 jugadores
+  (p. ej. "Juan Zamorà Perez" en F1 frente a "Juan Zamora Perez" en F2;
+  "Constanca"/"Constança" Gorito; "Strolytė"/"Strolyte"). Se resuelve una vez
+  añadiendo la grafía descartada al CSV: `alias,nombre_canonico`. Un jugador
+  que solo aparece en una fuente lleva aviso pero no se bloquea.
+- **Campo `avisos`** (lista) en `candidates.json`, además del esquema de doc 03
+  §6: motivos por los que un candidato no es publicable o hay algo que mirar.
+  Es un añadido; el resto del esquema no cambia.
+- **Umbral de #RankingLunes** (`UMBRAL_SUBIDA_PUBLICABLE = 10` en
+  `ranking_moves.py`): si la mayor subida de la semana es menor, el candidato
+  sale `publicable: false`. Es un criterio editorial, no técnico: hay que
+  ajustarlo con la práctica.
+
 ## Qué falta
 
 - **`png_16x9`/`png_4x5` como ruta de repo, no URL pública**: doc 03 §6

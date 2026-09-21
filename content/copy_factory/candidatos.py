@@ -33,6 +33,7 @@ from content.chart_factory import (
 from content.copy_factory.calendario import cargar_torneos, series_del_dia
 from content.copy_factory.cola import anadir_candidato
 from content.copy_factory.copy_factory import _cliente, generar_texto
+from content.copy_factory.nombres import normalizar_nombres, verificar_nombres
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 
@@ -64,26 +65,41 @@ def _ruta_relativa(p: Path) -> str:
 
 
 def _escribir_candidato(metadatos: dict) -> Path:
-    textos = generar_texto(metadatos["serie"], metadatos["values"], metadatos["fuente_txt"])
+    """`metadatos` puede traer `publicable` (False si el propio gráfico sabe
+    que el dato no da para un post) y `avisos`. Un candidato no publicable
+    se guarda igualmente, con sus gráficos y el motivo, pero sin borrador:
+    un texto pulido invita a publicarlo ("si dudas del dato, no sale")."""
+    values = normalizar_nombres(metadatos["values"])
+    avisos = list(metadatos.get("avisos", []))
+    publicable = metadatos.get("publicable", True)
+
+    avisos_nombres, bloquea = verificar_nombres(values)
+    avisos += avisos_nombres
+    publicable = publicable and not bloquea
+
+    textos = generar_texto(metadatos["serie"], values, metadatos["fuente_txt"]) if publicable else None
 
     candidato = {
         "registro": metadatos["registro"],
         "serie": metadatos["serie"],
         "tabla_gold": metadatos["tabla_gold"],
         "fecha_dato": metadatos["fecha_dato"],
-        "values": metadatos["values"],
+        "values": values,
         "fuente_txt": metadatos["fuente_txt"],
         "png_16x9": _ruta_relativa(metadatos["png_16x9"]),
         "png_4x5": _ruta_relativa(metadatos["png_4x5"]),
-        "borrador_x": textos["x"],
-        "borrador_ig": textos["instagram"],
-        "publicable": True,
+        "borrador_x": textos["x"] if textos else None,
+        "borrador_ig": textos["instagram"] if textos else None,
+        "publicable": publicable,
+        "avisos": avisos,
         "estado": "candidato",
     }
 
     out_file = anadir_candidato(candidato)
     print(f"{metadatos['registro']} {metadatos['serie']} -> {out_file.relative_to(REPO_ROOT)}")
-    print(f"  X: {textos['x']}")
+    for aviso in avisos:
+        print(f"  aviso: {aviso}")
+    print(f"  X: {textos['x']}" if textos else "  no publicable: sin borrador")
     return out_file
 
 

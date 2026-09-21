@@ -8,11 +8,17 @@ interacción, como mucho un emoji al inicio, siempre con fuente. "Si dudas
 del dato, no sale": este módulo no suaviza esas reglas, las hace fallar
 con `ValueError` en vez de dejar pasar un texto no verificable — la
 revisión humana (doc 03 §5.1) es la última barrera, no la única.
+
+Lo que se puede garantizar por código no se le pide al modelo: la línea de
+fuente y los hashtags los añade `generar_texto`, el modelo solo escribe el
+cuerpo. Las comprobaciones de léxico, emojis y grafía de nombres están en
+`verificaciones.py`. Si el texto falla una comprobación, se reintenta una
+vez diciéndole al modelo qué falló; si vuelve a fallar, el candidato se
+descarta.
 """
 
 from __future__ import annotations
 
-import csv
 import json
 import os
 import re
@@ -27,28 +33,35 @@ load_dotenv(REPO_ROOT / ".env")
 
 import anthropic  # noqa: E402
 
+from content.copy_factory.nombres import normalizar_nombres  # noqa: E402
+from content.copy_factory.verificaciones import comprobar_texto  # noqa: E402
+
 MODEL = "claude-haiku-4-5-20251001"  # modelo económico (doc 01 §4: "el input es una fila de datos")
 MAX_TOKENS = 600
 MAX_CARACTERES_X_OBJETIVO = 240  # doc 02 §6, plantilla de texto
 LIMITE_DURO_X = 280  # límite real de X sin Premium (doc 02 §8)
-
-ALIAS_CSV = REPO_ROOT / "data" / "manual" / "alias_jugadores.csv"
+MAX_INTENTOS = 2
 
 PROMPT_SISTEMA = """Eres el copy_factory de PadelDB (@padeldb), una cuenta de datos de pádel en español.
 
+Recibes un JSON con "serie", "values" (los únicos datos que existen) y "max_caracteres_x". Escribes solo el cuerpo del texto: la línea de fuente y el pie los añade otro sistema, no los escribas.
+
 Reglas duras, sin excepción:
-1. Usa solo las cifras que aparecen en los datos que te paso (bajo "values"). Nunca inventes una cifra, ni la redondees de forma que cambie el sentido, ni añadas una que no esté ahí.
-2. Formato numérico español siempre: punto de miles, coma decimal (1.254 y 27,8 — nunca 1,254 ni 27.8).
-3. Nombres de jugadores exactamente como te los paso, sin acortar ni cambiar la grafía.
-4. Sin adjetivos sobre personas, sin especulación, sin opinión: los datos hablan.
-5. Sin pedir interacción (nunca "dale like", "sígueme", "comenta", "RT si..."). Una pregunta a la comunidad sí es válida si el formato la pide.
-6. Como mucho un emoji, solo al principio, y solo si aporta — nunca decorativo.
-7. Termina siempre citando la fuente que te paso ("fuente_txt"), tal cual.
+1. Usa solo lo que aparece en "values". Ni cifras, ni hechos, ni contexto que no esté ahí: no añadas nacionalidad, edad, palmarés, pareja, torneo ganado, ni palabras como "mundial" o "récord" si los datos no lo dicen. Si "values" no da para una segunda frase de contexto, no la escribas: una línea corta basta. Nunca rellenes con valoraciones.
+2. Formato numérico español: punto de miles, coma decimal (1.254 y 27,8).
+3. Nombres de jugadores exactamente como vienen en "values", con sus acentos tal cual, sin acortar ni "corregir" la grafía.
+4. Prohibido cualquier adjetivo o adverbio valorativo sobre personas o datos (notable, destacado, impresionante, histórico…) y toda especulación o interpretación (consolida, refleja, demuestra, apunta a, progresión, desempeño, probablemente…). Describe el dato, no lo interpretes.
+5. Sin pedir interacción (nunca "dale like", "sígueme", "comenta", "RT si..."). Una pregunta a la comunidad solo si el dato la sostiene.
+6. Como mucho un emoji, solo al principio del texto, y solo si aporta.
+7. No incluyas la palabra "Fuente" ni ninguna URL.
 
-Formato del texto de X: máximo 240 caracteres, en tres partes — primera línea con la cifra más sorprendente, segunda con el contexto en una frase, tercera con la fuente.
-Formato del texto de Instagram: más largo (hasta 5-6 líneas cortas), mismo tono sobrio, puede cerrar con 2-3 hashtags relevantes de pádel (por ejemplo #padel #PadelDB), sin emojis adicionales a los del texto de X.
+Texto de X: primera línea con la cifra más sorprendente; si hace falta, una segunda línea con el contexto en una frase; como máximo "max_caracteres_x" caracteres en total.
+Texto de Instagram: más largo (hasta 4-5 líneas cortas), mismo tono sobrio y mismas reglas, sin emojis.
+Hashtags: 2 o 3 (por ejemplo "#padel #PadelDB").
 
-Responde solo con un JSON de la forma {"x": "...", "instagram": "..."}, sin explicación ni texto fuera del JSON."""
+Si recibes "error_intento_anterior", tu respuesta anterior incumplió una regla: reescríbela corrigiendo exactamente eso.
+
+Responde solo con un JSON {"x": "...", "instagram": "...", "hashtags": "#... #..."}, sin explicación ni texto fuera del JSON."""
 
 
 def _cliente() -> anthropic.Anthropic:
@@ -59,30 +72,6 @@ def _cliente() -> anthropic.Anthropic:
             "(ANTHROPIC_API_KEY=sk-ant-...). En producción: secreto de GitHub Actions."
         )
     return anthropic.Anthropic(api_key=api_key)
-
-
-def _cargar_alias() -> dict[str, str]:
-    """`data/manual/alias_jugadores.csv`: alias -> nombre_canonico (CLAUDE.md:
-    "usar siempre alias_jugadores.csv como fuente de la grafía correcta").
-    Hoy solo tiene la cabecera, sin filas — cuando tenga datos, cualquier
-    alias que aparezca en `values` se sustituye por su grafía oficial antes
-    de mandarlo al modelo, en vez de confiar en que el modelo "sepa" cuál
-    es la correcta."""
-    if not ALIAS_CSV.exists():
-        return {}
-    alias: dict[str, str] = {}
-    with ALIAS_CSV.open(encoding="utf-8") as f:
-        for row in csv.DictReader(f):
-            if row.get("alias") and row.get("nombre_canonico"):
-                alias[row["alias"]] = row["nombre_canonico"]
-    return alias
-
-
-def _normalizar_nombres(values: dict[str, Any]) -> dict[str, Any]:
-    alias = _cargar_alias()
-    if not alias:
-        return values
-    return {k: (alias[v] if isinstance(v, str) and v in alias else v) for k, v in values.items()}
 
 
 def _formatear_numero_es(valor: int | float) -> str:
@@ -124,44 +113,71 @@ def _quitar_valla_markdown(texto: str) -> str:
     return texto.strip()
 
 
-def generar_texto(serie: str, values: dict[str, Any], fuente_txt: str) -> dict[str, str]:
-    """Genera los textos de X e Instagram para un candidato. Lanza
-    `ValueError` si el resultado no pasa las comprobaciones duras — mejor
-    que la función falle aquí a que un texto con una cifra inventada o
-    fuera del límite de X llegue a la cola de revisión."""
-    values_norm = _normalizar_nombres(values)
-    cliente = _cliente()
-
-    mensaje = json.dumps({"serie": serie, "values": values_norm, "fuente_txt": fuente_txt}, ensure_ascii=False)
-
-    respuesta = cliente.messages.create(
-        model=MODEL,
-        max_tokens=MAX_TOKENS,
-        system=PROMPT_SISTEMA,
-        messages=[{"role": "user", "content": mensaje}],
-    )
-    texto_bruto = _quitar_valla_markdown(respuesta.content[0].text.strip())
-    try:
-        salida = json.loads(texto_bruto)
-    except json.JSONDecodeError as e:
-        raise ValueError(f"El modelo no devolvió JSON válido: {texto_bruto!r}") from e
-
-    texto_x = str(salida.get("x", "")).strip()
-    texto_ig = str(salida.get("instagram", "")).strip()
-    if not texto_x or not texto_ig:
+def _validar_y_ensamblar(salida: dict[str, Any], serie: str, values: dict[str, Any], fuente_txt: str) -> dict[str, str]:
+    cuerpo_x = str(salida.get("x", "")).strip()
+    cuerpo_ig = str(salida.get("instagram", "")).strip()
+    hashtags = str(salida.get("hashtags", "")).strip()
+    if not cuerpo_x or not cuerpo_ig:
         raise ValueError(f"Respuesta incompleta del modelo: {salida!r}")
+    if not re.fullmatch(r"(?:#\w+\s*){1,3}", hashtags):
+        raise ValueError(f"Hashtags no válidos (2-3, formato #palabra): {hashtags!r}")
+
+    pie = f"Fuente: {fuente_txt}"
+    texto_x = f"{cuerpo_x}\n\n{pie}"
+    texto_ig = f"{cuerpo_ig}\n\n{pie}\n\n{hashtags}"
     if len(texto_x) > LIMITE_DURO_X:
         raise ValueError(f"Texto de X por encima del límite real de X ({len(texto_x)} > {LIMITE_DURO_X} caracteres)")
 
     # Los números válidos son los de `values` y también los que ya
     # aparecen en `fuente_txt` (p. ej. la fecha, "2026-09-16"): el texto
     # cita la fuente tal cual, así que esas cifras no son una invención.
-    numeros_validos = _numeros_en_values(values_norm) | _numeros_en_texto(fuente_txt)
-    for nombre_texto, texto in (("X", texto_x), ("Instagram", texto_ig)):
-        for numero in _numeros_en_texto(texto):
-            if len(numero) > 1 and numero not in numeros_validos:
+    numeros_validos = _numeros_en_values(values) | _numeros_en_texto(fuente_txt)
+    for nombre_texto, cuerpo, completo in (("X", cuerpo_x, texto_x), ("Instagram", cuerpo_ig, texto_ig)):
+        if re.search(r"fuente", cuerpo, re.IGNORECASE):
+            raise ValueError(f"El cuerpo del texto de {nombre_texto} menciona la fuente: la añade el sistema")
+        for numero in _numeros_en_texto(completo):
+            if numero not in numeros_validos:
                 raise ValueError(
-                    f"El texto de {nombre_texto} contiene una cifra que no está en los datos: {numero!r} (datos: {values_norm})"
+                    f"El texto de {nombre_texto} contiene una cifra que no está en los datos: {numero!r} (datos: {values})"
                 )
+        comprobar_texto(cuerpo, serie, values, fuente_txt)
 
     return {"x": texto_x, "instagram": texto_ig}
+
+
+def generar_texto(serie: str, values: dict[str, Any], fuente_txt: str) -> dict[str, str]:
+    """Genera los textos de X e Instagram para un candidato. Lanza
+    `ValueError` si el resultado no pasa las comprobaciones duras tras
+    `MAX_INTENTOS` intentos — mejor que la función falle aquí a que un
+    texto con una cifra inventada o una valoración llegue a la cola."""
+    values_norm = normalizar_nombres(values)
+    cliente = _cliente()
+
+    pie = f"Fuente: {fuente_txt}"
+    mensaje: dict[str, Any] = {
+        "serie": serie,
+        "values": values_norm,
+        "max_caracteres_x": MAX_CARACTERES_X_OBJETIVO - len(pie) - 2,
+    }
+
+    ultimo_error: ValueError | None = None
+    for _ in range(MAX_INTENTOS):
+        respuesta = cliente.messages.create(
+            model=MODEL,
+            max_tokens=MAX_TOKENS,
+            system=PROMPT_SISTEMA,
+            messages=[{"role": "user", "content": json.dumps(mensaje, ensure_ascii=False)}],
+        )
+        texto_bruto = _quitar_valla_markdown(respuesta.content[0].text.strip())
+        try:
+            salida = json.loads(texto_bruto)
+            if not isinstance(salida, dict):
+                raise ValueError(f"El modelo no devolvió un objeto JSON: {texto_bruto!r}")
+            return _validar_y_ensamblar(salida, serie, values_norm, fuente_txt)
+        except json.JSONDecodeError:
+            ultimo_error = ValueError(f"El modelo no devolvió JSON válido: {texto_bruto!r}")
+        except ValueError as e:
+            ultimo_error = e
+        mensaje["error_intento_anterior"] = str(ultimo_error)
+
+    raise ValueError(f"Sin texto válido tras {MAX_INTENTOS} intentos: {ultimo_error}")

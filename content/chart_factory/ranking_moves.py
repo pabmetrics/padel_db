@@ -39,6 +39,10 @@ OUT_ROOT = REPO_ROOT / "queue"
 
 FUENTE_TXT = "FIP / Premier Padel · padelapi.org · elaboración propia"
 N_JUGADORES = 8
+# Criterio editorial, no técnico: con una subida máxima menor que esto el
+# titular ("mayor subida de la semana") no tiene gancho (el ejemplo del doc
+# 02 §4 es +14). El gráfico sale igual; el candidato queda sin borrador.
+UMBRAL_SUBIDA_PUBLICABLE = 10
 
 
 def _latest_dir(root: Path) -> Path:
@@ -132,7 +136,13 @@ def build(sexo: str = "M") -> dict:
 
     top_subida = max(top, key=lambda r: r["posicion_diff_semana"])
     sexo_txt = "masculino" if sexo == "M" else "femenino"
+    subida = int(top_subida["posicion_diff_semana"])
+    avisos = []
+    if subida < UMBRAL_SUBIDA_PUBLICABLE:
+        avisos.append(f"mayor subida de la semana: {subida:+d} puestos, por debajo del umbral de {UMBRAL_SUBIDA_PUBLICABLE}")
     return {
+        "publicable": not avisos,
+        "avisos": avisos,
         "registro": registro,
         "serie": "#RankingLunes",
         "tabla_gold": "ranking_movimientos_semana",
