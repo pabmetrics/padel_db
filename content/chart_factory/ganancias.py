@@ -93,7 +93,7 @@ def _dibujar(top: list[dict], sexo: str, fecha: str, tamano: tuple[float, float]
     return fig
 
 
-def build(sexo: str = "M") -> list[Path]:
+def build(sexo: str = "M") -> dict:
     dt_dir = _latest_dir(GOLD_ROOT)
     fecha = dt_dir.name.removeprefix("fecha_dato=")
     rows = json.loads((dt_dir / "data.json").read_text(encoding="utf-8"))
@@ -111,16 +111,32 @@ def build(sexo: str = "M") -> list[Path]:
 
     import matplotlib.pyplot as plt
 
-    salidas = []
+    salidas: dict[str, Path] = {}
     for tema, tamano, sufijo in (("claro", TAMANO_X, "16x9"), ("claro", TAMANO_IG, "4x5")):
         fig = _dibujar(top, sexo, fecha, tamano, tema, registro)
         out_file = out_dir / f"ganancias_temporada_{sexo.lower()}_{sufijo}.png"
         guardar_figura(fig, out_file, tema)
         plt.close(fig)
-        salidas.append(out_file)
+        salidas[sufijo] = out_file
         print(f"{registro} {out_file.relative_to(REPO_ROOT)}")
 
-    return salidas
+    lider = top[0]
+    sexo_txt = "masculino" if sexo == "M" else "femenino"
+    return {
+        "registro": registro,
+        "serie": "Cierre de torneo",
+        "tabla_gold": "ganancias_temporada",
+        "fecha_dato": fecha,
+        "values": {
+            "jugador": lider["jugador_nombre"],
+            "ganancias_eur": lider["ganancias_conocidas_eur"],
+            "n_torneos": lider["n_torneos_con_premio_conocido"],
+            "circuito": sexo_txt,
+        },
+        "fuente_txt": f"padelearnings.com + padelfip.com + padelapi.org · elaboración propia — {fecha}",
+        "png_16x9": salidas["16x9"],
+        "png_4x5": salidas["4x5"],
+    }
 
 
 if __name__ == "__main__":

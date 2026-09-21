@@ -1,0 +1,35 @@
+name: content_candidates
+
+on:
+  schedule:
+    # Diario 07:30 (doc 01 §5, job content_candidates)
+    - cron: "30 6 * * *"
+  workflow_dispatch: {}
+
+jobs:
+  content_candidates:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Instalar dependencias
+        run: pip install -r requirements.txt
+
+      - name: Generar candidatos (gráfico + texto + cola)
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python -m content.copy_factory.candidatos
+
+      - name: Commit
+        run: |
+          git config user.name "padeldb-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add queue/ content/chart_factory/registro.json
+          git diff --cached --quiet || git commit -m "content_candidates: $(date -u +%F)"
+          git push
