@@ -92,7 +92,7 @@ jobs:
         run: python transform/build_gold_ganancias_temporada.py
 
       - name: Gráfico de #RankingLunes a la cola
-        run: python content/chart_factory/ranking_moves.py
+        run: python -m content.chart_factory.ranking_moves
 
       - name: Export a la preview estática de site/ (provisional, no es Fase 4)
         run: python transform/export_web.py
