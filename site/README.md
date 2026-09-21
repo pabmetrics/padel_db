@@ -1,0 +1,54 @@
+# site — web de PadelDB (Astro)
+
+Sitio estático. Lee los ficheros que deja `transform/export_web.py` en `public/`
+(`datos/`, `img/`, `cola/`) y no llama a ninguna API en el build.
+
+```
+site/
+├── public/          # lo escribe export_web (datos, img, cola, fonts, brand); se commitea
+├── src/
+│   ├── layouts/Base.astro     # cabecera, navegación, pie, metadatos
+│   ├── components/            # Tabla, Figura
+│   ├── lib/datos.js           # lectura de public/datos y formato numérico español
+│   ├── styles/global.css      # tokens de marca (doc 02 §1.2), claro/oscuro
+│   └── pages/                 # ranking, torneos, parejas, jugadores, mapa-de-pistas,
+│                              # mercado, datos, metodologia, sobre, guias/*
+└── astro.config.mjs
+```
+
+## En local
+
+```
+python transform/export_web.py     # desde la raíz del repo: refresca site/public
+cd site
+npm install
+npm run dev                        # http://localhost:4321
+npm run build                      # genera dist/
+```
+
+## Despliegue: Cloudflare Pages
+
+Conectar el repo en Cloudflare Pages (integración con GitHub, sin secretos):
+
+| Ajuste | Valor |
+|---|---|
+| Directorio raíz | `site` |
+| Comando de build | `npm run build` |
+| Directorio de salida | `dist` |
+| Variable de entorno | `NODE_VERSION` = `22` |
+
+Cada commit de los jobs (`export_web`, `build_silver_gold`, …) que llega a `main`
+provoca un nuevo build. Analítica sin cookies: activar Cloudflare Web Analytics
+en el panel (no requiere código).
+
+## La cola
+
+`public/cola/hoy.json` y `public/cola/<fecha>.json` son la cola del día para la
+tarea programada de Cowork (doc 03 §6). No se enlazan desde ningún menú y
+`robots.txt` y `_headers` las excluyen de los buscadores.
+
+## Qué no hace
+
+- No publica nada en X ni en ninguna red: la web solo muestra datos.
+- Solo muestra filas `publicable` de gold.
+- No hay formulario de newsletter ni analítica propia todavía.

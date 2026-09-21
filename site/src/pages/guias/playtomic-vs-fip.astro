@@ -1,0 +1,46 @@
+---
+import Base from '../../layouts/Base.astro';
+import Figura from '../../components/Figura.astro';
+import { leer, num } from '../../lib/datos.js';
+
+const mercado = leer('mercado_pais');
+const fip = (categoria) => mercado.find((m) => m.fuente === 'fip' && m.pais === 'GLOBAL' && m.categoria === categoria);
+const pistasFip = fip('pistas');
+const jugadoresFip = fip('jugadores_amateur');
+const crecimientoFip = fip('crecimiento_pistas_18m_pct');
+const playtomic = mercado.find((m) => m.fuente === 'playtomic' && m.pais === 'GLOBAL');
+---
+<Base titulo="Playtomic vs FIP: cuántos hay de verdad" descripcion="Dos informes de referencia dan cifras distintas de pistas y jugadores de pádel en el mundo. Qué dice cada uno y por qué PadelDB no los mezcla.">
+  <article class="prose">
+    <div class="pagina-titulo">
+      <div class="pildora">Guía</div>
+      <h1>Playtomic vs FIP: cuántos hay de verdad</h1>
+      <p class="subtitulo">Los dos informes más citados sobre el tamaño del pádel dan cifras que no cuadran. Aquí, lado a lado.</p>
+    </div>
+
+    <h2>Pistas en el mundo</h2>
+    <p>
+      La FIP habla de <strong>más de {num(pistasFip?.valor)} pistas</strong> en su informe de 2025{pistasFip?.contexto_txt ? ` — ${pistasFip.contexto_txt.replace(/^Dato de/, 'dato de')}` : ''}. Playtomic cuenta <strong>58.334 pistas a cierre de 2025</strong>. Son algo más de 19.000 pistas de diferencia.
+    </p>
+    <Figura archivo="mercado_pistas_mundo_16x9.png" alt="Pistas de pádel en el mundo según la FIP y según Playtomic" />
+    <p>
+      No es un problema de fechas: la cifra de Playtomic es <em>posterior</em> a la de la FIP y aun así es menor. Los informes no detallan de forma comparable qué cuenta cada uno como pista ni de dónde sale cada recuento, y por eso PadelDB no puede decir cuál se acerca más a la realidad.
+    </p>
+    {playtomic?.contexto_txt && <p>Lo que dice Playtomic: «{playtomic.contexto_txt}».</p>}
+    {crecimientoFip && <p>Lo que dice la FIP sobre el crecimiento: un {num(crecimientoFip.valor, 1)} % de pistas nuevas en 18 meses{crecimientoFip.contexto_txt ? ` («${crecimientoFip.contexto_txt}»)` : ''}.</p>}
+
+    <h2>Jugadores</h2>
+    <p>
+      La FIP estima unos <strong>{num(jugadoresFip?.valor)} jugadores aficionados</strong> en el mundo. La nota de su informe: «{jugadoresFip?.contexto_txt}». El informe de Playtomic que PadelDB ha transcrito no da un total mundial de jugadores comparable: describe cada mercado por jugadores por cada 100.000 habitantes y lo clasifica en cinco tipos de madurez.
+    </p>
+
+    <h2>Por qué PadelDB no los promedia</h2>
+    <ul>
+      <li>Una media de dos estimaciones con métodos distintos no es una estimación, es un número inventado.</li>
+      <li>Cada cifra se publica con su nombre, su año y su fuente, para que quien la use pueda citarla bien.</li>
+      <li>Cuando aparezca una edición nueva de cualquiera de los informes, se añade sin borrar la anterior.</li>
+    </ul>
+    <p>Todas las cifras de mercado, por país y continente, en <a href="/mercado/#mundo">mercado</a> y en <a href="/datos/">descargas</a>.</p>
+    <p class="pie-tabla" style="padding:0">Fuentes: FIP World Padel Report 2025 y Playtomic Global Padel Report 2026 (con Strategy&amp;, PwC) · elaboración propia.</p>
+  </article>
+</Base>

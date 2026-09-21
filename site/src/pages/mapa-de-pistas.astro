@@ -1,0 +1,43 @@
+---
+import Base from '../layouts/Base.astro';
+import Tabla from '../components/Tabla.astro';
+import Figura from '../components/Figura.astro';
+import { leer, fechaDe, fechaLarga, num } from '../lib/datos.js';
+
+const provincias = leer('pistas_provincia').sort((a, b) => b.elementos_por_10000_hab - a.elementos_por_10000_hab);
+const fecha = fechaDe('pistas_provincia');
+const total = provincias.reduce((a, p) => a + p.n_elementos_padel_osm, 0);
+
+const cols = [
+  { k: 'i', etiqueta: '#', num: true },
+  { k: 'provincia_nombre', etiqueta: 'Provincia' },
+  { k: 'elementos_por_10000_hab', etiqueta: 'Por 10.000 hab.', num: true, f: (v) => num(v, 2) },
+  { k: 'n_elementos_padel_osm', etiqueta: 'Elementos OSM', num: true, f: (v) => num(v) },
+  { k: 'n_ubicaciones_estimadas', etiqueta: 'Ubicaciones', num: true, f: (v) => num(v) },
+  { k: 'poblacion', etiqueta: 'Población', num: true, f: (v, p) => `${num(v)} (${p.anio_poblacion})` },
+];
+const filas = provincias.map((p, i) => ({ ...p, i: i + 1 }));
+---
+<Base titulo="Mapa de pistas de pádel por provincia" descripcion="Pistas de pádel por provincia y por 10.000 habitantes en España, a partir de OpenStreetMap y del INE." >
+  <div class="pagina-titulo">
+    <div class="pildora">#MapaDelPádel</div>
+    <h1>Pistas de pádel por provincia</h1>
+    <p class="subtitulo">Dónde hay más pádel por habitante en España. Datos de OpenStreetMap y del INE, a {fechaLarga(fecha)}.</p>
+  </div>
+
+  <div class="aviso atencion">
+    <strong>Léelo como un orden de magnitud, no como un censo.</strong> OpenStreetMap es un mapa colaborativo y su cobertura es desigual entre zonas: una provincia con pocas pistas cartografiadas puede tener muchas más en la realidad. La población es la del INE de 2021, el último año que PadelDB ha podido cruzar por provincia.
+  </div>
+
+  <Figura archivo="pistas_provincia_16x9.png" alt="Provincias con más pistas de pádel por 10.000 habitantes" />
+
+  <div class="cifras">
+    <div class="cifra"><div class="valor">{num(total)}</div><div class="etiqueta">elementos de pádel en OpenStreetMap asignados a una provincia</div></div>
+    <div class="cifra"><div class="valor">{provincias[0].provincia_nombre}</div><div class="etiqueta">primera por 10.000 habitantes ({num(provincias[0].elementos_por_10000_hab, 2)})</div></div>
+  </div>
+
+  <h2>Las {provincias.length} provincias</h2>
+  <p>«Elementos» es todo lo etiquetado como pádel en OpenStreetMap. Unos colaboradores mapean cada pista y otros el club entero como un único punto, así que la cifra mezcla pistas y clubes: es la más completa, pero no es un recuento de pistas. «Ubicaciones» agrupa las coordenadas que están a menos de unos 100 m, una cota inferior razonable del número de clubes distintos. La tasa por 10.000 habitantes usa los elementos. Solo se muestran provincias con al menos 3 elementos.</p>
+  <Tabla columnas={cols} filas={filas} />
+  <p class="pie-tabla">Fuente: OpenStreetMap (colaborativo) e INE, cifras de población · elaboración propia. Datos de OpenStreetMap © colaboradores de OpenStreetMap (ODbL). <a href="/guias/pistas-de-padel-en-espana/">Guía: cuántas pistas hay en España</a> · <a href="/datos/">Descargar los datos</a>.</p>
+</Base>

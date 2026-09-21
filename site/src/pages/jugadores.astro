@@ -1,0 +1,61 @@
+---
+import Base from '../layouts/Base.astro';
+import Tabla from '../components/Tabla.astro';
+import Figura from '../components/Figura.astro';
+import { leer, fechaDe, fechaLarga, num, porSexo } from '../lib/datos.js';
+
+const perfil = porSexo(leer('perfil_top100'));
+const fecha = fechaDe('perfil_top100');
+
+const PAISES = {
+  AE: 'Emiratos Árabes Unidos', AR: 'Argentina', BE: 'Bélgica', BR: 'Brasil', CL: 'Chile', DE: 'Alemania', ES: 'España',
+  FR: 'Francia', GB: 'Reino Unido', IT: 'Italia', MX: 'México', NL: 'Países Bajos', PT: 'Portugal', PY: 'Paraguay',
+  RU: 'Rusia', SE: 'Suecia', US: 'Estados Unidos',
+};
+const media = (xs) => (xs.length ? xs.reduce((a, b) => a + b, 0) / xs.length : null);
+
+function resumen(filas) {
+  const edades = filas.map((f) => f.edad).filter((v) => v != null);
+  const alturas = filas.map((f) => f.altura_cm).filter((v) => v != null);
+  const cuenta = (campo) => {
+    const c = {};
+    for (const f of filas) c[f[campo] ?? '—'] = (c[f[campo] ?? '—'] ?? 0) + 1;
+    return Object.entries(c).sort((a, b) => b[1] - a[1]);
+  };
+  return {
+    n: filas.length,
+    edad: media(edades),
+    altura: media(alturas),
+    nAlturas: alturas.length,
+    paises: cuenta('nacionalidad').slice(0, 6).map(([k, v]) => ({ pais: PAISES[k] ?? k, n: v })),
+    lados: cuenta('lado_pista').map(([k, v]) => ({ lado: k === 'drive' ? 'Drive' : k === 'backhand' ? 'Revés' : k, n: v })),
+  };
+}
+const SEXOS = [['M', 'Masculino'], ['F', 'Femenino']];
+const res = { M: resumen(perfil.M), F: resumen(perfil.F) };
+---
+<Base titulo="Jugadores: perfil del top 100" descripcion="Edad, nacionalidad, altura y lado de pista de los cien primeros jugadores y jugadoras del ranking de pádel.">
+  <div class="pagina-titulo">
+    <div class="pildora">Perfil del top 100</div>
+    <h1>Quién es el top 100</h1>
+    <p class="subtitulo">Edad, nacionalidades, altura y lado de pista de los cien primeros de cada ranking, a {fechaLarga(fecha)}.</p>
+  </div>
+
+  <div class="graficos">
+    <Figura archivo="perfil_top100_m_16x9.png" alt="Nacionalidades del top 100 masculino" />
+    <Figura archivo="perfil_top100_f_16x9.png" alt="Nacionalidades del top 100 femenino" />
+  </div>
+
+  {SEXOS.map(([s, nombre]) => (
+    <>
+      <h2>{nombre}</h2>
+      <div class="cifras">
+        <div class="cifra"><div class="valor">{num(res[s].edad, 1)}</div><div class="etiqueta">edad media, años</div></div>
+        <div class="cifra"><div class="valor">{num(res[s].altura, 0)} cm</div><div class="etiqueta">altura media ({res[s].nAlturas} jugadores con dato)</div></div>
+        <div class="cifra"><div class="valor">{res[s].lados.map((l) => `${l.n}`).join(' / ')}</div><div class="etiqueta">{res[s].lados.map((l) => l.lado).join(' / ')}</div></div>
+      </div>
+      <Tabla titulo="Nacionalidades más frecuentes" columnas={[{ k: 'pais', etiqueta: 'País' }, { k: 'n', etiqueta: 'Jugadores', num: true }]} filas={res[s].paises} />
+    </>
+  ))}
+  <p class="pie-tabla">Fuente: padelapi.org · elaboración propia. El «top 100» es la posición en el ranking en la fecha indicada; la edad se calcula a esa fecha. El lado de pista es el que declara la fuente. <a href="/metodologia/">Metodología</a> · <a href="/datos/">Descargar los datos</a>.</p>
+</Base>

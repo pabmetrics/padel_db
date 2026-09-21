@@ -1,0 +1,61 @@
+---
+import Base from '../layouts/Base.astro';
+import Tabla from '../components/Tabla.astro';
+import Figura from '../components/Figura.astro';
+import { leer, fechaDe, fechaLarga, num, porCategoria } from '../lib/datos.js';
+
+const parejas = porCategoria(leer('parejas_duracion'));
+const h2h = porCategoria(leer('h2h'));
+const fecha = fechaDe('parejas_duracion');
+
+const CATEGORIAS = [['men', 'Masculino'], ['women', 'Femenino']];
+const activas = (f) => [...f].filter((p) => p.activa).sort((a, b) => b.duracion_dias - a.duracion_dias).slice(0, 15);
+const masRepetidos = (f) => [...f].sort((a, b) => b.total_enfrentamientos - a.total_enfrentamientos).slice(0, 10);
+
+const colsParejas = [
+  { k: 'jugador_1_nombre', etiqueta: 'Jugador 1' },
+  { k: 'jugador_2_nombre', etiqueta: 'Jugador 2' },
+  { k: 'duracion_dias', etiqueta: 'Días juntos', num: true, f: (v, p) => `${num(v)}${p.posible_inicio_anterior_a_datos ? '+' : ''}` },
+  { k: 'n_torneos', etiqueta: 'Torneos', num: true },
+  { k: 'n_partidos', etiqueta: 'Partidos', num: true },
+];
+const colsH2h = [
+  { k: 'pareja_1', etiqueta: 'Pareja 1' },
+  { k: 'pareja_2', etiqueta: 'Pareja 2' },
+  { k: 'victorias_pareja_1', etiqueta: 'V. 1', num: true },
+  { k: 'victorias_pareja_2', etiqueta: 'V. 2', num: true },
+  { k: 'total_enfrentamientos', etiqueta: 'Total', num: true },
+  { k: 'ultimo_enfrentamiento', etiqueta: 'Último' },
+];
+---
+<Base titulo="Parejas: duración y cara a cara" descripcion="Cuánto llevan jugando juntas las parejas del circuito y quién gana los enfrentamientos entre las que más se cruzan.">
+  <div class="pagina-titulo">
+    <div class="pildora">#ParejasEnDatos</div>
+    <h1>Parejas: cuánto duran y cómo se ganan</h1>
+    <p class="subtitulo">En pádel la pareja lo es todo. PadelDB la reconstruye a partir de los partidos: una pareja «nace» en el primer torneo que juegan juntos y «muere» cuando uno de los dos juega otro torneo con otro compañero.</p>
+  </div>
+
+  <div class="graficos">
+    <Figura archivo="parejas_duracion_men_16x9.png" alt="Parejas activas más longevas, masculino" />
+    <Figura archivo="parejas_duracion_women_16x9.png" alt="Parejas activas más longevas, femenino" />
+  </div>
+
+  <h2>Parejas activas más longevas</h2>
+  <div class="aviso">
+    Los datos de partidos empiezan en enero de 2026. Un «+» junto a los días indica que la pareja ya jugaba junta antes de esa fecha, así que la duración real es mayor. Datos a {fechaLarga(fecha)}. Solo parejas con al menos dos torneos juntas.
+  </div>
+  {CATEGORIAS.map(([c, nombre]) => (
+    <Tabla titulo={`${nombre}: parejas activas`} columnas={colsParejas} filas={activas(parejas[c])} />
+  ))}
+
+  <h2>Cara a cara</h2>
+  <p>Los cruces que más veces se han repetido esta temporada, con el número de victorias de cada pareja.</p>
+  <div class="graficos">
+    <Figura archivo="h2h_men_16x9.png" alt="Enfrentamientos más repetidos, masculino" />
+    <Figura archivo="h2h_women_16x9.png" alt="Enfrentamientos más repetidos, femenino" />
+  </div>
+  {CATEGORIAS.map(([c, nombre]) => (
+    <Tabla titulo={`${nombre}: enfrentamientos más repetidos`} columnas={colsH2h} filas={masRepetidos(h2h[c])} />
+  ))}
+  <p class="pie-tabla">Fuente: padelapi.org · elaboración propia. <a href="/metodologia/">Metodología</a> · <a href="/datos/">Descargar los datos</a>.</p>
+</Base>

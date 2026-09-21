@@ -1,0 +1,62 @@
+---
+import Base from '../layouts/Base.astro';
+import Figura from '../components/Figura.astro';
+import { fechaDe, fechaLarga, num, catalogo } from '../lib/datos.js';
+
+const series = [
+  ['#RankingLunes', 'Ranking: quién sube, quién baja', 'Movimientos del top 100 y forma de las últimas 8 semanas.', '/ranking/', 'ranking_movimientos_semana'],
+  ['El torneo en datos', 'Sorpresas y ganancias', 'Qué cabezas de serie caen y cuánto ha ganado cada jugador.', '/torneos/', 'ganancias_temporada'],
+  ['#ParejasEnDatos', 'Parejas y cara a cara', 'Cuánto duran las parejas y quién gana los cruces repetidos.', '/parejas/', 'parejas_duracion'],
+  ['Perfil del top 100', 'Quién es el top 100', 'Edad, nacionalidad, altura y lado de pista.', '/jugadores/', 'perfil_top100'],
+  ['#MapaDelPádel', 'Pistas por provincia', 'Dónde hay más pádel por habitante en España.', '/mapa-de-pistas/', 'pistas_provincia'],
+  ['Pádel Mercado', 'Licencias, pistas y jugadores', 'El tamaño del pádel en España y en el mundo.', '/mercado/', 'mercado_pais'],
+];
+const guias = [
+  ['/guias/pistas-de-padel-en-espana/', 'Cuántas pistas de pádel hay en España (y por provincia)'],
+  ['/guias/licencias-de-padel-en-espana/', 'Licencias de pádel en España: evolución desde el año 2000'],
+  ['/guias/playtomic-vs-fip/', 'Playtomic vs FIP: cuántos hay de verdad'],
+];
+const cifras = catalogo();
+const nFilas = cifras.reduce((a, t) => a + t.filas, 0);
+---
+<Base titulo="PadelDB" descripcion="La base de datos abierta del pádel, y un gráfico al día que sale de ella. Ranking, torneos, parejas, pistas y mercado, con las fuentes a la vista.">
+  <div class="pagina-titulo">
+    <div class="pildora">El pádel, en datos</div>
+    <h1>Cada día, un dato del pádel que no vas a ver en ningún otro sitio.</h1>
+    <p class="subtitulo">Y la base de datos para comprobarlo. PadelDB reúne resultados, rankings, pistas y mercado del pádel, los ordena y los publica con su fuente y en descarga abierta.</p>
+  </div>
+
+  <div class="cifras">
+    <div class="cifra"><div class="valor">{cifras.length}</div><div class="etiqueta">tablas de datos abiertos</div></div>
+    <div class="cifra"><div class="valor">{num(nFilas)}</div><div class="etiqueta">filas publicables</div></div>
+    <div class="cifra"><div class="valor">{fechaLarga(fechaDe('ranking_movimientos_semana'))}</div><div class="etiqueta">último ranking</div></div>
+  </div>
+
+  <h2>Las series</h2>
+  <div class="rejilla">
+    {series.map(([pildora, titulo, texto, href, tabla]) => (
+      <a class="tarjeta" href={href}>
+        <div class="pildora">{pildora}</div>
+        <h3>{titulo}</h3>
+        <p>{texto}</p>
+        <div class="meta">datos a {fechaDe(tabla)}</div>
+      </a>
+    ))}
+  </div>
+
+  <h2>Últimos gráficos</h2>
+  <div class="graficos">
+    <Figura archivo="ranking_movimientos_m_16x9.png" alt="Movimientos del ranking masculino en la última semana" />
+    <Figura archivo="ganancias_temporada_m_16x9.png" alt="Ranking de ganancias de la temporada, masculino" />
+    <Figura archivo="pistas_provincia_16x9.png" alt="Provincias con más pistas de pádel por 10.000 habitantes" />
+    <Figura archivo="licencias_nacional_16x9.png" alt="Licencias federativas de pádel en España" />
+  </div>
+
+  <h2>Guías</h2>
+  <ul class="lista-fuentes">
+    {guias.map(([href, titulo]) => <li><a href={href}>{titulo}</a></li>)}
+  </ul>
+
+  <h2>Datos abiertos</h2>
+  <p>Todas las tablas que se ven aquí se pueden descargar en CSV y JSON con licencia CC BY 4.0. <a href="/datos/">Ir a las descargas</a>. Cómo se obtiene y se comprueba cada dato está en la <a href="/metodologia/">metodología</a>.</p>
+</Base>

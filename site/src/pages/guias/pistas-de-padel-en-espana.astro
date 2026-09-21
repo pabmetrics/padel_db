@@ -1,0 +1,57 @@
+---
+import Base from '../../layouts/Base.astro';
+import Tabla from '../../components/Tabla.astro';
+import Figura from '../../components/Figura.astro';
+import { leer, fechaDe, fechaLarga, num } from '../../lib/datos.js';
+
+const provincias = leer('pistas_provincia');
+const mercado = leer('mercado_pais');
+const fecha = fechaDe('pistas_provincia');
+
+const totalElementos = provincias.reduce((a, p) => a + p.n_elementos_padel_osm, 0);
+const totalUbicaciones = provincias.reduce((a, p) => a + p.n_ubicaciones_estimadas, 0);
+const fip = mercado.find((m) => m.fuente === 'fip' && m.pais === 'ESPAÑA' && m.categoria === 'pistas');
+
+const porTasa = [...provincias].sort((a, b) => b.elementos_por_10000_hab - a.elementos_por_10000_hab);
+const porTotal = [...provincias].sort((a, b) => b.n_elementos_padel_osm - a.n_elementos_padel_osm);
+const cols = [
+  { k: 'provincia_nombre', etiqueta: 'Provincia' },
+  { k: 'n_elementos_padel_osm', etiqueta: 'Elementos OSM', num: true, f: (v) => num(v) },
+  { k: 'elementos_por_10000_hab', etiqueta: 'Por 10.000 hab.', num: true, f: (v) => num(v, 2) },
+];
+---
+<Base titulo="Cuántas pistas de pádel hay en España" descripcion="Cuántas pistas de pádel hay en España y en cada provincia: lo que dice OpenStreetMap, lo que dice la FIP y por qué las cifras no coinciden.">
+  <article class="prose">
+    <div class="pagina-titulo">
+      <div class="pildora">Guía</div>
+      <h1>Cuántas pistas de pádel hay en España (y por provincia)</h1>
+      <p class="subtitulo">No hay un censo oficial. Hay estimaciones, y conviene saber qué mide cada una.</p>
+    </div>
+
+    <h2>La respuesta corta</h2>
+    <p>
+      El informe mundial de la FIP de 2025 habla de <strong>más de {num(fip?.valor)} pistas en España</strong>. OpenStreetMap, el mapa colaborativo que PadelDB usa para repartirlas por provincia, tiene etiquetados <strong>{num(totalElementos)} elementos de pádel</strong> en las {provincias.length} provincias que se han podido cruzar, y agrupados por proximidad son unas <strong>{num(totalUbicaciones)} ubicaciones</strong>.
+    </p>
+    <p>
+      Las cifras no se contradicen: miden cosas distintas. OpenStreetMap solo contiene lo que alguien ha cartografiado, y unos colaboradores mapean cada pista y otros el club entero como un único punto. Es una buena fotografía de <em>dónde</em> hay pádel; no es un recuento de pistas.
+    </p>
+
+    <h2>Dónde hay más pádel por habitante</h2>
+    <p>Ordenadas por elementos de pádel por cada 10.000 habitantes (población del INE de 2021), a {fechaLarga(fecha)}:</p>
+    <Figura archivo="pistas_provincia_16x9.png" alt="Provincias con más pistas de pádel por 10.000 habitantes" />
+    <Tabla titulo="Las cinco primeras por habitante" columnas={cols} filas={porTasa.slice(0, 5)} />
+    <Tabla titulo="Las cinco últimas por habitante" columnas={cols} filas={porTasa.slice(-5).reverse()} />
+
+    <h2>Dónde hay más en total</h2>
+    <Tabla titulo="Las cinco con más elementos en OpenStreetMap" columnas={cols} filas={porTotal.slice(0, 5)} />
+
+    <h2>Cómo leer estos datos</h2>
+    <ul>
+      <li><strong>Cobertura desigual.</strong> OpenStreetMap suele estar más completo en las ciudades grandes y más flojo en zonas rurales. Una provincia con pocos elementos puede tener muchas más pistas de las que aparecen.</li>
+      <li><strong>Pistas y clubes mezclados.</strong> Contar elementos en bruto sobrestima donde se cartografía pista a pista e infraestima donde solo se dibujó el club.</li>
+      <li><strong>Población de 2021.</strong> Es el último año que PadelDB ha podido cruzar con la tabla provincial del INE.</li>
+    </ul>
+    <p>La tabla completa está en el <a href="/mapa-de-pistas/">mapa de pistas</a>, los datos en <a href="/datos/">descargas</a> y el método en la <a href="/metodologia/">metodología</a>.</p>
+    <p class="pie-tabla" style="padding:0">Fuentes: OpenStreetMap (© colaboradores, ODbL), INE (cifras de población) y FIP World Padel Report 2025 · elaboración propia.</p>
+  </article>
+</Base>

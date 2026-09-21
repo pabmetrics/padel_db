@@ -1,0 +1,146 @@
+[
+  {
+    "tabla": "ranking_movimientos_semana",
+    "titulo": "Movimientos del ranking",
+    "descripcion": "Puestos ganados o perdidos por jugador en la última semana, con puntos.",
+    "fecha_dato": "2026-09-21",
+    "filas": 99,
+    "fuentes": [
+      "FIP / Premier Padel · elaboración propia"
+    ],
+    "json": "/datos/ranking_movimientos_semana.json",
+    "csv": "/datos/ranking_movimientos_semana.csv"
+  },
+  {
+    "tabla": "forma_reciente",
+    "titulo": "Forma reciente",
+    "descripcion": "Partidos, victorias, porcentaje de victorias y racha de cada jugador en las últimas 8 semanas.",
+    "fecha_dato": "2026-09-21",
+    "filas": 558,
+    "fuentes": [
+      "padelapi.org · elaboración propia"
+    ],
+    "json": "/datos/forma_reciente.json",
+    "csv": "/datos/forma_reciente.csv"
+  },
+  {
+    "tabla": "perfil_top100",
+    "titulo": "Perfil del top 100",
+    "descripcion": "Edad, nacionalidad, altura y lado de pista de los cien primeros de cada ranking.",
+    "fecha_dato": "2026-09-21",
+    "filas": 200,
+    "fuentes": [
+      "padelapi.org · elaboración propia"
+    ],
+    "json": "/datos/perfil_top100.json",
+    "csv": "/datos/perfil_top100.csv"
+  },
+  {
+    "tabla": "parejas_duracion",
+    "titulo": "Duración de las parejas",
+    "descripcion": "Cuánto lleva cada pareja jugando junta, reconstruido a partir de los partidos.",
+    "fecha_dato": "2026-09-21",
+    "filas": 697,
+    "fuentes": [
+      "padelapi.org · elaboración propia"
+    ],
+    "json": "/datos/parejas_duracion.json",
+    "csv": "/datos/parejas_duracion.csv"
+  },
+  {
+    "tabla": "h2h",
+    "titulo": "Cara a cara entre parejas",
+    "descripcion": "Historial de victorias entre cada par de parejas que se han enfrentado.",
+    "fecha_dato": "2026-09-21",
+    "filas": 154,
+    "fuentes": [
+      "padelapi.org · elaboración propia"
+    ],
+    "json": "/datos/h2h.json",
+    "csv": "/datos/h2h.csv"
+  },
+  {
+    "tabla": "torneo_sorpresas",
+    "titulo": "Sorpresas de torneo",
+    "descripcion": "Derrotas de cabezas de serie por diferencia de semilla.",
+    "fecha_dato": "2026-09-21",
+    "filas": 81,
+    "fuentes": [
+      "padelapi.org · elaboración propia"
+    ],
+    "json": "/datos/torneo_sorpresas.json",
+    "csv": "/datos/torneo_sorpresas.csv"
+  },
+  {
+    "tabla": "ganancias_temporada",
+    "titulo": "Ganancias de la temporada",
+    "descripcion": "Prize money acumulado por jugador con el detalle por torneo.",
+    "fecha_dato": "2026-09-21",
+    "filas": 1377,
+    "fuentes": [
+      "padelearnings.com + padelfip.com + padelapi.org · elaboración propia"
+    ],
+    "json": "/datos/ganancias_temporada.json",
+    "csv": "/datos/ganancias_temporada.csv"
+  },
+  {
+    "tabla": "puntos_a_defender",
+    "titulo": "Puntos a defender",
+    "descripcion": "Puntos del ranking que caducan en las próximas semanas.",
+    "fecha_dato": "2026-09-21",
+    "filas": 0,
+    "fuentes": [],
+    "json": "/datos/puntos_a_defender.json",
+    "csv": null
+  },
+  {
+    "tabla": "pistas_provincia",
+    "titulo": "Pistas por provincia",
+    "descripcion": "Elementos de pádel de OpenStreetMap por provincia y por 10.000 habitantes.",
+    "fecha_dato": "2026-09-18",
+    "filas": 50,
+    "fuentes": [
+      "OpenStreetMap (colaborativo) + INE, Cifras de población · elaboración propia"
+    ],
+    "json": "/datos/pistas_provincia.json",
+    "csv": "/datos/pistas_provincia.csv"
+  },
+  {
+    "tabla": "licencias_nacional",
+    "titulo": "Licencias federativas",
+    "descripcion": "Serie anual de licencias de pádel en España (CSD y FEP, sin mezclar).",
+    "fecha_dato": "2026-09-18",
+    "filas": 88,
+    "fuentes": [
+      "CSD, Estadística de Deporte Federado · elaboración propia",
+      "FEP, Federación Española de Pádel (dato en vivo) · elaboración propia"
+    ],
+    "json": "/datos/licencias_nacional.json",
+    "csv": "/datos/licencias_nacional.csv"
+  },
+  {
+    "tabla": "mercado_pais",
+    "titulo": "Mercado por país",
+    "descripcion": "Cifras de mercado de los informes de la FIP y de Playtomic, sin mezclar.",
+    "fecha_dato": "2026-09-21",
+    "filas": 79,
+    "fuentes": [
+      "FIP World Padel Report 2025 · elaboración propia",
+      "Playtomic Global Padel Report 2026 (con Strategy&, PwC) · elaboración propia"
+    ],
+    "json": "/datos/mercado_pais.json",
+    "csv": "/datos/mercado_pais.csv"
+  },
+  {
+    "tabla": "trends_geo",
+    "titulo": "Interés en Google",
+    "descripcion": "Ratio de interés pádel/tenis en Google Trends por país en expansión.",
+    "fecha_dato": "2026-09-21",
+    "filas": 20,
+    "fuentes": [
+      "Google Trends (pytrends, no oficial) · elaboración propia"
+    ],
+    "json": "/datos/trends_geo.json",
+    "csv": "/datos/trends_geo.csv"
+  }
+]

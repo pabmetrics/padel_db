@@ -1,0 +1,57 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base titulo="Metodología y fuentes" descripcion="De dónde salen los datos de PadelDB, cómo se procesan y se comprueban, qué límites tienen y cómo se corrigen los errores.">
+  <article class="prose">
+    <div class="pagina-titulo">
+      <div class="pildora">Metodología</div>
+      <h1>Metodología y fuentes</h1>
+      <p class="subtitulo">Cada cifra de PadelDB se puede rastrear hasta su fuente. Esta página explica cómo, y dónde están los límites.</p>
+    </div>
+
+    <h2 id="fuentes">Fuentes</h2>
+    <ul class="lista-fuentes">
+      <li><strong>Ranking y calendario del circuito:</strong> premierpadel.com (endpoints públicos) y padelapi.org. El ranking oficial de referencia es el de padelapi.org, que respeta los empates; la web de la FIP (padelfip.com) se usa para contrastar el top 10.</li>
+      <li><strong>Partidos, resultados, semillas y perfiles de jugador:</strong> padelapi.org, plan gratuito. Cuando ese plan oculta el ganador de un partido, el resultado se completa con padelearnings.com (Premier Padel) y con el marcador publicado en padelfip.com (FIP Tour).</li>
+      <li><strong>Premios por torneo:</strong> padelearnings.com para Premier Padel y la página oficial de cada evento en padelfip.com para el FIP Tour. Son los repartos reales de cada torneo, no una tabla genérica por categoría.</li>
+      <li><strong>Puntos por ronda:</strong> tabla oficial de puntos de ranking de la FIP para 2026, transcrita a mano.</li>
+      <li><strong>Licencias federativas:</strong> Estadística de Deporte Federado del CSD (cierres anuales) y datos en vivo de la Federación Española de Pádel. Se guardan por separado.</li>
+      <li><strong>Pistas:</strong> OpenStreetMap, consultado por la API Overpass, cruzado con los límites provinciales de OpenStreetMap y con la población provincial del INE (2021).</li>
+      <li><strong>Mercado mundial:</strong> FIP World Padel Report 2025 y Playtomic Global Padel Report 2026. Solo se transcriben las cifras que los informes dan en texto; no se leen de gráficos.</li>
+      <li><strong>Interés en Google:</strong> Google Trends, a través de una librería no oficial. Es un índice relativo, no un volumen de búsquedas.</li>
+    </ul>
+
+    <h2>Cómo se procesan los datos</h2>
+    <ol class="lista-fuentes">
+      <li><strong>Bronze.</strong> Cada descarga se guarda tal cual, con su fecha, y nunca se sobrescribe. Un ranking semanal guardado durante un año es una serie histórica propia.</li>
+      <li><strong>Silver.</strong> Los datos se limpian y se unifican con identificadores propios de PadelDB para jugadores, parejas y torneos; los identificadores de cada fuente solo viven en una tabla de correspondencias. Las parejas se reconstruyen a partir de los partidos: una pareja nace en el primer torneo que dos jugadores juegan juntos y termina cuando uno juega otro torneo con otro compañero.</li>
+      <li><strong>Gold.</strong> Cada fila es un dato publicable, con su fecha, su fuente y una marca <code>publicable</code> que solo se activa tras las comprobaciones de calidad. Esta web solo muestra filas marcadas como publicables.</li>
+    </ol>
+
+    <h2>Control de calidad</h2>
+    <p>Antes de generar ninguna tabla se ejecutan comprobaciones automáticas, y si una falla el proceso se detiene. Entre ellas: identificadores únicos de jugador y de partido; en el ranking, empates solo entre jugadores con los mismos puntos, puntos que nunca crecen al bajar de posición y ninguna fecha futura; marcadores sin sets imposibles y ganador coherente con el marcador; en los enfrentamientos, que las victorias de cada pareja sumen el total; en las sorpresas, que la semilla del ganador sea peor que la del perdedor; en los premios, que sean positivos y que crezcan con la ronda alcanzada; en las licencias, que hombres más mujeres sumen el total; y que las cifras de la FIP y de Playtomic nunca se mezclen en una misma fila.</p>
+    <p>Además, cada tabla aplica un umbral mínimo antes de marcar una fila como publicable (por ejemplo, forma reciente con al menos 3 partidos, parejas con al menos 2 torneos juntas, o provincias con al menos 3 elementos de pádel en OpenStreetMap). Esta web es más exigente en algunas tablas y lo indica en cada una.</p>
+
+    <h2 id="limites">Límites conocidos</h2>
+    <ul class="lista-fuentes">
+      <li><strong>Partidos desde enero de 2026.</strong> El plan gratuito de padelapi.org solo da los últimos meses. Por eso las parejas que ya jugaban juntas antes de esa fecha aparecen con un «+», y los puntos a defender del ranking (que dura 52 semanas) no pueden calcularse hasta que se cumpla un año de datos.</li>
+      <li><strong>Sorpresas por semilla, no por ranking.</strong> PadelDB no guarda todavía el ranking de cada jugador fecha a fecha, así que las sorpresas se miden con las semillas de cada torneo.</li>
+      <li><strong>Pistas por provincia, no por municipio.</strong> Y con la cobertura desigual de OpenStreetMap, que mezcla pistas sueltas y clubes enteros. Es un orden de magnitud, no un censo.</li>
+      <li><strong>Licencias a nivel nacional.</strong> El desglose por comunidad autónoma todavía no está.</li>
+      <li><strong>Dos informes de mercado que no coinciden.</strong> Se publican los dos, con su fecha y su método, y nunca se suman ni se promedian.</li>
+      <li><strong>Nombres de jugadores.</strong> Las fuentes no siempre escriben igual el nombre de una persona (acentos, segundo apellido). PadelDB cruza los nombres por su forma normalizada y mantiene a mano una lista de grafías correctas; puede haber alguna variante pendiente de revisar.</li>
+    </ul>
+
+    <h2 id="correcciones">Política de correcciones</h2>
+    <p>La credibilidad es el producto. Si un dato publicado es erróneo:</p>
+    <ul class="lista-fuentes">
+      <li>se corrige en cuanto se detecta, en la web y en la descarga correspondiente;</li>
+      <li>si el error se publicó también en una red social, la corrección se publica en público citando el post original, sin borrarlo;</li>
+      <li>si hay dudas sobre un dato, no se publica.</li>
+    </ul>
+
+    <h2>Uso de los datos y licencia</h2>
+    <p>Los resultados, rankings y estadísticas deportivas son hechos; el valor de PadelDB está en su elaboración. Los datos derivados se publican con licencia <a href="https://creativecommons.org/licenses/by/4.0/deed.es">CC BY 4.0</a>, citando a PadelDB y a la fuente original de cada tabla. No se redistribuyen los datos crudos de terceros, no se usan fotos de jugadores y no se publican datos personales de aficionados ni de jugadores amateur.</p>
+    <p>Las descargas están en <a href="/datos/">datos abiertos</a>.</p>
+  </article>
+</Base>

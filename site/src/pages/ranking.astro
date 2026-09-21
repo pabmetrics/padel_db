@@ -1,0 +1,71 @@
+---
+import Base from '../layouts/Base.astro';
+import Tabla from '../components/Tabla.astro';
+import Figura from '../components/Figura.astro';
+import { leer, fechaDe, fechaLarga, num, delta, porSexo } from '../lib/datos.js';
+
+const mov = porSexo(leer('ranking_movimientos_semana'));
+const forma = porSexo(leer('forma_reciente'));
+const puntos = leer('puntos_a_defender');
+const fecha = fechaDe('ranking_movimientos_semana');
+const fechaForma = fechaDe('forma_reciente');
+
+const SEXOS = [['M', 'Masculino'], ['F', 'Femenino']];
+const subidas = (f) => [...f].sort((a, b) => b.posicion_diff_semana - a.posicion_diff_semana).slice(0, 10);
+const bajadas = (f) => [...f].sort((a, b) => a.posicion_diff_semana - b.posicion_diff_semana).slice(0, 10);
+const enForma = (f) => [...f].filter((x) => x.partidos_8sem >= 8).sort((a, b) => b.pct_victorias_8sem - a.pct_victorias_8sem || b.partidos_8sem - a.partidos_8sem).slice(0, 15);
+
+const colsMov = [
+  { k: 'posicion', etiqueta: 'Puesto', num: true },
+  { k: 'jugador_nombre', etiqueta: 'Jugador' },
+  { k: 'posicion_diff_semana', etiqueta: 'Δ puestos', num: true, f: (v) => delta(v), clase: (v) => (v > 0 ? 'sube' : v < 0 ? 'baja' : '') },
+  { k: 'puntos', etiqueta: 'Puntos', num: true, f: (v) => num(v) },
+  { k: 'puntos_diff_semana', etiqueta: 'Δ puntos', num: true, f: (v) => delta(v) },
+];
+const colsForma = [
+  { k: 'jugador_nombre', etiqueta: 'Jugador' },
+  { k: 'pct_victorias_8sem', etiqueta: '% victorias', num: true, f: (v) => num(v, 1) },
+  { k: 'victorias_8sem', etiqueta: 'Victorias', num: true },
+  { k: 'partidos_8sem', etiqueta: 'Partidos', num: true },
+  { k: 'racha_n', etiqueta: 'Racha', num: true, f: (v, fila) => `${v} ${fila.racha_tipo === 'victorias' ? 'victorias' : 'derrotas'}` },
+];
+---
+<Base titulo="Ranking: movimientos y forma reciente" descripcion="Quién sube y quién baja en el ranking de pádel cada semana, y quién llega en mejor forma. #RankingLunes, con datos de FIP y Premier Padel.">
+  <div class="pagina-titulo">
+    <div class="pildora">#RankingLunes</div>
+    <h1>Ranking: quién sube, quién baja</h1>
+    <p class="subtitulo">Movimientos de la semana en el top 100 de cada ranking, y forma en las últimas 8 semanas. Datos a {fechaLarga(fecha)}.</p>
+  </div>
+
+  <div class="graficos">
+    <Figura archivo="ranking_movimientos_m_16x9.png" alt="Movimientos del ranking masculino en la última semana" />
+    <Figura archivo="ranking_movimientos_f_16x9.png" alt="Movimientos del ranking femenino en la última semana" />
+  </div>
+
+  <h2>Movimientos de la semana</h2>
+  <p>Solo se listan los jugadores dentro del top 100. Por debajo de ahí los puntos están tan apretados que unos pocos puntos mueven a alguien cientos de puestos, y eso es ruido, no información.</p>
+  {SEXOS.map(([s, nombre]) => (
+    <>
+      <h3>{nombre}</h3>
+      <Tabla titulo="Mayores subidas" columnas={colsMov} filas={subidas(mov[s])} />
+      <Tabla titulo="Mayores bajadas" columnas={colsMov} filas={bajadas(mov[s])} />
+    </>
+  ))}
+
+  <h2>Puntos a defender</h2>
+  {puntos.length === 0 ? (
+    <div class="aviso">
+      Todavía no hay puntos que caduquen. El ranking recuerda 52 semanas y PadelDB solo guarda datos de partidos desde enero de 2026: hasta que se cumpla el primer año no puede saberse qué puntos se pierden cada semana. Esta tabla se llenará sola según pasen las semanas.
+    </div>
+  ) : (
+    <p>{puntos.length} filas. <a href="/datos/">Descarga la tabla</a>.</p>
+  )}
+
+  <h2>Forma reciente</h2>
+  <p>Porcentaje de victorias y racha actual en las últimas 8 semanas, a {fechaLarga(fechaForma)}. Solo jugadores con al menos 8 partidos en ese periodo: con menos, un porcentaje no significa nada.</p>
+  {SEXOS.map(([s, nombre]) => (
+    <Tabla titulo={`${nombre}: mejor porcentaje de victorias`} columnas={colsForma} filas={enForma(forma[s])} />
+  ))}
+
+  <p class="pie-tabla">Fuente: FIP / Premier Padel y padelapi.org · elaboración propia. <a href="/metodologia/">Cómo se calcula</a> · <a href="/datos/">Descargar los datos</a>.</p>
+</Base>

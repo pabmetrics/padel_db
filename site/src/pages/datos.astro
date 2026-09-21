@@ -1,0 +1,37 @@
+---
+import Base from '../layouts/Base.astro';
+import { catalogo, num, fechaLarga } from '../lib/datos.js';
+
+const tablas = catalogo();
+---
+<Base titulo="Datos abiertos" descripcion="Descarga en CSV y JSON las tablas de PadelDB: ranking, forma, parejas, torneos, ganancias, pistas, licencias y mercado. Licencia CC BY 4.0.">
+  <div class="pagina-titulo">
+    <div class="pildora">Datos abiertos</div>
+    <h1>Descarga los datos</h1>
+    <p class="subtitulo">La base de datos detrás de cada gráfico, en CSV y JSON. Es la sección pública de PadelDB: comprueba lo que publicamos o úsalo para lo tuyo.</p>
+  </div>
+
+  <div class="aviso">
+    <strong>Licencia CC BY 4.0.</strong> Puedes copiar, redistribuir y adaptar estos datos, también con fines comerciales, citando la fuente. Cítalo así: <em>«Fuente: PadelDB (padeldb.es), a partir de [fuente original de la tabla]»</em>. Son datos derivados y agregados por PadelDB, no una copia de los datos originales de terceros.
+  </div>
+
+  <h2>Qué hay en cada tabla</h2>
+  <p>Solo se publican las filas que han pasado el control de calidad (las marcadas como <code>publicable</code>). Cada fila lleva su fecha y la fuente. Los CSV usan UTF-8 con cabecera; los campos con listas anidadas (por ejemplo el detalle de premios por torneo) solo están en el JSON.</p>
+
+  <div class="rejilla">
+    {tablas.map((t) => (
+      <div class="tarjeta">
+        <h3>{t.titulo}</h3>
+        <p>{t.descripcion}</p>
+        <div class="meta">{num(t.filas)} filas · datos a {t.fecha_dato}</div>
+        <p class="descargas" style="margin-top:10px">
+          {t.csv && <a href={t.csv} download>CSV</a>}
+          <a href={t.json} download>JSON</a>
+        </p>
+        <p class="meta" style="margin-top:6px">Fuente: {t.fuentes.join(' · ')}</p>
+      </div>
+    ))}
+  </div>
+
+  <p>El catálogo completo, en formato máquina: <a href="/datos/catalogo.json">catalogo.json</a>. El método, las fuentes y sus límites están en la <a href="/metodologia/">metodología</a>.</p>
+</Base>

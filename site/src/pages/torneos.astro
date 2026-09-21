@@ -1,0 +1,59 @@
+---
+import Base from '../layouts/Base.astro';
+import Tabla from '../components/Tabla.astro';
+import Figura from '../components/Figura.astro';
+import { leer, fechaDe, fechaLarga, num, porSexo, porCategoria } from '../lib/datos.js';
+
+const sorpresas = porCategoria(leer('torneo_sorpresas'));
+const ganancias = porSexo(leer('ganancias_temporada'));
+const fecha = fechaDe('ganancias_temporada');
+const alcance = leer('ganancias_temporada')[0]?.alcance ?? '';
+
+const CATEGORIAS = [['men', 'Masculino'], ['women', 'Femenino']];
+const SEXOS = [['M', 'Masculino'], ['F', 'Femenino']];
+const mayores = (f) => [...f].sort((a, b) => b.diferencia_semillas - a.diferencia_semillas || b.fecha.localeCompare(a.fecha)).slice(0, 10);
+const topGanancias = (f) => [...f].sort((a, b) => b.ganancias_conocidas_eur - a.ganancias_conocidas_eur).slice(0, 20);
+
+const colsSorpresa = [
+  { k: 'fecha', etiqueta: 'Fecha' },
+  { k: 'torneo_nombre', etiqueta: 'Torneo' },
+  { k: 'ronda', etiqueta: 'Ronda' },
+  { k: 'equipo_ganador', etiqueta: 'Ganan', f: (v, f) => `${v} (${f.semilla_ganador})` },
+  { k: 'equipo_perdedor', etiqueta: 'Pierden', f: (v, f) => `${v} (${f.semilla_perdedor})` },
+  { k: 'diferencia_semillas', etiqueta: 'Δ semilla', num: true },
+  { k: 'marcador_txt', etiqueta: 'Marcador' },
+];
+const colsGanancias = [
+  { k: 'jugador_nombre', etiqueta: 'Jugador' },
+  { k: 'ganancias_conocidas_eur', etiqueta: 'Ganancias', num: true, f: (v) => `${num(v)} €` },
+  { k: 'n_torneos_con_premio_conocido', etiqueta: 'Torneos', num: true },
+];
+---
+<Base titulo="Torneos: sorpresas y ganancias" descripcion="Las mayores sorpresas de la temporada por diferencia de cabeza de serie y el ranking de ganancias por jugador, con cifras reales de cada torneo.">
+  <div class="pagina-titulo">
+    <div class="pildora">El torneo en datos</div>
+    <h1>Torneos: sorpresas y ganancias</h1>
+    <p class="subtitulo">Qué cabezas de serie han caído y cuánto dinero ha ganado cada jugador en 2026.</p>
+  </div>
+
+  <h2>Sorpresas de la temporada</h2>
+  <p>Victorias de una pareja contra otra con una semilla al menos tres puestos mejor. La diferencia se mide con las semillas de cada torneo (no con el ranking del momento, que PadelDB todavía no guarda por fecha). Entre paréntesis, la semilla de cada pareja.</p>
+  <div class="graficos">
+    <Figura archivo="torneo_sorpresas_men_16x9.png" alt="Mayores sorpresas de la temporada, categoría masculina" />
+    <Figura archivo="torneo_sorpresas_women_16x9.png" alt="Mayores sorpresas de la temporada, categoría femenina" />
+  </div>
+  {CATEGORIAS.map(([c, nombre]) => (
+    <Tabla titulo={`${nombre}: mayores diferencias de semilla`} columnas={colsSorpresa} filas={mayores(sorpresas[c])} />
+  ))}
+
+  <h2>Ranking de ganancias</h2>
+  <p>Prize money acumulado por jugador en 2026, a {fechaLarga(fecha)}. Son cifras reales de cada torneo, no una estimación por categoría. Cada cifra sale del reparto de premios que publica cada torneo.</p>
+  <div class="graficos">
+    <Figura archivo="ganancias_temporada_m_16x9.png" alt="Ranking de ganancias de la temporada, masculino" />
+    <Figura archivo="ganancias_temporada_f_16x9.png" alt="Ranking de ganancias de la temporada, femenino" />
+  </div>
+  {SEXOS.map(([s, nombre]) => (
+    <Tabla titulo={`${nombre}: ganancias conocidas`} columnas={colsGanancias} filas={topGanancias(ganancias[s])} pie={alcance} />
+  ))}
+  <p class="pie-tabla">Fuente: padelearnings.com, padelfip.com y padelapi.org · elaboración propia. <a href="/metodologia/">Metodología</a> · <a href="/datos/">Descargar los datos</a>.</p>
+</Base>

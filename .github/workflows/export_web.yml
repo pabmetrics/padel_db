@@ -1,0 +1,42 @@
+name: export_web
+
+# Doc 01 §5: gold -> ficheros estáticos de la web, cada día tras content_candidates.
+# Este job solo commitea site/public. Cloudflare Pages reconstruye la web
+# cuando el commit llega a main; el job no publica nada por sí solo.
+
+on:
+  schedule:
+    - cron: "15 7 * * *"
+  workflow_dispatch: {}
+
+jobs:
+  export_web:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Instalar dependencias
+        run: pip install -r requirements.txt
+
+      - name: Export de gold, gráficos y cola a site/public
+        run: python transform/export_web.py
+
+      - name: Commit
+        run: |
+          git config user.name "padeldb-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add site/public
+          git diff --cached --quiet || git commit -m "export_web: $(date -u +%F)"
+          for intento in 1 2 3 4 5; do
+            git push && break
+            echo "push rechazado (otro job empujo a la vez), reintento con rebase ($intento/5)..."
+            git fetch origin main
+            git rebase origin/main
+            sleep $(( (RANDOM % 10) + 1 ))
+          done

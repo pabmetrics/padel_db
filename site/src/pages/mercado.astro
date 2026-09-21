@@ -1,0 +1,102 @@
+---
+import Base from '../layouts/Base.astro';
+import Tabla from '../components/Tabla.astro';
+import Figura from '../components/Figura.astro';
+import { leer, fechaDe, fechaLarga, num, delta } from '../lib/datos.js';
+
+const lic = leer('licencias_nacional').filter((r) => r.sexo === 'total');
+const mercado = leer('mercado_pais');
+const trends = leer('trends_geo').sort((a, b) => (b.variacion_pct ?? -1e9) - (a.variacion_pct ?? -1e9));
+const fechaMercado = fechaDe('mercado_pais');
+const fechaTrends = fechaDe('trends_geo');
+
+// Licencias: una fila por año desde 2012, CSD y FEP en columnas separadas (nunca sumadas ni mezcladas).
+const anios = [...new Set(lic.filter((r) => r.anio >= 2012).map((r) => r.anio))].sort((a, b) => a - b);
+const filasLic = anios.map((anio) => ({
+  anio,
+  csd: lic.find((r) => r.anio === anio && r.fuente === 'csd')?.licencias ?? null,
+  fep: lic.find((r) => r.anio === anio && r.fuente === 'fep')?.licencias ?? null,
+}));
+
+const CALIFICADOR = { mas_de: 'más de ', aprox: '≈ ', exacto: '' };
+const globalesFip = [
+  ['pistas', 'Pistas en el mundo'],
+  ['clubes', 'Clubes e instalaciones'],
+  ['jugadores_amateur', 'Jugadores'],
+  ['licencias_federadas', 'Licencias federadas'],
+  ['paises_donde_se_juega', 'Países donde se juega'],
+]
+  .map(([categoria, etiqueta]) => {
+    const r = mercado.find((m) => m.fuente === 'fip' && m.pais === 'GLOBAL' && m.categoria === categoria);
+    return r ? { etiqueta, valor: `${CALIFICADOR[r.calificador] ?? ''}${num(r.valor)}`, nota: r.contexto_txt ?? '' } : null;
+  })
+  .filter(Boolean);
+const playtomicGlobal = mercado.find((m) => m.fuente === 'playtomic' && m.pais === 'GLOBAL');
+
+const CONTINENTES = { AFRICA: 'África', ASIA: 'Asia', CENTRO_Y_NORTEAMERICA: 'Centro y Norteamérica', EUROPA: 'Europa', OCEANIA: 'Oceanía', SUDAMERICA: 'Sudamérica' };
+const continentes = Object.keys(CONTINENTES)
+  .map((c) => ({
+    continente: CONTINENTES[c],
+    pistas: mercado.find((m) => m.fuente === 'fip' && m.pais === c && m.categoria === 'pct_pistas_mundial')?.valor ?? null,
+    crecimiento: mercado.find((m) => m.fuente === 'fip' && m.pais === c && m.categoria === 'crecimiento_pistas_18m_pct')?.valor ?? null,
+  }))
+  .filter((c) => c.pistas !== null || c.crecimiento !== null);
+
+const CLASIF = { growing: 'En crecimiento', emerging: 'Emergente' };
+---
+<Base titulo="Mercado: licencias, pistas y jugadores" descripcion="Cuántas licencias de pádel hay en España, cuántas pistas y jugadores hay en el mundo según la FIP y según Playtomic, y dónde crece el interés.">
+  <div class="pagina-titulo">
+    <div class="pildora">Pádel Mercado</div>
+    <h1>El mercado del pádel, en cifras</h1>
+    <p class="subtitulo">Licencias federativas en España, tamaño del pádel en el mundo según dos informes que no coinciden, y dónde crece el interés.</p>
+  </div>
+
+  <h2 id="licencias">Licencias federativas en España</h2>
+  <p>Dos fuentes, sin mezclar: la Estadística de Deporte Federado del CSD (cierres anuales) y la Federación Española de Pádel, cuyo dato del año en curso está en vivo. Para los años cerrados coinciden casi siempre; donde difieren, se muestran las dos.</p>
+  <Figura archivo="licencias_nacional_16x9.png" alt="Licencias federativas de pádel en España desde el año 2000" />
+  <Tabla
+    columnas={[
+      { k: 'anio', etiqueta: 'Año' },
+      { k: 'csd', etiqueta: 'CSD', num: true, f: (v) => (v === null ? '—' : num(v)) },
+      { k: 'fep', etiqueta: 'FEP', num: true, f: (v) => (v === null ? '—' : num(v)) },
+    ]}
+    filas={filasLic}
+    pie="Fuente: CSD, Estadística de Deporte Federado, y FEP, Federación Española de Pádel · elaboración propia. La serie del CSD arranca en 1980 (ver descarga)."
+  />
+
+  <h2 id="mundo">Pádel en el mundo: dos informes, dos cifras</h2>
+  <p>El informe de la FIP y el de Playtomic dan cifras distintas para lo mismo. PadelDB las publica las dos, con su fecha y su método, sin promediarlas ni elegir una.</p>
+  <Figura archivo="mercado_pistas_mundo_16x9.png" alt="Pistas de pádel en el mundo según la FIP y según Playtomic" />
+  <div class="cifras">
+    {globalesFip.map((c) => (
+      <div class="cifra"><div class="valor">{c.valor}</div><div class="etiqueta">{c.etiqueta} · FIP</div></div>
+    ))}
+  </div>
+  {playtomicGlobal?.contexto_txt && <p><strong>Playtomic:</strong> {playtomicGlobal.contexto_txt}.</p>}
+  <p class="pie-tabla">Fuentes: FIP World Padel Report 2025 y Playtomic Global Padel Report 2026 · elaboración propia. Datos a {fechaLarga(fechaMercado)}. <a href="/guias/playtomic-vs-fip/">Guía: por qué no coinciden</a>.</p>
+
+  <h3>Reparto por continente (FIP)</h3>
+  <Tabla
+    columnas={[
+      { k: 'continente', etiqueta: 'Continente' },
+      { k: 'pistas', etiqueta: '% de las pistas del mundo', num: true, f: (v) => (v === null ? '—' : `${num(v, 1)} %`) },
+      { k: 'crecimiento', etiqueta: 'Crecimiento de pistas en 18 meses', num: true, f: (v) => (v === null ? '—' : `${num(v)} %`) },
+    ]}
+    filas={continentes}
+    pie="Fuente: FIP World Padel Report 2025 · elaboración propia."
+  />
+
+  <h2 id="interes">Dónde crece el interés</h2>
+  <p>Ratio entre las búsquedas de «padel» y las de «tenis» en Google, por país, en {trends.length} países que los informes de la FIP y de Playtomic describen como en crecimiento o emergentes. Es un índice relativo dentro de cada país: sirve para comparar tendencias, no volúmenes. Datos a {fechaLarga(fechaTrends)}.</p>
+  <Figura archivo="trends_geo_16x9.png" alt="Países donde más crece el interés por el pádel frente al tenis" />
+  <Tabla
+    columnas={[
+      { k: 'pais', etiqueta: 'País' },
+      { k: 'clasificacion', etiqueta: 'Clasificación', f: (v) => CLASIF[v] ?? v },
+      { k: 'ratio_padel_tenis_reciente', etiqueta: 'Ratio pádel/tenis', num: true, f: (v) => num(v, 1) },
+      { k: 'variacion_pct', etiqueta: 'Variación trimestral', num: true, f: (v) => (v === null ? 'sin dato previo' : `${delta(v)} %`) },
+    ]}
+    filas={trends}
+    pie="Fuente: Google Trends (pytrends, no oficial) · elaboración propia."
+  />
+</Base>

@@ -1,0 +1,72 @@
+---
+import Base from '../../layouts/Base.astro';
+import Tabla from '../../components/Tabla.astro';
+import Figura from '../../components/Figura.astro';
+import { leer, num, delta } from '../../lib/datos.js';
+
+const todas = leer('licencias_nacional');
+const csd = todas.filter((r) => r.fuente === 'csd');
+const fep = todas.filter((r) => r.fuente === 'fep' && r.sexo === 'total');
+const total = (a) => csd.find((r) => r.anio === a && r.sexo === 'total')?.licencias;
+const sexo = (a, s) => csd.find((r) => r.anio === a && r.sexo === s)?.licencias;
+
+const anios = csd.filter((r) => r.sexo === 'total').map((r) => r.anio);
+const ultimo = Math.max(...anios);
+const primero = 2000;
+const factor = total(ultimo) / total(primero);
+const pctMujeres = (sexo(ultimo, 'F') / total(ultimo)) * 100;
+const enVivo = fep.find((r) => r.anio > ultimo);
+
+const filas = anios
+  .filter((a) => a >= 2013)
+  .map((a) => ({
+    anio: a,
+    total: total(a),
+    variacion: total(a - 1) ? ((total(a) - total(a - 1)) / total(a - 1)) * 100 : null,
+    m: sexo(a, 'M'),
+    f: sexo(a, 'F'),
+  }));
+---
+<Base titulo="Licencias de pádel en España" descripcion={`Evolución de las licencias federativas de pádel en España desde el año ${primero}: de ${num(total(primero))} a ${num(total(ultimo))} en ${ultimo}.`}>
+  <article class="prose">
+    <div class="pagina-titulo">
+      <div class="pildora">Guía</div>
+      <h1>Licencias de pádel en España: evolución {primero}–{ultimo}</h1>
+      <p class="subtitulo">Cuántas personas tienen licencia federativa de pádel, año a año, según la estadística oficial de deporte federado.</p>
+    </div>
+
+    <h2>La respuesta corta</h2>
+    <p>
+      En {primero} había <strong>{num(total(primero))} licencias de pádel</strong> en España. En {ultimo}, <strong>{num(total(ultimo))}</strong>: {num(factor, 1)} veces más. De ellas, el {num(pctMujeres, 1)} % son de mujeres.
+    </p>
+    <Figura archivo="licencias_nacional_16x9.png" alt={`Licencias federativas de pádel en España desde ${primero}`} />
+
+    <h2>Año a año desde 2013</h2>
+    <Tabla
+      columnas={[
+        { k: 'anio', etiqueta: 'Año' },
+        { k: 'total', etiqueta: 'Licencias', num: true, f: (v) => num(v) },
+        { k: 'variacion', etiqueta: 'Variación anual', num: true, f: (v) => (v === null ? '—' : `${delta(v, 1)} %`) },
+        { k: 'm', etiqueta: 'Hombres', num: true, f: (v) => (v ? num(v) : '—') },
+        { k: 'f', etiqueta: 'Mujeres', num: true, f: (v) => (v ? num(v) : '—') },
+      ]}
+      filas={filas}
+      pie="Fuente: CSD, Estadística de Deporte Federado · elaboración propia. El desglose por sexo no incluye las licencias sin sexo especificado, por eso hombres + mujeres pueden no sumar el total."
+    />
+
+    {enVivo && (
+      <>
+        <h2>El año en curso</h2>
+        <p>La Federación Española de Pádel publica un contador en vivo: a fecha de esta página figuran <strong>{num(enVivo.licencias)} licencias en {enVivo.anio}</strong>. Es un dato provisional que se actualiza a lo largo del año y no es comparable con un cierre anual hasta que este termine.</p>
+      </>
+    )}
+
+    <h2>Qué mide y qué no</h2>
+    <ul>
+      <li><strong>Licencias, no jugadores.</strong> Solo cuentan quienes están federados. Quienes juegan al pádel sin licencia no aparecen aquí.</li>
+      <li><strong>Dos fuentes.</strong> El CSD y la FEP no coinciden exactamente en algunos años cerrados (por ejemplo, 2021). PadelDB las guarda por separado y no las mezcla; la tabla de arriba usa la del CSD.</li>
+      <li><strong>Retraso.</strong> El CSD publica cada cierre con aproximadamente un año de retraso.</li>
+    </ul>
+    <p>Más contexto en <a href="/mercado/#licencias">mercado</a>, datos completos en <a href="/datos/">descargas</a> y método en la <a href="/metodologia/">metodología</a>.</p>
+  </article>
+</Base>

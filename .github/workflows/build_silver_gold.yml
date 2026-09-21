@@ -94,14 +94,14 @@ jobs:
       - name: Gráfico de #RankingLunes a la cola
         run: python -m content.chart_factory.ranking_moves
 
-      - name: Export a la preview estática de site/ (provisional, no es Fase 4)
+      - name: Export de gold a site/public (export_web)
         run: python transform/export_web.py
 
-      - name: Commit de silver, gold, la cola y la preview de site/
+      - name: Commit de silver, gold, la cola y los ficheros de la web
         run: |
           git config user.name "padeldb-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add bronze/prizemoney bronze/matchresults silver gold queue site/data site/img
+          git add bronze/prizemoney bronze/matchresults silver gold queue site/public
           git diff --cached --quiet || git commit -m "build_silver_gold: $(date -u +%F)"
           for intento in 1 2 3 4 5; do
             git push && break

@@ -1,0 +1,22 @@
+---
+// Tabla de datos. `columnas`: [{ k, etiqueta, num?: boolean, f?: (valor, fila) => string, clase?: (valor, fila) => string }]
+const { titulo, columnas, filas, pie } = Astro.props;
+---
+<div class="tabla-wrap">
+  <table>
+    {titulo && <caption>{titulo}</caption>}
+    <thead>
+      <tr>{columnas.map((c) => <th scope="col" class:list={[{ num: c.num }]}>{c.etiqueta}</th>)}</tr>
+    </thead>
+    <tbody>
+      {filas.map((fila) => (
+        <tr>
+          {columnas.map((c) => (
+            <td class:list={[{ num: c.num }, c.clase?.(fila[c.k], fila)]}>{c.f ? c.f(fila[c.k], fila) : fila[c.k]}</td>
+          ))}
+        </tr>
+      ))}
+    </tbody>
+  </table>
+  {pie && <p class="pie-tabla">{pie}</p>}
+</div>

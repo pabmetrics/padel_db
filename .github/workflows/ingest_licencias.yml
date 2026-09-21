@@ -39,14 +39,14 @@ jobs:
       - name: Gold — licencias_nacional
         run: python transform/build_gold_licencias_nacional.py
 
-      - name: Export a la preview estática de site/
+      - name: Export de gold a site/public (export_web)
         run: python transform/export_web.py
 
       - name: Commit
         run: |
           git config user.name "padeldb-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add bronze/csd bronze/fep silver/fact_licencias gold/licencias_nacional site/data site/img
+          git add bronze/csd bronze/fep silver/fact_licencias gold/licencias_nacional site/public
           git diff --cached --quiet || git commit -m "ingest_licencias: $(date -u +%F)"
           for intento in 1 2 3 4 5; do
             git push && break
