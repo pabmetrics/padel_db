@@ -10,6 +10,7 @@ from content.copy_factory.copy_factory import (
     _formatear_numero_es,
     _numeros_en_texto,
     _numeros_en_values,
+    _quitar_valla_markdown,
 )
 
 
@@ -43,3 +44,9 @@ def test_numero_inventado_no_esta_en_values():
     numeros_texto = _numeros_en_texto("Sube +20 puestos hasta el 99")
     inventados = {n for n in numeros_texto if len(n) > 1 and n not in numeros_validos}
     assert inventados == {"20"}
+
+
+def test_quitar_valla_markdown():
+    assert _quitar_valla_markdown('```json\n{"x": "hola"}\n```') == '{"x": "hola"}'
+    assert _quitar_valla_markdown('```\n{"x": "hola"}\n```') == '{"x": "hola"}'
+    assert _quitar_valla_markdown('{"x": "hola"}') == '{"x": "hola"}'

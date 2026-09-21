@@ -52,15 +52,40 @@ que habría hecho que la comprobación de cifras rechazara un texto
 correcto que citara `27,8` tal cual. Corregido antes de que dependiera de
 una llamada real a la API para descubrirlo.
 
-## Qué falta para tenerlo funcionando de verdad
+## Probado en vivo (21/09/2026) — dos bugs reales encontrados a la primera
 
-- **Clave de API de Anthropic**: pendiente de que el usuario la añada a
-  `.env` en local (`ANTHROPIC_API_KEY=sk-ant-...`, ya en `.gitignore`) para
-  poder probar `generar_texto()` con una llamada real, y como secreto de
-  GitHub Actions (`ANTHROPIC_API_KEY`) para que corra `content_candidates.yml`
-  en producción. Sin la clave, `_cliente()` falla con un `RuntimeError`
-  explícito en vez de un error críptico — se ha comprobado que ese camino
-  funciona, pero no se ha hecho todavía ninguna llamada real al modelo.
+El usuario añadió `ANTHROPIC_API_KEY` a `.env` y se hizo la primera
+llamada real. Dos fallos que el prompt por sí solo no evitaba, cazados por
+las comprobaciones posteriores a la respuesta en vez de dejarlos pasar a
+la cola:
+
+- **El modelo envolvió el JSON en una valla de código** (` ```json ... ``` `)
+  pese a que el prompt pide "solo un JSON, sin texto fuera" — `json.loads()`
+  fallaba con la valla incluida. Corregido con `_quitar_valla_markdown()`,
+  que la quita antes de parsear en vez de confiar en que el modelo nunca
+  la añada.
+- **El texto de Instagram inventó una cifra que no estaba en los datos**
+  ("salta desde el 114 al 99") — el `posicion` real de origen no se pasa
+  (solo el `delta_puestos` y la `posicion` final), así que el modelo
+  "reconstruyó" de dónde venía sin que ese dato estuviera en `values`. La
+  comprobación de cifras solo se aplicaba al texto de X, no al de
+  Instagram — corregido para comprobar los dos. La causa de fondo (que el
+  modelo tenga la tentación de inventar la posición de origen) también
+  apunta a que `values` podría incluir `posicion_anterior` en el futuro
+  si esa cifra resulta útil para el texto — de momento se prefiere no
+  dársela a que la invente.
+- **Falso positivo al arreglar lo anterior**: la fecha de `fuente_txt`
+  ("2026-09-16") se marcaba como cifra inventada, porque la comprobación
+  solo miraba `values`, no la propia fuente que el texto cita tal cual.
+  Corregido: los números válidos son los de `values` **y** los que ya
+  aparecen en `fuente_txt`.
+
+Con las tres correcciones, una llamada real completa (gráfico + texto +
+cola) para #RankingLunes produjo un candidato válido en
+`queue/<fecha>/candidates.json`, con el esquema exacto de doc 03 §6.
+
+## Qué falta
+
 - **Solo 2 series integradas**: `candidatos.py` genera candidatos para
   `#RankingLunes` y `Cierre de torneo` (ganancias) — las mismas dos que se
   migraron primero en `chart_factory`. Para el resto de series (perfil,

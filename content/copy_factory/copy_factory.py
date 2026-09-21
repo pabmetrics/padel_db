@@ -112,6 +112,18 @@ def _numeros_en_texto(texto: str) -> set[str]:
     return set(re.findall(r"\d[\d.,]*\d|\d", texto))
 
 
+def _quitar_valla_markdown(texto: str) -> str:
+    """El modelo a veces envuelve el JSON en una valla de código markdown
+    (` ```json ... ``` `) pese a que el prompt pide "solo un JSON, sin
+    texto fuera" — se ha visto en la primera llamada real. Se quita antes
+    de parsear en vez de depender de que el modelo nunca lo haga."""
+    texto = texto.strip()
+    if texto.startswith("```"):
+        texto = re.sub(r"^```[a-zA-Z]*\n?", "", texto)
+        texto = re.sub(r"\n?```$", "", texto)
+    return texto.strip()
+
+
 def generar_texto(serie: str, values: dict[str, Any], fuente_txt: str) -> dict[str, str]:
     """Genera los textos de X e Instagram para un candidato. Lanza
     `ValueError` si el resultado no pasa las comprobaciones duras — mejor
@@ -128,7 +140,7 @@ def generar_texto(serie: str, values: dict[str, Any], fuente_txt: str) -> dict[s
         system=PROMPT_SISTEMA,
         messages=[{"role": "user", "content": mensaje}],
     )
-    texto_bruto = respuesta.content[0].text.strip()
+    texto_bruto = _quitar_valla_markdown(respuesta.content[0].text.strip())
     try:
         salida = json.loads(texto_bruto)
     except json.JSONDecodeError as e:
@@ -141,9 +153,15 @@ def generar_texto(serie: str, values: dict[str, Any], fuente_txt: str) -> dict[s
     if len(texto_x) > LIMITE_DURO_X:
         raise ValueError(f"Texto de X por encima del límite real de X ({len(texto_x)} > {LIMITE_DURO_X} caracteres)")
 
-    numeros_validos = _numeros_en_values(values_norm)
-    for numero in _numeros_en_texto(texto_x):
-        if len(numero) > 1 and numero not in numeros_validos:
-            raise ValueError(f"El texto de X contiene una cifra que no está en los datos: {numero!r} (datos: {values_norm})")
+    # Los números válidos son los de `values` y también los que ya
+    # aparecen en `fuente_txt` (p. ej. la fecha, "2026-09-16"): el texto
+    # cita la fuente tal cual, así que esas cifras no son una invención.
+    numeros_validos = _numeros_en_values(values_norm) | _numeros_en_texto(fuente_txt)
+    for nombre_texto, texto in (("X", texto_x), ("Instagram", texto_ig)):
+        for numero in _numeros_en_texto(texto):
+            if len(numero) > 1 and numero not in numeros_validos:
+                raise ValueError(
+                    f"El texto de {nombre_texto} contiene una cifra que no está en los datos: {numero!r} (datos: {values_norm})"
+                )
 
     return {"x": texto_x, "instagram": texto_ig}
