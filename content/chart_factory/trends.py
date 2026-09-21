@@ -88,7 +88,7 @@ def _dibujar(top: list[dict], fecha: str, tamano: tuple[float, float], tema: Tem
     return fig
 
 
-def build() -> list[Path]:
+def build() -> dict:
     dt_dir = _latest_dir(GOLD_ROOT)
     fecha = dt_dir.name.removeprefix("fecha_dato=")
     rows = json.loads((dt_dir / "data.json").read_text(encoding="utf-8"))
@@ -104,16 +104,29 @@ def build() -> list[Path]:
     out_dir.mkdir(parents=True, exist_ok=True)
     registro = siguiente_registro()
 
-    salidas = []
+    salidas: dict[str, Path] = {}
     for tema, tamano, sufijo in (("claro", TAMANO_X, "16x9"), ("claro", TAMANO_IG, "4x5")):
         fig = _dibujar(top, fecha, tamano, tema, registro)
         out_file = out_dir / f"trends_geo_{sufijo}.png"
         guardar_figura(fig, out_file, tema)
         plt.close(fig)
-        salidas.append(out_file)
+        salidas[sufijo] = out_file
         print(f"{registro} {out_file.relative_to(REPO_ROOT)}")
 
-    return salidas
+    lider = top[0]
+    return {
+        "registro": registro,
+        "serie": "#MapaDelPádel",
+        "tabla_gold": "trends_geo",
+        "fecha_dato": fecha,
+        "values": {
+            "pais": lider["pais"],
+            "variacion_pct": lider["variacion_pct"],
+        },
+        "fuente_txt": f"{FUENTE_TXT} — {fecha}",
+        "png_16x9": salidas["16x9"],
+        "png_4x5": salidas["4x5"],
+    }
 
 
 if __name__ == "__main__":

@@ -77,7 +77,7 @@ def _dibujar(fip_pistas: float, playtomic_pistas: float, fecha: str, tamano: tup
     return fig
 
 
-def build() -> list[Path]:
+def build() -> dict:
     dt_dir = _latest_dir(GOLD_ROOT)
     fecha = dt_dir.name.removeprefix("fecha_dato=")
     rows = json.loads((dt_dir / "data.json").read_text(encoding="utf-8"))
@@ -94,16 +94,28 @@ def build() -> list[Path]:
     out_dir.mkdir(parents=True, exist_ok=True)
     registro = siguiente_registro()
 
-    salidas = []
+    salidas: dict[str, Path] = {}
     for tema, tamano, sufijo in (("claro", TAMANO_X, "16x9"), ("claro", TAMANO_IG, "4x5")):
         fig = _dibujar(fip_row["valor"], playtomic_pistas, fecha, tamano, tema, registro)
         out_file = out_dir / f"mercado_pistas_mundo_{sufijo}.png"
         guardar_figura(fig, out_file, tema)
         plt.close(fig)
-        salidas.append(out_file)
+        salidas[sufijo] = out_file
         print(f"{registro} {out_file.relative_to(REPO_ROOT)}")
 
-    return salidas
+    return {
+        "registro": registro,
+        "serie": "Pádel Mercado",
+        "tabla_gold": "mercado_pais",
+        "fecha_dato": fecha,
+        "values": {
+            "pistas_fip": fip_row["valor"],
+            "pistas_playtomic": playtomic_pistas,
+        },
+        "fuente_txt": f"FIP World Padel Report 2025 + Playtomic Global Padel Report 2026 · elaboración propia — {fecha}",
+        "png_16x9": salidas["16x9"],
+        "png_4x5": salidas["4x5"],
+    }
 
 
 if __name__ == "__main__":

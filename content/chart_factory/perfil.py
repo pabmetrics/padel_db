@@ -95,7 +95,7 @@ def _dibujar(conteo: list[tuple[str, int]], sexo: str, fecha: str, tamano: tuple
     return fig
 
 
-def build(sexo: str = "M") -> list[Path]:
+def build(sexo: str = "M") -> dict:
     dt_dir = _latest_dir(GOLD_ROOT)
     rows = json.loads((dt_dir / "data.json").read_text(encoding="utf-8"))
     fecha = max(r["fecha_dato"] for r in rows)
@@ -109,16 +109,31 @@ def build(sexo: str = "M") -> list[Path]:
     out_dir.mkdir(parents=True, exist_ok=True)
     registro = siguiente_registro()
 
-    salidas = []
+    salidas: dict[str, Path] = {}
     for tema, tamano, sufijo in (("claro", TAMANO_X, "16x9"), ("claro", TAMANO_IG, "4x5")):
         fig = _dibujar(conteo, sexo, fecha, tamano, tema, registro)
         out_file = out_dir / f"perfil_top100_{sexo.lower()}_{sufijo}.png"
         guardar_figura(fig, out_file, tema)
         plt.close(fig)
-        salidas.append(out_file)
+        salidas[sufijo] = out_file
         print(f"{registro} {out_file.relative_to(REPO_ROOT)}")
 
-    return salidas
+    lider_pais, lider_n = conteo[0]
+    sexo_txt = "masculino" if sexo == "M" else "femenino"
+    return {
+        "registro": registro,
+        "serie": "Perfil del top 100",
+        "tabla_gold": "perfil_top100",
+        "fecha_dato": fecha,
+        "values": {
+            "pais": NOMBRE_PAIS.get(lider_pais, lider_pais),
+            "n_jugadores": lider_n,
+            "circuito": sexo_txt,
+        },
+        "fuente_txt": f"{FUENTE_TXT} — {fecha}",
+        "png_16x9": salidas["16x9"],
+        "png_4x5": salidas["4x5"],
+    }
 
 
 if __name__ == "__main__":

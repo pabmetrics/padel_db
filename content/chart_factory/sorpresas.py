@@ -84,7 +84,7 @@ def _dibujar(top: list[dict], categoria: str, fecha: str, tamano: tuple[float, f
     return fig
 
 
-def build(categoria: str = "men") -> list[Path]:
+def build(categoria: str = "men") -> dict:
     dt_dir = _latest_dir(GOLD_ROOT)
     fecha = dt_dir.name.removeprefix("fecha_dato=")
     rows = json.loads((dt_dir / "data.json").read_text(encoding="utf-8"))
@@ -100,16 +100,35 @@ def build(categoria: str = "men") -> list[Path]:
     out_dir.mkdir(parents=True, exist_ok=True)
     registro = siguiente_registro()
 
-    salidas = []
+    salidas: dict[str, Path] = {}
     for tema, tamano, sufijo in (("claro", TAMANO_X, "16x9"), ("claro", TAMANO_IG, "4x5")):
         fig = _dibujar(top, categoria, fecha, tamano, tema, registro)
         out_file = out_dir / f"torneo_sorpresas_{categoria}_{sufijo}.png"
         guardar_figura(fig, out_file, tema)
         plt.close(fig)
-        salidas.append(out_file)
+        salidas[sufijo] = out_file
         print(f"{registro} {out_file.relative_to(REPO_ROOT)}")
 
-    return salidas
+    lider = top[0]
+    cat_txt = "masculino" if categoria == "men" else "femenino"
+    return {
+        "registro": registro,
+        "serie": "El torneo en datos",
+        "tabla_gold": "torneo_sorpresas",
+        "fecha_dato": fecha,
+        "values": {
+            "equipo_ganador": lider["equipo_ganador"],
+            "semilla_ganador": lider["semilla_ganador"],
+            "equipo_perdedor": lider["equipo_perdedor"],
+            "semilla_perdedor": lider["semilla_perdedor"],
+            "diferencia_semillas": lider["diferencia_semillas"],
+            "torneo": lider["torneo_nombre"],
+            "circuito": cat_txt,
+        },
+        "fuente_txt": f"{FUENTE_TXT} — {fecha}",
+        "png_16x9": salidas["16x9"],
+        "png_4x5": salidas["4x5"],
+    }
 
 
 if __name__ == "__main__":

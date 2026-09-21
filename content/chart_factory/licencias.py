@@ -111,7 +111,7 @@ def _dibujar(serie_csd: list[dict], punto_fep: dict | None, fecha: str, tamano: 
     return fig
 
 
-def build() -> list[Path]:
+def build() -> dict:
     dt_dir = _latest_dir(GOLD_ROOT)
     fecha = dt_dir.name.removeprefix("fecha_dato=")
     rows = json.loads((dt_dir / "data.json").read_text(encoding="utf-8"))
@@ -135,16 +135,37 @@ def build() -> list[Path]:
     out_dir.mkdir(parents=True, exist_ok=True)
     registro = siguiente_registro()
 
-    salidas = []
+    salidas: dict[str, Path] = {}
     for tema, tamano, sufijo in (("claro", TAMANO_X, "16x9"), ("claro", TAMANO_IG, "4x5")):
         fig = _dibujar(serie_csd, punto_fep, fecha, tamano, tema, registro)
         out_file = out_dir / f"licencias_nacional_{sufijo}.png"
         guardar_figura(fig, out_file, tema)
         plt.close(fig)
-        salidas.append(out_file)
+        salidas[sufijo] = out_file
         print(f"{registro} {out_file.relative_to(REPO_ROOT)}")
 
-    return salidas
+    primero, ultimo = serie_csd[0], serie_csd[-1]
+    fuente_txt = f"{FUENTE_TXT_CSD}" + (f" + {FUENTE_TXT_FEP}" if punto_fep else "") + f" · elaboración propia — {fecha}"
+    values = {
+        "licencias_primero": primero["licencias"],
+        "anio_primero": primero["anio"],
+        "licencias_ultimo": ultimo["licencias"],
+        "anio_ultimo": ultimo["anio"],
+    }
+    if punto_fep:
+        values["licencias_en_vivo"] = punto_fep["licencias"]
+        values["anio_en_vivo"] = punto_fep["anio"]
+
+    return {
+        "registro": registro,
+        "serie": "Pádel Mercado",
+        "tabla_gold": "licencias_nacional",
+        "fecha_dato": fecha,
+        "values": values,
+        "fuente_txt": fuente_txt,
+        "png_16x9": salidas["16x9"],
+        "png_4x5": salidas["4x5"],
+    }
 
 
 if __name__ == "__main__":

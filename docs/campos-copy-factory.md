@@ -84,16 +84,21 @@ Con las tres correcciones, una llamada real completa (gráfico + texto +
 cola) para #RankingLunes produjo un candidato válido en
 `queue/<fecha>/candidates.json`, con el esquema exacto de doc 03 §6.
 
+## Las 10 series, integradas
+
+`candidatos.py` ya genera candidatos para las 10 tablas gold actuales.
+Cada `build()` de `chart_factory` devuelve un `dict` con `registro`,
+`serie`, `tabla_gold`, `fecha_dato`, `values`, `fuente_txt`, `png_16x9` y
+`png_4x5` en vez de solo una lista de rutas — mismo cambio aplicado a las
+9 series que faltaban, siguiendo el patrón de `ranking_moves.py`. Como no
+todas las series usan la misma convención de parámetro (`sexo` "M"/"F" en
+unas, `categoria` "men"/"women" en otras, ninguno en las de ámbito único
+como pistas/licencias/mercado/trends), `candidatos.py` separa
+`GENERADORES_CON_PARAMETRO` de `GENERADORES_SIN_PARAMETRO` en vez de
+forzar una única firma común.
+
 ## Qué falta
 
-- **Solo 2 series integradas**: `candidatos.py` genera candidatos para
-  `#RankingLunes` y `Cierre de torneo` (ganancias) — las mismas dos que se
-  migraron primero en `chart_factory`. Para el resto de series (perfil,
-  forma reciente, parejas, h2h, sorpresas, pistas, licencias, mercado,
-  trends) hace falta que sus `build()` devuelvan también los metadatos del
-  candidato (`registro`, `serie`, `tabla_gold`, `fecha_dato`, `values`,
-  `fuente_txt`, `png_16x9`, `png_4x5`) en vez de una lista de rutas —
-  mismo patrón ya aplicado a `ranking_moves.py` y `ganancias.py`.
 - **`png_16x9`/`png_4x5` como ruta de repo, no URL pública**: doc 03 §6
   describe `https://padeldb.es/cola/...`, que solo existe cuando haya web
   definitiva desplegada (Fase 4, migración a Astro). Hasta entonces, la

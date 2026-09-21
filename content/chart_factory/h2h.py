@@ -87,7 +87,7 @@ def _dibujar(top: list[dict], categoria: str, fecha: str, tamano: tuple[float, f
     return fig
 
 
-def build(categoria: str = "men") -> list[Path]:
+def build(categoria: str = "men") -> dict:
     dt_dir = _latest_dir(GOLD_ROOT)
     fecha = dt_dir.name.removeprefix("fecha_dato=")
     rows = json.loads((dt_dir / "data.json").read_text(encoding="utf-8"))
@@ -103,16 +103,34 @@ def build(categoria: str = "men") -> list[Path]:
     out_dir.mkdir(parents=True, exist_ok=True)
     registro = siguiente_registro()
 
-    salidas = []
+    salidas: dict[str, Path] = {}
     for tema, tamano, sufijo in (("claro", TAMANO_X, "16x9"), ("claro", TAMANO_IG, "4x5")):
         fig = _dibujar(top, categoria, fecha, tamano, tema, registro)
         out_file = out_dir / f"h2h_{categoria}_{sufijo}.png"
         guardar_figura(fig, out_file, tema)
         plt.close(fig)
-        salidas.append(out_file)
+        salidas[sufijo] = out_file
         print(f"{registro} {out_file.relative_to(REPO_ROOT)}")
 
-    return salidas
+    lider = top[0]
+    cat_txt = "masculino" if categoria == "men" else "femenino"
+    return {
+        "registro": registro,
+        "serie": "Cara a cara",
+        "tabla_gold": "h2h",
+        "fecha_dato": fecha,
+        "values": {
+            "pareja_1": lider["pareja_1"],
+            "pareja_2": lider["pareja_2"],
+            "victorias_pareja_1": lider["victorias_pareja_1"],
+            "victorias_pareja_2": lider["victorias_pareja_2"],
+            "total_enfrentamientos": lider["total_enfrentamientos"],
+            "circuito": cat_txt,
+        },
+        "fuente_txt": f"{FUENTE_TXT} — {fecha}",
+        "png_16x9": salidas["16x9"],
+        "png_4x5": salidas["4x5"],
+    }
 
 
 if __name__ == "__main__":

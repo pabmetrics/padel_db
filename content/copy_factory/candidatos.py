@@ -15,16 +15,44 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Callable
 
-from content.chart_factory import ganancias, ranking_moves
+from content.chart_factory import (
+    forma_reciente,
+    ganancias,
+    h2h,
+    licencias,
+    mercado,
+    parejas,
+    perfil,
+    pistas,
+    ranking_moves,
+    sorpresas,
+    trends,
+)
 from content.copy_factory.cola import anadir_candidato
 from content.copy_factory.copy_factory import generar_texto
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 
-# Un generador por serie: build(sexo) -> metadatos del candidato (doc 03 §6).
-GENERADORES: dict[str, Callable[[str], dict]] = {
-    "ranking_moves": ranking_moves.build,
-    "ganancias": ganancias.build,
+# Generadores que producen un candidato por cada valor de un parámetro
+# (sexo "M"/"F", o categoría "men"/"women" — cada `build()` usa el nombre
+# que ya tenía antes de integrarse aquí, no se ha unificado la convención
+# de chart_factory solo para esto).
+GENERADORES_CON_PARAMETRO: dict[str, tuple[Callable[[str], dict], tuple[str, str]]] = {
+    "ranking_moves": (ranking_moves.build, ("M", "F")),
+    "ganancias": (ganancias.build, ("M", "F")),
+    "perfil": (perfil.build, ("M", "F")),
+    "forma_reciente": (forma_reciente.build, ("M", "F")),
+    "parejas": (parejas.build, ("men", "women")),
+    "h2h": (h2h.build, ("men", "women")),
+    "sorpresas": (sorpresas.build, ("men", "women")),
+}
+
+# Generadores de una sola serie, sin distinción de sexo/categoría.
+GENERADORES_SIN_PARAMETRO: dict[str, Callable[[], dict]] = {
+    "pistas": pistas.build,
+    "licencias": licencias.build,
+    "mercado": mercado.build,
+    "trends": trends.build,
 }
 
 
@@ -32,9 +60,7 @@ def _ruta_relativa(p: Path) -> str:
     return str(p.relative_to(REPO_ROOT)).replace("\\", "/")
 
 
-def generar_candidato(generador: Callable[[str], dict], sexo: str) -> Path:
-    metadatos = generador(sexo)
-
+def _escribir_candidato(metadatos: dict) -> Path:
     textos = generar_texto(metadatos["serie"], metadatos["values"], metadatos["fuente_txt"])
 
     candidato = {
@@ -53,18 +79,32 @@ def generar_candidato(generador: Callable[[str], dict], sexo: str) -> Path:
     }
 
     out_file = anadir_candidato(candidato)
-    print(f"{metadatos['registro']} {metadatos['serie']} ({sexo}) -> {out_file.relative_to(REPO_ROOT)}")
+    print(f"{metadatos['registro']} {metadatos['serie']} -> {out_file.relative_to(REPO_ROOT)}")
     print(f"  X: {textos['x']}")
     return out_file
 
 
+def generar_candidato(generador: Callable[[str], dict], parametro: str) -> Path:
+    return _escribir_candidato(generador(parametro))
+
+
+def generar_candidato_simple(generador: Callable[[], dict]) -> Path:
+    return _escribir_candidato(generador())
+
+
 def main() -> None:
-    for generador in GENERADORES.values():
-        for sexo in ("M", "F"):
+    for nombre, (generador, valores) in GENERADORES_CON_PARAMETRO.items():
+        for valor in valores:
             try:
-                generar_candidato(generador, sexo)
+                generar_candidato(generador, valor)
             except ValueError as e:
-                print(f"  descartado ({sexo}): {e}")
+                print(f"  descartado ({nombre}, {valor}): {e}")
+
+    for nombre, generador in GENERADORES_SIN_PARAMETRO.items():
+        try:
+            generar_candidato_simple(generador)
+        except ValueError as e:
+            print(f"  descartado ({nombre}): {e}")
 
 
 if __name__ == "__main__":
