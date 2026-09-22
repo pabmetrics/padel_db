@@ -1,0 +1,42 @@
+---
+// Formulario de newsletter (doc 02 §9). Buttondown expone un endpoint de
+// suscripción que acepta POST directo desde un <form> normal, sin JS ni
+// backend propio — encaja con el resto de la web (estática, 0 €).
+const BUTTONDOWN_USERNAME = 'padeldbmedia';
+const activo = BUTTONDOWN_USERNAME !== '';
+---
+{activo ? (
+  <form
+    class="newsletter"
+    action={`https://buttondown.com/api/emails/embed-subscribe/${BUTTONDOWN_USERNAME}`}
+    method="post"
+    target="popupwindow"
+    onsubmit={`window.open('https://buttondown.com/${BUTTONDOWN_USERNAME}', 'popupwindow')`}
+  >
+    <label for="bd-email">El mes en datos, en tu correo</label>
+    <div class="newsletter-fila">
+      <input id="bd-email" type="email" name="email" placeholder="tu@email.com" required />
+      <button type="submit">Suscribirme</button>
+    </div>
+    <p class="newsletter-nota">Un resumen mensual. Sin spam, baja cuando quieras.</p>
+  </form>
+) : (
+  <p class="newsletter-nota">Newsletter en preparación.</p>
+)}
+
+<style>
+  .newsletter { max-width: 32rem; }
+  .newsletter label { display: block; font-family: var(--font-title); font-weight: 500; margin-bottom: 0.5rem; }
+  .newsletter-fila { display: flex; gap: 8px; flex-wrap: wrap; }
+  .newsletter-fila input {
+    flex: 1 1 14rem; min-width: 0; padding: 10px 12px;
+    border: 1px solid var(--linea); background: var(--superficie); color: var(--texto);
+    font-family: var(--font-body); font-size: 0.95rem;
+  }
+  .newsletter-fila button {
+    padding: 10px 18px; border: none; background: var(--cristal); color: var(--pista);
+    font-family: var(--font-title); font-weight: 500; cursor: pointer;
+  }
+  .newsletter-fila button:hover { background: var(--acento); }
+  .newsletter-nota { font-size: 0.82rem; color: var(--texto-suave); margin-top: 0.4rem; }
+</style>

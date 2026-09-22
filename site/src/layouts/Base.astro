@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import Newsletter from '../components/Newsletter.astro';
 
 // `minimo`: landing sin navegación ni enlaces (mientras se publican las secciones poco a poco).
 const { titulo, descripcion = 'La base de datos abierta del pádel, y un gráfico al día que sale de ella.', noindex = false, minimo = false } = Astro.props;
@@ -34,6 +35,8 @@ const canonica = new URL(ruta, Astro.site).href;
     <meta property="og:site_name" content="PadelDB" />
     <meta name="theme-color" content="#0F3463" />
     {noindex && <meta name="robots" content="noindex" />}
+    <!-- Analítica: Cloudflare Web Analytics, inyectada automáticamente en el borde de red
+         (Automatic setup, sin script propio) porque el dominio está proxied por Cloudflare. -->
     <link rel="preload" href="/fonts/SpaceGrotesk-Medium.ttf" as="font" type="font/ttf" crossorigin />
   </head>
   <body>
@@ -61,19 +64,23 @@ const canonica = new URL(ruta, Astro.site).href;
     <footer class="footer">
       <div class="wrap">
         {minimo ? (
-          <div><strong>PadelDB</strong> · El pádel, en datos.</div>
+          <>
+            <div><strong>PadelDB</strong> · El pádel, en datos.</div>
+            <Newsletter />
+          </>
         ) : (
           <>
             <div>
               <strong>PadelDB</strong> · El pádel, en datos.<br />
               Datos derivados con licencia <a href="https://creativecommons.org/licenses/by/4.0/deed.es">CC BY 4.0</a>: cita la fuente original y «PadelDB».
+              <div>
+                <a href="/metodologia/">Metodología y fuentes</a> ·
+                <a href="/metodologia/#correcciones">Política de correcciones</a> ·
+                <a href="/datos/">Descargas</a> ·
+                <a href="/sobre/">Sobre</a>
+              </div>
             </div>
-            <div>
-              <a href="/metodologia/">Metodología y fuentes</a> ·
-              <a href="/metodologia/#correcciones">Política de correcciones</a> ·
-              <a href="/datos/">Descargas</a> ·
-              <a href="/sobre/">Sobre</a>
-            </div>
+            <Newsletter />
           </>
         )}
       </div>
