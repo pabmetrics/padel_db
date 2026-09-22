@@ -1,0 +1,56 @@
+name: ingest_metrics
+
+on:
+  schedule:
+    # Domingo, antes del "lote del domingo" (doc 03 §5.3) para que la
+    # persona ya tenga rendimiento_posts fresco al abrir esa sesión.
+    - cron: "30 6 * * 0"
+  workflow_dispatch: {}
+
+jobs:
+  ingest_metrics:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Instalar dependencias
+        run: pip install -r requirements.txt
+
+      - name: Ingesta — tráfico web (Cloudflare Web Analytics)
+        # Sin secretos configurados todavía (falta CLOUDFLARE_API_TOKEN/
+        # CLOUDFLARE_ZONE_TAG): no bloquea el resto del job. La parte de X
+        # (CSV manual) sigue funcionando igual sin esto.
+        continue-on-error: true
+        run: python -m ingest.webanalytics.cloudflare
+
+      - name: Silver — fact_rendimiento_web
+        run: python transform/build_fact_rendimiento_web.py
+
+      - name: Silver — fact_rendimiento_x
+        run: python transform/build_fact_rendimiento_x.py
+
+      - name: Tests de calidad
+        run: python -m pytest tests/ -v
+
+      - name: Gold — rendimiento_posts
+        run: python transform/build_gold_rendimiento_posts.py
+
+      - name: Commit
+        run: |
+          git config user.name "padeldb-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add bronze/webanalytics silver/fact_rendimiento_web silver/fact_rendimiento_x silver/_reconciliacion gold/rendimiento_posts
+          git diff --cached --quiet || git commit -m "ingest_metrics: $(date -u +%F)"
+          for intento in 1 2 3 4 5; do
+            git push && break
+            echo "push rechazado (otro job empujo a la vez), reintento con rebase ($intento/5)..."
+            git fetch origin main
+            git rebase origin/main
+            sleep $(( (RANDOM % 10) + 1 ))
+          done
