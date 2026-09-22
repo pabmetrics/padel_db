@@ -18,7 +18,8 @@ sea igual en todos los gráficos:
   ficheros viven en `fonts/` (no en el repo de Google Fonts, para no
   depender de que esté disponible en cada máquina/runner).
 - **Píldora de serie**, título+subtítulo, píldora "DB", pie con fuente y
-  `@padeldb`, y número de registro correlativo — los 6 elementos fijos de
+  `@padeldb_` (handle real en X desde el 22/09/2026; `@padeldb` no estaba
+  libre), y número de registro correlativo — los 6 elementos fijos de
   la plantilla (doc 02 §1.2, puntos 1-3 y 6).
 - **Dos variantes de tema** (claro/oscuro) y **dos tamaños de exportación**
   (16:9 para X, 4:5 para Instagram) — puntos 7 y 8 de la plantilla.

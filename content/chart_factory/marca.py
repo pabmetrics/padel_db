@@ -1,7 +1,7 @@
 """Plantilla de marca compartida por todo `chart_factory` (doc 02 §1.2).
 
 Centraliza lo que todas las series tienen que respetar igual: paleta,
-tipografía, píldora de serie, pie con fuente y @padeldb, número de
+tipografía, píldora de serie, pie con fuente y @padeldb_, número de
 registro correlativo, y las dos variantes (clara/oscura) y dos tamaños
 (1600×900 para X, 1080×1350 para Instagram) que pide el doc.
 
@@ -383,7 +383,8 @@ def pie_de_grafico(fig: plt.Figure, fuente_txt: str, tema: Tema, registro: str |
     """Pie fijo (doc 02 §1.2, punto 6): número de registro (discreto, junto
     a la fuente en vez de arriba a la derecha como marca el doc — se
     mantiene el dato pero fuera del área del título, menos protagonismo),
-    fuente a la izquierda, hueco para el icono e @padeldb a la derecha. El
+    fuente a la izquierda, hueco para el icono e @padeldb_ a la derecha
+    (handle real en X desde el 22/09/2026: @padeldb no estaba libre). El
     icono en sí no se dibuja aquí (ver `guardar_figura`): se compone con
     Pillow sobre el PNG ya guardado, en la posición `ICONO_X`/`ICONO_Y`."""
     colores = colores_tema(tema)
@@ -401,7 +402,7 @@ def pie_de_grafico(fig: plt.Figure, fuente_txt: str, tema: Tema, registro: str |
     fig.text(
         0.895,
         0.035,
-        "@padeldb",
+        "@padeldb_",
         transform=fig.transFigure,
         fontproperties=Fuentes.texto_medio(),
         fontsize=9.5,

@@ -3,7 +3,7 @@
 Primera serie migrada a la plantilla de marca completa de Fase 4
 (`content/chart_factory/marca.py`): tipografía real (Space Grotesk / IBM
 Plex), píldora de serie, número de registro correlativo, pie con fuente y
-@padeldb, y las dos variantes claras/oscuras en los dos tamaños de
+@padeldb_, y las dos variantes claras/oscuras en los dos tamaños de
 exportación (doc 02 §1.2).
 """
 

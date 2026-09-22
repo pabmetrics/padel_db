@@ -1,6 +1,6 @@
 # PadelDB — Arquitectura de datos y plan de montaje
 
-Versión 0.3 · septiembre 2026 · Documento vivo (actualizar en cada fase). Marca del proyecto: PadelDB (@padeldb); ver identidad completa en el documento hermano. La base de datos que describe este documento es, literalmente, el producto que da nombre a la marca: el export de gold es la sección pública de datos abiertos de la web.
+Versión 0.3 · septiembre 2026 · Documento vivo (actualizar en cada fase). Marca del proyecto: PadelDB (@padeldb_ en X; ver identidad completa en el documento hermano). La base de datos que describe este documento es, literalmente, el producto que da nombre a la marca: el export de gold es la sección pública de datos abiertos de la web.
 
 Documento hermano: `padel-datos-02-contenido.md` (estructura de contenido, canales y calendario). Las tablas **gold** de aquí son las que alimentan las series de contenido de allí.
 

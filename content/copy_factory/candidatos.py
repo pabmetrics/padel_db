@@ -111,17 +111,28 @@ def generar_candidato_simple(generador: Callable[[], dict]) -> Path:
     return _escribir_candidato(generador())
 
 
+SERIES_DISPONIBLES = sorted({*GENERADORES_CON_PARAMETRO, *GENERADORES_SIN_PARAMETRO})
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     parser.add_argument("--fecha", type=date.fromisoformat, default=date.today(),
                         help="día para el que se decide qué series tocan (por defecto, hoy)")
     parser.add_argument("--todas", action="store_true",
                         help="ignora el calendario y genera todas las series (solo para pruebas)")
+    parser.add_argument("--serie", action="append", choices=SERIES_DISPONIBLES, metavar="SERIE",
+                        help=f"genera solo esta serie (repetible), ignorando el calendario del día. "
+                             f"Opciones: {', '.join(SERIES_DISPONIBLES)}. Sigue pasando por copy_factory "
+                             f"y la cola igual que una generación normal (registro real, texto validado)")
     args = parser.parse_args(argv)
 
-    series = None if args.todas else series_del_dia(args.fecha, cargar_torneos())
-    if series is not None:
-        print(f"{args.fecha} ({args.fecha:%A}): series que tocan -> {sorted(series) or 'ninguna'}")
+    if args.serie:
+        series = set(args.serie)
+        print(f"series pedidas a mano (fuera de calendario): {sorted(series)}")
+    else:
+        series = None if args.todas else series_del_dia(args.fecha, cargar_torneos())
+        if series is not None:
+            print(f"{args.fecha} ({args.fecha:%A}): series que tocan -> {sorted(series) or 'ninguna'}")
 
     # Falla antes de dibujar nada: cada gráfico consume un número de registro.
     _cliente()

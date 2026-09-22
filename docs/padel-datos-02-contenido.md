@@ -10,7 +10,7 @@ Documento hermano: `padel-datos-01-arquitectura.md`. Cada serie de contenido de 
 
 ### 1.1 Marca
 
-- **Nombre:** PadelDB. Se escribe PadelDB en texto corrido y `padelDB` en el wordmark; nunca "Padel DB" con espacio ni "PadelDb". Handle único en todas las redes: @padeldb.
+- **Nombre:** PadelDB. Se escribe PadelDB en texto corrido y `padelDB` en el wordmark; nunca "Padel DB" con espacio ni "PadelDb". Handle objetivo en todas las redes: @padeldb. **En X no estaba libre**: la cuenta real es **@padeldb_** (confirmado 22/09/2026) — el fallback que ya preveía la sección 12 de este documento. El resto de redes (Instagram, Threads, Bluesky, LinkedIn) siguen pendientes de confirmar con @padeldb.
 - **Por qué:** DB es base de datos, la referencia técnica más directa que existe y la que cualquiera entiende sin explicación. Dice exactamente lo que hay detrás: una base de datos propia del pádel de la que sale un gráfico al día. Corto, igual en español y en inglés, y el handle más breve posible.
 - **Concepto:** la base de datos abierta del pádel, y un gráfico al día que sale de ella. Lo que todo el mundo discute y nadie cuantifica.
 - **Tagline:** "El pádel, en datos."
@@ -22,7 +22,7 @@ Documento hermano: `padel-datos-01-arquitectura.md`. Cada serie de contenido de 
 - **Comprobaciones hechas (14/09/2026):** GitHub: `padeldb` y `padel-db` libres (la página devuelve 404) y no hay repositorios con ese nombre. padeldb.com: registrado y aparcado, en venta en Spaceship por 25.000 $ (descartado comprarlo). padeldb.es, .net y .io: sin registros DNS, es decir, probablemente libres, pero hay que confirmarlo en el registrador. Handles @padeldb en X, Instagram, Threads y Bluesky: no aparece ningún perfil indexado con ese nombre, pero no se puede confirmar sin entrar en cada app.
 - **Pendiente antes de registrar nada:** confirmar @padeldb a mano en X, Instagram, Threads, Bluesky y LinkedIn; registrar padeldb.es como dominio principal (y .io o .app como respaldo si están libres); consultar el localizador de la OEPM y eSearch de EUIPO. Poner una alerta de vigilancia sobre padeldb.com por si baja de precio o caduca.
 - **Idioma:** texto en español; títulos y ejes de los gráficos en inglés cuando el dato sea internacional. Argentina, Italia, Suecia o EE. UU. leen gráficos, no hilos.
-- **Tono:** preciso, sobrio, con un punto de humor seco. Nunca opinión sobre jugadores: los datos hablan y la comunidad discute.
+- **Tono:** preciso y cercano, con un punto de humor seco — cálido en la forma, nunca en el juicio: la cercanía va en el ritmo y la construcción de la frase, nunca en calificar el dato o a las personas (ajustado 22/09/2026; antes "sobrio"). Cuando el dato lo sostiene, el post cierra con una pregunta concreta que invite al debate (ver "Recursos de texto" más abajo y la plantilla "Pregunta con dato" en §7) — no una pregunta vacía tipo "¿qué opinas?", sino una anclada en la cifra. Nunca opinión sobre jugadores: los datos hablan y la comunidad discute.
 
 ### 1.2 Identidad gráfica
 
@@ -75,7 +75,7 @@ Regla de oro: un solo color de énfasis por gráfico; el resto en gris pared. Cr
 3. Subtítulo con contexto y unidad.
 4. Área de dibujo en proporción 2:1 cuando sea posible; rejilla horizontal fina; sin leyenda con una o dos series (etiquetas directas sobre el dato).
 5. Un solo elemento destacado (cristal en claro, bola en oscuro).
-6. Pie fijo: fuente a la izquierda ("Fuente: FIP / Premier Padel · elaboración propia"), icono a 24 px y @padeldb a la derecha (píldora DB si el gráfico es pequeño).
+6. Pie fijo: fuente a la izquierda ("Fuente: FIP / Premier Padel · elaboración propia"), icono a 24 px y @padeldb_ a la derecha (píldora DB si el gráfico es pequeño).
 7. Dos versiones: clara (arena) para el día y oscura (pista) para "El torneo en datos" por la noche.
 8. Tamaños: 1600×900 para X, 1080×1350 para Instagram, SVG/Plotly para la web.
 
@@ -168,7 +168,7 @@ Cada serie tiene un formato visual fijo (mismo tipo de gráfico, misma posición
 5. Domingo: 20 minutos de métricas. Qué series funcionan, a qué horas, qué gráficos. Ajustar el calendario.
 6. Producción en lote: lo que no depende del ranking (mapas, mercado, archivo) se genera el domingo para toda la semana.
 
-Prompt del `copy_factory` (resumen): *"Con estos datos [fila gold], escribe un post para X en español de máximo 240 caracteres: primera línea con la cifra más sorprendente, segunda con el contexto en una frase, tercera con la fuente. Sin adjetivos sobre personas, sin especulación, sin emojis salvo uno al inicio."* La salida siempre pasa por revisión.
+Prompt del `copy_factory` (resumen, actualizado 22/09/2026): *"Con estos datos [fila gold], escribe un post para X en español de máximo 240 caracteres, tono cercano: primera línea con la cifra más sorprendente, segunda con el contexto en una frase, y si cabe una pregunta concreta anclada en el dato que invite al debate; la fuente la añade otro paso. Sin adjetivos sobre personas, sin especulación, sin emojis salvo uno al inicio, sin pedir interacción genérica ('¿qué opinas?', 'comenta', 'dale like')."* La salida siempre pasa por revisión.
 
 ---
 
@@ -224,7 +224,7 @@ Dos fuentes, dos cifras, y explicar por qué (Playtomic 19,4 M vs FIP 35 M de ju
 - Publicar durante los torneos: es cuando la audiencia de pádel está en X.
 - Un post propio al día + 3-5 respuestas con datos a cuentas grandes.
 - Lista pública "Pádel: fuentes" con periodistas, jugadores, clubes, marcas y federaciones; seguirlos y responderles con datos.
-- Nombre de perfil "PadelDB", handle @padeldb, avatar con el icono. Bio: "El pádel, en datos. Un gráfico al día y la base de datos abierta detrás. Fuentes: FIP, Premier Padel, CSD, Playtomic." con el enlace a la web.
+- Nombre de perfil "PadelDB", handle @padeldb_, avatar con el icono. Bio: "El pádel, en datos. Un gráfico al día y la base de datos abierta detrás. Fuentes: FIP, Premier Padel, CSD, Playtomic." con el enlace a la web.
 - Pin: el hilo "cómo funciona el ranking FIP".
 
 **500 → 5.000 (meses 3-6)**
@@ -313,7 +313,7 @@ Reglas: todo contenido patrocinado se marca como tal; nunca contenido de apuesta
 - Sin fotos de jugadores; sin datos personales de amateurs.
 - Los jugadores son figuras públicas y los datos son deportivos: nada de vida personal, lesiones no confirmadas ni especulación.
 - Errores: corregir en público citando el post original. La credibilidad es el producto.
-- Marca: registrar padeldb.es (el .com está aparcado y en venta a 25.000 $; no compensa) y el handle @padeldb en X, Instagram, Threads, Bluesky, LinkedIn y GitHub desde el primer día, aunque no se usen todavía. Si el handle exacto no está libre en alguna red, usar @padeldb_ o @padeldb_es, nunca una variante del nombre.
+- Marca: registrar padeldb.es (el .com está aparcado y en venta a 25.000 $; no compensa) y el handle @padeldb en X, Instagram, Threads, Bluesky, LinkedIn y GitHub desde el primer día, aunque no se usen todavía. Si el handle exacto no está libre en alguna red, usar @padeldb_ o @padeldb_es, nunca una variante del nombre. **En X ya se ha dado este caso**: @padeldb no estaba libre, la cuenta real es @padeldb_ (confirmado 22/09/2026).
 
 ---
 
@@ -355,9 +355,9 @@ Reglas: todo contenido patrocinado se marca como tal; nunca contenido de apuesta
 ## 14. Checklist de lanzamiento
 
 - [x] GitHub `padeldb` libre; padeldb.com aparcado (en venta, descartado); padeldb.es sin DNS (confirmar en registrador).
-- [ ] Confirmar @padeldb en X, Instagram, Threads, Bluesky y LinkedIn; sin coincidencias en OEPM y EUIPO.
+- [x] Confirmar handle en X: @padeldb no estaba libre, cuenta real @padeldb_ (22/09/2026). [ ] Instagram, Threads, Bluesky y LinkedIn (con @padeldb si está libre); sin coincidencias en OEPM y EUIPO.
 - [x] Dominio padeldb.es registrado (14/09/2026).
-- [ ] Handle @padeldb registrado en X, Instagram, Threads, Bluesky, LinkedIn y GitHub; correo hola@padeldb.es operativo.
+- [x] Handle registrado en X (@padeldb_, 22/09/2026). [ ] Instagram, Threads, Bluesky, LinkedIn y GitHub; correo hola@padeldb.es operativo.
 - [x] Logo diseñado: icono + wordmark (PNG en `brand/`, 15/09/2026).
 - [x] Juego vectorial generado: icono, vertical, horizontal, negativos, favicon 16/32/180, azul unificado a #0F3463 (`brand/`, 15/09/2026).
 - [ ] Avatar y cabecera exportados a los tamaños de cada red; retoque opcional del favicon de 16 px.
