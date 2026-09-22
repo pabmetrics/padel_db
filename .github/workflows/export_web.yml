@@ -7,6 +7,12 @@ name: export_web
 on:
   schedule:
     - cron: "15 7 * * *"
+  # La cola pública (padeldb.es/cola/hoy.json) la lee la tarea de Cowork: se
+  # exporta en cuanto content_candidates acaba, sin esperar al cron (GitHub
+  # dispara los cron con horas de retraso, y en otro orden).
+  workflow_run:
+    workflows: [content_candidates]
+    types: [completed]
   workflow_dispatch: {}
 
 jobs:

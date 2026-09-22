@@ -9,8 +9,10 @@ lee en el build (`site/src/lib/datos.js`):
 - `img/`: el gráfico más reciente de cada nombre de fichero de la cola.
 - `cola/hoy.json` y `cola/<fecha>.json`: la cola del día para la tarea
   programada de Cowork (doc 03 §6), con las rutas de los PNG convertidas a
-  la URL pública. No se enlaza desde ningún menú y `robots.txt`/`_headers`
-  la excluyen de los buscadores.
+  la URL pública. `hoy.json` es solo la de hoy (lista vacía si no hay), y
+  `cola/indice.json` dice qué series tocaban hoy y cuántos candidatos hay.
+  No se enlaza desde ningún menú y `robots.txt`/`_headers` la excluyen de
+  los buscadores.
 - `fonts/` y `brand/`: copia de las fuentes y del logo del repo, para que el
   build de Cloudflare Pages no dependa de nada fuera de `site/`.
 
@@ -24,13 +26,16 @@ import csv
 import json
 import shutil
 import sys
+from datetime import date, datetime, timezone
 from pathlib import Path
 from typing import Any
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO_ROOT))  # este script se ejecuta como `python transform/export_web.py`
 
+from content.copy_factory import calendario  # noqa: E402
 from content.copy_factory.nombres import normalizar_nombres  # noqa: E402
+
 GOLD_ROOT = REPO_ROOT / "gold"
 QUEUE_ROOT = REPO_ROOT / "queue"
 SITE_PUBLIC = REPO_ROOT / "site" / "public"
@@ -123,7 +128,7 @@ def export_cola() -> None:
     dias = dias[-DIAS_DE_COLA:]
 
     for viejo in COLA.iterdir():
-        if viejo.name in {d.name for d in dias} or viejo.name in {f"{d.name}.json" for d in dias} or viejo.name == "hoy.json":
+        if viejo.name in {d.name for d in dias} or viejo.name in {f"{d.name}.json" for d in dias} or viejo.name in {"hoy.json", "indice.json"}:
             continue
         shutil.rmtree(viejo) if viejo.is_dir() else viejo.unlink()
 
@@ -137,12 +142,28 @@ def export_cola() -> None:
                 c[clave] = f"{BASE_URL}/cola/{dia.name}/{origen.name}"
         contenido = json.dumps(candidatos, ensure_ascii=False, indent=2)
         (COLA / f"{dia.name}.json").write_text(contenido, encoding="utf-8")
-        ultimo = contenido
-    if dias:
-        (COLA / "hoy.json").write_text(ultimo, encoding="utf-8")
-        print(f"  cola: {len(dias)} días; hoy.json = {dias[-1].name}")
-    else:
-        print("  (sin candidatos en la cola)")
+
+    # hoy.json es la cola de hoy y solo la de hoy: si no hay, lista vacía.
+    # Antes era "el último día con candidatos", y la tarea de Cowork habría
+    # vuelto a proponer candidatos de días anteriores (ya publicados).
+    hoy = date.today()
+    del_dia = COLA / f"{hoy.isoformat()}.json"
+    candidatos_hoy = json.loads(del_dia.read_text(encoding="utf-8")) if del_dia.exists() else []
+    (COLA / "hoy.json").write_text(json.dumps(candidatos_hoy, ensure_ascii=False, indent=2), encoding="utf-8")
+
+    # indice.json deja distinguir a Cowork "hoy no toca ninguna serie" de
+    # "tocaba y la cola aún no se ha generado (o ha fallado)".
+    indice = {
+        "fecha": hoy.isoformat(),
+        "actualizado_utc": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "series_previstas": sorted(calendario.series_del_dia(hoy, calendario.cargar_torneos())),
+        "candidatos_hoy": len(candidatos_hoy),
+        "publicables_hoy": sum(1 for c in candidatos_hoy if c.get("publicable") and c.get("estado") == "candidato"),
+        "dias": [d.name for d in dias],
+    }
+    (COLA / "indice.json").write_text(json.dumps(indice, ensure_ascii=False, indent=2), encoding="utf-8")
+    print(f"  cola: {len(dias)} días; hoy.json = {hoy} ({len(candidatos_hoy)} candidatos); "
+          f"series previstas: {indice['series_previstas'] or 'ninguna'}")
 
 
 def export_assets() -> None:

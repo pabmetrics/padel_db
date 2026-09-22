@@ -43,8 +43,9 @@ en el panel (no requiere código).
 
 ## La cola
 
-`public/cola/hoy.json` y `public/cola/<fecha>.json` son la cola del día para la
-tarea programada de Cowork (doc 03 §6). No se enlazan desde ningún menú y
+`public/cola/hoy.json` (solo la de hoy; `[]` si no hay), `public/cola/<fecha>.json`
+y `public/cola/indice.json` (series previstas y recuento) son la cola del día para la
+tarea programada de Cowork (doc 03 §6, `docs/cowork-puesta-en-marcha.md`). Se despliegan. No se enlazan desde ningún menú y
 `robots.txt` y `_headers` las excluyen de los buscadores.
 
 ## Qué no hace

@@ -6,7 +6,6 @@ import path from 'node:path';
 
 const NO_PUBLICAR = [
   'datos', // descargas CSV/JSON: salen con la página /datos/
-  'cola',  // cola para Cowork: sale cuando se conecte la tarea programada
 ];
 
 for (const carpeta of NO_PUBLICAR) {

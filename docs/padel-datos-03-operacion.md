@@ -194,6 +194,8 @@ Total: unos 25 minutos en días normales de semana, 30 el domingo, algo más en 
 
 ## 10. Puesta en marcha (una tarde)
 
+> Textos definitivos para pegar (instrucciones, prompt de la tarea programada, hora y cómo marcar lo publicado), adaptados a la cola real: `cowork-puesta-en-marcha.md`. Sustituyen a los de 4 y 5.1 donde discrepen (no existe `calendario_circuito.csv`; la tarea va a las 17:30 por el retraso del cron de GitHub).
+
 1. Crear el proyecto "PadelDB" en Cowork; pegar las instrucciones de la sección 4; subir los archivos de referencia.
 2. Conectar GitHub (lectura) y comprobar que Cowork ve `queue/` en el repo. Si el conector no está disponible en tu plan, la vía es la URL de la web: `padeldb.es/cola/hoy.json`.
 3. Hacer que la máquina genere una cola de prueba con dos candidatos reales (aunque sea a mano la primera vez).
