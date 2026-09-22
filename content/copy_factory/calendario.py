@@ -55,6 +55,19 @@ def termino_torneo_esta_semana(hoy: date, torneos: list[dict[str, Any]]) -> bool
     return False
 
 
+def empieza_torneo_pronto(hoy: date, torneos: list[dict[str, Any]], dias: int = 1) -> bool:
+    """Un torneo arranca dentro de `dias` días. Por defecto 1: doc 02 §4
+    fija la cadencia de "Previa en datos" en "día antes de cada torneo",
+    un día concreto, no toda la semana previa (una ventana más ancha
+    generaría la previa cada día de esa semana, machacando el mismo
+    candidato una y otra vez)."""
+    for t in torneos:
+        ini = _fecha(t.get("fecha_ini"))
+        if ini and hoy < ini <= hoy + timedelta(days=dias):
+            return True
+    return False
+
+
 def series_del_dia(hoy: date, torneos: list[dict[str, Any]]) -> set[str]:
     series: set[str] = set()
     dia = hoy.weekday()
@@ -73,6 +86,9 @@ def series_del_dia(hoy: date, torneos: list[dict[str, Any]]) -> set[str]:
         series.add("forma_reciente")
         if hoy.day <= 7:
             series.add("perfil")
+
+    if not hay_torneo_activo(hoy, torneos) and empieza_torneo_pronto(hoy, torneos):
+        series.add("torneo_previa")
 
     if hay_torneo_activo(hoy, torneos):
         series.add("sorpresas")

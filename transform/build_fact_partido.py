@@ -19,41 +19,17 @@ perder el partido entero.
 
 from __future__ import annotations
 
-import hashlib
 import json
 from pathlib import Path
 from typing import Any
 
+from _padelapi_common import jugador_ref as _jugador_ref
+from _padelapi_common import load_map_padelapi as _load_map_padelapi
+from _padelapi_common import torneo_id_for_padelapi
+
 REPO_ROOT = Path(__file__).resolve().parents[1]
 BRONZE_MATCHES_ROOT = REPO_ROOT / "bronze" / "padelapi" / "matches"
 SILVER_ROOT = REPO_ROOT / "silver"
-
-
-def _latest_dir(root: Path) -> Path:
-    dirs = sorted((p for p in root.glob("dt=*") if p.is_dir()), key=lambda p: p.name)
-    if not dirs:
-        raise SystemExit(f"No hay snapshots en {root}")
-    return dirs[-1]
-
-
-def _load_map_padelapi() -> dict[str, str]:
-    map_dir = _latest_dir(SILVER_ROOT / "map_jugador_fuente")
-    rows = json.loads((map_dir / "data.json").read_text(encoding="utf-8"))
-    return {r["id_fuente"]: r["jugador_id"] for r in rows if r["fuente"] == "padelapi"}
-
-
-def torneo_id_for_padelapi(tournament_id: int) -> str:
-    return f"T2{hashlib.sha1(f'padelapi:{tournament_id}'.encode()).hexdigest()[:9]}"
-
-
-def _jugador_ref(player: dict[str, Any], jugador_por_id_fuente: dict[str, str]) -> dict[str, Any]:
-    id_fuente = str(player["id"])
-    return {
-        "jugador_id": jugador_por_id_fuente.get(id_fuente),
-        "id_padelapi": player["id"],
-        "nombre_padelapi": player["name"],
-        "lado_pista": player.get("side"),
-    }
 
 
 def _resumen_marcador(score: Any) -> tuple[int | None, int | None, int | None, int | None, str | None]:

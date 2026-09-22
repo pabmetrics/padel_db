@@ -51,3 +51,21 @@ def test_perfil_solo_el_primer_viernes_del_mes():
 
 def test_sin_calendario_de_torneos_no_falla():
     assert series_del_dia(date(2026, 9, 21), []) == {"ranking_moves"}
+
+
+def test_previa_solo_el_dia_antes_del_torneo():
+    assert "torneo_previa" in series_del_dia(date(2026, 9, 27), TORNEOS)  # domingo, día antes
+    assert "torneo_previa" not in series_del_dia(date(2026, 9, 26), TORNEOS)  # dos días antes
+    assert "torneo_previa" not in series_del_dia(date(2026, 9, 28), TORNEOS)  # el propio día de inicio
+
+
+def test_previa_no_se_solapa_con_torneo_activo():
+    # si por lo que sea coincide "día antes" con un torneo todavía en curso
+    # (dos torneos pegados), manda sorpresas, no previa
+    torneos_pegados = [
+        {"nombre": "A", "fecha_ini": "2026-09-20", "fecha_fin": "2026-09-27"},
+        {"nombre": "B", "fecha_ini": "2026-09-28", "fecha_fin": "2026-10-04"},
+    ]
+    series = series_del_dia(date(2026, 9, 27), torneos_pegados)
+    assert "sorpresas" in series
+    assert "torneo_previa" not in series

@@ -1,0 +1,52 @@
+name: ingest_torneo_previa
+
+on:
+  schedule:
+    # Diario 07:00 UTC, antes de content_candidates (07:30) — el cuadro de
+    # un torneo próximo puede publicarse cualquier día, no solo el lunes
+    # del ciclo semanal de build_silver_gold.
+    - cron: "0 7 * * *"
+  workflow_dispatch: {}
+
+jobs:
+  ingest_torneo_previa:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Instalar dependencias
+        run: pip install -r requirements.txt
+
+      - name: Ingesta — cuadro de torneos próximos (F2, hasta 10 días vista)
+        env:
+          PADEL_API_TOKEN: ${{ secrets.PADEL_API_TOKEN }}
+        run: python -m ingest.padelapi.draw --days-forward 10
+
+      - name: Silver — fact_cuadro_previo
+        run: python transform/build_fact_cuadro_previo.py
+
+      - name: Tests de calidad
+        run: python -m pytest tests/ -v
+
+      - name: Gold — torneo_previa
+        run: python transform/build_gold_torneo_previa.py
+
+      - name: Commit
+        run: |
+          git config user.name "padeldb-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add bronze/padelapi/draw silver/fact_cuadro_previo gold/torneo_previa
+          git diff --cached --quiet || git commit -m "ingest_torneo_previa: $(date -u +%F)"
+          for intento in 1 2 3 4 5; do
+            git push && break
+            echo "push rechazado (otro job empujo a la vez), reintento con rebase ($intento/5)..."
+            git fetch origin main
+            git rebase origin/main
+            sleep $(( (RANDOM % 10) + 1 ))
+          done

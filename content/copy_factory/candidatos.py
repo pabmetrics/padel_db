@@ -28,6 +28,7 @@ from content.chart_factory import (
     pistas,
     ranking_moves,
     sorpresas,
+    torneo_previa,
     trends,
 )
 from content.copy_factory.calendario import cargar_torneos, series_del_dia
@@ -49,6 +50,7 @@ GENERADORES_CON_PARAMETRO: dict[str, tuple[Callable[[str], dict], tuple[str, str
     "parejas": (parejas.build, ("men", "women")),
     "h2h": (h2h.build, ("men", "women")),
     "sorpresas": (sorpresas.build, ("men", "women")),
+    "torneo_previa": (torneo_previa.build, ("men", "women")),
 }
 
 # Generadores de una sola serie, sin distinción de sexo/categoría.

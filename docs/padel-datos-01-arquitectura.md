@@ -167,6 +167,7 @@ Coste mensual objetivo: 0 €. Dominio ya pagado (~1 €/mes prorrateado) y 0 �
 |---|---|---|
 | `ingest_ranking` | F1 + F3 rankings → bronze → `fact_ranking_semanal` | Lunes 07:00 |
 | `ingest_torneo` | F1 (+F2) cuadros, resultados y stats del torneo activo | Diario 23:30 mientras hay torneo (según `dim_torneo`) |
+| `ingest_torneo_previa` | F2: cuadro de torneos próximos (`status: pending`), antes de que se jueguen → `gold.torneo_previa` | Diario 07:00, antes de `content_candidates` |
 | `ingest_fiptour` | F3 resultados del FIP Tour | Lunes 07:30 |
 | `ingest_pistas` | F9 (+F11) → `fact_pistas` | Día 1 de mes |
 | `ingest_trends` | F12 → `fact_trends` | Día 2 de mes |
