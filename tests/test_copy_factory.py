@@ -92,3 +92,13 @@ def test_numeros_en_values_acepta_el_redondeo_del_grafico():
     numeros = _numeros_en_values({"pct_victorias": 69.2, "ganancias_eur": 310700.4})
     assert {"69,2", "69", "310.700"} <= numeros
     assert "70" not in numeros
+
+
+def test_porcentaje_entero_con_un_decimal_es_valido():
+    # Pedido real: dos jugadoras empatadas al 80,0 % y el texto de
+    # Instagram rechazado por escribir "80,0".
+    values = {"pct_victorias_2": 80.0, "pct_victorias_3": 80.0, "victorias_2": 8}
+    numeros = _numeros_en_values(values)
+    assert {"80", "80,0"} <= numeros
+    assert _numeros_en_texto("Dos jugadoras al 80,0 % de victorias") <= numeros
+    assert "8,0" not in numeros  # los enteros de verdad no ganan decimales
