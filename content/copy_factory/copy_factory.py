@@ -107,6 +107,11 @@ def _numeros_en_values(values: dict[str, Any]) -> set[str]:
         # El gráfico enseña los porcentajes redondeados ("69%" para 69,2):
         # citar la cifra tal como sale en la imagen no es inventarla.
         numeros.add(_formatear_numero_es(round(v)))
+        if isinstance(v, float):
+            # Un porcentaje con un decimal (`round(..., 1)` en gold) se
+            # escribe "80,0" aunque el valor sea entero: visto en un pedido
+            # a medida con dos jugadoras al 80,0 %.
+            numeros.add(f"{v:,.1f}".replace(",", "X").replace(".", ",").replace("X", "."))
     return numeros
 
 

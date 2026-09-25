@@ -106,6 +106,22 @@ def load_f2_players() -> list[dict[str, Any]]:
     return records
 
 
+def sugerir_alias(solo_f1: list[dict[str, Any]], solo_f2: list[dict[str, Any]]) -> list[dict[str, str]]:
+    """Fichas de F1 sin cruzar cuyas palabras están todas en un único nombre
+    de F2 del mismo sexo ("Paula Josemaria" -> "Paula Josemaria Martin").
+    No se aplican solas: van al informe y alguien las pasa al CSV."""
+    sugerencias = []
+    for f1 in solo_f1:
+        palabras = set(normalize_name(f1["nombre_en_fuente"]).split())
+        candidatos = [
+            f2 for f2 in solo_f2
+            if f2["sexo"] == f1["sexo"] and palabras <= set(normalize_name(f2["nombre_en_fuente"]).split())
+        ]
+        if len(candidatos) == 1:
+            sugerencias.append({"alias": f1["nombre_en_fuente"], "nombre_canonico": candidatos[0]["nombre_en_fuente"]})
+    return sorted(sugerencias, key=lambda s: s["alias"])
+
+
 def jugador_id_for(nombre_normalizado: str, sexo: str) -> str:
     digest = hashlib.sha1(f"{nombre_normalizado}|{sexo}".encode("utf-8")).hexdigest()
     return f"J{digest[:10]}"
@@ -116,15 +132,21 @@ def build() -> None:
     f1_records = load_f1_players()
     f2_records = load_f2_players()
 
+    def clave(rec: dict[str, Any]) -> tuple[str, str]:
+        # Un alias lleva a la misma clave que su nombre canónico: así el CSV
+        # fusiona las dos fichas en un solo jugador_id, no solo cambia el
+        # nombre que se enseña ("Ariana Sanchez" de F1 y "Ariana Sanchez
+        # Fallada" de F2 eran dos jugadoras, y la de F1 no tenía partidos).
+        norm = normalize_name(rec["nombre_en_fuente"])
+        return normalize_name(alias_overrides.get(norm, norm)), rec["sexo"]
+
     f1_by_key: dict[tuple[str, str], dict[str, Any]] = {}
     for rec in f1_records:
-        norm = normalize_name(rec["nombre_en_fuente"])
-        f1_by_key[(norm, rec["sexo"])] = rec
+        f1_by_key[clave(rec)] = rec
 
     f2_by_key: dict[tuple[str, str], dict[str, Any]] = {}
     for rec in f2_records:
-        norm = normalize_name(rec["nombre_en_fuente"])
-        f2_by_key[(norm, rec["sexo"])] = rec
+        f2_by_key[clave(rec)] = rec
 
     all_keys = set(f1_by_key) | set(f2_by_key)
 
@@ -138,7 +160,11 @@ def build() -> None:
         f2 = f2_by_key.get((norm, sexo))
         jugador_id = jugador_id_for(norm, sexo)
 
-        nombre_canonico = alias_overrides.get(norm)
+        nombre_canonico = next(
+            (alias_overrides[normalize_name(r["nombre_en_fuente"])] for r in (f1, f2)
+             if r and normalize_name(r["nombre_en_fuente"]) in alias_overrides),
+            None,
+        )
         if not nombre_canonico:
             nombre_canonico = f1["nombre_en_fuente"] if f1 else f2["nombre_en_fuente"]
 
@@ -199,6 +225,11 @@ def build() -> None:
         json.dumps(map_rows, indent=2, ensure_ascii=False), encoding="utf-8"
     )
 
+    sugerencias = sugerir_alias(
+        [f1_by_key[k] for k in f1_by_key if k not in f2_by_key],
+        [f2_by_key[k] for k in f2_by_key if k not in f1_by_key],
+    )
+
     recon_dir = SILVER_ROOT / "_reconciliacion"
     recon_dir.mkdir(parents=True, exist_ok=True)
     (recon_dir / f"jugadores_sin_cruzar_{fecha}.json").write_text(
@@ -207,10 +238,13 @@ def build() -> None:
                 "fecha": fecha,
                 "solo_en_f1_premierpadel": sorted(solo_f1),
                 "solo_en_f2_padelapi": sorted(solo_f2),
+                "sugerencias_alias": sugerencias,
                 "nota": (
                     "Nombres que no han casado por normalización exacta entre fuentes. "
                     "Revisar y, si son la misma persona con grafía distinta, añadir una "
-                    "fila a data/manual/alias_jugadores.csv (alias,nombre_canonico)."
+                    "fila a data/manual/alias_jugadores.csv (alias,nombre_canonico). "
+                    "`sugerencias_alias` son solo sugerencias (doc 01 §6): nombre de F1 "
+                    "cuyas palabras están todas en un único nombre de F2 del mismo sexo."
                 ),
             },
             indent=2,
@@ -222,6 +256,8 @@ def build() -> None:
     print(f"dim_jugador: {len(dim_jugador_rows)} jugadores -> {dim_dir.relative_to(REPO_ROOT)}")
     print(f"map_jugador_fuente: {len(map_rows)} filas -> {map_dir.relative_to(REPO_ROOT)}")
     print(f"Sin cruzar: {len(solo_f1)} solo en F1, {len(solo_f2)} solo en F2 (ver _reconciliacion/)")
+    if sugerencias:
+        print(f"  {len(sugerencias)} posibles alias por revisar (sugerencias_alias en _reconciliacion/)")
 
 
 if __name__ == "__main__":

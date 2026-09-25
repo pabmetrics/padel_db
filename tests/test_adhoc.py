@@ -61,3 +61,45 @@ def test_nombres_numerados_se_verifican():
 def test_apodos_por_alias_jugadores_csv():
     dim = DIM + [{"jugador_id": "J5", "nombre_canonico": "Jorge Nieto", "sexo": "M"}]
     assert [f["jugador_id"] for f in resolver_jugadores(["Coki Nieto", "ale galan"], dim)] == ["J5", "J2"]
+
+
+def test_motivo_sin_fila_dice_por_que_se_descarta():
+    from content.chart_factory.adhoc import _motivo_sin_fila
+
+    solo_f1 = {"jugador_id": "J9", "nombre_canonico": "Ariana Sanchez", "en_f1": True, "en_f2": False}
+    assert "alias_jugadores.csv" in _motivo_sin_fila(solo_f1, None, "forma_reciente")
+    cruzada = {**solo_f1, "en_f2": True}
+    assert "sin partidos" in _motivo_sin_fila(cruzada, None, "forma_reciente")
+    assert "solo 2 partidos" in _motivo_sin_fila(cruzada, {"partidos_8sem": 2, "publicable": False}, "forma_reciente")
+
+
+def test_alias_fusiona_fichas_de_f1_y_f2(tmp_path, monkeypatch):
+    """Un alias del CSV debe dejar un solo jugador_id (el del nombre
+    canónico, que es el que usa fact_partido vía map_jugador_fuente), no
+    dos fichas con nombre bonito."""
+    from transform import build_dim_jugador as b
+
+    monkeypatch.setattr(b, "SILVER_ROOT", tmp_path)
+    monkeypatch.setattr(b, "REPO_ROOT", tmp_path)
+    monkeypatch.setattr(b, "load_alias_overrides", lambda: {"ariana sanchez": "Ariana Sanchez Fallada"})
+    monkeypatch.setattr(b, "load_f1_players", lambda: [
+        {"fuente": "premierpadel", "id_fuente": "1", "nombre_en_fuente": "Ariana Sanchez", "sexo": "F", "activo": True},
+        {"fuente": "premierpadel", "id_fuente": "2", "nombre_en_fuente": "Paula Josemaria", "sexo": "F", "activo": True},
+    ])
+    monkeypatch.setattr(b, "load_f2_players", lambda: [
+        {"fuente": "padelapi", "id_fuente": "10", "nombre_en_fuente": "Ariana Sanchez Fallada", "sexo": "F"},
+        {"fuente": "padelapi", "id_fuente": "20", "nombre_en_fuente": "Paula Josemaria Martin", "sexo": "F"},
+    ])
+    b.build()
+    import json
+    dim = json.loads(next(tmp_path.glob("dim_jugador/*/data.json")).read_text())
+    mapa = json.loads(next(tmp_path.glob("map_jugador_fuente/*/data.json")).read_text())
+    recon = json.loads(next(tmp_path.glob("_reconciliacion/*.json")).read_text())
+
+    ariana = [f for f in dim if f["nombre_canonico"] == "Ariana Sanchez Fallada"]
+    assert len(ariana) == 1 and ariana[0]["en_f1"] and ariana[0]["en_f2"]
+    assert ariana[0]["jugador_id"] == b.jugador_id_for("ariana sanchez fallada", "F")
+    assert {m["id_fuente"] for m in mapa if m["jugador_id"] == ariana[0]["jugador_id"]} == {"1", "10"}
+    # Sin alias no se fusiona: solo se sugiere.
+    assert len([f for f in dim if "Josemaria" in f["nombre_canonico"]]) == 2
+    assert recon["sugerencias_alias"] == [{"alias": "Paula Josemaria", "nombre_canonico": "Paula Josemaria Martin"}]

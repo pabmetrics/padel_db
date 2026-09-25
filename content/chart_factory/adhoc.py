@@ -159,11 +159,12 @@ def _datos_jugadores(pedido: dict) -> dict:
     _, perfil = _ultimo(GOLD / "perfil_top100")
     ranking = {(f["jugador_nombre"], f["sexo"]): f["ranking"] for f in perfil if f["publicable"]}
 
+    todas = {f["jugador_id"]: f for f in filas}
     avisos, barras = [], []
-    for j in jugadores:
+    for nombre, j in zip(nombres, jugadores):
         fila = por_id.get(j["jugador_id"])
         if fila is None:
-            avisos.append(f"{j['nombre_canonico']} no tiene fila publicable en gold.{tabla}: fuera del gráfico")
+            avisos.append(f"{nombre!r} ({j['nombre_canonico']}) fuera del gráfico: {_motivo_sin_fila(j, todas.get(j['jugador_id']), tabla)}")
             continue
         barra = {"nombre": fila["jugador_nombre"], "ranking": ranking.get((j["nombre_canonico"], j["sexo"]))}
         if metrica == "forma_reciente":
@@ -198,6 +199,22 @@ def _datos_jugadores(pedido: dict) -> dict:
         "metrica": metrica, "values": values, "avisos": avisos,
         "titulo": titulo, "subtitulo": f"{subtitulo} · {fecha}",
     }
+
+
+def _motivo_sin_fila(jugador: dict, fila: dict | None, tabla: str) -> str:
+    """Por qué un jugador resuelto no tiene fila publicable, para que el
+    log lo diga antes de llegar a copy_factory."""
+    if fila is not None:
+        if "partidos_8sem" in fila:
+            return f"solo {fila['partidos_8sem']} partidos en 8 semanas (mínimo 3), fila no publicable"
+        return f"fila no publicable en gold.{tabla}"
+    if jugador.get("en_f2") is False:
+        return ("su ficha de dim_jugador solo viene de premierpadel, sin cruzar con padelapi (de donde salen "
+                "partidos y premios): falta una fila en data/manual/alias_jugadores.csv (ver "
+                "sugerencias_alias en silver/_reconciliacion/)")
+    if tabla == "forma_reciente":
+        return "sin partidos con resultado en las últimas 8 semanas"
+    return f"sin fila en gold.{tabla}"
 
 
 def _dibujar_jugadores(d: dict, titulo: str, subtitulo: str, serie: str, tamano, registro: str) -> plt.Figure:
@@ -426,6 +443,18 @@ def _leer_pedido(arg: str) -> dict:
     return pedido
 
 
+def _imprimir_resumen(meta: dict) -> None:
+    """Qué entra en el gráfico y qué se ha quedado fuera, en el log del
+    workflow antes de pedir el texto: un descarte no debe verse por
+    primera vez en el candidato."""
+    values = meta["values"]
+    if "n_jugadores" in values and "jugador_1" in values:
+        dentro = [values[f"jugador_{i}"] for i in range(1, values["n_jugadores"] + 1)]
+        print(f"En el gráfico ({len(dentro)}): {', '.join(dentro)}")
+    for aviso in meta["avisos"]:
+        print(f"AVISO: {aviso}")
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Gráfico a medida desde un pedido JSON")
     parser.add_argument("pedido", help="JSON del pedido, o ruta a un .json")
@@ -438,6 +467,7 @@ def main(argv: list[str] | None = None) -> int:
         pedido = _leer_pedido(args.pedido)
         if args.previa:
             meta = build(pedido, args.previa, "#PREVIA")
+            _imprimir_resumen(meta)
             print(json.dumps({k: str(v) if isinstance(v, Path) else v for k, v in meta.items()}, ensure_ascii=False, indent=2))
             return 0
 
@@ -447,7 +477,8 @@ def main(argv: list[str] | None = None) -> int:
         _cliente()  # falla antes de gastar un registro
         with tempfile.TemporaryDirectory() as tmp:
             # Valida todo antes de consumir el número de registro.
-            build(pedido, Path(tmp) / "validacion", "#PREVIA")
+            previa = build(pedido, Path(tmp) / "validacion", "#PREVIA")
+            _imprimir_resumen(previa)
             meta = build(pedido, Path(tmp), siguiente_registro())
             _escribir_candidato(meta, args.fecha.isoformat())
     except PedidoInvalido as e:

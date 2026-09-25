@@ -253,6 +253,28 @@ con 100 jugadores y una relación débil (altura M: 0,02; F: −0,16 el
 `pedido`), con el mismo grupo de concurrencia que `content_candidates` para
 no pisar el contador de registro.
 
+Primer pedido real (convocatoria femenina para el Mundial, 8 jugadoras)
+encontró dos fallos, corregidos el mismo día:
+
+- **Solo 3 de 8 con datos.** No faltaban partidos: `dim_jugador` tenía dos
+  fichas para la misma jugadora, la de premierpadel ("Ariana Sanchez", sin
+  partidos) y la de padelapi ("Ariana Sanchez Fallada", con ellos), y el
+  pedido casaba con la primera. `alias_jugadores.csv` solo cambiaba el
+  nombre mostrado; ahora `build_dim_jugador.py` usa el alias para fusionar
+  las dos fichas en un solo `jugador_id` (el del nombre canónico, que es el
+  que usa `fact_partido`). Añadidos 27 alias revisados a mano a partir de
+  `sugerencias_alias`, un apartado nuevo del informe
+  `silver/_reconciliacion/jugadores_sin_cruzar_*.json`: nombre de F1 cuyas
+  palabras están todas en un único nombre de F2 del mismo sexo. Son solo
+  sugerencias (doc 01 §6); no se aplican sin pasar al CSV.
+- **"80,0" rechazado como cifra inventada.** No era el empate: un float
+  entero (80.0) solo se aceptaba como "80". `_numeros_en_values` acepta
+  ahora también la forma con un decimal de cualquier float.
+
+Y el log del workflow dice qué entra en el gráfico y, para cada descarte,
+por qué (ficha sin cruzar con padelapi, sin partidos en la ventana, o menos
+de 3 partidos) antes de pedir el texto.
+
 ## Exportación a Plotly/JSON para la web
 
 El doc 02 §1.2 punto 8 también pide "SVG/Plotly para la web" además de los
