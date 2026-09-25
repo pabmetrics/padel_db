@@ -238,6 +238,21 @@ aviso en el candidato para la revisión humana. En `copy_factory`, la regla
 cada uno (no la suma), y `verificaciones.comprobar_pareja_completa`
 rechaza el texto que nombre solo a uno.
 
+## Gráficos a medida (`adhoc.py`, 25/09/2026)
+
+Pedidos JSON desde Cowork para lo que no es una serie fija (ver
+`docs/cowork-puesta-en-marcha.md` §5). Dos tipos: `jugadores` (comparativa
+de 2-12 jugadores en forma reciente o ganancias, con su posición en el
+ranking) y `perfil_top100` (posición por tramo de altura o edad, con la
+mediana por tramo; los extremos con menos de 5 jugadores se juntan con el
+vecino). Solo filas `publicable`; nombres resueltos contra `dim_jugador`
+sin parecidos automáticos; título del pedido validado como el texto de X.
+La correlación de Spearman del perfil va solo a los avisos, no al texto:
+con 100 jugadores y una relación débil (altura M: 0,02; F: −0,16 el
+21/09/2026) es fácil leer de más. Workflow `adhoc_chart.yml` (input
+`pedido`), con el mismo grupo de concurrencia que `content_candidates` para
+no pisar el contador de registro.
+
 ## Exportación a Plotly/JSON para la web
 
 El doc 02 §1.2 punto 8 también pide "SVG/Plotly para la web" además de los

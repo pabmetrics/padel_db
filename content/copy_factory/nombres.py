@@ -17,6 +17,7 @@ from __future__ import annotations
 
 import csv
 import json
+import re
 from pathlib import Path
 from typing import Any
 
@@ -31,6 +32,12 @@ CLAVES_NOMBRE = (
     "jugador_nombre", "jugador_1_nombre", "jugador_2_nombre",  # columnas de gold
 )
 SEPARADOR_PAREJA = " / "
+# Pedidos a medida (`chart_factory/adhoc.py`): jugador_1 … jugador_N.
+CLAVE_NOMBRE_NUMERADA = re.compile(r"jugador_\d+")
+
+
+def _claves_nombre(values: dict[str, Any]) -> list[str]:
+    return [*CLAVES_NOMBRE, *(k for k in values if k not in CLAVES_NOMBRE and CLAVE_NOMBRE_NUMERADA.fullmatch(k))]
 
 
 def cargar_alias() -> dict[str, str]:
@@ -52,7 +59,7 @@ def _nombres_de(valor: str) -> list[str]:
 def nombres_en_values(values: dict[str, Any]) -> list[str]:
     """Nombres individuales de `values`, sin repetidos y en orden de aparición."""
     vistos: dict[str, None] = {}
-    for clave in CLAVES_NOMBRE:
+    for clave in _claves_nombre(values):
         valor = values.get(clave)
         if isinstance(valor, str):
             for nombre in _nombres_de(valor):
@@ -65,7 +72,7 @@ def normalizar_nombres(values: dict[str, Any]) -> dict[str, Any]:
     if not alias:
         return values
     salida = dict(values)
-    for clave in CLAVES_NOMBRE:
+    for clave in _claves_nombre(values):
         valor = values.get(clave)
         if isinstance(valor, str):
             salida[clave] = SEPARADOR_PAREJA.join(alias.get(n, n) for n in _nombres_de(valor))

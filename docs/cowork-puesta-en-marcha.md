@@ -109,7 +109,62 @@ Si un día no da tiempo, se puede anotar el domingo en el lote semanal.
 
 ---
 
-## 5. Comprobación rápida
+## 5. Gráficos a medida (desde el chat de Cowork)
+
+Para lo que no es una serie fija: una convocatoria, una noticia, una
+«respuesta con datos» (doc 02 §7). Cowork **no dibuja**: escribe un pedido
+JSON y lo lanza con el workflow `adhoc_chart` de GitHub Actions (input
+`pedido`). La máquina lo valida contra gold (solo filas publicables), lo
+dibuja con la plantilla de marca, le da número de registro y lo deja en la
+cola de hoy con su borrador. En uno o dos minutos está en
+`padeldb.es/cola/hoy.json` y se revisa como cualquier otro candidato.
+
+Tipos disponibles (`content/chart_factory/adhoc.py`):
+
+| Pedido | Qué dibuja |
+|---|---|
+| `{"tipo": "jugadores", "jugadores": ["Alejandro Galan", "Arturo Coello", …], "metrica": "forma_reciente"}` | Barras de % de victorias en 8 semanas (V/P) y posición en el ranking, de 2 a 12 jugadores. `"metrica": "ganancias"` para ganancias de la temporada |
+| `{"tipo": "perfil_top100", "sexo": "M", "dimension": "altura_cm"}` | Posición de cada jugador del top 100 por tramo de altura (o `"edad"`), con la mediana de cada tramo |
+
+Opcionales: `"titulo"` (máx. 10 palabras), `"subtitulo"`, `"serie"` (texto
+de la marca de serie; por defecto «A medida») y `"contexto"`: una frase que
+gold no trae y aporta quien pide («Convocatoria de España para el Mundial
+2026»). El contexto permite que título y texto hablen del Mundial; queda en
+el candidato como aviso para comprobarlo al revisar.
+
+Reglas que aplica la máquina (el pedido se rechaza si no las cumple):
+
+- Nombres: exactos, sin acentos o parte del nombre si solo encaja un
+  jugador («Gemma Triay» → «Gemma Triay Pons»). Los apodos («Paquito
+  Navarro») no valen: se rechazan con sugerencias, y si se repiten van a
+  `alias_jugadores.csv`. Para acertar a la primera, Cowork puede mirar los
+  nombres en `https://padeldb.es/datos/perfil_top100.json` o
+  `forma_reciente.json`.
+- Título y subtítulo: sin cifras que no salgan de los datos, sin
+  valoraciones ni especulación (mismas listas que el texto de X).
+- Un jugador sin fila publicable queda fuera del gráfico, con aviso.
+
+Texto para el proyecto de Cowork (añadir a las instrucciones):
+
+> Cuando te pida un gráfico que no es de una serie fija, no lo dibujes tú:
+> escribe el pedido JSON según la sección 5 de `cowork-puesta-en-marcha.md`,
+> enséñamelo y, cuando lo apruebe, lanza el workflow `adhoc_chart` del repo
+> `pabmetrics/padel_db` en `main` con ese pedido. Si el workflow falla, el
+> motivo está en su log («PEDIDO RECHAZADO: …»): corrige el pedido y
+> vuelve a lanzarlo. Cuando termine, lee `https://padeldb.es/cola/hoy.json`
+> y prepara el bloque "Para publicar" de ese candidato.
+
+**Pendiente de comprobar:** que el conector de GitHub de Cowork pueda lanzar
+un workflow (`workflow_dispatch`). Si no puede, las alternativas son una
+sesión de Cowork en el portátil que ejecute
+`python -m content.chart_factory.adhoc '<pedido>'` (con el `.env`), o
+lanzarlo a mano desde la pestaña Actions de GitHub (Run workflow → pegar el
+pedido). Para ver cómo queda sin gastar registro ni llamar a la API:
+`python -m content.chart_factory.adhoc '<pedido>' --previa /tmp/previa`.
+
+---
+
+## 6. Comprobación rápida
 
 - `https://padeldb.es/cola/indice.json` responde 200 y su `fecha` es la de hoy.
 - `https://padeldb.es/robots.txt` no contiene `Disallow: /cola/`.

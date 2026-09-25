@@ -1,0 +1,54 @@
+name: adhoc_chart
+
+# Gráfico a medida pedido desde Cowork (content/chart_factory/adhoc.py).
+# Deja un candidato en la cola de hoy; export_web lo publica en
+# padeldb.es/cola/hoy.json. No publica nada en X.
+
+on:
+  workflow_dispatch:
+    inputs:
+      pedido:
+        description: 'Pedido JSON, p. ej. {"tipo":"perfil_top100","sexo":"M","dimension":"altura_cm"}'
+        required: true
+        type: string
+
+concurrency:
+  group: cola  # no pisar el registro con content_candidates
+  cancel-in-progress: false
+
+jobs:
+  adhoc_chart:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Instalar dependencias
+        run: pip install -r requirements.txt
+
+      # El pedido va por variable de entorno, nunca interpolado en el
+      # comando: es texto libre y podría inyectar shell.
+      - name: Generar el gráfico a medida
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          PEDIDO: ${{ inputs.pedido }}
+        run: python -m content.chart_factory.adhoc "$PEDIDO"
+
+      - name: Commit
+        run: |
+          git config user.name "padeldb-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add queue/ content/chart_factory/registro.json
+          git diff --cached --quiet || git commit -m "adhoc_chart: $(date -u +%F)"
+          for intento in 1 2 3 4 5; do
+            git push && break
+            echo "push rechazado, reintento con rebase ($intento/5)..."
+            git fetch origin main
+            git rebase origin/main
+            sleep $(( (RANDOM % 10) + 1 ))
+          done

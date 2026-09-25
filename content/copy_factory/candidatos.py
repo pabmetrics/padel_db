@@ -109,6 +109,8 @@ def _escribir_candidato(metadatos: dict, fecha_cola: str) -> Path:
         "avisos": avisos,
         "estado": "candidato",
     }
+    if "pedido" in metadatos:  # gráfico a medida (chart_factory/adhoc.py): queda el pedido original
+        candidato["pedido"] = metadatos["pedido"]
 
     out_file = anadir_candidato(candidato, fecha_cola)
     print(f"{metadatos['registro']} {metadatos['serie']} -> {out_file.relative_to(REPO_ROOT)}")

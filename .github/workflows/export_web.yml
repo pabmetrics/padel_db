@@ -11,7 +11,7 @@ on:
   # exporta en cuanto content_candidates acaba, sin esperar al cron (GitHub
   # dispara los cron con horas de retraso, y en otro orden).
   workflow_run:
-    workflows: [content_candidates]
+    workflows: [content_candidates, adhoc_chart]
     types: [completed]
   workflow_dispatch: {}
 
