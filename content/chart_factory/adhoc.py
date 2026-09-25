@@ -189,7 +189,7 @@ def _datos_jugadores(pedido: dict) -> dict:
 
     if metrica == "forma_reciente":
         titulo = "Victorias en las últimas 8 semanas"
-        subtitulo = "% de victorias (victorias/partidos) y posición en el ranking"
+        subtitulo = "% de victorias en las últimas 8 semanas (victorias/partidos) y posición en el ranking"
     else:
         titulo = "Ganancias de la temporada 2026"
         subtitulo = "Ganancias conocidas por torneo y posición en el ranking"
