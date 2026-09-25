@@ -113,8 +113,8 @@ Si un día no da tiempo, se puede anotar el domingo en el lote semanal.
 
 Para lo que no es una serie fija: una convocatoria, una noticia, una
 «respuesta con datos» (doc 02 §7). Cowork **no dibuja**: escribe un pedido
-JSON y lo envía a `https://padeldb.es/api/adhoc`. Ese endpoint (una Pages
-Function, `site/functions/api/adhoc.js`) lanza el workflow `adhoc_chart` de
+JSON y lo envía a `https://padeldb.es/api/adhoc`. Ese endpoint (el Worker
+`padel-db`, `site/worker/adhoc.js`) lanza el workflow `adhoc_chart` de
 GitHub Actions; la máquina valida el pedido contra gold (solo filas
 publicables), lo dibuja con la plantilla de marca, le da número de registro
 y lo deja en la cola de hoy con su borrador. En uno o dos minutos está en
@@ -161,13 +161,14 @@ cambiar `ADHOC_KEY` en Cloudflare y el texto de Cowork.
    Caducidad: la que quieras (anótala: cuando caduque, el endpoint dará 502).
 2. **KV**: Cloudflare → Storage & Databases → KV → Create namespace
    (`padeldb-adhoc`).
-3. **Proyecto de Pages** → Settings:
-   - *Bindings* → Add → KV namespace: nombre de variable `ADHOC_KV`,
-     namespace `padeldb-adhoc`.
-   - *Variables and Secrets* (Production) → dos secretos de tipo *Secret*:
-     `GITHUB_TOKEN` (el del paso 1) y `ADHOC_KEY` (la clave para Cowork).
-4. Redesplegar (Deployments → Retry deployment, o cualquier push a `main`):
-   los bindings y secretos se aplican en el siguiente despliegue.
+3. **Worker `padel-db`** (la web se despliega como Worker con assets, no
+   como proyecto de Pages: `site/functions/` no se ejecutaría) → Settings →
+   *Variables and Secrets* → dos variables de tipo *Secret* (no *Text*):
+   `GITHUB_TOKEN` (el del paso 1) y `ADHOC_KEY` (la clave para Cowork). El
+   binding `ADHOC_KV` va en `site/wrangler.jsonc` con el id del namespace;
+   si se recrea el namespace, cambiar el id ahí.
+4. Cualquier push a `main` redespliega (Workers Builds). `keep_vars` en
+   `wrangler.jsonc` evita que el deploy borre las variables del panel.
 5. Comprobar: el `curl` de arriba devuelve 202 y en GitHub → Actions →
    `adhoc_chart` aparece una ejecución. Sin la cabecera, 401.
 

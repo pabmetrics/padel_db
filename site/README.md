@@ -51,11 +51,12 @@ bloquean en `robots.txt`: el fetcher de Cowork lo respeta y devolvería `ROBOTS_
 
 ## `/api/adhoc`
 
-`functions/api/adhoc.js` es una Pages Function (Cloudflare la compila y la
-despliega junto al sitio, sin build propio): recibe un pedido de gráfico a
+La web se despliega como **Worker con assets estáticos** (Workers Builds,
+`wrangler.jsonc`), no como proyecto de Pages. `worker/index.js` sirve `dist/`
+y envía `/api/adhoc` a `worker/adhoc.js`, que recibe un pedido de gráfico a
 medida con la cabecera `X-Adhoc-Key` y lanza el workflow `adhoc_chart` con un
 token de GitHub que solo vive como secreto de Cloudflare. Necesita el
-binding KV `ADHOC_KV` y los secretos `ADHOC_KEY` y `GITHUB_TOKEN`; sin ellos
+binding KV `ADHOC_KV` (en `wrangler.jsonc`) y los secretos `ADHOC_KEY` y `GITHUB_TOKEN`; sin ellos
 responde 503. Configuración y contrato: `docs/cowork-puesta-en-marcha.md` §5.
 Tests: `npm test` (Node, sin dependencias).
 
