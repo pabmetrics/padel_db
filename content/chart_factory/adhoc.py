@@ -100,14 +100,14 @@ def resolver_jugadores(nombres: list[str], dim: list[dict] | None = None) -> lis
     sugerencias para que el pedido se corrija (doc 01 §6)."""
     if dim is None:
         dim = _ultimo(DIM_JUGADOR)[1]
-    alias = cargar_alias()
+    alias = {_plano(a): c for a, c in cargar_alias().items()}
     por_plano: dict[str, list[dict]] = {}
     for fila in dim:
         por_plano.setdefault(_plano(fila["nombre_canonico"]), []).append(fila)
 
     resueltos, errores = [], []
     for nombre in nombres:
-        buscado = _plano(alias.get(nombre, nombre))
+        buscado = _plano(alias.get(_plano(nombre), nombre))
         candidatos = por_plano.get(buscado, [])
         if not candidatos:
             palabras = set(buscado.split())

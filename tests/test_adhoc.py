@@ -56,3 +56,8 @@ def test_contexto_puede_nombrar_lo_que_gold_no_trae_pero_no_valorar():
 
 def test_nombres_numerados_se_verifican():
     assert nombres_en_values({"jugador_1": "A B", "jugador_12": "C D", "pct_victorias_1": 90}) == ["A B", "C D"]
+
+
+def test_apodos_por_alias_jugadores_csv():
+    dim = DIM + [{"jugador_id": "J5", "nombre_canonico": "Jorge Nieto", "sexo": "M"}]
+    assert [f["jugador_id"] for f in resolver_jugadores(["Coki Nieto", "ale galan"], dim)] == ["J5", "J2"]
