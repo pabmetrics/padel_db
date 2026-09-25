@@ -144,15 +144,22 @@ Reglas que aplica la máquina (el pedido se rechaza si no las cumple):
   valoraciones ni especulación (mismas listas que el texto de X).
 - Un jugador sin fila publicable queda fuera del gráfico, con aviso.
 
-Texto para el proyecto de Cowork (añadir a las instrucciones):
+Texto para el proyecto de Cowork (añadir a las instrucciones; se entiende
+sin tener este documento subido):
 
-> Cuando te pida un gráfico que no es de una serie fija, no lo dibujes tú:
-> escribe el pedido JSON según la sección 5 de `cowork-puesta-en-marcha.md`,
-> enséñamelo y, cuando lo apruebe, lanza el workflow `adhoc_chart` del repo
-> `pabmetrics/padel_db` en `main` con ese pedido. Si el workflow falla, el
-> motivo está en su log («PEDIDO RECHAZADO: …»): corrige el pedido y
-> vuelve a lanzarlo. Cuando termine, lee `https://padeldb.es/cola/hoy.json`
-> y prepara el bloque "Para publicar" de ese candidato.
+> **Gráficos a medida.** Cuando te pida un gráfico que no es de una serie fija, no lo dibujes tú ni calcules cifras: escribe un pedido JSON y lánzalo en el workflow `adhoc_chart` del repo `pabmetrics/padel_db` (rama `main`, input `pedido`). La máquina lo dibuja con la plantilla de marca, saca las cifras de los datos y lo deja en la cola de hoy.
+>
+> Tipos de pedido:
+> - Comparar jugadores (de 2 a 12): `{"tipo": "jugadores", "jugadores": ["Alejandro Galan", "Arturo Coello"], "metrica": "forma_reciente"}`. `forma_reciente` = % de victorias en las últimas 8 semanas; `ganancias` = ganancias de la temporada.
+> - Perfil del top 100: `{"tipo": "perfil_top100", "sexo": "M", "dimension": "altura_cm"}`. `sexo`: `M` o `F`; `dimension`: `altura_cm` o `edad`.
+>
+> Campos opcionales: `titulo` (máximo 10 palabras, que diga la conclusión, sin cifras que no salgan de los datos y sin valoraciones), `subtitulo`, `serie` (texto corto de la etiqueta de arriba a la izquierda; por defecto «A medida») y `contexto` (una frase con un hecho que no está en los datos, por ejemplo «Convocatoria de España para el Mundial (FIP World Cup 2026)»). Si el título menciona algo que no está en los datos (un torneo, una convocatoria), tiene que aparecer también en `contexto`.
+>
+> Nombres de jugadores: tal como aparecen en https://padeldb.es/datos/forma_reciente.json o https://padeldb.es/datos/perfil_top100.json (vale sin acentos o con parte del nombre si solo encaja un jugador). Los apodos solo funcionan si están en `alias_jugadores.csv`.
+>
+> Proceso: (1) enséñame el pedido y espera a que lo apruebe; (2) lanza el workflow; (3) si falla, lee su log: la línea «PEDIDO RECHAZADO: …» o «SIN TEXTO VÁLIDO: …» dice el motivo (nombre sin resolver con sugerencias, cifra o palabra no permitida en el título…); corrige el pedido, enséñamelo y vuelve a lanzarlo; (4) cuando termine, espera un par de minutos, lee https://padeldb.es/cola/hoy.json, busca el candidato nuevo (el `registro` más alto, con el campo `pedido`) y prepara su bloque "Para publicar" con las mismas reglas de siempre. Revisa sus `avisos`: el `contexto` lo aporto yo y hay que comprobarlo antes de publicar.
+>
+> Nunca publiques tú: el gráfico queda en la cola como cualquier otro candidato.
 
 **Pendiente de comprobar:** que el conector de GitHub de Cowork pueda lanzar
 un workflow (`workflow_dispatch`). Si no puede, las alternativas son una
