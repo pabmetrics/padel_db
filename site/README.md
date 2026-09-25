@@ -46,7 +46,8 @@ en el panel (no requiere código).
 `public/cola/hoy.json` (solo la de hoy; `[]` si no hay), `public/cola/<fecha>.json`
 y `public/cola/indice.json` (series previstas y recuento) son la cola del día para la
 tarea programada de Cowork (doc 03 §6, `docs/cowork-puesta-en-marcha.md`). Se despliegan. No se enlazan desde ningún menú y
-`robots.txt` y `_headers` las excluyen de los buscadores.
+`_headers` (`X-Robots-Tag: noindex, nofollow`) las deja fuera de los buscadores. No se
+bloquean en `robots.txt`: el fetcher de Cowork lo respeta y devolvería `ROBOTS_DISALLOWED`.
 
 ## Qué no hace
 

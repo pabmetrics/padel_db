@@ -11,8 +11,9 @@ lee en el build (`site/src/lib/datos.js`):
   programada de Cowork (doc 03 §6), con las rutas de los PNG convertidas a
   la URL pública. `hoy.json` es solo la de hoy (lista vacía si no hay), y
   `cola/indice.json` dice qué series tocaban hoy y cuántos candidatos hay.
-  No se enlaza desde ningún menú y `robots.txt`/`_headers` la excluyen de
-  los buscadores.
+  No se enlaza desde ningún menú y `_headers` (`X-Robots-Tag: noindex`) la
+  deja fuera de los buscadores. `robots.txt` no la bloquea a propósito: el
+  fetcher de Cowork respeta robots.txt y no podría leerla.
 - `fonts/` y `brand/`: copia de las fuentes y del logo del repo, para que el
   build de Cloudflare Pages no dependa de nada fuera de `site/`.
 

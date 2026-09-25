@@ -29,6 +29,11 @@ Diferencias con doc 03:
 | `https://padeldb.es/cola/<fecha>.json` | Cola de un día concreto (últimos 14 días) |
 | `https://padeldb.es/cola/<fecha>/<fichero>.png` | Gráficos 16:9 y 4:5 enlazados desde cada candidato |
 
+La cola no se bloquea en `robots.txt` (el fetcher de Cowork lo respeta y
+devuelve `ROBOTS_DISALLOWED`, pasó el 25/09/2026); queda fuera de los
+buscadores solo con la cabecera `X-Robots-Tag: noindex, nofollow` de
+`site/public/_headers`.
+
 Cadena diaria: `content_candidates` → (al terminar) `export_web` → commit →
 Cloudflare Pages reconstruye la web (1-2 min). Nada de esto publica en X.
 
@@ -107,5 +112,6 @@ Si un día no da tiempo, se puede anotar el domingo en el lote semanal.
 ## 5. Comprobación rápida
 
 - `https://padeldb.es/cola/indice.json` responde 200 y su `fecha` es la de hoy.
+- `https://padeldb.es/robots.txt` no contiene `Disallow: /cola/`.
 - En un día con serie (miércoles, jueves, lunes), `hoy.json` trae candidatos con `png_16x9` accesibles.
 - La ejecución a demanda de la tarea devuelve el bloque "Para publicar", o una de las tres respuestas de "Sin cola"/"Hoy no toca serie".
