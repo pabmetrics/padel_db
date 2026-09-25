@@ -113,13 +113,65 @@ Si un día no da tiempo, se puede anotar el domingo en el lote semanal.
 
 Para lo que no es una serie fija: una convocatoria, una noticia, una
 «respuesta con datos» (doc 02 §7). Cowork **no dibuja**: escribe un pedido
-JSON y lo lanza con el workflow `adhoc_chart` de GitHub Actions (input
-`pedido`). La máquina lo valida contra gold (solo filas publicables), lo
-dibuja con la plantilla de marca, le da número de registro y lo deja en la
-cola de hoy con su borrador. En uno o dos minutos está en
+JSON y lo envía a `https://padeldb.es/api/adhoc`. Ese endpoint (una Pages
+Function, `site/functions/api/adhoc.js`) lanza el workflow `adhoc_chart` de
+GitHub Actions; la máquina valida el pedido contra gold (solo filas
+publicables), lo dibuja con la plantilla de marca, le da número de registro
+y lo deja en la cola de hoy con su borrador. En uno o dos minutos está en
 `padeldb.es/cola/hoy.json` y se revisa como cualquier otro candidato.
 
-Tipos disponibles (`content/chart_factory/adhoc.py`):
+### El endpoint
+
+| | |
+|---|---|
+| URL | `POST https://padeldb.es/api/adhoc` |
+| Cabecera | `X-Adhoc-Key: <clave>` |
+| Cuerpo | El pedido JSON tal cual (máx. 4 KB) |
+| 202 | Aceptado: el workflow está en marcha |
+| 400 | JSON inválido o `tipo` desconocido (el motivo va en `error`) |
+| 401 | Falta la cabecera o la clave no es la buena |
+| 429 | Más de 20 pedidos en la hora (UTC) |
+| 502 | GitHub rechazó el lanzamiento (token caducado o sin permiso) |
+| 503 | Endpoint sin configurar en Cloudflare |
+
+```
+curl -sS -X POST https://padeldb.es/api/adhoc \
+  -H "X-Adhoc-Key: $ADHOC_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"tipo":"perfil_top100","sexo":"F","dimension":"altura_cm"}'
+```
+
+`GET` a la misma URL con la misma cabecera devuelve las últimas 50 llamadas
+(fecha, pedido, resultado) para auditar. Se guardan 90 días.
+
+Por qué así y no un token de GitHub en Cowork: lo que se pega en un prompt
+de Cowork (instrucciones del proyecto o tarea programada) es legible desde
+la cuenta. `X-Adhoc-Key` solo sirve para pedir un gráfico que luego pasa
+por la validación del workflow y por la revisión humana: si se filtra, lo
+peor que pasa es que se gasten números de registro (y el límite de 20/h lo
+acota). El token de GitHub de verdad, con permiso para lanzar workflows,
+vive solo como secreto en Cloudflare. Para cambiar la clave basta con
+cambiar `ADHOC_KEY` en Cloudflare y el texto de Cowork.
+
+### Configuración (una vez, en Cloudflare y GitHub)
+
+1. **Token de GitHub**: GitHub → Settings → Developer settings → Fine-grained
+   tokens → Generate. Repositorio: solo `pabmetrics/padel_db`. Permisos:
+   *Actions: Read and write*, *Contents: Read-only* (Metadata sale sola).
+   Caducidad: la que quieras (anótala: cuando caduque, el endpoint dará 502).
+2. **KV**: Cloudflare → Storage & Databases → KV → Create namespace
+   (`padeldb-adhoc`).
+3. **Proyecto de Pages** → Settings:
+   - *Bindings* → Add → KV namespace: nombre de variable `ADHOC_KV`,
+     namespace `padeldb-adhoc`.
+   - *Variables and Secrets* (Production) → dos secretos de tipo *Secret*:
+     `GITHUB_TOKEN` (el del paso 1) y `ADHOC_KEY` (la clave para Cowork).
+4. Redesplegar (Deployments → Retry deployment, o cualquier push a `main`):
+   los bindings y secretos se aplican en el siguiente despliegue.
+5. Comprobar: el `curl` de arriba devuelve 202 y en GitHub → Actions →
+   `adhoc_chart` aparece una ejecución. Sin la cabecera, 401.
+
+### Tipos de pedido (`content/chart_factory/adhoc.py`)
 
 | Pedido | Qué dibuja |
 |---|---|
@@ -129,25 +181,29 @@ Tipos disponibles (`content/chart_factory/adhoc.py`):
 Opcionales: `"titulo"` (máx. 10 palabras), `"subtitulo"`, `"serie"` (texto
 de la marca de serie; por defecto «A medida») y `"contexto"`: una frase que
 gold no trae y aporta quien pide («Convocatoria de España para el Mundial
-2026»). El contexto permite que título y texto hablen del Mundial; queda en
-el candidato como aviso para comprobarlo al revisar.
+(FIP World Cup 2026)»). El contexto permite que título y texto hablen del
+Mundial; queda en el candidato como aviso para comprobarlo al revisar.
 
-Reglas que aplica la máquina (el pedido se rechaza si no las cumple):
+Reglas que aplica la máquina (el pedido se rechaza si no las cumple; el
+motivo sale en el log del workflow como «PEDIDO RECHAZADO: …»):
 
 - Nombres: exactos, sin acentos o parte del nombre si solo encaja un
-  jugador («Gemma Triay» → «Gemma Triay Pons»). Los apodos («Paquito
-  Navarro») no valen: se rechazan con sugerencias, y si se repiten van a
-  `alias_jugadores.csv`. Para acertar a la primera, Cowork puede mirar los
-  nombres en `https://padeldb.es/datos/perfil_top100.json` o
-  `forma_reciente.json`.
+  jugador («Gemma Triay» → «Gemma Triay Pons»). Los apodos solo valen si
+  están en `data/manual/alias_jugadores.csv` (ya están «Ale Galán»,
+  «Paquito Navarro», «Coki Nieto»); si no, el rechazo trae sugerencias.
+  Las descargas de `padeldb.es/datos/` todavía no están publicadas: para
+  mirar nombres, Cowork puede leer `site/public/datos/forma_reciente.json` o
+  `perfil_top100.json` en el repo, o fiarse de las sugerencias del rechazo.
 - Título y subtítulo: sin cifras que no salgan de los datos, sin
   valoraciones ni especulación (mismas listas que el texto de X).
 - Un jugador sin fila publicable queda fuera del gráfico, con aviso.
 
-Texto para el proyecto de Cowork (añadir a las instrucciones; se entiende
-sin tener este documento subido):
+### Texto para el proyecto de Cowork
 
-> **Gráficos a medida.** Cuando te pida un gráfico que no es de una serie fija, no lo dibujes tú ni calcules cifras: escribe un pedido JSON y lánzalo en el workflow `adhoc_chart` del repo `pabmetrics/padel_db` (rama `main`, input `pedido`). La máquina lo dibuja con la plantilla de marca, saca las cifras de los datos y lo deja en la cola de hoy.
+Añadir a las instrucciones (se entiende sin tener este documento subido;
+sustituir `<CLAVE>` por el valor de `ADHOC_KEY`):
+
+> **Gráficos a medida.** Cuando te pida un gráfico que no es de una serie fija, no lo dibujes tú ni calcules cifras: escribe un pedido JSON y, cuando te lo apruebe, envíalo con `POST https://padeldb.es/api/adhoc`, cabecera `X-Adhoc-Key: <CLAVE>` y `Content-Type: application/json`, con el pedido como cuerpo. La máquina lo dibuja con la plantilla de marca, saca las cifras de los datos y lo deja en la cola de hoy.
 >
 > Tipos de pedido:
 > - Comparar jugadores (de 2 a 12): `{"tipo": "jugadores", "jugadores": ["Alejandro Galan", "Arturo Coello"], "metrica": "forma_reciente"}`. `forma_reciente` = % de victorias en las últimas 8 semanas; `ganancias` = ganancias de la temporada.
@@ -155,19 +211,13 @@ sin tener este documento subido):
 >
 > Campos opcionales: `titulo` (máximo 10 palabras, que diga la conclusión, sin cifras que no salgan de los datos y sin valoraciones), `subtitulo`, `serie` (texto corto de la etiqueta de arriba a la izquierda; por defecto «A medida») y `contexto` (una frase con un hecho que no está en los datos, por ejemplo «Convocatoria de España para el Mundial (FIP World Cup 2026)»). Si el título menciona algo que no está en los datos (un torneo, una convocatoria), tiene que aparecer también en `contexto`.
 >
-> Nombres de jugadores: tal como aparecen en https://padeldb.es/datos/forma_reciente.json o https://padeldb.es/datos/perfil_top100.json (vale sin acentos o con parte del nombre si solo encaja un jugador). Los apodos solo funcionan si están en `alias_jugadores.csv`.
+> Nombres de jugadores: nombre y apellido tal como los usa el circuito (vale sin acentos, o con parte del nombre si solo encaja un jugador). Los apodos solo funcionan si ya están dados de alta como alias.
 >
-> Proceso: (1) enséñame el pedido y espera a que lo apruebe; (2) lanza el workflow; (3) si falla, lee su log: la línea «PEDIDO RECHAZADO: …» o «SIN TEXTO VÁLIDO: …» dice el motivo (nombre sin resolver con sugerencias, cifra o palabra no permitida en el título…); corrige el pedido, enséñamelo y vuelve a lanzarlo; (4) cuando termine, espera un par de minutos, lee https://padeldb.es/cola/hoy.json, busca el candidato nuevo (el `registro` más alto, con el campo `pedido`) y prepara su bloque "Para publicar" con las mismas reglas de siempre. Revisa sus `avisos`: el `contexto` lo aporto yo y hay que comprobarlo antes de publicar.
+> Respuestas del endpoint: 202 = aceptado; 400 = el pedido no es JSON válido o el `tipo` no existe (corrígelo); 401 = clave mal puesta; 429 = demasiados pedidos esta hora (espera); 502/503 = problema de configuración (avísame, no reintentes).
+>
+> Proceso: (1) enséñame el pedido y espera a que lo apruebe; (2) envíalo; (3) con 202, espera dos o tres minutos y lee https://padeldb.es/cola/hoy.json: el candidato nuevo es el de `registro` más alto y lleva el campo `pedido`. Prepara su bloque "Para publicar" con las mismas reglas de siempre y revisa sus `avisos` (el `contexto` lo aporto yo y hay que comprobarlo antes de publicar). (4) Si a los cinco minutos no aparece, la máquina lo ha rechazado (nombre sin resolver, cifra o palabra no permitida en el título…): dímelo para que mire el motivo en GitHub Actions → adhoc_chart.
 >
 > Nunca publiques tú: el gráfico queda en la cola como cualquier otro candidato.
-
-**Pendiente de comprobar:** que el conector de GitHub de Cowork pueda lanzar
-un workflow (`workflow_dispatch`). Si no puede, las alternativas son una
-sesión de Cowork en el portátil que ejecute
-`python -m content.chart_factory.adhoc '<pedido>'` (con el `.env`), o
-lanzarlo a mano desde la pestaña Actions de GitHub (Run workflow → pegar el
-pedido). Para ver cómo queda sin gastar registro ni llamar a la API:
-`python -m content.chart_factory.adhoc '<pedido>' --previa /tmp/previa`.
 
 ---
 

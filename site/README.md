@@ -49,6 +49,16 @@ tarea programada de Cowork (doc 03 §6, `docs/cowork-puesta-en-marcha.md`). Se d
 `_headers` (`X-Robots-Tag: noindex, nofollow`) las deja fuera de los buscadores. No se
 bloquean en `robots.txt`: el fetcher de Cowork lo respeta y devolvería `ROBOTS_DISALLOWED`.
 
+## `/api/adhoc`
+
+`functions/api/adhoc.js` es una Pages Function (Cloudflare la compila y la
+despliega junto al sitio, sin build propio): recibe un pedido de gráfico a
+medida con la cabecera `X-Adhoc-Key` y lanza el workflow `adhoc_chart` con un
+token de GitHub que solo vive como secreto de Cloudflare. Necesita el
+binding KV `ADHOC_KV` y los secretos `ADHOC_KEY` y `GITHUB_TOKEN`; sin ellos
+responde 503. Configuración y contrato: `docs/cowork-puesta-en-marcha.md` §5.
+Tests: `npm test` (Node, sin dependencias).
+
 ## Qué no hace
 
 - No publica nada en X ni en ninguna red: la web solo muestra datos.
