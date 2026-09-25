@@ -220,6 +220,24 @@ estática concreta no tiene ese glifo. Solución: no usar Δ fuera de Space
 Grotesk; las etiquetas de barra de `sorpresas.py` dicen simplemente "N
 puestos" en vez de "Δ N puestos".
 
+## Empates en cabeza de una pareja (25/09/2026)
+
+En las series de jugadores individuales con un titular (`forma_reciente`,
+`ganancias`, `ranking_moves`), los dos miembros de una pareja suelen
+empatar arriba porque juegan los mismos partidos y cobran los mismos
+premios (cola del 25/09: Triay y Brea, 13/15; en ganancias, Tapia y Coello
+con 310.700 € cada uno). El título nombraba solo a uno. `lideres.py`
+decide ahora el titular: si los dos primeros empatan, son pareja activa en
+`silver/dim_pareja` y comparten todas las cifras que van a `values`, el
+título nombra a los dos ("Gemma Triay Pons y Delfina Brea Senesi, el mejor
+porcentaje de victorias") y `values` lleva `pareja: "A / B"` en vez de
+`jugador`. Cualquier otro empate (no son pareja, más de dos, o cifras
+secundarias distintas) mantiene el titular de un solo jugador y deja un
+aviso en el candidato para la revisión humana. En `copy_factory`, la regla
+8 del prompt obliga a nombrar a los dos y a dejar claro que la cifra es de
+cada uno (no la suma), y `verificaciones.comprobar_pareja_completa`
+rechaza el texto que nombre solo a uno.
+
 ## Exportación a Plotly/JSON para la web
 
 El doc 02 §1.2 punto 8 también pide "SVG/Plotly para la web" además de los

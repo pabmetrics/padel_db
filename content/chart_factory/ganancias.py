@@ -24,6 +24,7 @@ from content.chart_factory.marca import (
     siguiente_registro,
     titulo_y_subtitulo,
 )
+from content.chart_factory.lideres import Lider, lider, values_con_lider
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 GOLD_ROOT = REPO_ROOT / "gold" / "ganancias_temporada"
@@ -39,7 +40,7 @@ def _latest_dir(root: Path) -> Path:
     return dirs[-1]
 
 
-def _dibujar(top: list[dict], sexo: str, fecha: str, tamano: tuple[float, float], tema: Tema, registro: str) -> "plt.Figure":  # noqa: F821
+def _dibujar(top: list[dict], cabeza: Lider, sexo: str, fecha: str, tamano: tuple[float, float], tema: Tema, registro: str) -> "plt.Figure":  # noqa: F821
     import matplotlib.pyplot as plt
 
     colores = colores_tema(tema)
@@ -74,12 +75,11 @@ def _dibujar(top: list[dict], sexo: str, fecha: str, tamano: tuple[float, float]
             color=colores["texto_principal"],
         )
 
-    lider = top_ordenado[-1]
     sexo_txt = "masculino" if sexo == "M" else "femenino"
     pildora_serie(fig, "Cierre de torneo", tema)
     top_grafico = titulo_y_subtitulo(
         fig,
-        f"{lider['jugador_nombre']} lidera las ganancias de la temporada",
+        f"{cabeza.titular} {'lideran' if cabeza.verbo_plural else 'lidera'} las ganancias de la temporada",
         f"Ganancias conocidas por torneo, circuito {sexo_txt} · temporada 2026",
         tema,
     )
@@ -107,32 +107,33 @@ def build(sexo: str = "M") -> dict:
 
     out_dir = OUT_ROOT / fecha
     out_dir.mkdir(parents=True, exist_ok=True)
+    cabeza = lider(top, "ganancias_conocidas_eur", "n_torneos_con_premio_conocido")
     registro = siguiente_registro()
 
     import matplotlib.pyplot as plt
 
     salidas: dict[str, Path] = {}
     for tema, tamano, sufijo in (("claro", TAMANO_X, "16x9"), ("claro", TAMANO_IG, "4x5")):
-        fig = _dibujar(top, sexo, fecha, tamano, tema, registro)
+        fig = _dibujar(top, cabeza, sexo, fecha, tamano, tema, registro)
         out_file = out_dir / f"ganancias_temporada_{sexo.lower()}_{sufijo}.png"
         guardar_figura(fig, out_file, tema)
         plt.close(fig)
         salidas[sufijo] = out_file
         print(f"{registro} {out_file.relative_to(REPO_ROOT)}")
 
-    lider = top[0]
+    fila = cabeza.fila
     sexo_txt = "masculino" if sexo == "M" else "femenino"
     return {
+        "avisos": cabeza.avisos,
         "registro": registro,
         "serie": "Cierre de torneo",
         "tabla_gold": "ganancias_temporada",
         "fecha_dato": fecha,
-        "values": {
-            "jugador": lider["jugador_nombre"],
-            "ganancias_eur": lider["ganancias_conocidas_eur"],
-            "n_torneos": lider["n_torneos_con_premio_conocido"],
+        "values": values_con_lider(cabeza, {
+            "ganancias_eur": fila["ganancias_conocidas_eur"],
+            "n_torneos": fila["n_torneos_con_premio_conocido"],
             "circuito": sexo_txt,
-        },
+        }),
         "fuente_txt": f"padelearnings.com + padelfip.com + padelapi.org · elaboración propia — {fecha}",
         "png_16x9": salidas["16x9"],
         "png_4x5": salidas["4x5"],

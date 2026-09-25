@@ -27,7 +27,7 @@ MAP_JUGADOR_ROOT = REPO_ROOT / "silver" / "map_jugador_fuente"
 # Claves de `values` que contienen nombres de jugadores; las parejas van
 # como "Nombre Apellido / Nombre Apellido".
 CLAVES_NOMBRE = (
-    "jugador", "jugador_1", "jugador_2", "pareja_1", "pareja_2", "equipo_ganador", "equipo_perdedor",
+    "jugador", "jugador_1", "jugador_2", "pareja", "pareja_1", "pareja_2", "equipo_ganador", "equipo_perdedor",
     "jugador_nombre", "jugador_1_nombre", "jugador_2_nombre",  # columnas de gold
 )
 SEPARADOR_PAREJA = " / "

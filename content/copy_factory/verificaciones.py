@@ -10,7 +10,8 @@ Aquí se comprueba lo que se puede comprobar sin modelo:
 - petición de interacción,
 - gentilicios y "mundial" cuando los datos no los traen,
 - emojis (como mucho uno, y al principio),
-- grafía de los nombres (una palabra igual salvo acentos = grafía cambiada).
+- grafía de los nombres (una palabra igual salvo acentos = grafía cambiada),
+- si el titular es una pareja, que el texto nombre a los dos.
 
 Todo lanza `ValueError`: el candidato no llega a la cola con ese texto.
 Las listas son deliberadamente cortas y sin ambigüedad: prefieren dejar
@@ -25,7 +26,7 @@ from typing import Any
 
 from unidecode import unidecode
 
-from content.copy_factory.nombres import nombres_en_values
+from content.copy_factory.nombres import SEPARADOR_PAREJA, nombres_en_values
 
 VALORATIVOS = (
     r"notable", r"destacad\w*", r"impresionante", r"espectacular", r"brillante", r"excelente",
@@ -105,7 +106,22 @@ def comprobar_grafia_nombres(texto: str, values: dict[str, Any]) -> None:
             raise ValueError(f"Grafía de nombre alterada: {palabra!r} (en los datos: {sorted(formas)})")
 
 
+def comprobar_pareja_completa(texto: str, values: dict[str, Any]) -> None:
+    """Con `pareja` en `values` (dos jugadores empatados en cabeza porque
+    juegan juntos, ver `chart_factory/lideres.py`), nombrar a uno solo es
+    el titular que se quería evitar. Basta con un apellido de cada uno."""
+    pareja = values.get("pareja")
+    if not isinstance(pareja, str):
+        return
+    palabras_texto = set(re.findall(r"[^\W\d_]+", _plano(texto)))
+    for nombre in pareja.split(SEPARADOR_PAREJA):
+        palabras = {_plano(p) for p in nombre.split() if len(p) > 2}
+        if not palabras & palabras_texto:
+            raise ValueError(f"El titular es la pareja {pareja!r} y el texto no nombra a {nombre.strip()!r}")
+
+
 def comprobar_texto(texto: str, serie: str, values: dict[str, Any], fuente_txt: str) -> None:
     comprobar_lexico(texto, serie, values, fuente_txt)
     comprobar_emojis(texto)
     comprobar_grafia_nombres(texto, values)
+    comprobar_pareja_completa(texto, values)

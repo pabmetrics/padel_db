@@ -63,6 +63,7 @@ Reglas duras, sin excepción:
 5. Sin pedir interacción genérica (nunca "dale like", "sígueme", "comenta", "RT si...", "¿qué opinas?"). En cambio, cuando el dato dé pie a ello, cierra con una pregunta concreta a la comunidad que invite al debate y esté anclada en ese dato — no una pregunta vacía. Por ejemplo, ante una subida en el ranking: "¿Hasta dónde puede llegar esta semana que viene?"; ante una comparativa de dos fuentes: "¿Con qué cifra te quedas?". Inclúyela con frecuencia, no solo cuando sea imprescindible, siempre que quepa en el límite de caracteres.
 6. Como mucho un emoji, solo al principio del texto, y solo si aporta.
 7. No incluyas la palabra "Fuente" ni ninguna URL.
+8. Si "values" trae "pareja" ("A / B") en vez de "jugador", los dos jugadores comparten exactamente esas cifras porque juegan juntos: nombra siempre a los dos, y deja claro que cada cifra es de cada uno de ellos, no la suma de los dos (por ejemplo "194.450 € cada una", "13 victorias en 15 partidos"). Nunca nombres solo a uno.
 
 Texto de X: primera línea con la cifra más sorprendente; si hace falta, una segunda línea con el contexto en una frase; si cabe, cierra con la pregunta de la regla 5. Como máximo "max_caracteres_x" caracteres en total.
 Texto de Instagram: más largo (hasta 4-5 líneas cortas), mismo tono cercano y mismas reglas, sin emojis. También puede cerrar con la pregunta de la regla 5.

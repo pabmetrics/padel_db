@@ -32,6 +32,7 @@ from content.chart_factory.marca import (
     siguiente_registro,
     titulo_y_subtitulo,
 )
+from content.chart_factory.lideres import lider, values_con_lider
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 GOLD_ROOT = REPO_ROOT / "gold" / "ranking_movimientos_semana"
@@ -134,25 +135,25 @@ def build(sexo: str = "M") -> dict:
         salidas[sufijo] = out_file
         print(f"{registro} {out_file.relative_to(REPO_ROOT)}")
 
-    top_subida = max(top, key=lambda r: r["posicion_diff_semana"])
+    cabeza = lider(top, "posicion_diff_semana", "posicion")
+    top_subida = cabeza.fila
     sexo_txt = "masculino" if sexo == "M" else "femenino"
     subida = int(top_subida["posicion_diff_semana"])
-    avisos = []
+    avisos = list(cabeza.avisos)
     if subida < UMBRAL_SUBIDA_PUBLICABLE:
         avisos.append(f"mayor subida de la semana: {subida:+d} puestos, por debajo del umbral de {UMBRAL_SUBIDA_PUBLICABLE}")
     return {
-        "publicable": not avisos,
+        "publicable": subida >= UMBRAL_SUBIDA_PUBLICABLE,
         "avisos": avisos,
         "registro": registro,
         "serie": "#RankingLunes",
         "tabla_gold": "ranking_movimientos_semana",
         "fecha_dato": fecha,
-        "values": {
-            "jugador": top_subida["jugador_nombre"],
-            "delta_puestos": int(top_subida["posicion_diff_semana"]),
+        "values": values_con_lider(cabeza, {
+            "delta_puestos": subida,
             "posicion": top_subida["posicion"],
             "circuito": sexo_txt,
-        },
+        }),
         "fuente_txt": f"{FUENTE_TXT} — {fecha}",
         "png_16x9": salidas["16x9"],
         "png_4x5": salidas["4x5"],

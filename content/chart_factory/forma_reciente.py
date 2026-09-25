@@ -25,6 +25,7 @@ from content.chart_factory.marca import (
     siguiente_registro,
     titulo_y_subtitulo,
 )
+from content.chart_factory.lideres import Lider, lider, values_con_lider
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 GOLD_ROOT = REPO_ROOT / "gold" / "forma_reciente"
@@ -42,7 +43,7 @@ def _latest_dir(root: Path) -> Path:
     return dirs[-1]
 
 
-def _dibujar(top: list[dict], sexo: str, fecha: str, tamano: tuple[float, float], tema: Tema, registro: str) -> plt.Figure:
+def _dibujar(top: list[dict], cabeza: Lider, sexo: str, fecha: str, tamano: tuple[float, float], tema: Tema, registro: str) -> plt.Figure:
     colores = colores_tema(tema)
     fig, ax = nueva_figura(tamano, tema)
 
@@ -65,12 +66,11 @@ def _dibujar(top: list[dict], sexo: str, fecha: str, tamano: tuple[float, float]
         etiqueta = f"{r['pct_victorias_8sem']:.0f}% ({r['victorias_8sem']}/{r['partidos_8sem']})"
         ax.text(r["pct_victorias_8sem"] + 2, i, etiqueta, va="center", ha="left", fontproperties=Fuentes.cifra(), fontsize=11, color=colores["texto_principal"])
 
-    lider = max(top, key=lambda r: r["pct_victorias_8sem"])
     sexo_txt = "masculino" if sexo == "M" else "femenino"
     pildora_serie(fig, "Forma reciente", tema)
     top_grafico = titulo_y_subtitulo(
         fig,
-        f"{lider['jugador_nombre']}, el mejor porcentaje de victorias",
+        f"{cabeza.titular}, el mejor porcentaje de victorias",
         f"% de victorias últimas 8 semanas, circuito {sexo_txt} (mín. {MIN_PARTIDOS} partidos) · {fecha}",
         tema,
     )
@@ -98,31 +98,32 @@ def build(sexo: str = "M") -> dict:
 
     out_dir = OUT_ROOT / fecha
     out_dir.mkdir(parents=True, exist_ok=True)
+    cabeza = lider(top, "pct_victorias_8sem", "victorias_8sem", "partidos_8sem")
     registro = siguiente_registro()
 
     salidas: dict[str, Path] = {}
     for tema, tamano, sufijo in (("claro", TAMANO_X, "16x9"), ("claro", TAMANO_IG, "4x5")):
-        fig = _dibujar(top, sexo, fecha, tamano, tema, registro)
+        fig = _dibujar(top, cabeza, sexo, fecha, tamano, tema, registro)
         out_file = out_dir / f"forma_reciente_{sexo.lower()}_{sufijo}.png"
         guardar_figura(fig, out_file, tema)
         plt.close(fig)
         salidas[sufijo] = out_file
         print(f"{registro} {out_file.relative_to(REPO_ROOT)}")
 
-    lider = max(top, key=lambda r: r["pct_victorias_8sem"])
+    fila = cabeza.fila
     sexo_txt = "masculino" if sexo == "M" else "femenino"
     return {
+        "avisos": cabeza.avisos,
         "registro": registro,
         "serie": "Forma reciente",
         "tabla_gold": "forma_reciente",
         "fecha_dato": fecha,
-        "values": {
-            "jugador": lider["jugador_nombre"],
-            "pct_victorias": lider["pct_victorias_8sem"],
-            "victorias": lider["victorias_8sem"],
-            "partidos": lider["partidos_8sem"],
+        "values": values_con_lider(cabeza, {
+            "pct_victorias": fila["pct_victorias_8sem"],
+            "victorias": fila["victorias_8sem"],
+            "partidos": fila["partidos_8sem"],
             "circuito": sexo_txt,
-        },
+        }),
         "fuente_txt": f"{FUENTE_TXT} — {fecha}",
         "png_16x9": salidas["16x9"],
         "png_4x5": salidas["4x5"],
