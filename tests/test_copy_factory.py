@@ -86,3 +86,9 @@ def test_candidato_va_a_la_cola_de_hoy_con_png_fijo(tmp_path, monkeypatch):
 
     dibujado["16x9"].write_bytes(b"siguiente dibujo")
     assert (tmp_path / c["png_16x9"]).read_bytes() == b"original"
+
+
+def test_numeros_en_values_acepta_el_redondeo_del_grafico():
+    numeros = _numeros_en_values({"pct_victorias": 69.2, "ganancias_eur": 310700.4})
+    assert {"69,2", "69", "310.700"} <= numeros
+    assert "70" not in numeros
