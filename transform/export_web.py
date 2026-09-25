@@ -117,6 +117,10 @@ def export_charts() -> None:
     n = 0
     for dia in dias:
         for png in dia.glob("*.png"):
+            # Las copias fijas de cada candidato (`0101_forma_reciente_f_16x9.png`)
+            # son de la cola, no de la web.
+            if png.name[:4].isdigit() and png.name[4:5] == "_":
+                continue
             shutil.copy(png, IMG / png.name)
             n += 1
     print(f"  {len(list(IMG.glob('*.png')))} gráficos en site/public/img ({n} copiados)")

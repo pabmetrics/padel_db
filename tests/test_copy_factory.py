@@ -6,6 +6,8 @@ prueba aquí.
 
 from __future__ import annotations
 
+import json
+
 from content.copy_factory.copy_factory import (
     _formatear_numero_es,
     _numeros_en_texto,
@@ -50,3 +52,37 @@ def test_quitar_valla_markdown():
     assert _quitar_valla_markdown('```json\n{"x": "hola"}\n```') == '{"x": "hola"}'
     assert _quitar_valla_markdown('```\n{"x": "hola"}\n```') == '{"x": "hola"}'
     assert _quitar_valla_markdown('{"x": "hola"}') == '{"x": "hola"}'
+
+
+def test_candidato_va_a_la_cola_de_hoy_con_png_fijo(tmp_path, monkeypatch):
+    """El candidato va a `queue/<fecha_cola>/`, no a `queue/<fecha_dato>/`
+    (si no, `cola/hoy.json` sale vacío), y su PNG es una copia con el
+    registro delante que el siguiente dibujo de la serie no pisa."""
+    from content.copy_factory import candidatos, cola
+
+    queue_root = tmp_path / "queue"
+    monkeypatch.setattr(cola, "QUEUE_ROOT", queue_root)
+    monkeypatch.setattr(candidatos, "QUEUE_ROOT", queue_root)
+    monkeypatch.setattr(candidatos, "REPO_ROOT", tmp_path)
+    monkeypatch.setattr(candidatos, "generar_texto", lambda *a: {"x": "x", "instagram": "ig"})
+
+    dibujado = {}
+    for sufijo in ("16x9", "4x5"):
+        png = queue_root / "2026-09-21" / f"forma_reciente_f_{sufijo}.png"
+        png.parent.mkdir(parents=True, exist_ok=True)
+        png.write_bytes(b"original")
+        dibujado[sufijo] = png
+
+    out_file = candidatos._escribir_candidato({
+        "registro": "#0101", "serie": "Forma reciente", "tabla_gold": "forma_reciente",
+        "fecha_dato": "2026-09-21", "values": {"partidos": 15}, "fuente_txt": "padelapi.org",
+        "png_16x9": dibujado["16x9"], "png_4x5": dibujado["4x5"],
+    }, "2026-09-25")
+
+    assert out_file == queue_root / "2026-09-25" / "candidates.json"
+    c = json.loads(out_file.read_text(encoding="utf-8"))[0]
+    assert c["png_16x9"] == "queue/2026-09-25/0101_forma_reciente_f_16x9.png"
+    assert c["fecha_dato"] == "2026-09-21"
+
+    dibujado["16x9"].write_bytes(b"siguiente dibujo")
+    assert (tmp_path / c["png_16x9"]).read_bytes() == b"original"

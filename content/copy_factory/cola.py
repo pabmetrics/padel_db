@@ -18,12 +18,16 @@ QUEUE_ROOT = REPO_ROOT / "queue"
 ESTADOS = ("candidato", "aprobado", "programado", "publicado", "medido")
 
 
-def anadir_candidato(candidato: dict[str, Any]) -> Path:
-    """Añade un candidato a `queue/<fecha_dato>/candidates.json`. Si el
+def anadir_candidato(candidato: dict[str, Any], fecha_cola: str) -> Path:
+    """Añade un candidato a `queue/<fecha_cola>/candidates.json`. Si el
     fichero ya existe (varios candidatos el mismo día), se añade a la
-    lista en vez de sobreescribirla."""
-    fecha = candidato["fecha_dato"]
-    out_dir = QUEUE_ROOT / fecha
+    lista en vez de sobreescribirla.
+
+    `fecha_cola` es el día en que se genera el candidato, no `fecha_dato`:
+    la tarea de Cowork lee la cola de hoy (`cola/hoy.json`), y un gold cuyo
+    último snapshot es de hace días dejaría el candidato en una carpeta
+    pasada que nadie revisa (pasó del 23 al 25/09/2026)."""
+    out_dir = QUEUE_ROOT / fecha_cola
     out_dir.mkdir(parents=True, exist_ok=True)
     out_file = out_dir / "candidates.json"
 

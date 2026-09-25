@@ -13,6 +13,7 @@ entonces, la vía de lectura de la cola es el propio repo de GitHub (doc 03
 from __future__ import annotations
 
 import argparse
+import shutil
 from datetime import date
 from pathlib import Path
 from typing import Callable
@@ -32,7 +33,7 @@ from content.chart_factory import (
     trends,
 )
 from content.copy_factory.calendario import cargar_torneos, series_del_dia
-from content.copy_factory.cola import anadir_candidato
+from content.copy_factory.cola import QUEUE_ROOT, anadir_candidato
 from content.copy_factory.copy_factory import _cliente, generar_texto
 from content.copy_factory.nombres import normalizar_nombres, verificar_nombres
 
@@ -66,7 +67,19 @@ def _ruta_relativa(p: Path) -> str:
     return str(p.relative_to(REPO_ROOT)).replace("\\", "/")
 
 
-def _escribir_candidato(metadatos: dict) -> Path:
+def _copiar_png(png: Path, registro: str, fecha_cola: str) -> Path:
+    """Copia el PNG a `queue/<fecha_cola>/<NNNN>_<nombre>.png` (doc 03 §6).
+    chart_factory dibuja siempre con el mismo nombre en
+    `queue/<fecha_dato>/`, así que el siguiente gráfico de la serie pisaría
+    la imagen de un candidato ya revisado o publicado; la copia con el
+    registro delante es la que queda fija."""
+    destino = QUEUE_ROOT / fecha_cola / f"{registro.lstrip('#')}_{png.name}"
+    destino.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copy2(png, destino)
+    return destino
+
+
+def _escribir_candidato(metadatos: dict, fecha_cola: str) -> Path:
     """`metadatos` puede traer `publicable` (False si el propio gráfico sabe
     que el dato no da para un post) y `avisos`. Un candidato no publicable
     se guarda igualmente, con sus gráficos y el motivo, pero sin borrador:
@@ -88,8 +101,8 @@ def _escribir_candidato(metadatos: dict) -> Path:
         "fecha_dato": metadatos["fecha_dato"],
         "values": values,
         "fuente_txt": metadatos["fuente_txt"],
-        "png_16x9": _ruta_relativa(metadatos["png_16x9"]),
-        "png_4x5": _ruta_relativa(metadatos["png_4x5"]),
+        "png_16x9": _ruta_relativa(_copiar_png(metadatos["png_16x9"], metadatos["registro"], fecha_cola)),
+        "png_4x5": _ruta_relativa(_copiar_png(metadatos["png_4x5"], metadatos["registro"], fecha_cola)),
         "borrador_x": textos["x"] if textos else None,
         "borrador_ig": textos["instagram"] if textos else None,
         "publicable": publicable,
@@ -97,7 +110,7 @@ def _escribir_candidato(metadatos: dict) -> Path:
         "estado": "candidato",
     }
 
-    out_file = anadir_candidato(candidato)
+    out_file = anadir_candidato(candidato, fecha_cola)
     print(f"{metadatos['registro']} {metadatos['serie']} -> {out_file.relative_to(REPO_ROOT)}")
     for aviso in avisos:
         print(f"  aviso: {aviso}")
@@ -105,12 +118,12 @@ def _escribir_candidato(metadatos: dict) -> Path:
     return out_file
 
 
-def generar_candidato(generador: Callable[[str], dict], parametro: str) -> Path:
-    return _escribir_candidato(generador(parametro))
+def generar_candidato(generador: Callable[[str], dict], parametro: str, fecha_cola: str) -> Path:
+    return _escribir_candidato(generador(parametro), fecha_cola)
 
 
-def generar_candidato_simple(generador: Callable[[], dict]) -> Path:
-    return _escribir_candidato(generador())
+def generar_candidato_simple(generador: Callable[[], dict], fecha_cola: str) -> Path:
+    return _escribir_candidato(generador(), fecha_cola)
 
 
 SERIES_DISPONIBLES = sorted({*GENERADORES_CON_PARAMETRO, *GENERADORES_SIN_PARAMETRO})
@@ -119,7 +132,8 @@ SERIES_DISPONIBLES = sorted({*GENERADORES_CON_PARAMETRO, *GENERADORES_SIN_PARAME
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     parser.add_argument("--fecha", type=date.fromisoformat, default=date.today(),
-                        help="día para el que se decide qué series tocan (por defecto, hoy)")
+                        help="día de la cola: decide qué series tocan y en qué carpeta de queue/ "
+                             "se escriben los candidatos (por defecto, hoy)")
     parser.add_argument("--todas", action="store_true",
                         help="ignora el calendario y genera todas las series (solo para pruebas)")
     parser.add_argument("--serie", action="append", choices=SERIES_DISPONIBLES, metavar="SERIE",
@@ -145,7 +159,7 @@ def main(argv: list[str] | None = None) -> int:
             continue
         for valor in valores:
             try:
-                generar_candidato(generador, valor)
+                generar_candidato(generador, valor, args.fecha.isoformat())
             except ValueError as e:
                 print(f"  descartado ({nombre}, {valor}): {e}")
             except Exception as e:  # noqa: BLE001 - un fallo (API, red) no debe tumbar el resto
@@ -156,7 +170,7 @@ def main(argv: list[str] | None = None) -> int:
         if series is not None and nombre not in series:
             continue
         try:
-            generar_candidato_simple(generador)
+            generar_candidato_simple(generador, args.fecha.isoformat())
         except ValueError as e:
             print(f"  descartado ({nombre}): {e}")
         except Exception as e:  # noqa: BLE001
