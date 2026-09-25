@@ -1,0 +1,22 @@
+// Worker padel-db: sirve dist/ (la web estática de Astro) y /api/adhoc
+// (worker/). Workers Builds lo despliega en cada push a main.
+// ADHOC_KEY y GITHUB_TOKEN se configuran en el panel (Settings → Variables
+// and Secrets), nunca aquí; keep_vars evita que un deploy los borre.
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "padel-db",
+  "main": "worker/index.js",
+  "compatibility_date": "2026-09-25",
+  "compatibility_flags": ["global_fetch_strictly_public"],
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    "not_found_handling": "404-page",
+    "run_worker_first": ["/api/*"]
+  },
+  "kv_namespaces": [
+    { "binding": "ADHOC_KV", "id": "18fef1c539254757bfe2734aac106324" }
+  ],
+  "keep_vars": true,
+  "observability": { "enabled": true }
+}

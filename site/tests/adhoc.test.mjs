@@ -3,7 +3,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 
-import { atenderGet, atenderPost, claveValida, validarPedido } from '../functions/api/adhoc.js';
+import { atenderGet, atenderPost, claveValida, validarPedido } from '../worker/adhoc.js';
 
 class KVFalso {
   constructor() { this.datos = new Map(); }

@@ -1,17 +1,17 @@
 // POST https://padeldb.es/api/adhoc — pide un gráfico a medida
 // (content/chart_factory/adhoc.py) sin que quien lo pide tenga un token de
-// GitHub. Cloudflare Pages Function: se despliega con el propio sitio.
+// GitHub. Lo sirve el Worker padel-db (worker/index.js, wrangler.jsonc).
 //
 // Quien llama (Cowork) solo conoce X-Adhoc-Key, que únicamente sirve para
 // pedir un gráfico: el pedido sigue pasando por la validación del workflow y
 // por la revisión humana antes de publicarse. El token de GitHub vive solo
-// aquí, como secreto del proyecto de Pages.
+// aquí, como secreto del Worker.
 //
-// Configuración en Cloudflare Pages (Settings → Variables and Secrets / Bindings):
+// Configuración en el Worker padel-db (Settings → Variables and Secrets):
 //   ADHOC_KEY     secreto: la clave que envía Cowork en X-Adhoc-Key
 //   GITHUB_TOKEN  secreto: token fine-grained, solo pabmetrics/padel_db,
 //                 permisos Actions: read and write + Contents: read
-//   ADHOC_KV      binding KV: contador por hora y log de llamadas
+//   ADHOC_KV      binding KV (en wrangler.jsonc): contador por hora y log
 //
 // GET con la misma cabecera devuelve las últimas llamadas (auditoría).
 
@@ -147,6 +147,3 @@ export async function atenderGet(request, env) {
   const entradas = await Promise.all(ultimas.map(async (k) => JSON.parse(await env.ADHOC_KV.get(k))));
   return respuesta(200, { ok: true, llamadas: entradas });
 }
-
-export const onRequestPost = ({ request, env }) => atenderPost(request, env);
-export const onRequestGet = ({ request, env }) => atenderGet(request, env);
