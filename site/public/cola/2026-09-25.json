@@ -100,5 +100,48 @@
         "Aimar Goñi"
       ]
     }
+  },
+  {
+    "registro": "#0105",
+    "serie": "A medida",
+    "tabla_gold": "perfil_top100",
+    "fecha_dato": "2026-09-21",
+    "values": {
+      "titulo_grafico": "Altura y ranking en el top 100 femenino",
+      "circuito": "femenino",
+      "n_jugadores": 99,
+      "tramo_1_desde": 157,
+      "tramo_1_hasta": 164,
+      "jugadores_tramo_1": 22,
+      "mediana_ranking_tramo_1": 59,
+      "tramo_2_desde": 165,
+      "tramo_2_hasta": 169,
+      "jugadores_tramo_2": 39,
+      "mediana_ranking_tramo_2": 55,
+      "tramo_3_desde": 170,
+      "tramo_3_hasta": 174,
+      "jugadores_tramo_3": 24,
+      "mediana_ranking_tramo_3": 39,
+      "tramo_4_desde": 175,
+      "tramo_4_hasta": 183,
+      "jugadores_tramo_4": 14,
+      "mediana_ranking_tramo_4": 43.5
+    },
+    "fuente_txt": "padelapi.org · elaboración propia — 2026-09-21",
+    "png_16x9": "https://padeldb.es/cola/2026-09-25/0105_adhoc_perfil_top100_16x9.png",
+    "png_4x5": "https://padeldb.es/cola/2026-09-25/0105_adhoc_perfil_top100_4x5.png",
+    "borrador_x": "📏 En el top femenino, las más altas (175-183 cm) rondan posición 43,5 de mediana. Las de 165-169 cm, las más numerosas (39 jugadoras), están en 55. ¿Influye la altura en el ranking?\n\nFuente: padelapi.org · elaboración propia — 2026-09-21",
+    "borrador_ig": "En el ranking femenino de 99 jugadoras, la altura y la posición dibujan un patrón curioso.\n\nLas jugadoras de 175-183 cm (14 en total) tienen mediana de ranking 43,5. Un tramo que sube y baja: las de 170-174 cm (24) están en 39, mientras que las de 165-169 cm (39, el grupo más grande) caen a 55.\n\nEl tramo más bajo, 157-164 cm (22 jugadoras), llega a mediana 59. ¿Hay una correlación real o es solo coincidencia del dato?\n\nFuente: padelapi.org · elaboración propia — 2026-09-21\n\n#padel #PadelDB",
+    "publicable": true,
+    "avisos": [
+      "para la revisión: correlación de Spearman altura_cm↔posición = -0.16 (negativa = más altura_cm va con mejor ranking; relación débil). No va al texto",
+      "1 jugadores del top 100 sin altura_cm, fuera del gráfico"
+    ],
+    "estado": "candidato",
+    "pedido": {
+      "tipo": "perfil_top100",
+      "sexo": "F",
+      "dimension": "altura_cm"
+    }
   }
 ]
