@@ -120,8 +120,20 @@ def comprobar_pareja_completa(texto: str, values: dict[str, Any]) -> None:
             raise ValueError(f"El titular es la pareja {pareja!r} y el texto no nombra a {nombre.strip()!r}")
 
 
+MENCION_NIVEL = (r"tramo\w*", r"nivel\w*", r"igual ranking", r"mismo ranking")
+
+
+def comprobar_control_nivel(texto: str, values: dict[str, Any]) -> None:
+    """Si una diferencia global desaparece al comparar a igual ranking
+    (chart_factory/adhoc.py, `parejas_nacionalidad`), contar solo la cifra
+    global sería el titular engañoso: el texto tiene que decir lo del nivel."""
+    if values.get("efecto_desaparece_por_tramo") is True and not _buscar(MENCION_NIVEL, _plano(texto)):
+        raise ValueError(f"El texto tiene que decir que {values.get('control_nivel', 'la diferencia desaparece a igual ranking')!r}")
+
+
 def comprobar_texto(texto: str, serie: str, values: dict[str, Any], fuente_txt: str) -> None:
     comprobar_lexico(texto, serie, values, fuente_txt)
     comprobar_emojis(texto)
     comprobar_grafia_nombres(texto, values)
     comprobar_pareja_completa(texto, values)
+    comprobar_control_nivel(texto, values)

@@ -64,6 +64,7 @@ Reglas duras, sin excepción:
 6. Como mucho un emoji, solo al principio del texto, y solo si aporta.
 7. No incluyas la palabra "Fuente" ni ninguna URL.
 8. Si "values" trae "pareja" ("A / B") en vez de "jugador", los dos jugadores comparten exactamente esas cifras porque juegan juntos: nombra siempre a los dos, y deja claro que cada cifra es de cada uno de ellos, no la suma de los dos (por ejemplo "194.450 € cada una", "13 victorias en 15 partidos"). Nunca nombres solo a uno.
+9. Si "values" trae "control_nivel", es la lectura correcta del dato: el texto tiene que recogerla (por ejemplo, que la diferencia desaparece a igual tramo de ranking), no solo la cifra global.
 
 Texto de X: primera línea con la cifra más sorprendente; si hace falta, una segunda línea con el contexto en una frase; si cabe, cierra con la pregunta de la regla 5. Como máximo "max_caracteres_x" caracteres en total.
 Texto de Instagram: más largo (hasta 4-5 líneas cortas), mismo tono cercano y mismas reglas, sin emojis. También puede cerrar con la pregunta de la regla 5.

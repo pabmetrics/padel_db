@@ -275,6 +275,30 @@ Y el log del workflow dice qué entra en el gráfico y, para cada descarte,
 por qué (ficha sin cruzar con padelapi, sin partidos en la ventana, o menos
 de 3 partidos) antes de pedir el texto.
 
+**`parejas_nacionalidad` (26/09/2026).** Lee `gold.partidos_nacionalidad`
+(`transform/build_gold_partidos_nacionalidad.py`, en `build_silver_gold.yml`):
+una fila por partido con cada pareja clasificada como `mismo_pais`, `mixta`
+o sin clasificar (falta la nacionalidad de alguno de los dos; «ZZ» de F2
+cuenta como falta). La métrica es el % de victorias de «mismo país» solo en
+los cruces contra «mixta»: entre dos parejas del mismo tipo sale 50 % por
+construcción. Para no confundir nacionalidad con nivel, el cálculo se repite
+por tramo de ranking de pareja (top 10 / 11-30 / 31+) contando solo los
+partidos con **las dos** parejas en el mismo tramo; si solo se mira el tramo
+de una, la otra puede venir de cualquier nivel y el control no controla
+nada. No hay ranking de parejas ni histórico por fecha, así que el nivel es
+la suma de los puntos actuales de los dos jugadores, situada entre las
+parejas activas de `dim_pareja` (`posicion_equivalente`); los puntos que F2
+no trae se interpolan por posición. Tramos con menos de 30 cruces se juntan
+con el vecino; si todo acaba en un solo tramo, no es publicable. La lectura
+(`sin_efecto_global` / `se_mantiene` / `parcial` / `desaparece`) usa el
+intervalo de Wilson del 95 % frente al 50 %; con `desaparece`,
+`verificaciones.comprobar_control_nivel` rechaza el texto que no hable del
+tramo o del nivel. Si un país (o dos) suman el 80 % de los cruces de «mismo
+país», el título por defecto lo nombra y un título propio que no lo nombre
+se rechaza. Primeros datos (26/09/2026, temporada): masculino, 434 de 954
+(45,5 %), 37 % en el top 30 agrupado y 49 % del 31 en adelante; femenino,
+336 de 662 (50,8 %), sin diferencia clara.
+
 ## Exportación a Plotly/JSON para la web
 
 El doc 02 §1.2 punto 8 también pide "SVG/Plotly para la web" además de los

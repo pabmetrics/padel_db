@@ -91,6 +91,9 @@ jobs:
       - name: Gold — ganancias_temporada
         run: python transform/build_gold_ganancias_temporada.py
 
+      - name: Gold — partidos_nacionalidad
+        run: python transform/build_gold_partidos_nacionalidad.py
+
       - name: Gráfico de #RankingLunes a la cola
         run: python -m content.chart_factory.ranking_moves
 

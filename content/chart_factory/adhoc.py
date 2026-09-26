@@ -13,7 +13,18 @@ Tipos de pedido:
 
     {"tipo": "perfil_top100", "sexo": "M" | "F", "dimension": "altura_cm" | "edad"}
 
-Opcionales en ambos: "titulo" (máx. 10 palabras; por defecto uno
+    {"tipo": "parejas_nacionalidad", "sexo": "M" | "F", "periodo": "temporada" | "52_semanas"}
+
+`parejas_nacionalidad` (gold.partidos_nacionalidad): % de victorias de las
+parejas "mismo país" solo en los partidos contra una "mixta" (entre dos del
+mismo tipo el porcentaje es 50 % por construcción), global y por tramo de
+ranking de pareja (top 10 / 11-30 / 31+, las dos parejas del mismo tramo)
+para no confundir nacionalidad con nivel. Tramos con menos de 30 partidos se
+juntan con el vecino; si no queda ninguno, no es publicable. Si la
+diferencia global desaparece dentro de los tramos, `values.control_nivel` lo
+dice y copy_factory exige que el texto lo recoja.
+
+Opcionales en todos: "titulo" (máx. 10 palabras; por defecto uno
 descriptivo), "subtitulo", "serie" (texto de la marca de serie) y
 "contexto": una frase que no está en gold y la aporta quien pide el
 gráfico ("Lista de España para el Mundial 2026"). Va a `values`, así que
@@ -357,11 +368,264 @@ def _dibujar_perfil(d: dict, titulo: str, subtitulo: str, serie: str, tamano, re
     return fig
 
 
+# --- tipo "parejas_nacionalidad" --------------------------------------------
+
+MIN_CRUCES = 30  # por tramo y en global
+TRAMOS_RANKING = ((1, 10), (11, 30), (31, None))
+DIAS_52_SEMANAS = 364
+CUOTA_PAIS_DOMINANTE = 0.8  # "casi todas": el título tiene que nombrar el país
+PAISES = {  # código ISO de dim_jugador -> (país, gentilicio femenino plural)
+    "ES": ("España", "españolas"), "AR": ("Argentina", "argentinas"), "IT": ("Italia", "italianas"),
+    "FR": ("Francia", "francesas"), "PT": ("Portugal", "portuguesas"), "MX": ("México", "mexicanas"),
+    "BR": ("Brasil", "brasileñas"), "CL": ("Chile", "chilenas"), "PY": ("Paraguay", "paraguayas"),
+    "UY": ("Uruguay", "uruguayas"), "BE": ("Bélgica", "belgas"), "NL": ("Países Bajos", "neerlandesas"),
+    "SE": ("Suecia", "suecas"), "GB": ("Reino Unido", "británicas"), "DE": ("Alemania", "alemanas"),
+}
+
+
+def etiqueta_tramo(desde: int, hasta: int | None) -> str:
+    if hasta is None:
+        return f"{desde}+"
+    return f"Top {hasta}" if desde == 1 else f"{desde}–{hasta}"
+
+
+def wilson(victorias: int, n: int, z: float = 1.96) -> tuple[float, float]:
+    """Intervalo de confianza del 95 % de una proporción (Wilson)."""
+    if n == 0:
+        return 0.0, 1.0
+    p = victorias / n
+    centro = (p + z * z / (2 * n)) / (1 + z * z / n)
+    radio = z * ((p * (1 - p) / n + z * z / (4 * n * n)) ** 0.5) / (1 + z * z / n)
+    return centro - radio, centro + radio
+
+
+def _dentro(posicion: int, tramo: tuple[int, int | None]) -> bool:
+    desde, hasta = tramo
+    return posicion >= desde and (hasta is None or posicion <= hasta)
+
+
+def _conteo(cruces: list[dict], tramo: tuple[int, int | None] | None = None) -> tuple[int, int]:
+    """(victorias de la pareja "mismo país", partidos). Con `tramo`, solo los
+    partidos en los que las DOS parejas están en ese tramo: si solo se mira
+    el de una, la otra puede venir de cualquier nivel y no se controla nada."""
+    v = n = 0
+    for c in cruces:
+        if tramo and not (_dentro(c["pos_mp"], tramo) and _dentro(c["pos_mx"], tramo)):
+            continue
+        n += 1
+        v += c["gana_mp"]
+    return v, n
+
+
+def agrupar_tramos(cruces: list[dict], tramos: tuple = TRAMOS_RANKING, minimo: int = MIN_CRUCES) -> list[tuple]:
+    """Junta el tramo con menos partidos con su vecino más pequeño hasta que
+    todos lleguen a `minimo`. Si todo acaba en un solo tramo que cubre el
+    ranking entero, eso ya no es control por nivel: devuelve []."""
+    grupos = [list(t) for t in tramos]
+    while len(grupos) > 1:
+        ns = [_conteo(cruces, tuple(g))[1] for g in grupos]
+        if min(ns) >= minimo:
+            break
+        i = ns.index(min(ns))
+        vecinos = [j for j in (i - 1, i + 1) if 0 <= j < len(grupos)]
+        j = min(vecinos, key=lambda k: ns[k])
+        a, b = sorted((i, j))
+        grupos[a] = [grupos[a][0], grupos[b][1]]
+        grupos.pop(b)
+    if len(grupos) == 1:
+        return []
+    return [tuple(g) for g in grupos]
+
+
+def lectura_control(global_vn: tuple[int, int], tramos_vn: list[tuple[int, int]]) -> str:
+    """'sin_efecto_global' | 'se_mantiene' | 'parcial' | 'desaparece'. Hay
+    efecto si el intervalo de Wilson del 95 % no incluye el 50 %."""
+    def direccion(v, n):
+        bajo, alto = wilson(v, n)
+        return 1 if bajo > 0.5 else -1 if alto < 0.5 else 0
+
+    d = direccion(*global_vn)
+    if d == 0:
+        return "sin_efecto_global"
+    en_tramo = [direccion(v, n) == d for v, n in tramos_vn]
+    if all(en_tramo):
+        return "se_mantiene"
+    return "parcial" if any(en_tramo) else "desaparece"
+
+
+def _pct(v: int, n: int) -> float:
+    return round(100 * v / n, 1)
+
+
+def _datos_parejas_nacionalidad(pedido: dict) -> dict:
+    sexo = pedido.get("sexo")
+    periodo = pedido.get("periodo", "temporada")
+    if sexo not in ("M", "F"):
+        raise PedidoInvalido("'sexo' debe ser 'M' o 'F'")
+    if periodo not in ("temporada", "52_semanas"):
+        raise PedidoInvalido("'periodo' debe ser 'temporada' o '52_semanas'")
+    fecha, filas = _ultimo(GOLD / "partidos_nacionalidad")
+    filas = [f for f in filas if f["sexo"] == sexo]
+    if not filas:
+        raise PedidoInvalido("Sin partidos en gold.partidos_nacionalidad")
+    ultimo_partido = date.fromisoformat(max(f["fecha"] for f in filas))
+    if periodo == "temporada":
+        desde = date(ultimo_partido.year, 1, 1)
+    else:
+        desde = date.fromordinal(ultimo_partido.toordinal() - DIAS_52_SEMANAS)
+    filas = [f for f in filas if f["fecha"] >= desde.isoformat()]
+    avisos: list[str] = []
+    primero = min(f["fecha"] for f in filas)
+    if primero > desde.isoformat():
+        avisos.append(f"fact_partido empieza el {primero}: el periodo pedido (desde {desde}) no está completo")
+
+    # Parejas descartadas por nacionalidad: distintas, contadas una vez.
+    descartadas = {tuple(f[f"pareja_{e}_ids"]) for f in filas for e in (1, 2) if f[f"pareja_{e}_tipo"] is None}
+    if descartadas:
+        partidos_sin = sum(1 for f in filas if f["motivo_descarte"] == "nacionalidad_desconocida")
+        avisos.append(f"{len(descartadas)} parejas descartadas por falta de nacionalidad ({partidos_sin} partidos fuera)")
+    ocultos = sum(1 for f in filas if f["cruce"] and f["motivo_descarte"] == "ganador_oculto")
+    if ocultos:
+        avisos.append(f"{ocultos} cruces mismo país vs mixta sin ganador conocido (plan gratuito de padelapi): fuera")
+
+    cruces, paises = [], {}
+    for f in filas:
+        if not (f["cruce"] and f["publicable"]):
+            continue
+        mp = 1 if f["pareja_1_tipo"] == "mismo_pais" else 2
+        mx = 3 - mp
+        cruces.append({"gana_mp": f["ganador"] == mp,
+                       "pos_mp": f[f"pareja_{mp}_posicion_equivalente"],
+                       "pos_mx": f[f"pareja_{mx}_posicion_equivalente"]})
+        codigo = f[f"pareja_{mp}_nacionalidades"][0]
+        paises[codigo] = paises.get(codigo, 0) + 1
+    v_global, n_global = _conteo(cruces)
+    if n_global < MIN_CRUCES:
+        raise PedidoInvalido(f"Solo {n_global} partidos mismo país vs mixta (mínimo {MIN_CRUCES})")
+
+    tramos_ok = agrupar_tramos(cruces)
+    conteos = [_conteo(cruces, t) for t in tramos_ok]
+    lectura = lectura_control((v_global, n_global), conteos)
+    publicable = bool(tramos_ok)
+    if not publicable:
+        avisos.append(f"ningún tramo de ranking llega a {MIN_CRUCES} partidos ni agrupando: sin control por nivel, "
+                      "el porcentaje global puede reflejar solo el ranking. No publicable")
+    elif len(tramos_ok) < len(TRAMOS_RANKING):
+        avisos.append(f"tramos agrupados para llegar a {MIN_CRUCES} partidos: {', '.join(etiqueta_tramo(*t) for t in tramos_ok)}")
+
+    reparto = sorted(paises.items(), key=lambda kv: -kv[1])
+    total_mp = sum(paises.values())
+    avisos.append("reparto de 'mismo país' (partidos): " + ", ".join(
+        f"{c}-{c} {_pct(k, total_mp):.0f} %".replace(".", ",") for c, k in reparto[:6]))
+    avisos.append("nivel de pareja = suma de puntos actuales de los dos jugadores, situada entre las parejas "
+                  "activas; no es el ranking en la fecha de cada partido")
+    for etiqueta, (v, n) in [("global", (v_global, n_global))] + [(etiqueta_tramo(*t), c) for t, c in zip(tramos_ok, conteos)]:
+        bajo, alto = wilson(v, n)
+        avisos.append(f"para la revisión: {etiqueta} {v}/{n}, IC 95 % {100 * bajo:.0f}–{100 * alto:.0f} %. No va al texto")
+
+    # País que casi lo copa todo: el título tiene que nombrarlo.
+    dominantes = [reparto[0][0]] if reparto[0][1] >= CUOTA_PAIS_DOMINANTE * total_mp else []
+    if not dominantes and len(reparto) > 1 and reparto[0][1] + reparto[1][1] >= CUOTA_PAIS_DOMINANTE * total_mp:
+        dominantes = [reparto[0][0], reparto[1][0]]
+    if not dominantes and reparto[0][1] >= total_mp / 2:
+        avisos.append(f"mayoría {reparto[0][0]}-{reparto[0][0]} ({_pct(reparto[0][1], total_mp):.0f} %) sin llegar al "
+                      f"{CUOTA_PAIS_DOMINANTE:.0%}: el título dice «mismo país»; valorar si nombrarlo".replace(".", ","))
+    nombres_pais = [PAISES.get(c, (c, f"de {c}")) for c in dominantes]
+    if nombres_pais:
+        sujeto = "Parejas " + " o ".join(g for _, g in nombres_pais)
+        pais_txt = " y ".join(p for p, _ in nombres_pais)
+    else:
+        sujeto, pais_txt = "Parejas del mismo país", "varios"
+
+    circuito = "masculino" if sexo == "M" else "femenino"
+    periodo_txt = f"temporada {ultimo_partido.year}" if periodo == "temporada" else "últimas 52 semanas"
+    pct_mp = _pct(v_global, n_global)
+    mas = "más" if pct_mp > 50 else "menos"
+    control = {
+        "sin_efecto_global": "Sin diferencia clara entre parejas del mismo país y mixtas",
+        "se_mantiene": "La diferencia se mantiene al comparar parejas del mismo tramo de ranking",
+        "parcial": "A igual tramo de ranking, la diferencia solo se mantiene en parte de los tramos",
+        "desaparece": "La diferencia desaparece al comparar parejas del mismo tramo de ranking",
+    }[lectura]
+    titulo = {
+        "sin_efecto_global": f"{sujeto} y mixtas: sin diferencia clara",
+        "se_mantiene": f"{sujeto} ganan {mas}, también a igual ranking",
+        "parcial": f"{sujeto} ganan {mas} solo en algunos tramos",
+        "desaparece": f"{sujeto} ganan {mas}; a igual ranking, no",
+    }[lectura]
+
+    values: dict[str, Any] = {
+        "circuito": circuito, "periodo": periodo_txt, "pais": pais_txt,
+        "partidos_mismo_pais_vs_mixta": n_global, "victorias_mismo_pais": v_global,
+        "derrotas_mismo_pais": n_global - v_global,
+        "pct_victorias_mismo_pais": pct_mp, "pct_victorias_mixta": round(100 - pct_mp, 1),
+        "control_nivel": control, "efecto_desaparece_por_tramo": lectura == "desaparece",
+    }
+    if periodo == "52_semanas":
+        values["semanas"] = 52
+    if dominantes:
+        values["pct_partidos_pais_dominante"] = _pct(sum(paises[c] for c in dominantes), total_mp)
+    grupos = [{"etiqueta": "Global", "v": v_global, "n": n_global}]
+    for i, (t, (v, n)) in enumerate(zip(tramos_ok, conteos), 1):
+        values |= {f"tramo_{i}": etiqueta_tramo(*t), f"tramo_{i}_desde": t[0], f"partidos_tramo_{i}": n,
+                   f"victorias_mismo_pais_tramo_{i}": v, f"pct_victorias_mismo_pais_tramo_{i}": _pct(v, n),
+                   f"pct_victorias_mixta_tramo_{i}": round(100 - _pct(v, n), 1)}
+        if t[1] is not None:
+            values[f"tramo_{i}_hasta"] = t[1]
+        grupos.append({"etiqueta": etiqueta_tramo(*t), "v": v, "n": n})
+
+    return {
+        "tabla_gold": "partidos_nacionalidad", "fecha": fecha, "fuente_txt": filas[0]["fuente_txt"],
+        "grupos": grupos, "values": values, "avisos": avisos, "publicable": publicable,
+        "titulo": titulo, "nombres_obligatorios": [p for p, _ in nombres_pais] + [g for _, g in nombres_pais],
+        "subtitulo": f"% de victorias en partidos mismo país vs mixta · {circuito}, {periodo_txt} · {fecha}",
+    }
+
+
+def _dibujar_parejas_nacionalidad(d: dict, titulo: str, subtitulo: str, serie: str, tamano, registro: str) -> plt.Figure:
+    tema = "claro"
+    colores = colores_tema(tema)
+    fig, ax = nueva_figura(tamano, tema)
+    ancho = 0.36
+    for i, g in enumerate(d["grupos"]):
+        pct_mp = 100 * g["v"] / g["n"]
+        for dx, pct, v, color, nombre in ((-ancho / 2, pct_mp, g["v"], CRISTAL, "Mismo\npaís"),
+                                          (ancho / 2, 100 - pct_mp, g["n"] - g["v"], GRIS_PARED, "Mixta")):
+            ax.bar(i + dx, pct, width=ancho * 0.92, color=color, zorder=3)
+            ax.text(i + dx, pct + 2, f"{pct:.0f}%\n{v}/{g['n']}", ha="center", va="bottom",
+                    fontproperties=Fuentes.cifra(), fontsize=10, color=colores["texto_principal"])
+            ax.text(i + dx, -3, nombre, ha="center", va="top", fontsize=9, color=colores["texto_secundario"])
+        ax.text(i, -16, f"{g['etiqueta']}\nn = {g['n']}", ha="center", va="top",
+                fontproperties=Fuentes.cifra(), fontsize=11, color=colores["texto_principal"])
+    if len(d["grupos"]) > 1:
+        ax.axvline(0.5, color=colores["grid"], linewidth=0.8, zorder=1)
+        # Entre tramos, más fina: separa grupos, no global de tramos.
+        for x in range(1, len(d["grupos"]) - 1):
+            ax.axvline(x + 0.5, ymax=0.85, color=colores["grid"], linewidth=0.6, zorder=1)
+        ax.text((1 + len(d["grupos"]) - 1) / 2, 112, "Por tramo de ranking de pareja\n(las dos parejas del mismo tramo)",
+                ha="center", va="top", fontsize=10, color=colores["texto_secundario"])
+    ax.axhline(50, color=colores["grid"], linewidth=0.8, linestyle="--", zorder=2)
+    ax.text(-0.58, 51, "50%", ha="left", va="bottom", fontproperties=Fuentes.cifra(), fontsize=9,
+            color=colores["texto_secundario"])
+    ax.set_ylim(0, 118)
+    ax.set_xlim(-0.6, len(d["grupos"]) - 0.4)
+    ax.set_xticks([])
+    ax.set_yticks([])
+    limpiar_ejes(ax, tema)
+    pildora_serie(fig, serie, tema)
+    top = titulo_y_subtitulo(fig, titulo, subtitulo, tema)
+    pie_de_grafico(fig, f"{d['fuente_txt']} — {d['fecha']}", tema, registro)
+    fig.subplots_adjust(left=MARGEN_IZQUIERDO, right=1 - MARGEN_DERECHO, top=top,
+                        bottom=0.22 if tamano == TAMANO_X else 0.18)
+    return fig
+
+
 # --- común ------------------------------------------------------------------
 
 TIPOS = {
     "jugadores": (_datos_jugadores, _dibujar_jugadores),
     "perfil_top100": (_datos_perfil, _dibujar_perfil),
+    "parejas_nacionalidad": (_datos_parejas_nacionalidad, _dibujar_parejas_nacionalidad),
 }
 
 
@@ -398,6 +662,11 @@ def build(pedido: dict, out_dir: Path, registro: str) -> dict:
     datos_fn, dibujar_fn = TIPOS[pedido["tipo"]]
     d = datos_fn(pedido)
     titulo = _titulo(pedido, d["titulo"])
+    # Si casi todas las parejas "mismo país" son de un país, un título propio
+    # tiene que nombrarlo (como el de por defecto).
+    if d.get("nombres_obligatorios") and not any(_plano(n) in _plano(titulo) for n in d["nombres_obligatorios"]):
+        raise PedidoInvalido(f"El título tiene que nombrar el país que domina 'mismo país' "
+                             f"({' / '.join(d['nombres_obligatorios'])}): {titulo!r}")
     subtitulo = (pedido.get("subtitulo") or d["subtitulo"]).strip()
     serie = (pedido.get("serie") or SERIE_POR_DEFECTO).strip()[:30]
     fuente_txt = f"{d['fuente_txt']} — {d['fecha']}"
@@ -427,6 +696,7 @@ def build(pedido: dict, out_dir: Path, registro: str) -> dict:
         "png_16x9": salidas["16x9"],
         "png_4x5": salidas["4x5"],
         "avisos": d["avisos"],
+        "publicable": d.get("publicable", True),
         "pedido": pedido,
     }
 

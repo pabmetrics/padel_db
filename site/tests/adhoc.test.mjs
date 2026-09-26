@@ -45,6 +45,7 @@ test('claveValida', async () => {
 
 test('validarPedido', () => {
   assert.ok(validarPedido(PEDIDO).pedido);
+  assert.ok(validarPedido('{"tipo":"parejas_nacionalidad","sexo":"M","periodo":"temporada"}').pedido);
   assert.match(validarPedido('{no').error, /JSON/);
   assert.match(validarPedido('[1]').error, /objeto/);
   assert.match(validarPedido('{"tipo":"otro"}').error, /tipo/);

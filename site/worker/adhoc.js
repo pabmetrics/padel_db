@@ -19,7 +19,7 @@ const REPO = 'pabmetrics/padel_db';
 const WORKFLOW = 'adhoc_chart.yml';
 const LIMITE_POR_HORA = 20;
 const MAX_BYTES = 4096;
-const TIPOS = ['jugadores', 'perfil_top100'];
+const TIPOS = ['jugadores', 'perfil_top100', 'parejas_nacionalidad'];
 const DIAS_LOG = 90;
 
 function respuesta(estado, cuerpo) {

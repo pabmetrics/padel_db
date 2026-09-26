@@ -178,6 +178,7 @@ cambiar `ADHOC_KEY` en Cloudflare y el texto de Cowork.
 |---|---|
 | `{"tipo": "jugadores", "jugadores": ["Alejandro Galan", "Arturo Coello", …], "metrica": "forma_reciente"}` | Barras de % de victorias en 8 semanas (V/P) y posición en el ranking, de 2 a 12 jugadores. `"metrica": "ganancias"` para ganancias de la temporada |
 | `{"tipo": "perfil_top100", "sexo": "M", "dimension": "altura_cm"}` | Posición de cada jugador del top 100 por tramo de altura (o `"edad"`), con la mediana de cada tramo |
+| `{"tipo": "parejas_nacionalidad", "sexo": "M", "periodo": "temporada"}` | % de victorias de las parejas del mismo país frente a las mixtas, solo en los partidos entre una y otra. Barras global y por tramo de ranking de pareja (top 10 / 11-30 / 31+, las dos parejas del mismo tramo), con V/P y n. `"periodo": "52_semanas"` para las últimas 52 semanas |
 
 Opcionales: `"titulo"` (máx. 10 palabras), `"subtitulo"`, `"serie"` (texto
 de la marca de serie; por defecto «A medida») y `"contexto"`: una frase que
@@ -198,6 +199,11 @@ motivo sale en el log del workflow como «PEDIDO RECHAZADO: …»):
 - Título y subtítulo: sin cifras que no salgan de los datos, sin
   valoraciones ni especulación (mismas listas que el texto de X).
 - Un jugador sin fila publicable queda fuera del gráfico, con aviso.
+- `parejas_nacionalidad`: los tramos con menos de 30 partidos se juntan con
+  el vecino; si ni así queda ninguno, el candidato sale como no publicable.
+  Si la diferencia global desaparece dentro de los tramos, el título lo dice
+  y el texto de X se rechaza si no lo recoge. Si un país (o dos) suman el
+  80 % de las parejas «mismo país», el título tiene que nombrarlo.
 
 ### Texto para el proyecto de Cowork
 
@@ -209,6 +215,7 @@ sustituir `<CLAVE>` por el valor de `ADHOC_KEY`):
 > Tipos de pedido:
 > - Comparar jugadores (de 2 a 12): `{"tipo": "jugadores", "jugadores": ["Alejandro Galan", "Arturo Coello"], "metrica": "forma_reciente"}`. `forma_reciente` = % de victorias en las últimas 8 semanas; `ganancias` = ganancias de la temporada.
 > - Perfil del top 100: `{"tipo": "perfil_top100", "sexo": "M", "dimension": "altura_cm"}`. `sexo`: `M` o `F`; `dimension`: `altura_cm` o `edad`.
+> - Parejas del mismo país contra parejas mixtas: `{"tipo": "parejas_nacionalidad", "sexo": "M", "periodo": "temporada"}`. `periodo`: `temporada` o `52_semanas`. Compara solo los partidos entre una pareja del mismo país y una mixta, en global y por tramo de ranking. Al revisar, lee los avisos: reparto de países, parejas descartadas e intervalos de confianza.
 >
 > Campos opcionales: `titulo` (máximo 10 palabras, que diga la conclusión, sin cifras que no salgan de los datos y sin valoraciones), `subtitulo`, `serie` (texto corto de la etiqueta de arriba a la izquierda; por defecto «A medida») y `contexto` (una frase con un hecho que no está en los datos, por ejemplo «Convocatoria de España para el Mundial (FIP World Cup 2026)»). Si el título menciona algo que no está en los datos (un torneo, una convocatoria), tiene que aparecer también en `contexto`.
 >
