@@ -101,6 +101,11 @@ def _numeros_en_values(values: dict[str, Any]) -> set[str]:
     esos matices de redacción son legítimos, no una cifra inventada."""
     numeros: set[str] = set()
     for v in values.values():
+        if isinstance(v, str):
+            # Cifras dentro de un nombre ("Rotterdam P2 2026"): citar el
+            # nombre tal cual no es inventar una cifra.
+            numeros |= _numeros_en_texto(v)
+            continue
         if isinstance(v, bool) or not isinstance(v, (int, float)):
             continue
         numeros.add(_formatear_numero_es(v))

@@ -102,3 +102,9 @@ def test_porcentaje_entero_con_un_decimal_es_valido():
     assert {"80", "80,0"} <= numeros
     assert _numeros_en_texto("Dos jugadoras al 80,0 % de victorias") <= numeros
     assert "8,0" not in numeros  # los enteros de verdad no ganan decimales
+
+
+def test_cifras_dentro_de_un_nombre_son_validas():
+    # Visto en la previa de Rotterdam P2 2026: "P2" hacía descartar el texto.
+    numeros = _numeros_en_values({"torneo": "Rotterdam P2 2026", "pareja_2_semilla": 6})
+    assert {"2", "2026", "6"} <= numeros
