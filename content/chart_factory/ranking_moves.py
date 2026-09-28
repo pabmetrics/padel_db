@@ -161,5 +161,10 @@ def build(sexo: str = "M") -> dict:
 
 
 if __name__ == "__main__":
-    build("M")
-    build("F")
+    # Una semana sin movimientos en un circuito no es un fallo: no debe
+    # tumbar el job (y con él el commit de silver/gold) ni saltarse el otro.
+    for sexo in ("M", "F"):
+        try:
+            build(sexo)
+        except SystemExit as e:
+            print(e)
