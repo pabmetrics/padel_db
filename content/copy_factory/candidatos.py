@@ -162,7 +162,7 @@ def main(argv: list[str] | None = None) -> int:
         for valor in valores:
             try:
                 generar_candidato(generador, valor, args.fecha.isoformat())
-            except ValueError as e:
+            except (ValueError, SystemExit) as e:  # chart_factory corta con SystemExit si no hay filas publicables
                 print(f"  descartado ({nombre}, {valor}): {e}")
             except Exception as e:  # noqa: BLE001 - un fallo (API, red) no debe tumbar el resto
                 errores += 1
@@ -173,7 +173,7 @@ def main(argv: list[str] | None = None) -> int:
             continue
         try:
             generar_candidato_simple(generador, args.fecha.isoformat())
-        except ValueError as e:
+        except (ValueError, SystemExit) as e:
             print(f"  descartado ({nombre}): {e}")
         except Exception as e:  # noqa: BLE001
             errores += 1
