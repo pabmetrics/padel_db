@@ -1,9 +1,13 @@
 name: content_candidates
 
 on:
-  schedule:
-    # Diario 07:30 (doc 01 §5, job content_candidates)
-    - cron: "30 6 * * *"
+  # Doc 01 §5: diario, justo después de ingest_torneo_previa (07:00). Encadenado
+  # en vez de con cron propio porque GitHub dispara los cron con horas de
+  # retraso y en otro orden: el 27/09 corrió antes que la previa y no vio el
+  # cuadro de Rotterdam P2.
+  workflow_run:
+    workflows: [ingest_torneo_previa]
+    types: [completed]
   workflow_dispatch: {}
 
 concurrency:
