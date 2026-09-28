@@ -8,7 +8,12 @@ on:
   workflow_run:
     workflows: [ingest_torneo_previa]
     types: [completed]
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      serie:
+        description: "Solo esta serie, fuera del calendario del día (p. ej. torneo_previa). Vacío = las que tocan hoy"
+        required: false
+        default: ""
 
 concurrency:
   group: cola  # comparte el contador de registro con adhoc_chart
@@ -32,7 +37,8 @@ jobs:
       - name: Generar candidatos (gráfico + texto + cola)
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        run: python -m content.copy_factory.candidatos
+          SERIE: ${{ inputs.serie }}
+        run: python -m content.copy_factory.candidatos ${SERIE:+--serie "$SERIE"}
 
       # Aunque un candidato falle (el job queda en rojo y salta la alerta),
       # se guardan los que sí se generaron.
