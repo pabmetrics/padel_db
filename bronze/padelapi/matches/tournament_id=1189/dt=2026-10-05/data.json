@@ -1,0 +1,2746 @@
+{
+  "source": "padelapi",
+  "endpoint": "/tournaments/1189/matches",
+  "ingest_ts": "2026-10-05T14:34:09.359974+00:00",
+  "sha256": "29fe22aac3047601359e63ee6010637a7b944642358087d4ea4ad228d47a4ed2",
+  "tournament": {
+    "id": 1189,
+    "name": "FIP Silver Houten",
+    "country": "NL",
+    "level": "fip_silver",
+    "start_date": "2026-09-25",
+    "end_date": "2026-09-27"
+  },
+  "n_items": 32,
+  "items": [
+    {
+      "id": 13373,
+      "self": "/api/matches/13373",
+      "name": "Riera/Bidahorria - Stellato/Sussarello",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 2,
+      "round_name": "Semifinals",
+      "index": 0,
+      "seeds": {
+        "team_1": "1",
+        "team_2": "6"
+      },
+      "played_at": "2026-09-27",
+      "schedule_label": "Starting at 10:30 AM",
+      "scheduled_at": "2026-09-27T10:30:00+02:00",
+      "scheduled_at_local": "2026-09-27T10:30:00+02:00",
+      "court": "Court 8",
+      "court_order": 1,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "2"
+        },
+        {
+          "team_1": "7",
+          "team_2": "6"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 496,
+            "self": "/api/players/496",
+            "name": "Virginia Riera",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/496-451"
+            }
+          },
+          {
+            "id": 451,
+            "self": "/api/players/451",
+            "name": "Julieta Evangelina Bidahorria",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/496-451"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 578,
+            "self": "/api/players/578",
+            "name": "Emily Stellato",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/578-579"
+            }
+          },
+          {
+            "id": 579,
+            "self": "/api/players/579",
+            "name": "Giulia Sussarello",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/578-579"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-09-27T12:15:22+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/1189",
+        "headtohead": "/api/matches/13373/headtohead",
+        "next": "/api/matches/13375"
+      }
+    },
+    {
+      "id": 13374,
+      "self": "/api/matches/13374",
+      "name": "Parmigiani/Wyckaert - Fernandez/Guerra",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 2,
+      "round_name": "Semifinals",
+      "index": 1,
+      "seeds": {
+        "team_1": null,
+        "team_2": "2"
+      },
+      "played_at": "2026-09-27",
+      "schedule_label": "Starting at 10:30 AM",
+      "scheduled_at": "2026-09-27T10:30:00+02:00",
+      "scheduled_at_local": "2026-09-27T10:30:00+02:00",
+      "court": "Court 10",
+      "court_order": 1,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "4"
+        },
+        {
+          "team_1": "6",
+          "team_2": "2"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 527,
+            "self": "/api/players/527",
+            "name": "Martina Parmigiani",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/527-518"
+            }
+          },
+          {
+            "id": 518,
+            "self": "/api/players/518",
+            "name": "Helena Wyckaert",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/527-518"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 1611,
+            "self": "/api/players/1611",
+            "name": "Carla Fernandez Gonzalez",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1611-1612"
+            }
+          },
+          {
+            "id": 1612,
+            "self": "/api/players/1612",
+            "name": "Nerea Guerra Santana",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1611-1612"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-09-27T12:15:22+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/1189",
+        "headtohead": "/api/matches/13374/headtohead"
+      }
+    },
+    {
+      "id": 13375,
+      "self": "/api/matches/13375",
+      "name": "Bidahorria/Riera - Wyckaert/Parmigiani",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 1,
+      "round_name": "Finals",
+      "index": 0,
+      "seeds": {
+        "team_1": "1",
+        "team_2": null
+      },
+      "played_at": "2026-09-27",
+      "schedule_label": "Not before 3:30 PM",
+      "scheduled_at": "2026-09-27T15:30:00+02:00",
+      "scheduled_at_local": "2026-09-27T15:30:00+02:00",
+      "court": "Court 8",
+      "court_order": 2,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "7",
+          "team_2": "5"
+        },
+        {
+          "team_1": "6",
+          "team_2": "1"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 451,
+            "self": "/api/players/451",
+            "name": "Julieta Evangelina Bidahorria",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/451-496"
+            }
+          },
+          {
+            "id": 496,
+            "self": "/api/players/496",
+            "name": "Virginia Riera",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/451-496"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 518,
+            "self": "/api/players/518",
+            "name": "Helena Wyckaert",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/518-527"
+            }
+          },
+          {
+            "id": 527,
+            "self": "/api/players/527",
+            "name": "Martina Parmigiani",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/518-527"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-09-27T17:15:28+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/1189",
+        "headtohead": "/api/matches/13375/headtohead",
+        "prev": "/api/matches/13373"
+      }
+    },
+    {
+      "id": 13404,
+      "self": "/api/matches/13404",
+      "name": "Bidahorria/Riera - Stellato/Sussarello",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 2,
+      "round_name": "Semifinals",
+      "index": 0,
+      "seeds": {
+        "team_1": "1",
+        "team_2": "6"
+      },
+      "played_at": "2026-09-27",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": null,
+      "court_order": null,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "2"
+        },
+        {
+          "team_1": "7",
+          "team_2": "6"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 451,
+            "self": "/api/players/451",
+            "name": "Julieta Evangelina Bidahorria",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/451-496"
+            }
+          },
+          {
+            "id": 496,
+            "self": "/api/players/496",
+            "name": "Virginia Riera",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/451-496"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 578,
+            "self": "/api/players/578",
+            "name": "Emily Stellato",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/578-579"
+            }
+          },
+          {
+            "id": 579,
+            "self": "/api/players/579",
+            "name": "Giulia Sussarello",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/578-579"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-09-27T12:15:20+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/1189",
+        "headtohead": "/api/matches/13404/headtohead"
+      }
+    },
+    {
+      "id": 13405,
+      "self": "/api/matches/13405",
+      "name": "Parmigiani/Wyckaert - Fernandez/Guerra",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 2,
+      "round_name": "Semifinals",
+      "index": 1,
+      "seeds": {
+        "team_1": null,
+        "team_2": "2"
+      },
+      "played_at": "2026-09-27",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": null,
+      "court_order": null,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "4"
+        },
+        {
+          "team_1": "6",
+          "team_2": "2"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 527,
+            "self": "/api/players/527",
+            "name": "Martina Parmigiani",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/527-518"
+            }
+          },
+          {
+            "id": 518,
+            "self": "/api/players/518",
+            "name": "Helena Wyckaert",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/527-518"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 1611,
+            "self": "/api/players/1611",
+            "name": "Carla Fernandez Gonzalez",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1611-1612"
+            }
+          },
+          {
+            "id": 1612,
+            "self": "/api/players/1612",
+            "name": "Nerea Guerra Santana",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1611-1612"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-09-27T12:15:20+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/1189",
+        "headtohead": "/api/matches/13405/headtohead"
+      }
+    },
+    {
+      "id": 13406,
+      "self": "/api/matches/13406",
+      "name": "Bidahorria/Riera - Parmigiani/Wyckaert",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 1,
+      "round_name": "Finals",
+      "index": 0,
+      "seeds": {
+        "team_1": "1",
+        "team_2": null
+      },
+      "played_at": "2026-09-27",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": null,
+      "court_order": null,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "7",
+          "team_2": "5"
+        },
+        {
+          "team_1": "6",
+          "team_2": "1"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 451,
+            "self": "/api/players/451",
+            "name": "Julieta Evangelina Bidahorria",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/451-496"
+            }
+          },
+          {
+            "id": 496,
+            "self": "/api/players/496",
+            "name": "Virginia Riera",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/451-496"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 527,
+            "self": "/api/players/527",
+            "name": "Martina Parmigiani",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/527-518"
+            }
+          },
+          {
+            "id": 518,
+            "self": "/api/players/518",
+            "name": "Helena Wyckaert",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/527-518"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-09-27T17:15:26+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/1189",
+        "headtohead": "/api/matches/13406/headtohead"
+      }
+    },
+    {
+      "id": 13361,
+      "self": "/api/matches/13361",
+      "name": "Bidahorria/Riera - Rajagopal/Rajagopal",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 8,
+      "round_name": "Round of 16",
+      "index": 0,
+      "seeds": {
+        "team_1": "1",
+        "team_2": "WC"
+      },
+      "played_at": "2026-09-26",
+      "schedule_label": "Starting at 11:00 AM",
+      "scheduled_at": "2026-09-26T11:00:00+02:00",
+      "scheduled_at_local": "2026-09-26T11:00:00+02:00",
+      "court": "Court 8",
+      "court_order": 1,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "0"
+        },
+        {
+          "team_1": "6",
+          "team_2": "0"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 451,
+            "self": "/api/players/451",
+            "name": "Julieta Evangelina Bidahorria",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/451-496"
+            }
+          },
+          {
+            "id": 496,
+            "self": "/api/players/496",
+            "name": "Virginia Riera",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/451-496"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 3140,
+            "self": "/api/players/3140",
+            "name": "Anshika Rajagopal",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/3140-3141"
+            }
+          },
+          {
+            "id": 3141,
+            "self": "/api/players/3141",
+            "name": "Rishita Rajagopal",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/3140-3141"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-09-26T12:15:17+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/1189",
+        "headtohead": "/api/matches/13361/headtohead",
+        "next": "/api/matches/13367"
+      }
+    },
+    {
+      "id": 13362,
+      "self": "/api/matches/13362",
+      "name": "Jeuck/Tromp - Luttikhuis/Hemmes",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 8,
+      "round_name": "Round of 16",
+      "index": 1,
+      "seeds": {
+        "team_1": null,
+        "team_2": "8"
+      },
+      "played_at": "2026-09-26",
+      "schedule_label": "Starting at 11:00 AM",
+      "scheduled_at": "2026-09-26T11:00:00+02:00",
+      "scheduled_at_local": "2026-09-26T11:00:00+02:00",
+      "court": "Court 7",
+      "court_order": 1,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "0",
+          "team_2": "6"
+        },
+        {
+          "team_1": "1",
+          "team_2": "6"
+        }
+      ],
+      "winner": "team_2",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 2878,
+            "self": "/api/players/2878",
+            "name": "Miriam Jeuck",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/2878-2879"
+            }
+          },
+          {
+            "id": 2879,
+            "self": "/api/players/2879",
+            "name": "Emma Tromp",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/2878-2879"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 538,
+            "self": "/api/players/538",
+            "name": "Bo Luttikhuis",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/538-539"
+            }
+          },
+          {
+            "id": 539,
+            "self": "/api/players/539",
+            "name": "Janine Hemmes",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/538-539"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-09-26T12:15:17+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/1189",
+        "headtohead": "/api/matches/13362/headtohead",
+        "next": "/api/matches/13368"
+      }
+    },
+    {
+      "id": 13363,
+      "self": "/api/matches/13363",
+      "name": "Stellato/Sussarello - Van Houten/Nouws",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 8,
+      "round_name": "Round of 16",
+      "index": 2,
+      "seeds": {
+        "team_1": "6",
+        "team_2": null
+      },
+      "played_at": "2026-09-26",
+      "schedule_label": "Starting at 11:00 AM",
+      "scheduled_at": "2026-09-26T11:00:00+02:00",
+      "scheduled_at_local": "2026-09-26T11:00:00+02:00",
+      "court": "Court 11",
+      "court_order": 1,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "3"
+        },
+        {
+          "team_1": "6",
+          "team_2": "3"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 578,
+            "self": "/api/players/578",
+            "name": "Emily Stellato",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/578-579"
+            }
+          },
+          {
+            "id": 579,
+            "self": "/api/players/579",
+            "name": "Giulia Sussarello",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/578-579"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 2520,
+            "self": "/api/players/2520",
+            "name": "Merel Van Houten",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/2520-2521"
+            }
+          },
+          {
+            "id": 2521,
+            "self": "/api/players/2521",
+            "name": "Joyce Nouws",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/2520-2521"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-09-26T12:45:18+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/1189",
+        "headtohead": "/api/matches/13363/headtohead",
+        "next": "/api/matches/13366"
+      }
+    },
+    {
+      "id": 13364,
+      "self": "/api/matches/13364",
+      "name": "De Vocht/Sireix - Martinez/Lopez",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 8,
+      "round_name": "Round of 16",
+      "index": 3,
+      "seeds": {
+        "team_1": null,
+        "team_2": "3"
+      },
+      "played_at": "2026-09-26",
+      "schedule_label": "Starting at 11:00 AM",
+      "scheduled_at": "2026-09-26T11:00:00+02:00",
+      "scheduled_at_local": "2026-09-26T11:00:00+02:00",
+      "court": "Court 10",
+      "court_order": 1,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "1",
+          "team_2": "6"
+        },
+        {
+          "team_1": "5",
+          "team_2": "7"
+        }
+      ],
+      "winner": "team_2",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 886,
+            "self": "/api/players/886",
+            "name": "Tess De Vocht",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/886-551"
+            }
+          },
+          {
+            "id": 551,
+            "self": "/api/players/551",
+            "name": "Camille Sireix",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/886-551"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 492,
+            "self": "/api/players/492",
+            "name": "Aida Martinez Sanjuan",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/492-481"
+            }
+          },
+          {
+            "id": 481,
+            "self": "/api/players/481",
+            "name": "Natividad Lopez Diaz",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/492-481"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-09-26T12:45:18+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/1189",
+        "headtohead": "/api/matches/13364/headtohead",
+        "next": "/api/matches/13365"
+      }
+    },
+    {
+      "id": 13365,
+      "self": "/api/matches/13365",
+      "name": "Bellver/Dominguez - Marlies/Van Leeuwen",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 8,
+      "round_name": "Round of 16",
+      "index": 4,
+      "seeds": {
+        "team_1": "4",
+        "team_2": null
+      },
+      "played_at": "2026-09-26",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Court 10",
+      "court_order": 2,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "2"
+        },
+        {
+          "team_1": "6",
+          "team_2": "2"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 483,
+            "self": "/api/players/483",
+            "name": "Sandra Bellver Fructuoso",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/483-493"
+            }
+          },
+          {
+            "id": 493,
+            "self": "/api/players/493",
+            "name": "Ana Dominguez Gracia",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/483-493"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 1225,
+            "self": "/api/players/1225",
+            "name": "Karin Marlies Lems",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1225-2881"
+            }
+          },
+          {
+            "id": 2881,
+            "self": "/api/players/2881",
+            "name": "Moesha Van Leeuwen",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1225-2881"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-09-26T13:45:18+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/1189",
+        "headtohead": "/api/matches/13365/headtohead",
+        "prev": "/api/matches/13364",
+        "next": "/api/matches/13370"
+      }
+    },
+    {
+      "id": 13366,
+      "self": "/api/matches/13366",
+      "name": "Parmigiani/Wyckaert - Baldi/Aima",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 8,
+      "round_name": "Round of 16",
+      "index": 5,
+      "seeds": {
+        "team_1": null,
+        "team_2": "5"
+      },
+      "played_at": "2026-09-26",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Court 11",
+      "court_order": 2,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "7",
+          "team_2": "6"
+        },
+        {
+          "team_1": "6",
+          "team_2": "4"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 527,
+            "self": "/api/players/527",
+            "name": "Martina Parmigiani",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/527-518"
+            }
+          },
+          {
+            "id": 518,
+            "self": "/api/players/518",
+            "name": "Helena Wyckaert",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/527-518"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 589,
+            "self": "/api/players/589",
+            "name": "Caterina Maria Baldi",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/589-2766"
+            }
+          },
+          {
+            "id": 2766,
+            "self": "/api/players/2766",
+            "name": "Clarissa Aima",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/589-2766"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-09-26T14:45:18+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/1189",
+        "headtohead": "/api/matches/13366/headtohead",
+        "prev": "/api/matches/13363"
+      }
+    },
+    {
+      "id": 13367,
+      "self": "/api/matches/13367",
+      "name": "Koek/Weterings - Boeykens/Pysson",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 8,
+      "round_name": "Round of 16",
+      "index": 6,
+      "seeds": {
+        "team_1": "7",
+        "team_2": null
+      },
+      "played_at": "2026-09-26",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Court 8",
+      "court_order": 2,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "1"
+        },
+        {
+          "team_1": "6",
+          "team_2": "7"
+        },
+        {
+          "team_1": "6",
+          "team_2": "3"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 536,
+            "self": "/api/players/536",
+            "name": "Marcella Koek",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/536-537"
+            }
+          },
+          {
+            "id": 537,
+            "self": "/api/players/537",
+            "name": "Stephanie Weterings",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/536-537"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 1863,
+            "self": "/api/players/1863",
+            "name": "Elyne Boeykens",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1863-1862"
+            }
+          },
+          {
+            "id": 1862,
+            "self": "/api/players/1862",
+            "name": "Justine Pysson",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1863-1862"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-09-26T14:45:18+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/1189",
+        "headtohead": "/api/matches/13367/headtohead",
+        "prev": "/api/matches/13361",
+        "next": "/api/matches/13369"
+      }
+    },
+    {
+      "id": 13370,
+      "self": "/api/matches/13370",
+      "name": "Stellato/Sussarello - Martinez/Lopez",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 4,
+      "round_name": "Quarter",
+      "index": 1,
+      "seeds": {
+        "team_1": "6",
+        "team_2": "3"
+      },
+      "played_at": "2026-09-26",
+      "schedule_label": "Not before 4:00 PM",
+      "scheduled_at": "2026-09-26T16:00:00+02:00",
+      "scheduled_at_local": "2026-09-26T16:00:00+02:00",
+      "court": "Court 10",
+      "court_order": 3,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "3"
+        },
+        {
+          "team_1": "6",
+          "team_2": "3"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 578,
+            "self": "/api/players/578",
+            "name": "Emily Stellato",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/578-579"
+            }
+          },
+          {
+            "id": 579,
+            "self": "/api/players/579",
+            "name": "Giulia Sussarello",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/578-579"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 492,
+            "self": "/api/players/492",
+            "name": "Aida Martinez Sanjuan",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/492-481"
+            }
+          },
+          {
+            "id": 481,
+            "self": "/api/players/481",
+            "name": "Natividad Lopez Diaz",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/492-481"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-09-26T17:45:17+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/1189",
+        "headtohead": "/api/matches/13370/headtohead",
+        "prev": "/api/matches/13365",
+        "next": "/api/matches/13371"
+      }
+    },
+    {
+      "id": 13371,
+      "self": "/api/matches/13371",
+      "name": "Bellver/Dominguez - Parmigiani/Wyckaert",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 4,
+      "round_name": "Quarter",
+      "index": 2,
+      "seeds": {
+        "team_1": "4",
+        "team_2": null
+      },
+      "played_at": "2026-09-26",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Court 10",
+      "court_order": 4,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "3",
+          "team_2": "6"
+        },
+        {
+          "team_1": "6",
+          "team_2": "7"
+        }
+      ],
+      "winner": "team_2",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 483,
+            "self": "/api/players/483",
+            "name": "Sandra Bellver Fructuoso",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/483-493"
+            }
+          },
+          {
+            "id": 493,
+            "self": "/api/players/493",
+            "name": "Ana Dominguez Gracia",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/483-493"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 527,
+            "self": "/api/players/527",
+            "name": "Martina Parmigiani",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/527-518"
+            }
+          },
+          {
+            "id": 518,
+            "self": "/api/players/518",
+            "name": "Helena Wyckaert",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/527-518"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-09-26T19:45:17+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/1189",
+        "headtohead": "/api/matches/13371/headtohead",
+        "prev": "/api/matches/13370"
+      }
+    },
+    {
+      "id": 13372,
+      "self": "/api/matches/13372",
+      "name": "Koek/Weterings - Fernandez/Guerra",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 4,
+      "round_name": "Quarter",
+      "index": 3,
+      "seeds": {
+        "team_1": "7",
+        "team_2": "2"
+      },
+      "played_at": "2026-09-26",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Court 8",
+      "court_order": 4,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "7"
+        },
+        {
+          "team_1": "4",
+          "team_2": "6"
+        }
+      ],
+      "winner": "team_2",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 536,
+            "self": "/api/players/536",
+            "name": "Marcella Koek",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/536-537"
+            }
+          },
+          {
+            "id": 537,
+            "self": "/api/players/537",
+            "name": "Stephanie Weterings",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/536-537"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 1611,
+            "self": "/api/players/1611",
+            "name": "Carla Fernandez Gonzalez",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1611-1612"
+            }
+          },
+          {
+            "id": 1612,
+            "self": "/api/players/1612",
+            "name": "Nerea Guerra Santana",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1611-1612"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-09-26T19:15:17+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/1189",
+        "headtohead": "/api/matches/13372/headtohead",
+        "prev": "/api/matches/13369"
+      }
+    },
+    {
+      "id": 13392,
+      "self": "/api/matches/13392",
+      "name": "Bidahorria/Riera - Rajagopal/Rajagopal",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 8,
+      "round_name": "Round of 16",
+      "index": 0,
+      "seeds": {
+        "team_1": "1",
+        "team_2": "WC"
+      },
+      "played_at": "2026-09-26",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": null,
+      "court_order": null,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "0"
+        },
+        {
+          "team_1": "6",
+          "team_2": "0"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 451,
+            "self": "/api/players/451",
+            "name": "Julieta Evangelina Bidahorria",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/451-496"
+            }
+          },
+          {
+            "id": 496,
+            "self": "/api/players/496",
+            "name": "Virginia Riera",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/451-496"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 3140,
+            "self": "/api/players/3140",
+            "name": "Anshika Rajagopal",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/3140-3141"
+            }
+          },
+          {
+            "id": 3141,
+            "self": "/api/players/3141",
+            "name": "Rishita Rajagopal",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/3140-3141"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-09-26T12:15:14+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/1189",
+        "headtohead": "/api/matches/13392/headtohead"
+      }
+    },
+    {
+      "id": 13393,
+      "self": "/api/matches/13393",
+      "name": "Tromp/Jeuck - Hemmes/Luttikhuis",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 8,
+      "round_name": "Round of 16",
+      "index": 1,
+      "seeds": {
+        "team_1": null,
+        "team_2": "8"
+      },
+      "played_at": "2026-09-26",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": null,
+      "court_order": null,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "0",
+          "team_2": "6"
+        },
+        {
+          "team_1": "1",
+          "team_2": "6"
+        }
+      ],
+      "winner": "team_2",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 2879,
+            "self": "/api/players/2879",
+            "name": "Emma Tromp",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/2879-2878"
+            }
+          },
+          {
+            "id": 2878,
+            "self": "/api/players/2878",
+            "name": "Miriam Jeuck",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/2879-2878"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 539,
+            "self": "/api/players/539",
+            "name": "Janine Hemmes",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/539-538"
+            }
+          },
+          {
+            "id": 538,
+            "self": "/api/players/538",
+            "name": "Bo Luttikhuis",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/539-538"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-09-26T12:15:15+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/1189",
+        "headtohead": "/api/matches/13393/headtohead"
+      }
+    },
+    {
+      "id": 13394,
+      "self": "/api/matches/13394",
+      "name": "Sussarello/Stellato - Van Houten/Nouws",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 8,
+      "round_name": "Round of 16",
+      "index": 2,
+      "seeds": {
+        "team_1": "6",
+        "team_2": null
+      },
+      "played_at": "2026-09-26",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": null,
+      "court_order": null,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "3"
+        },
+        {
+          "team_1": "6",
+          "team_2": "3"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 579,
+            "self": "/api/players/579",
+            "name": "Giulia Sussarello",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/579-578"
+            }
+          },
+          {
+            "id": 578,
+            "self": "/api/players/578",
+            "name": "Emily Stellato",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/579-578"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 2520,
+            "self": "/api/players/2520",
+            "name": "Merel Van Houten",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/2520-2521"
+            }
+          },
+          {
+            "id": 2521,
+            "self": "/api/players/2521",
+            "name": "Joyce Nouws",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/2520-2521"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-09-26T12:45:15+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/1189",
+        "headtohead": "/api/matches/13394/headtohead"
+      }
+    },
+    {
+      "id": 13395,
+      "self": "/api/matches/13395",
+      "name": "De Vocht/Sireix - Martinez/Lopez",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 8,
+      "round_name": "Round of 16",
+      "index": 3,
+      "seeds": {
+        "team_1": null,
+        "team_2": "3"
+      },
+      "played_at": "2026-09-26",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": null,
+      "court_order": null,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "1",
+          "team_2": "6"
+        },
+        {
+          "team_1": "5",
+          "team_2": "7"
+        }
+      ],
+      "winner": "team_2",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 886,
+            "self": "/api/players/886",
+            "name": "Tess De Vocht",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/886-551"
+            }
+          },
+          {
+            "id": 551,
+            "self": "/api/players/551",
+            "name": "Camille Sireix",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/886-551"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 492,
+            "self": "/api/players/492",
+            "name": "Aida Martinez Sanjuan",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/492-481"
+            }
+          },
+          {
+            "id": 481,
+            "self": "/api/players/481",
+            "name": "Natividad Lopez Diaz",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/492-481"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-09-26T12:45:15+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/1189",
+        "headtohead": "/api/matches/13395/headtohead"
+      }
+    },
+    {
+      "id": 13396,
+      "self": "/api/matches/13396",
+      "name": "Dominguez/Bellver - Marlies/Van Leeuwen",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 8,
+      "round_name": "Round of 16",
+      "index": 4,
+      "seeds": {
+        "team_1": "4",
+        "team_2": null
+      },
+      "played_at": "2026-09-26",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": null,
+      "court_order": null,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "2"
+        },
+        {
+          "team_1": "6",
+          "team_2": "2"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 493,
+            "self": "/api/players/493",
+            "name": "Ana Dominguez Gracia",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/493-483"
+            }
+          },
+          {
+            "id": 483,
+            "self": "/api/players/483",
+            "name": "Sandra Bellver Fructuoso",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/493-483"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 1225,
+            "self": "/api/players/1225",
+            "name": "Karin Marlies Lems",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1225-2881"
+            }
+          },
+          {
+            "id": 2881,
+            "self": "/api/players/2881",
+            "name": "Moesha Van Leeuwen",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1225-2881"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-09-26T13:45:15+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/1189",
+        "headtohead": "/api/matches/13396/headtohead"
+      }
+    },
+    {
+      "id": 13397,
+      "self": "/api/matches/13397",
+      "name": "Wyckaert/Parmigiani - Baldi/Aima",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 8,
+      "round_name": "Round of 16",
+      "index": 5,
+      "seeds": {
+        "team_1": null,
+        "team_2": "5"
+      },
+      "played_at": "2026-09-26",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": null,
+      "court_order": null,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "7",
+          "team_2": "6"
+        },
+        {
+          "team_1": "6",
+          "team_2": "4"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 518,
+            "self": "/api/players/518",
+            "name": "Helena Wyckaert",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/518-527"
+            }
+          },
+          {
+            "id": 527,
+            "self": "/api/players/527",
+            "name": "Martina Parmigiani",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/518-527"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 589,
+            "self": "/api/players/589",
+            "name": "Caterina Maria Baldi",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/589-2766"
+            }
+          },
+          {
+            "id": 2766,
+            "self": "/api/players/2766",
+            "name": "Clarissa Aima",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/589-2766"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-09-26T14:45:15+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/1189",
+        "headtohead": "/api/matches/13397/headtohead"
+      }
+    },
+    {
+      "id": 13398,
+      "self": "/api/matches/13398",
+      "name": "Koek/Weterings - Pysson/Boeykens",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 8,
+      "round_name": "Round of 16",
+      "index": 6,
+      "seeds": {
+        "team_1": "7",
+        "team_2": null
+      },
+      "played_at": "2026-09-26",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": null,
+      "court_order": null,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "1"
+        },
+        {
+          "team_1": "6",
+          "team_2": "7"
+        },
+        {
+          "team_1": "6",
+          "team_2": "3"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 536,
+            "self": "/api/players/536",
+            "name": "Marcella Koek",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/536-537"
+            }
+          },
+          {
+            "id": 537,
+            "self": "/api/players/537",
+            "name": "Stephanie Weterings",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/536-537"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 1862,
+            "self": "/api/players/1862",
+            "name": "Justine Pysson",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1862-1863"
+            }
+          },
+          {
+            "id": 1863,
+            "self": "/api/players/1863",
+            "name": "Elyne Boeykens",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1862-1863"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-09-26T14:45:15+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/1189",
+        "headtohead": "/api/matches/13398/headtohead"
+      }
+    },
+    {
+      "id": 13401,
+      "self": "/api/matches/13401",
+      "name": "Stellato/Sussarello - Martinez/Lopez",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 4,
+      "round_name": "Quarter",
+      "index": 1,
+      "seeds": {
+        "team_1": "6",
+        "team_2": "3"
+      },
+      "played_at": "2026-09-26",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": null,
+      "court_order": null,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "3"
+        },
+        {
+          "team_1": "6",
+          "team_2": "3"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 578,
+            "self": "/api/players/578",
+            "name": "Emily Stellato",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/578-579"
+            }
+          },
+          {
+            "id": 579,
+            "self": "/api/players/579",
+            "name": "Giulia Sussarello",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/578-579"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 492,
+            "self": "/api/players/492",
+            "name": "Aida Martinez Sanjuan",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/492-481"
+            }
+          },
+          {
+            "id": 481,
+            "self": "/api/players/481",
+            "name": "Natividad Lopez Diaz",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/492-481"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-09-26T17:45:15+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/1189",
+        "headtohead": "/api/matches/13401/headtohead"
+      }
+    },
+    {
+      "id": 13402,
+      "self": "/api/matches/13402",
+      "name": "Bellver/Dominguez - Parmigiani/Wyckaert",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 4,
+      "round_name": "Quarter",
+      "index": 2,
+      "seeds": {
+        "team_1": "4",
+        "team_2": null
+      },
+      "played_at": "2026-09-26",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": null,
+      "court_order": null,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "3",
+          "team_2": "6"
+        },
+        {
+          "team_1": "6",
+          "team_2": "7"
+        }
+      ],
+      "winner": "team_2",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 483,
+            "self": "/api/players/483",
+            "name": "Sandra Bellver Fructuoso",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/483-493"
+            }
+          },
+          {
+            "id": 493,
+            "self": "/api/players/493",
+            "name": "Ana Dominguez Gracia",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/483-493"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 527,
+            "self": "/api/players/527",
+            "name": "Martina Parmigiani",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/527-518"
+            }
+          },
+          {
+            "id": 518,
+            "self": "/api/players/518",
+            "name": "Helena Wyckaert",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/527-518"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-09-26T19:45:15+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/1189",
+        "headtohead": "/api/matches/13402/headtohead"
+      }
+    },
+    {
+      "id": 13403,
+      "self": "/api/matches/13403",
+      "name": "Koek/Weterings - Fernandez/Guerra",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 4,
+      "round_name": "Quarter",
+      "index": 3,
+      "seeds": {
+        "team_1": "7",
+        "team_2": "2"
+      },
+      "played_at": "2026-09-26",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": null,
+      "court_order": null,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "7"
+        },
+        {
+          "team_1": "4",
+          "team_2": "6"
+        }
+      ],
+      "winner": "team_2",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 536,
+            "self": "/api/players/536",
+            "name": "Marcella Koek",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/536-537"
+            }
+          },
+          {
+            "id": 537,
+            "self": "/api/players/537",
+            "name": "Stephanie Weterings",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/536-537"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 1611,
+            "self": "/api/players/1611",
+            "name": "Carla Fernandez Gonzalez",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1611-1612"
+            }
+          },
+          {
+            "id": 1612,
+            "self": "/api/players/1612",
+            "name": "Nerea Guerra Santana",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1611-1612"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-09-26T19:15:15+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/1189",
+        "headtohead": "/api/matches/13403/headtohead"
+      }
+    },
+    {
+      "id": 13350,
+      "self": "/api/matches/13350",
+      "name": "Van Houten/Nouws - Pas/Bosschem",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 16,
+      "round_name": "Round of 32",
+      "index": 5,
+      "seeds": {
+        "team_1": null,
+        "team_2": null
+      },
+      "played_at": "2026-09-25",
+      "schedule_label": "Starting at 3:00 PM",
+      "scheduled_at": "2026-09-25T15:00:00+02:00",
+      "scheduled_at_local": "2026-09-25T15:00:00+02:00",
+      "court": "Court 10",
+      "court_order": 1,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "2"
+        },
+        {
+          "team_1": "6",
+          "team_2": "2"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 2520,
+            "self": "/api/players/2520",
+            "name": "Merel Van Houten",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/2520-2521"
+            }
+          },
+          {
+            "id": 2521,
+            "self": "/api/players/2521",
+            "name": "Joyce Nouws",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/2520-2521"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 2525,
+            "self": "/api/players/2525",
+            "name": "Willeke Pas",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/2525-3142"
+            }
+          },
+          {
+            "id": 3142,
+            "self": "/api/players/3142",
+            "name": "Eline Bosschem",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/2525-3142"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-09-25T16:45:12+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/1189",
+        "headtohead": "/api/matches/13350/headtohead"
+      }
+    },
+    {
+      "id": 13351,
+      "self": "/api/matches/13351",
+      "name": "Sireix/De Vocht - Vierendeels/Poels",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 16,
+      "round_name": "Round of 32",
+      "index": 6,
+      "seeds": {
+        "team_1": null,
+        "team_2": null
+      },
+      "played_at": "2026-09-25",
+      "schedule_label": "Starting at 3:00 PM",
+      "scheduled_at": "2026-09-25T15:00:00+02:00",
+      "scheduled_at_local": "2026-09-25T15:00:00+02:00",
+      "court": "Court 8",
+      "court_order": 1,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "5",
+          "team_2": "7"
+        },
+        {
+          "team_1": "6",
+          "team_2": "3"
+        },
+        {
+          "team_1": "6",
+          "team_2": "3"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 551,
+            "self": "/api/players/551",
+            "name": "Camille Sireix",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/551-886"
+            }
+          },
+          {
+            "id": 886,
+            "self": "/api/players/886",
+            "name": "Tess De Vocht",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/551-886"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 2519,
+            "self": "/api/players/2519",
+            "name": "Rune Vierendeels",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/2519-2523"
+            }
+          },
+          {
+            "id": 2523,
+            "self": "/api/players/2523",
+            "name": "Linn Poels",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/2519-2523"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-09-25T17:15:12+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/1189",
+        "headtohead": "/api/matches/13351/headtohead",
+        "next": "/api/matches/13355"
+      }
+    },
+    {
+      "id": 13355,
+      "self": "/api/matches/13355",
+      "name": "Bernard/Mesa - Parmigiani/Wyckaert",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 16,
+      "round_name": "Round of 32",
+      "index": 10,
+      "seeds": {
+        "team_1": null,
+        "team_2": null
+      },
+      "played_at": "2026-09-25",
+      "schedule_label": "Not before 4:00 PM",
+      "scheduled_at": "2026-09-25T16:00:00+02:00",
+      "scheduled_at_local": "2026-09-25T16:00:00+02:00",
+      "court": "Court 8",
+      "court_order": 2,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "4"
+        },
+        {
+          "team_1": "5",
+          "team_2": "7"
+        },
+        {
+          "team_1": "3",
+          "team_2": "6"
+        }
+      ],
+      "winner": "team_2",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 1891,
+            "self": "/api/players/1891",
+            "name": "Puck Bernard",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1891-1940"
+            }
+          },
+          {
+            "id": 1940,
+            "self": "/api/players/1940",
+            "name": "Erika Mesa Martinez",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1891-1940"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 527,
+            "self": "/api/players/527",
+            "name": "Martina Parmigiani",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/527-518"
+            }
+          },
+          {
+            "id": 518,
+            "self": "/api/players/518",
+            "name": "Helena Wyckaert",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/527-518"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-09-25T18:45:14+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/1189",
+        "headtohead": "/api/matches/13355/headtohead",
+        "prev": "/api/matches/13351"
+      }
+    },
+    {
+      "id": 13381,
+      "self": "/api/matches/13381",
+      "name": "Van Houten/Nouws - Pas/Bosschem",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 16,
+      "round_name": "Round of 32",
+      "index": 5,
+      "seeds": {
+        "team_1": null,
+        "team_2": null
+      },
+      "played_at": "2026-09-25",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": null,
+      "court_order": null,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "2"
+        },
+        {
+          "team_1": "6",
+          "team_2": "2"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 2520,
+            "self": "/api/players/2520",
+            "name": "Merel Van Houten",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/2520-2521"
+            }
+          },
+          {
+            "id": 2521,
+            "self": "/api/players/2521",
+            "name": "Joyce Nouws",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/2520-2521"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 2525,
+            "self": "/api/players/2525",
+            "name": "Willeke Pas",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/2525-3142"
+            }
+          },
+          {
+            "id": 3142,
+            "self": "/api/players/3142",
+            "name": "Eline Bosschem",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/2525-3142"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-09-25T18:15:12+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/1189",
+        "headtohead": "/api/matches/13381/headtohead"
+      }
+    },
+    {
+      "id": 13382,
+      "self": "/api/matches/13382",
+      "name": "De Vocht/Sireix - Vierendeels/Poels",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 16,
+      "round_name": "Round of 32",
+      "index": 6,
+      "seeds": {
+        "team_1": null,
+        "team_2": null
+      },
+      "played_at": "2026-09-25",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": null,
+      "court_order": null,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "5",
+          "team_2": "7"
+        },
+        {
+          "team_1": "6",
+          "team_2": "3"
+        },
+        {
+          "team_1": "6",
+          "team_2": "3"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 886,
+            "self": "/api/players/886",
+            "name": "Tess De Vocht",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/886-551"
+            }
+          },
+          {
+            "id": 551,
+            "self": "/api/players/551",
+            "name": "Camille Sireix",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/886-551"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 2519,
+            "self": "/api/players/2519",
+            "name": "Rune Vierendeels",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/2519-2523"
+            }
+          },
+          {
+            "id": 2523,
+            "self": "/api/players/2523",
+            "name": "Linn Poels",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/2519-2523"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-09-25T18:15:12+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/1189",
+        "headtohead": "/api/matches/13382/headtohead"
+      }
+    },
+    {
+      "id": 13386,
+      "self": "/api/matches/13386",
+      "name": "Bernard/Mesa - Parmigiani/Wyckaert",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 16,
+      "round_name": "Round of 32",
+      "index": 10,
+      "seeds": {
+        "team_1": null,
+        "team_2": null
+      },
+      "played_at": "2026-09-25",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": null,
+      "court_order": null,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "4"
+        },
+        {
+          "team_1": "5",
+          "team_2": "7"
+        },
+        {
+          "team_1": "3",
+          "team_2": "6"
+        }
+      ],
+      "winner": "team_2",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 1891,
+            "self": "/api/players/1891",
+            "name": "Puck Bernard",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1891-1940"
+            }
+          },
+          {
+            "id": 1940,
+            "self": "/api/players/1940",
+            "name": "Erika Mesa Martinez",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1891-1940"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 527,
+            "self": "/api/players/527",
+            "name": "Martina Parmigiani",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/527-518"
+            }
+          },
+          {
+            "id": 518,
+            "self": "/api/players/518",
+            "name": "Helena Wyckaert",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/527-518"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-09-25T18:45:11+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/1189",
+        "headtohead": "/api/matches/13386/headtohead"
+      }
+    }
+  ]
+}
