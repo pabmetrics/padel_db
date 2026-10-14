@@ -1,0 +1,50 @@
+name: ingest_match_stats
+
+on:
+  schedule:
+    # Diario 06:30 UTC. Fuera de torneo apenas hace peticiones (los torneos
+    # cerrados y ya descargados se saltan); durante un torneo recoge los
+    # partidos terminados el día anterior. Ver ingest/premierpadel/match_stats.py.
+    - cron: "30 6 * * *"
+  workflow_dispatch: {}
+
+jobs:
+  ingest_match_stats:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Instalar dependencias
+        run: pip install -r requirements.txt
+
+      - name: Ingesta — partidos y estadísticas (F1, API nueva de premierpadel.com)
+        run: python -m ingest.premierpadel.match_stats
+
+      - name: Silver — fact_partido_stats
+        run: python transform/build_fact_partido_stats.py
+
+      - name: Tests de calidad
+        run: python -m pytest tests/ -v
+
+      - name: Gold — stats_parejas
+        run: python transform/build_gold_stats_parejas.py
+
+      - name: Commit
+        run: |
+          git config user.name "padeldb-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add bronze/premierpadel/match_stats silver/fact_partido_stats silver/_reconciliacion gold/stats_parejas
+          git diff --cached --quiet || git commit -m "ingest_match_stats: $(date -u +%F)"
+          for intento in 1 2 3 4 5; do
+            git push && break
+            echo "push rechazado (otro job empujo a la vez), reintento con rebase ($intento/5)..."
+            git fetch origin main
+            git rebase origin/main
+            sleep $(( (RANDOM % 10) + 1 ))
+          done

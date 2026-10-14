@@ -26,6 +26,9 @@ def normalize_name(name: str) -> str:
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 FACT_PARTIDO = REPO_ROOT / "silver" / "fact_partido" / "data.json"
+# Walkovers y abandonos: no se jugaron (del todo), pero deciden quién pasa
+# de ronda y, en una final, quién es campeón.
+FACT_PARTIDO_INCOMPLETO = REPO_ROOT / "silver" / "fact_partido_incompleto" / "data.json"
 DIM_PUNTOS = REPO_ROOT / "silver" / "dim_puntos_categoria" / "data.json"
 RESULTADO_ALTERNATIVO = REPO_ROOT / "silver" / "resultado_alternativo" / "data.json"
 RESULTADO_ALTERNATIVO_FIP = REPO_ROOT / "silver" / "resultado_alternativo_fip" / "data.json"
@@ -55,6 +58,8 @@ def _pareja_key(a: dict[str, Any] | None, b: dict[str, Any] | None) -> tuple[str
 
 def build() -> Path:
     partidos = json.loads(FACT_PARTIDO.read_text(encoding="utf-8"))
+    if FACT_PARTIDO_INCOMPLETO.exists():
+        partidos += json.loads(FACT_PARTIDO_INCOMPLETO.read_text(encoding="utf-8"))
     puntos_tabla = json.loads(DIM_PUNTOS.read_text(encoding="utf-8"))
     puntos_por_clave = {(p["circuito"], p["categoria"], p["ronda"]): p["puntos"] for p in puntos_tabla}
 

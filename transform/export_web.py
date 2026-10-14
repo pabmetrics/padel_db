@@ -49,6 +49,9 @@ DIAS_DE_COLA = 14  # la cola caduca a los 7 días (doc 03 §6); se deja margen
 
 TABLAS: dict[str, tuple[str, str]] = {
     "ranking_movimientos_semana": ("Movimientos del ranking", "Puestos ganados o perdidos por jugador en la última semana, con puntos."),
+    "ranking_semana": ("Ranking de la semana", "Top 100 con puntos, variación semanal de puntos y puestos, y resultado de la semana."),
+    "ganadores_semana": ("Campeones de la semana", "Parejas campeonas y final de cada torneo terminado la semana anterior."),
+    "stats_parejas": ("Estadísticas de pista por pareja", "Puntos ganados al saque, al resto y con el segundo saque por pareja en la temporada (Premier Padel)."),
     "forma_reciente": ("Forma reciente", "Partidos, victorias, porcentaje de victorias y racha de cada jugador en las últimas 8 semanas."),
     "perfil_top100": ("Perfil del top 100", "Edad, nacionalidad, altura y lado de pista de los cien primeros de cada ranking."),
     "parejas_duracion": ("Duración de las parejas", "Cuánto lleva cada pareja jugando junta, reconstruido a partir de los partidos."),

@@ -53,6 +53,31 @@ Backfill real del 17/09/2026 (ventana de 180 días): 65 torneos, 3.291 partidos,
 | `winner` | **Parcial, ventana móvil de ~180 días** | Confirmado el 18/09/2026: no es "cuanto más viejo, más oculto" sino un corte limpio en el tiempo — todo torneo cuya fecha cae fuera de los últimos ~180 días **desde hoy** tiene el `winner` oculto (`"hidden_free_plan"`) en el 100% de sus partidos; dentro de esa ventana, visible con normalidad (salvo el 2,5% suelto ya documentado). El corte se mueve con el calendario: un torneo que hoy se ve, dentro de unas semanas dejará de verse. Backfilear más atrás en el tiempo nunca soluciona esto — solo trae más partidos con el ganador oculto. Solución adoptada: `ingest/matchresults/premierpadel.py` usa una fuente de respaldo (la tabla "Results & Earnings" de padelearnings.com, que sí conserva el histórico completo) para los torneos de Premier Padel afectados. Para el FIP Tour, `ingest/matchresults/fip.py` usa el widget de terceros (Crionet/matchscorerlive) que padelfip.com incrusta en la pestaña "Results" de cada evento — da nombres abreviados ("M. Di Nenno"), así que el cruce a `jugador_id` se hace por apellido dentro del censo de participantes de ESE torneo (de `fact_partido`, cuya lista de jugadores no está oculta, solo el resultado), nunca por coincidencia global de nombre. Ver `docs/campos-prize-money-2026.md` |
 | `players[].side` | Parcial | Mismo patrón que en `/players`: presente para jugadores con cobertura suficiente |
 
+## Hallazgos del 29/09/2026
+
+- **Walkovers y abandonos se perdían.** `ingest/padelapi/matches.py` solo
+  guardaba partidos `status: "finished"`; los estados reales son también
+  `walkover`, `retired` y `bye`. La final masculina de FIP Silver São João
+  da Madeira se ganó por walkover (Solano/Pereyra), así que su campeón no
+  existía en silver y `fact_resultado_torneo` les daba "semifinal". Desde
+  ahora bronze guarda `walkover` y `retired` (no `bye`). `build_fact_partido.py`
+  los separa en `silver/fact_partido_incompleto` (con `estado`
+  walkover/abandono) para no cambiar las tablas que cuentan partidos
+  jugados (forma reciente, h2h, sorpresas…); solo `fact_resultado_torneo` y
+  `gold.ganadores_semana` los leen. Los snapshots anteriores no los tienen:
+  se recuperan al reingerir cada torneo.
+- **Cuadro duplicado entre categorías.** En FIP Silver Houten (id 1189),
+  `/tournaments/{id}/matches` devuelve los partidos del cuadro femenino
+  también con `category: "men"`. No se corrige en silver (no hay cuadro
+  masculino real que poner); `gold.ganadores_semana` lo detecta comparando
+  el sexo de los jugadores de la final con la categoría.
+- **Ranking femenino sin publicar.** El 28/09/2026 `/rankings` solo devolvió
+  el masculino (1.563 filas, fecha 2026-09-28); con `date=2026-09-21` salen
+  los dos. El femenino todavía no tenía la actualización de esa semana, así
+  que `fact_ranking_semanal` femenino se quedó sin puntos y los gráficos
+  femeninos de #RankingLunes no salen esa semana. El parámetro `gender`
+  no filtra (se ignora); `category=women` devuelve 0.
+
 ## Regla de precedencia aplicada (doc 01 §2)
 
 F1 (premierpadel.com) sigue siendo la fuente primaria de la posición de ranking; F2 (padelapi.org) valida y **rellena los puntos que F1 no da**. De momento (Fase 0) los snapshots de F1 y F2 se guardan por separado en bronze sin cruzarlos: reconciliarlos por jugador de forma segura (no por nombre, que es frágil — ver "Trampas conocidas" del doc de arquitectura) requiere `map_jugador_fuente`, que es trabajo de Fase 1.

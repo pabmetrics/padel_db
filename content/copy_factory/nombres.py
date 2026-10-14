@@ -33,7 +33,8 @@ CLAVES_NOMBRE = (
 )
 SEPARADOR_PAREJA = " / "
 # Pedidos a medida (`chart_factory/adhoc.py`): jugador_1 … jugador_N.
-CLAVE_NOMBRE_NUMERADA = re.compile(r"jugador_\d+")
+# Campeones de la semana (`chart_factory/ganadores.py`): campeones_1 … campeones_N.
+CLAVE_NOMBRE_NUMERADA = re.compile(r"(jugador|campeones)_\d+")
 
 
 def _claves_nombre(values: dict[str, Any]) -> list[str]:

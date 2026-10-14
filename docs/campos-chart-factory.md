@@ -299,6 +299,37 @@ se rechaza. Primeros datos (26/09/2026, temporada): masculino, 434 de 954
 (45,5 %), 37 % en el top 30 agrupado y 49 % del 31 en adelante; femenino,
 336 de 662 (50,8 %), sin diferencia clara.
 
+## #RankingLunes rehecho y campeones de la semana (29/09/2026)
+
+El gráfico de puestos ganados (`ranking_moves.py`) se quedaba corto: en la
+zona alta los puestos casi no se mueven aunque entren cientos de puntos, y
+en la baja un puñado de puntos mueve decenas de puestos. Lo sustituyen en
+el calendario del lunes (sigue disponible con `--serie ranking_moves`):
+
+- `ranking_top10.py`: barras de puntos del top 10 (con empates, así que
+  pueden ser 11 filas), variación de puntos de la semana a la derecha. El
+  nº 1 en cristal. Título: la ventaja en puntos del primero sobre el
+  siguiente.
+- `ranking_puntos.py`: las 8 mayores subidas de puntos del top 100, con el
+  puesto actual y el resultado de la semana que las explica ("Campeón · FIP
+  Platinum Lyon"). En 4:5 ese contexto va debajo de cada barra. Umbral
+  editorial: +50 puntos.
+
+Los dos leen `gold/ranking_semana` (`transform/build_gold_ranking_semana.py`),
+que a diferencia de `ranking_movimientos_semana` incluye también a quien no
+cambia de puesto.
+
+Aparte, `ganadores.py` (serie "Campeones de la semana", también los lunes):
+tabla de torneos terminados la semana anterior (lunes a domingo), de más a
+menos nivel, con la pareja campeona, el marcador de la final **leído desde
+el campeón** y su cabeza de serie. Lee `gold/ganadores_semana`
+(`transform/build_gold_ganadores_semana.py`). Un cuadro no publicable sale
+como "sin dato verificado" en vez de rellenarse: la final no existe en la
+fuente, o algún jugador de la final no es del sexo de la categoría (FIP
+Silver Houten, 29/09/2026: padelapi devolvió el cuadro femenino también
+como masculino). En `values` van numerados `torneo_N`/`campeones_N`, y
+`copy_factory/nombres.py` reconoce `campeones_N` como nombres.
+
 ## Exportación a Plotly/JSON para la web
 
 El doc 02 §1.2 punto 8 también pide "SVG/Plotly para la web" además de los

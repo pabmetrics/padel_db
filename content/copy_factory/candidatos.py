@@ -20,6 +20,7 @@ from typing import Callable
 
 from content.chart_factory import (
     forma_reciente,
+    ganadores,
     ganancias,
     h2h,
     licencias,
@@ -28,7 +29,10 @@ from content.chart_factory import (
     perfil,
     pistas,
     ranking_moves,
+    ranking_puntos,
+    ranking_top10,
     sorpresas,
+    stats_resto,
     torneo_previa,
     trends,
 )
@@ -44,18 +48,22 @@ REPO_ROOT = Path(__file__).resolve().parents[2]
 # que ya tenía antes de integrarse aquí, no se ha unificado la convención
 # de chart_factory solo para esto).
 GENERADORES_CON_PARAMETRO: dict[str, tuple[Callable[[str], dict], tuple[str, str]]] = {
-    "ranking_moves": (ranking_moves.build, ("M", "F")),
+    "ranking_top10": (ranking_top10.build, ("M", "F")),
+    "ranking_puntos": (ranking_puntos.build, ("M", "F")),
+    "ranking_moves": (ranking_moves.build, ("M", "F")),  # fuera del calendario desde el 29/09/2026; a mano con --serie
     "ganancias": (ganancias.build, ("M", "F")),
     "perfil": (perfil.build, ("M", "F")),
     "forma_reciente": (forma_reciente.build, ("M", "F")),
     "parejas": (parejas.build, ("men", "women")),
     "h2h": (h2h.build, ("men", "women")),
     "sorpresas": (sorpresas.build, ("men", "women")),
+    "stats_resto": (stats_resto.build, ("M", "F")),
     "torneo_previa": (torneo_previa.build, ("men", "women")),
 }
 
 # Generadores de una sola serie, sin distinción de sexo/categoría.
 GENERADORES_SIN_PARAMETRO: dict[str, Callable[[], dict]] = {
+    "ganadores": ganadores.build,
     "pistas": pistas.build,
     "licencias": licencias.build,
     "mercado": mercado.build,

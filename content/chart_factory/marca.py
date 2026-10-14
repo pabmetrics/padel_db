@@ -113,6 +113,12 @@ def colores_tema(tema: Tema) -> dict[str, str]:
     return {"fondo": PISTA, "texto_principal": ARENA, "texto_secundario": TEXTO_SECUNDARIO_OSCURO, "grid": "#2A4D7A", "enfasis": BOLA}
 
 
+def formato_es(valor: float, decimales: int = 0, signo: bool = False) -> str:
+    """Formato numérico español (doc 02 §1.2): punto de miles, coma decimal."""
+    texto = f"{valor:{'+' if signo else ''},.{decimales}f}"
+    return texto.replace(",", "X").replace(".", ",").replace("X", ".")
+
+
 def siguiente_registro() -> str:
     """Número de registro correlativo (doc 02 §1.2): un contador persistente
     en `content/chart_factory/registro.json`, no reutilizable ni inventado

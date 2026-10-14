@@ -25,6 +25,7 @@ from .client import PadelApiClient
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 BRONZE_ROOT = REPO_ROOT / "bronze" / "padelapi" / "matches"
+ESTADOS_GUARDADOS = ("finished", "walkover", "retired")  # "bye" no es un partido
 
 
 def fetch_recent_tournaments(client: PadelApiClient, days_back: int) -> list[dict[str, Any]]:
@@ -55,7 +56,11 @@ def fetch_matches(client: PadelApiClient, tournament_id: int) -> list[dict[str, 
     return [
         item
         for item in client.paginate(f"/tournaments/{tournament_id}/matches")
-        if item.get("status") == "finished"
+        # walkover y abandono también: sin ellos se pierde quién pasa de
+        # ronda (29/09/2026: la final masculina de FIP Silver São João da
+        # Madeira se ganó por walkover y el campeón no llegaba a silver).
+        # `build_fact_partido.py` los separa en `fact_partido_incompleto`.
+        if item.get("status") in ESTADOS_GUARDADOS
     ]
 
 

@@ -73,11 +73,19 @@ def series_del_dia(hoy: date, torneos: list[dict[str, Any]]) -> set[str]:
     dia = hoy.weekday()
 
     if dia == LUNES:
-        series.add("ranking_moves")
+        # #RankingLunes: top 10 en puntos + mayores subidas de puntos
+        # (sustituyen al gráfico de puestos, `ranking_moves`), y la
+        # infografía de campeones de los torneos de la semana anterior
+        # (si no terminó ninguno, el generador lo descarta solo).
+        series |= {"ranking_top10", "ranking_puntos", "ganadores"}
         if termino_torneo_esta_semana(hoy, torneos):
             series.add("ganancias")
     elif dia == MARTES and hoy.isocalendar().week % 2 == 0:
         series |= {"mercado", "licencias"}
+    elif dia == MARTES:
+        # Semanas impares: estadísticas de pista (F1), el hueco que dejaba
+        # el Pádel Mercado quincenal.
+        series.add("stats_resto")
     elif dia == MIERCOLES:
         series |= {"parejas", "h2h"}
     elif dia == JUEVES:

@@ -6,6 +6,8 @@ from datetime import date
 
 from content.copy_factory.calendario import series_del_dia
 
+LUNES = {"ranking_top10", "ranking_puntos", "ganadores"}
+
 TORNEOS = [
     {"nombre": "PARIS MAJOR", "fecha_ini": "2026-09-07", "fecha_fin": "2026-09-13"},
     {"nombre": "ROTTERDAM P2", "fecha_ini": "2026-09-28", "fecha_fin": "2026-10-04"},
@@ -13,11 +15,11 @@ TORNEOS = [
 
 
 def test_lunes_sin_torneo_reciente_solo_ranking():
-    assert series_del_dia(date(2026, 9, 21), TORNEOS) == {"ranking_moves"}
+    assert series_del_dia(date(2026, 9, 21), TORNEOS) == LUNES
 
 
 def test_lunes_tras_torneo_incluye_cierre():
-    assert series_del_dia(date(2026, 9, 14), TORNEOS) == {"ranking_moves", "ganancias"}
+    assert series_del_dia(date(2026, 9, 14), TORNEOS) == {*LUNES, "ganancias"}
 
 
 def test_serie_de_torneo_solo_durante_el_torneo():
@@ -34,8 +36,8 @@ def test_fin_de_semana_sin_torneo_descansa():
     assert series_del_dia(date(2026, 9, 20), TORNEOS) == set()  # domingo
 
 
-def test_mercado_solo_semanas_iso_pares():
-    assert series_del_dia(date(2026, 9, 22), []) == set()  # martes, semana 39
+def test_martes_alterna_mercado_y_stats_de_pista():
+    assert series_del_dia(date(2026, 9, 22), []) == {"stats_resto"}  # martes, semana 39
     assert series_del_dia(date(2026, 9, 29), []) == {"mercado", "licencias"}  # semana 40
 
 
@@ -50,7 +52,7 @@ def test_perfil_solo_el_primer_viernes_del_mes():
 
 
 def test_sin_calendario_de_torneos_no_falla():
-    assert series_del_dia(date(2026, 9, 21), []) == {"ranking_moves"}
+    assert series_del_dia(date(2026, 9, 21), []) == LUNES
 
 
 def test_previa_solo_el_dia_antes_del_torneo():

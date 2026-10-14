@@ -70,6 +70,9 @@ jobs:
       - name: Gold — ranking_movimientos_semana
         run: python transform/build_gold_ranking_movimientos.py
 
+      - name: Gold — ranking_semana (top 10 y subidas de puntos de #RankingLunes)
+        run: python transform/build_gold_ranking_semana.py
+
       - name: Gold — perfil_top100
         run: python transform/build_gold_perfil_top100.py
 
@@ -94,8 +97,8 @@ jobs:
       - name: Gold — partidos_nacionalidad
         run: python transform/build_gold_partidos_nacionalidad.py
 
-      - name: Gráfico de #RankingLunes a la cola
-        run: python -m content.chart_factory.ranking_moves
+      - name: Gold — ganadores_semana (campeones de la semana anterior)
+        run: python transform/build_gold_ganadores_semana.py
 
       - name: Export de gold a site/public (export_web)
         run: python transform/export_web.py

@@ -30,6 +30,7 @@ from _padelapi_common import torneo_id_for_padelapi
 REPO_ROOT = Path(__file__).resolve().parents[1]
 BRONZE_MATCHES_ROOT = REPO_ROOT / "bronze" / "padelapi" / "matches"
 SILVER_ROOT = REPO_ROOT / "silver"
+ESTADOS_INCOMPLETOS = {"walkover": "walkover", "retired": "abandono"}
 
 
 def _resumen_marcador(score: Any) -> tuple[int | None, int | None, int | None, int | None, str | None]:
@@ -64,6 +65,12 @@ def build() -> Path:
     jugador_por_id_fuente = _load_map_padelapi()
 
     rows: list[dict[str, Any]] = []
+    # Walkovers y abandonos (bronze los guarda desde el 29/09/2026) van a
+    # una tabla aparte y no a fact_partido: forma_reciente, h2h, sorpresas…
+    # se construyeron sobre partidos terminados y no se tocan. Solo los usan
+    # quienes necesitan saber quién pasó de ronda (fact_resultado_torneo,
+    # gold.ganadores_semana).
+    incompletos: list[dict[str, Any]] = []
     tournament_dirs = sorted(BRONZE_MATCHES_ROOT.glob("tournament_id=*"))
     for tournament_dir in tournament_dirs:
         dt_dirs = sorted((p for p in tournament_dir.glob("dt=*") if p.is_dir()), key=lambda p: p.name)
@@ -73,6 +80,9 @@ def build() -> Path:
         torneo_id = torneo_id_for_padelapi(payload["tournament"]["id"])
 
         for match in payload["items"]:
+            estado = match.get("status", "finished")
+            if estado not in ("finished", *ESTADOS_INCOMPLETOS):
+                continue
             sets_a, sets_b, juegos_a, juegos_b, marcador_txt = _resumen_marcador(match["score"])
             team_1 = [_jugador_ref(p, jugador_por_id_fuente) for p in match["players"]["team_1"]]
             team_2 = [_jugador_ref(p, jugador_por_id_fuente) for p in match["players"]["team_2"]]
@@ -92,7 +102,8 @@ def build() -> Path:
                 sets_perdedor = sets_b if ganador == "team_1" else sets_a
                 marcador_incoherente = sets_ganador <= sets_perdedor
 
-            rows.append(
+            destino = incompletos if estado in ESTADOS_INCOMPLETOS else rows
+            fila = (
                 {
                     "partido_id": f"M2{match['id']}",
                     "torneo_id": torneo_id,
@@ -118,11 +129,18 @@ def build() -> Path:
                     "fuente_txt": "padelapi.org · elaboración propia",
                 }
             )
+            if destino is incompletos:
+                fila["estado"] = ESTADOS_INCOMPLETOS[estado]
+            destino.append(fila)
 
     out_dir = SILVER_ROOT / "fact_partido"
     out_dir.mkdir(parents=True, exist_ok=True)
     out_file = out_dir / "data.json"
     out_file.write_text(json.dumps(rows, indent=2, ensure_ascii=False), encoding="utf-8")
+    out_incompletos = SILVER_ROOT / "fact_partido_incompleto" / "data.json"
+    out_incompletos.parent.mkdir(parents=True, exist_ok=True)
+    out_incompletos.write_text(json.dumps(incompletos, indent=2, ensure_ascii=False), encoding="utf-8")
+    print(f"fact_partido_incompleto: {len(incompletos)} walkovers/abandonos -> {out_incompletos.relative_to(REPO_ROOT)}")
 
     con_ambos_jugadores_cruzados = sum(
         1
