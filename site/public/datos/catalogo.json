@@ -12,6 +12,42 @@
     "csv": "/datos/ranking_movimientos_semana.csv"
   },
   {
+    "tabla": "ranking_semana",
+    "titulo": "Ranking de la semana",
+    "descripcion": "Top 100 con puntos, variación semanal de puntos y puestos, y resultado de la semana.",
+    "fecha_dato": "2026-09-28",
+    "filas": 100,
+    "fuentes": [
+      "FIP / Premier Padel · elaboración propia"
+    ],
+    "json": "/datos/ranking_semana.json",
+    "csv": "/datos/ranking_semana.csv"
+  },
+  {
+    "tabla": "ganadores_semana",
+    "titulo": "Campeones de la semana",
+    "descripcion": "Parejas campeonas y final de cada torneo terminado la semana anterior.",
+    "fecha_dato": "2026-09-27",
+    "filas": 5,
+    "fuentes": [
+      "Premier Padel / FIP · padelapi.org · elaboración propia"
+    ],
+    "json": "/datos/ganadores_semana.json",
+    "csv": "/datos/ganadores_semana.csv"
+  },
+  {
+    "tabla": "stats_parejas",
+    "titulo": "Estadísticas de pista por pareja",
+    "descripcion": "Puntos ganados al saque, al resto y con el segundo saque por pareja en la temporada (Premier Padel).",
+    "fecha_dato": "2026-09-29",
+    "filas": 70,
+    "fuentes": [
+      "Premier Padel · elaboración propia"
+    ],
+    "json": "/datos/stats_parejas.json",
+    "csv": "/datos/stats_parejas.csv"
+  },
+  {
     "tabla": "forma_reciente",
     "titulo": "Forma reciente",
     "descripcion": "Partidos, victorias, porcentaje de victorias y racha de cada jugador en las últimas 8 semanas.",
