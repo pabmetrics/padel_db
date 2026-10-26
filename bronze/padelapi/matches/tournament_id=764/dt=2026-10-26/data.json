@@ -1,0 +1,4677 @@
+{
+  "source": "padelapi",
+  "endpoint": "/tournaments/764/matches",
+  "ingest_ts": "2026-10-26T12:57:29.163626+00:00",
+  "sha256": "ae5988cb936ee24dfc88fb76d13511bae8f4a0cae0c93d89dbbce61b988be8e9",
+  "tournament": {
+    "id": 764,
+    "name": "FIP Gold Melilla Ciudad Del Deporte 2026",
+    "country": "ES",
+    "level": "fip_gold",
+    "start_date": "2026-10-20",
+    "end_date": "2026-10-24"
+  },
+  "n_items": 52,
+  "items": [
+    {
+      "id": 14115,
+      "self": "/api/matches/14115",
+      "name": "Tello/Arce - Bergamini/Bautista",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 1,
+      "round_name": "Finals",
+      "index": 0,
+      "seeds": {
+        "team_1": "1",
+        "team_2": "3"
+      },
+      "played_at": "2026-10-24",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Court 1",
+      "court_order": 2,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "1",
+          "team_2": "6"
+        },
+        {
+          "team_1": "4",
+          "team_2": "6"
+        }
+      ],
+      "winner": "team_2",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 94,
+            "self": "/api/players/94",
+            "name": "Juan Tello",
+            "nationality": "AR",
+            "side": "backhand",
+            "connections": {
+              "pair": "/api/pairs/94-452"
+            }
+          },
+          {
+            "id": 452,
+            "self": "/api/players/452",
+            "name": "Maximiliano Arce",
+            "nationality": "AR",
+            "side": "drive",
+            "connections": {
+              "pair": "/api/pairs/94-452"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 76,
+            "self": "/api/players/76",
+            "name": "Lucas Bergamini",
+            "nationality": "BR",
+            "side": "drive",
+            "connections": {
+              "pair": "/api/pairs/76-81"
+            }
+          },
+          {
+            "id": 81,
+            "self": "/api/players/81",
+            "name": "Jairo Bautista",
+            "nationality": "ES",
+            "side": "backhand",
+            "connections": {
+              "pair": "/api/pairs/76-81"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-10-24T13:15:18+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/764",
+        "headtohead": "/api/matches/14115/headtohead",
+        "prev": "/api/matches/14146"
+      }
+    },
+    {
+      "id": 14146,
+      "self": "/api/matches/14146",
+      "name": "Virseda/Fassio - Caldera/Eugenio",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 1,
+      "round_name": "Finals",
+      "index": 0,
+      "seeds": {
+        "team_1": "1",
+        "team_2": "2"
+      },
+      "played_at": "2026-10-24",
+      "schedule_label": "Starting at 10:00 AM",
+      "scheduled_at": "2026-10-24T10:00:00+02:00",
+      "scheduled_at_local": "2026-10-24T10:00:00+02:00",
+      "court": "Court 1",
+      "court_order": 1,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "3",
+          "team_2": "6"
+        },
+        {
+          "team_1": "4",
+          "team_2": "6"
+        }
+      ],
+      "winner": "team_2",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 497,
+            "self": "/api/players/497",
+            "name": "Veronica Virseda",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/497-440"
+            }
+          },
+          {
+            "id": 440,
+            "self": "/api/players/440",
+            "name": "Martina Fassio Goyeneche",
+            "nationality": "AR",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/497-440"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 394,
+            "self": "/api/players/394",
+            "name": "Beatriz Caldera Sanchez",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/394-409"
+            }
+          },
+          {
+            "id": 409,
+            "self": "/api/players/409",
+            "name": "Raquel Eugenio Barrera",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/394-409"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-10-24T12:45:18+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/764",
+        "headtohead": "/api/matches/14146/headtohead",
+        "next": "/api/matches/14115"
+      }
+    },
+    {
+      "id": 14109,
+      "self": "/api/matches/14109",
+      "name": "Arce/Tello - Garcia/Fuertes",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 4,
+      "round_name": "Quarter",
+      "index": 0,
+      "seeds": {
+        "team_1": "1",
+        "team_2": "9"
+      },
+      "played_at": "2026-10-23",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Court 1",
+      "court_order": 2,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "7",
+          "team_2": "5"
+        },
+        {
+          "team_1": "6",
+          "team_2": "4"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 452,
+            "self": "/api/players/452",
+            "name": "Maximiliano Arce",
+            "nationality": "AR",
+            "side": "drive",
+            "connections": {
+              "pair": "/api/pairs/452-94"
+            }
+          },
+          {
+            "id": 94,
+            "self": "/api/players/94",
+            "name": "Juan Tello",
+            "nationality": "AR",
+            "side": "backhand",
+            "connections": {
+              "pair": "/api/pairs/452-94"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 712,
+            "self": "/api/players/712",
+            "name": "Alejandro Garcia Calahorro",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/712-908"
+            }
+          },
+          {
+            "id": 908,
+            "self": "/api/players/908",
+            "name": "Iago Fuertes Leonardo",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/712-908"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-10-23T11:45:10+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/764",
+        "headtohead": "/api/matches/14109/headtohead",
+        "prev": "/api/matches/14143",
+        "next": "/api/matches/14145"
+      }
+    },
+    {
+      "id": 14110,
+      "self": "/api/matches/14110",
+      "name": "Calleja/Romera - Ruiz/Garcia",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 4,
+      "round_name": "Quarter",
+      "index": 1,
+      "seeds": {
+        "team_1": "7",
+        "team_2": "4"
+      },
+      "played_at": "2026-10-23",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Court 3",
+      "court_order": 2,
+      "status": "retired",
+      "score": [
+        {
+          "team_1": "7",
+          "team_2": "5"
+        },
+        {
+          "team_1": "4",
+          "team_2": "1"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 327,
+            "self": "/api/players/327",
+            "name": "Felipe Calleja",
+            "nationality": "AR",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/327-138"
+            }
+          },
+          {
+            "id": 138,
+            "self": "/api/players/138",
+            "name": "Jaume Romera Barcelo",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/327-138"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 111,
+            "self": "/api/players/111",
+            "name": "Alex Ruiz",
+            "nationality": "ES",
+            "side": "drive",
+            "connections": {
+              "pair": "/api/pairs/111-71"
+            }
+          },
+          {
+            "id": 71,
+            "self": "/api/players/71",
+            "name": "Javier Garcia",
+            "nationality": "ES",
+            "side": "backhand",
+            "connections": {
+              "pair": "/api/pairs/111-71"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-10-23T11:45:11+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/764",
+        "headtohead": "/api/matches/14110/headtohead",
+        "prev": "/api/matches/14111"
+      }
+    },
+    {
+      "id": 14111,
+      "self": "/api/matches/14111",
+      "name": "Bergamini/Bautista - Aliaga/Dorta",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 4,
+      "round_name": "Quarter",
+      "index": 2,
+      "seeds": {
+        "team_1": "3",
+        "team_2": "8"
+      },
+      "played_at": "2026-10-23",
+      "schedule_label": "Starting at 9:00 AM",
+      "scheduled_at": "2026-10-23T09:00:00+02:00",
+      "scheduled_at_local": "2026-10-23T09:00:00+02:00",
+      "court": "Court 3",
+      "court_order": 1,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "3"
+        },
+        {
+          "team_1": "6",
+          "team_2": "3"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 76,
+            "self": "/api/players/76",
+            "name": "Lucas Bergamini",
+            "nationality": "BR",
+            "side": "drive",
+            "connections": {
+              "pair": "/api/pairs/76-81"
+            }
+          },
+          {
+            "id": 81,
+            "self": "/api/players/81",
+            "name": "Jairo Bautista",
+            "nationality": "ES",
+            "side": "backhand",
+            "connections": {
+              "pair": "/api/pairs/76-81"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 334,
+            "self": "/api/players/334",
+            "name": "Pepe Aliaga",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/334-1210"
+            }
+          },
+          {
+            "id": 1210,
+            "self": "/api/players/1210",
+            "name": "Diego Dorta Diaz",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/334-1210"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-10-23T10:45:11+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/764",
+        "headtohead": "/api/matches/14111/headtohead",
+        "next": "/api/matches/14110"
+      }
+    },
+    {
+      "id": 14112,
+      "self": "/api/matches/14112",
+      "name": "Lasgoity/Guy De Chamisso - Alonso/Goñi",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 4,
+      "round_name": "Quarter",
+      "index": 3,
+      "seeds": {
+        "team_1": null,
+        "team_2": "2"
+      },
+      "played_at": "2026-10-23",
+      "schedule_label": "Starting at 9:00 AM",
+      "scheduled_at": "2026-10-23T09:00:00+02:00",
+      "scheduled_at_local": "2026-10-23T09:00:00+02:00",
+      "court": "Court 2",
+      "court_order": 1,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "1",
+          "team_2": "6"
+        },
+        {
+          "team_1": "4",
+          "team_2": "6"
+        }
+      ],
+      "winner": "team_2",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 1588,
+            "self": "/api/players/1588",
+            "name": "Juan Manuel Lasgoity",
+            "nationality": "IT",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1588-545"
+            }
+          },
+          {
+            "id": 545,
+            "self": "/api/players/545",
+            "name": "Olivier Guy De Chamisso",
+            "nationality": "FR",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1588-545"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 101,
+            "self": "/api/players/101",
+            "name": "Edu Alonso",
+            "nationality": "ES",
+            "side": "drive",
+            "connections": {
+              "pair": "/api/pairs/101-465"
+            }
+          },
+          {
+            "id": 465,
+            "self": "/api/players/465",
+            "name": "Aimar Goñi",
+            "nationality": "ES",
+            "side": "backhand",
+            "connections": {
+              "pair": "/api/pairs/101-465"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-10-23T10:45:11+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/764",
+        "headtohead": "/api/matches/14112/headtohead",
+        "next": "/api/matches/14140"
+      }
+    },
+    {
+      "id": 14113,
+      "self": "/api/matches/14113",
+      "name": "Tello/Arce - Romera/Calleja",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 2,
+      "round_name": "Semifinals",
+      "index": 0,
+      "seeds": {
+        "team_1": "1",
+        "team_2": "7"
+      },
+      "played_at": "2026-10-23",
+      "schedule_label": "Not before 6:00 PM",
+      "scheduled_at": "2026-10-23T18:00:00+02:00",
+      "scheduled_at_local": "2026-10-23T18:00:00+02:00",
+      "court": "Court 1",
+      "court_order": 6,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "2"
+        },
+        {
+          "team_1": "6",
+          "team_2": "4"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 94,
+            "self": "/api/players/94",
+            "name": "Juan Tello",
+            "nationality": "AR",
+            "side": "backhand",
+            "connections": {
+              "pair": "/api/pairs/94-452"
+            }
+          },
+          {
+            "id": 452,
+            "self": "/api/players/452",
+            "name": "Maximiliano Arce",
+            "nationality": "AR",
+            "side": "drive",
+            "connections": {
+              "pair": "/api/pairs/94-452"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 138,
+            "self": "/api/players/138",
+            "name": "Jaume Romera Barcelo",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/138-327"
+            }
+          },
+          {
+            "id": 327,
+            "self": "/api/players/327",
+            "name": "Felipe Calleja",
+            "nationality": "AR",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/138-327"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-10-23T21:15:19+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/764",
+        "headtohead": "/api/matches/14113/headtohead",
+        "prev": "/api/matches/14144"
+      }
+    },
+    {
+      "id": 14114,
+      "self": "/api/matches/14114",
+      "name": "Bergamini/Bautista - Alonso/Goñi",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 2,
+      "round_name": "Semifinals",
+      "index": 1,
+      "seeds": {
+        "team_1": "3",
+        "team_2": "2"
+      },
+      "played_at": "2026-10-23",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Court 1",
+      "court_order": 4,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "7"
+        },
+        {
+          "team_1": "6",
+          "team_2": "4"
+        },
+        {
+          "team_1": "6",
+          "team_2": "3"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 76,
+            "self": "/api/players/76",
+            "name": "Lucas Bergamini",
+            "nationality": "BR",
+            "side": "drive",
+            "connections": {
+              "pair": "/api/pairs/76-81"
+            }
+          },
+          {
+            "id": 81,
+            "self": "/api/players/81",
+            "name": "Jairo Bautista",
+            "nationality": "ES",
+            "side": "backhand",
+            "connections": {
+              "pair": "/api/pairs/76-81"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 101,
+            "self": "/api/players/101",
+            "name": "Edu Alonso",
+            "nationality": "ES",
+            "side": "drive",
+            "connections": {
+              "pair": "/api/pairs/101-465"
+            }
+          },
+          {
+            "id": 465,
+            "self": "/api/players/465",
+            "name": "Aimar Goñi",
+            "nationality": "ES",
+            "side": "backhand",
+            "connections": {
+              "pair": "/api/pairs/101-465"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-10-23T19:15:20+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/764",
+        "headtohead": "/api/matches/14114/headtohead",
+        "prev": "/api/matches/14145",
+        "next": "/api/matches/14144"
+      }
+    },
+    {
+      "id": 14140,
+      "self": "/api/matches/14140",
+      "name": "Virseda/Fassio - Fernandez/Guerra",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 4,
+      "round_name": "Quarter",
+      "index": 0,
+      "seeds": {
+        "team_1": "1",
+        "team_2": "7"
+      },
+      "played_at": "2026-10-23",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Court 2",
+      "court_order": 2,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "1"
+        },
+        {
+          "team_1": "6",
+          "team_2": "3"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 497,
+            "self": "/api/players/497",
+            "name": "Veronica Virseda",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/497-440"
+            }
+          },
+          {
+            "id": 440,
+            "self": "/api/players/440",
+            "name": "Martina Fassio Goyeneche",
+            "nationality": "AR",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/497-440"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 1611,
+            "self": "/api/players/1611",
+            "name": "Carla Fernandez Gonzalez",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1611-1612"
+            }
+          },
+          {
+            "id": 1612,
+            "self": "/api/players/1612",
+            "name": "Nerea Guerra Santana",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1611-1612"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-10-23T12:15:11+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/764",
+        "headtohead": "/api/matches/14140/headtohead",
+        "prev": "/api/matches/14112"
+      }
+    },
+    {
+      "id": 14141,
+      "self": "/api/matches/14141",
+      "name": "Polo/Dominguez - Rufo/Iglesias",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 4,
+      "round_name": "Quarter",
+      "index": 1,
+      "seeds": {
+        "team_1": null,
+        "team_2": "3"
+      },
+      "played_at": "2026-10-23",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Court 4",
+      "court_order": 2,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "2",
+          "team_2": "6"
+        },
+        {
+          "team_1": "3",
+          "team_2": "6"
+        }
+      ],
+      "winner": "team_2",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 463,
+            "self": "/api/players/463",
+            "name": "Julia Polo Bautista",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/463-493"
+            }
+          },
+          {
+            "id": 493,
+            "self": "/api/players/493",
+            "name": "Ana Dominguez Gracia",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/463-493"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 417,
+            "self": "/api/players/417",
+            "name": "Lorena Rufo Ortiz",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/417-430"
+            }
+          },
+          {
+            "id": 430,
+            "self": "/api/players/430",
+            "name": "Victoria Iglesias Segador",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/417-430"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-10-23T12:45:13+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/764",
+        "headtohead": "/api/matches/14141/headtohead",
+        "prev": "/api/matches/14142"
+      }
+    },
+    {
+      "id": 14142,
+      "self": "/api/matches/14142",
+      "name": "Rodriguez/Dal Pozzo - Castello/Rodriguez",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 4,
+      "round_name": "Quarter",
+      "index": 2,
+      "seeds": {
+        "team_1": "4",
+        "team_2": "5"
+      },
+      "played_at": "2026-10-23",
+      "schedule_label": "Starting at 9:00 AM",
+      "scheduled_at": "2026-10-23T09:00:00+02:00",
+      "scheduled_at_local": "2026-10-23T09:00:00+02:00",
+      "court": "Court 4",
+      "court_order": 1,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "3"
+        },
+        {
+          "team_1": "7",
+          "team_2": "6"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 457,
+            "self": "/api/players/457",
+            "name": "Nuria Rodriguez",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/457-489"
+            }
+          },
+          {
+            "id": 489,
+            "self": "/api/players/489",
+            "name": "Giulia Dal Pozzo",
+            "nationality": "IT",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/457-489"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 416,
+            "self": "/api/players/416",
+            "name": "Jessica Castello Lopez",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/416-426"
+            }
+          },
+          {
+            "id": 426,
+            "self": "/api/players/426",
+            "name": "Maria Eulalia Rodriguez Abajo",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/416-426"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-10-23T11:15:12+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/764",
+        "headtohead": "/api/matches/14142/headtohead",
+        "next": "/api/matches/14141"
+      }
+    },
+    {
+      "id": 14143,
+      "self": "/api/matches/14143",
+      "name": "Piltcher/Ntanou - Caldera/Eugenio",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 4,
+      "round_name": "Quarter",
+      "index": 3,
+      "seeds": {
+        "team_1": "8",
+        "team_2": "2"
+      },
+      "played_at": "2026-10-23",
+      "schedule_label": "Starting at 9:00 AM",
+      "scheduled_at": "2026-10-23T09:00:00+02:00",
+      "scheduled_at_local": "2026-10-23T09:00:00+02:00",
+      "court": "Court 1",
+      "court_order": 1,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "0",
+          "team_2": "6"
+        },
+        {
+          "team_1": "2",
+          "team_2": "6"
+        }
+      ],
+      "winner": "team_2",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 441,
+            "self": "/api/players/441",
+            "name": "Raquel Piltcher",
+            "nationality": "BR",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/441-1700"
+            }
+          },
+          {
+            "id": 1700,
+            "self": "/api/players/1700",
+            "name": "Christina-Styliani Ntanou",
+            "nationality": "GR",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/441-1700"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 394,
+            "self": "/api/players/394",
+            "name": "Beatriz Caldera Sanchez",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/394-409"
+            }
+          },
+          {
+            "id": 409,
+            "self": "/api/players/409",
+            "name": "Raquel Eugenio Barrera",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/394-409"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-10-23T10:15:13+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/764",
+        "headtohead": "/api/matches/14143/headtohead",
+        "next": "/api/matches/14109"
+      }
+    },
+    {
+      "id": 14144,
+      "self": "/api/matches/14144",
+      "name": "Virseda/Fassio - Rufo/Iglesias",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 2,
+      "round_name": "Semifinals",
+      "index": 0,
+      "seeds": {
+        "team_1": "1",
+        "team_2": "3"
+      },
+      "played_at": "2026-10-23",
+      "schedule_label": "Not before 4:00 PM",
+      "scheduled_at": "2026-10-23T16:00:00+02:00",
+      "scheduled_at_local": "2026-10-23T16:00:00+02:00",
+      "court": "Court 1",
+      "court_order": 5,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "3"
+        },
+        {
+          "team_1": "6",
+          "team_2": "3"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 497,
+            "self": "/api/players/497",
+            "name": "Veronica Virseda",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/497-440"
+            }
+          },
+          {
+            "id": 440,
+            "self": "/api/players/440",
+            "name": "Martina Fassio Goyeneche",
+            "nationality": "AR",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/497-440"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 417,
+            "self": "/api/players/417",
+            "name": "Lorena Rufo Ortiz",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/417-430"
+            }
+          },
+          {
+            "id": 430,
+            "self": "/api/players/430",
+            "name": "Victoria Iglesias Segador",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/417-430"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-10-23T21:15:21+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/764",
+        "headtohead": "/api/matches/14144/headtohead",
+        "prev": "/api/matches/14114",
+        "next": "/api/matches/14113"
+      }
+    },
+    {
+      "id": 14145,
+      "self": "/api/matches/14145",
+      "name": "Rodriguez/Dal Pozzo - Caldera/Eugenio",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 2,
+      "round_name": "Semifinals",
+      "index": 1,
+      "seeds": {
+        "team_1": "4",
+        "team_2": "2"
+      },
+      "played_at": "2026-10-23",
+      "schedule_label": "Not before 2:00 PM",
+      "scheduled_at": "2026-10-23T14:00:00+02:00",
+      "scheduled_at_local": "2026-10-23T14:00:00+02:00",
+      "court": "Court 1",
+      "court_order": 3,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "5",
+          "team_2": "7"
+        },
+        {
+          "team_1": "6",
+          "team_2": "3"
+        },
+        {
+          "team_1": "3",
+          "team_2": "6"
+        }
+      ],
+      "winner": "team_2",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 457,
+            "self": "/api/players/457",
+            "name": "Nuria Rodriguez",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/457-489"
+            }
+          },
+          {
+            "id": 489,
+            "self": "/api/players/489",
+            "name": "Giulia Dal Pozzo",
+            "nationality": "IT",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/457-489"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 394,
+            "self": "/api/players/394",
+            "name": "Beatriz Caldera Sanchez",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/394-409"
+            }
+          },
+          {
+            "id": 409,
+            "self": "/api/players/409",
+            "name": "Raquel Eugenio Barrera",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/394-409"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-10-23T19:15:21+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/764",
+        "headtohead": "/api/matches/14145/headtohead",
+        "prev": "/api/matches/14109",
+        "next": "/api/matches/14114"
+      }
+    },
+    {
+      "id": 14101,
+      "self": "/api/matches/14101",
+      "name": "Tello/Arce - Biron/Basso",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 8,
+      "round_name": "Round of 16",
+      "index": 0,
+      "seeds": {
+        "team_1": "1",
+        "team_2": "Q"
+      },
+      "played_at": "2026-10-22",
+      "schedule_label": "Not before 6:00 PM",
+      "scheduled_at": "2026-10-22T18:00:00+02:00",
+      "scheduled_at_local": "2026-10-22T18:00:00+02:00",
+      "court": "Court 1",
+      "court_order": 5,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "4"
+        },
+        {
+          "team_1": "6",
+          "team_2": "2"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 94,
+            "self": "/api/players/94",
+            "name": "Juan Tello",
+            "nationality": "AR",
+            "side": "backhand",
+            "connections": {
+              "pair": "/api/pairs/94-452"
+            }
+          },
+          {
+            "id": 452,
+            "self": "/api/players/452",
+            "name": "Maximiliano Arce",
+            "nationality": "AR",
+            "side": "drive",
+            "connections": {
+              "pair": "/api/pairs/94-452"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 870,
+            "self": "/api/players/870",
+            "name": "Julien Biron",
+            "nationality": "FR",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/870-1876"
+            }
+          },
+          {
+            "id": 1876,
+            "self": "/api/players/1876",
+            "name": "Thomas Basso",
+            "nationality": "FR",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/870-1876"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-10-22T19:15:05+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/764",
+        "headtohead": "/api/matches/14101/headtohead",
+        "prev": "/api/matches/14103"
+      }
+    },
+    {
+      "id": 14102,
+      "self": "/api/matches/14102",
+      "name": "Bergeron/Joris - Garcia/Fuertes",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 8,
+      "round_name": "Round of 16",
+      "index": 1,
+      "seeds": {
+        "team_1": null,
+        "team_2": "9"
+      },
+      "played_at": "2026-10-22",
+      "schedule_label": "Not before 3:30 PM",
+      "scheduled_at": "2026-10-22T15:30:00+02:00",
+      "scheduled_at_local": "2026-10-22T15:30:00+02:00",
+      "court": "Court 3",
+      "court_order": 3,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "7"
+        },
+        {
+          "team_1": "5",
+          "team_2": "7"
+        }
+      ],
+      "winner": "team_2",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 292,
+            "self": "/api/players/292",
+            "name": "Johan Bergeron",
+            "nationality": "FR",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/292-359"
+            }
+          },
+          {
+            "id": 359,
+            "self": "/api/players/359",
+            "name": "Maxime Joris",
+            "nationality": "FR",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/292-359"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 712,
+            "self": "/api/players/712",
+            "name": "Alejandro Garcia Calahorro",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/712-908"
+            }
+          },
+          {
+            "id": 908,
+            "self": "/api/players/908",
+            "name": "Iago Fuertes Leonardo",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/712-908"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-10-22T17:15:05+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/764",
+        "headtohead": "/api/matches/14102/headtohead",
+        "prev": "/api/matches/14134",
+        "next": "/api/matches/14137"
+      }
+    },
+    {
+      "id": 14103,
+      "self": "/api/matches/14103",
+      "name": "Calleja/Romera - Cordoba/Collantes",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 8,
+      "round_name": "Round of 16",
+      "index": 2,
+      "seeds": {
+        "team_1": "7",
+        "team_2": null
+      },
+      "played_at": "2026-10-22",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Court 1",
+      "court_order": 4,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "2"
+        },
+        {
+          "team_1": "6",
+          "team_2": "4"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 327,
+            "self": "/api/players/327",
+            "name": "Felipe Calleja",
+            "nationality": "AR",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/327-138"
+            }
+          },
+          {
+            "id": 138,
+            "self": "/api/players/138",
+            "name": "Jaume Romera Barcelo",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/327-138"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 269,
+            "self": "/api/players/269",
+            "name": "Marcos Cordoba",
+            "nationality": "ES",
+            "side": "drive",
+            "connections": {
+              "pair": "/api/pairs/269-2799"
+            }
+          },
+          {
+            "id": 2799,
+            "self": "/api/players/2799",
+            "name": "Javier Collantes Guijo",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/269-2799"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-10-22T18:15:06+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/764",
+        "headtohead": "/api/matches/14103/headtohead",
+        "prev": "/api/matches/14108",
+        "next": "/api/matches/14101"
+      }
+    },
+    {
+      "id": 14104,
+      "self": "/api/matches/14104",
+      "name": "Esteban/Graupera - Ruiz/Garcia",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 8,
+      "round_name": "Round of 16",
+      "index": 3,
+      "seeds": {
+        "team_1": "Q",
+        "team_2": "4"
+      },
+      "played_at": "2026-10-22",
+      "schedule_label": "Not before 6:00 PM",
+      "scheduled_at": "2026-10-22T18:00:00+02:00",
+      "scheduled_at_local": "2026-10-22T18:00:00+02:00",
+      "court": "Court 2",
+      "court_order": 5,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "7"
+        },
+        {
+          "team_1": "5",
+          "team_2": "7"
+        }
+      ],
+      "winner": "team_2",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 2025,
+            "self": "/api/players/2025",
+            "name": "Agustin Esteban Silva",
+            "nationality": "AR",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/2025-1440"
+            }
+          },
+          {
+            "id": 1440,
+            "self": "/api/players/1440",
+            "name": "Andres Graupera",
+            "nationality": "AR",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/2025-1440"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 111,
+            "self": "/api/players/111",
+            "name": "Alex Ruiz",
+            "nationality": "ES",
+            "side": "drive",
+            "connections": {
+              "pair": "/api/pairs/111-71"
+            }
+          },
+          {
+            "id": 71,
+            "self": "/api/players/71",
+            "name": "Javier Garcia",
+            "nationality": "ES",
+            "side": "backhand",
+            "connections": {
+              "pair": "/api/pairs/111-71"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-10-22T19:45:05+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/764",
+        "headtohead": "/api/matches/14104/headtohead",
+        "prev": "/api/matches/14132"
+      }
+    },
+    {
+      "id": 14105,
+      "self": "/api/matches/14105",
+      "name": "Bergamini/Bautista - Rutgersson/Nieto",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 8,
+      "round_name": "Round of 16",
+      "index": 4,
+      "seeds": {
+        "team_1": "3",
+        "team_2": null
+      },
+      "played_at": "2026-10-22",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Court 1",
+      "court_order": 2,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "7",
+          "team_2": "6"
+        },
+        {
+          "team_1": "6",
+          "team_2": "2"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 76,
+            "self": "/api/players/76",
+            "name": "Lucas Bergamini",
+            "nationality": "BR",
+            "side": "drive",
+            "connections": {
+              "pair": "/api/pairs/76-81"
+            }
+          },
+          {
+            "id": 81,
+            "self": "/api/players/81",
+            "name": "Jairo Bautista",
+            "nationality": "ES",
+            "side": "backhand",
+            "connections": {
+              "pair": "/api/pairs/76-81"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 190,
+            "self": "/api/players/190",
+            "name": "Douglas Rutgersson",
+            "nationality": "SE",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/190-2660"
+            }
+          },
+          {
+            "id": 2660,
+            "self": "/api/players/2660",
+            "name": "Sergio Nieto Simon",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/190-2660"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-10-22T12:45:06+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/764",
+        "headtohead": "/api/matches/14105/headtohead",
+        "prev": "/api/matches/14139",
+        "next": "/api/matches/14108"
+      }
+    },
+    {
+      "id": 14106,
+      "self": "/api/matches/14106",
+      "name": "Luque/Jesus - Aliaga/Dorta",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 8,
+      "round_name": "Round of 16",
+      "index": 5,
+      "seeds": {
+        "team_1": null,
+        "team_2": "8"
+      },
+      "played_at": "2026-10-22",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Court 2",
+      "court_order": 2,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "2",
+          "team_2": "6"
+        },
+        {
+          "team_1": "5",
+          "team_2": "7"
+        }
+      ],
+      "winner": "team_2",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 246,
+            "self": "/api/players/246",
+            "name": "Antonio Luque",
+            "nationality": "PT",
+            "side": "backhand",
+            "connections": {
+              "pair": "/api/pairs/246-192"
+            }
+          },
+          {
+            "id": 192,
+            "self": "/api/players/192",
+            "name": "Diogo Jesus",
+            "nationality": "PT",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/246-192"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 334,
+            "self": "/api/players/334",
+            "name": "Pepe Aliaga",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/334-1210"
+            }
+          },
+          {
+            "id": 1210,
+            "self": "/api/players/1210",
+            "name": "Diego Dorta Diaz",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/334-1210"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-10-22T13:15:07+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/764",
+        "headtohead": "/api/matches/14106/headtohead",
+        "prev": "/api/matches/14138",
+        "next": "/api/matches/14135"
+      }
+    },
+    {
+      "id": 14107,
+      "self": "/api/matches/14107",
+      "name": "Lasgoity/Guy De Chamisso - Navarro/Sargolini",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 8,
+      "round_name": "Round of 16",
+      "index": 6,
+      "seeds": {
+        "team_1": null,
+        "team_2": null
+      },
+      "played_at": "2026-10-22",
+      "schedule_label": "Starting at 10:00 AM",
+      "scheduled_at": "2026-10-22T10:00:00+02:00",
+      "scheduled_at_local": "2026-10-22T10:00:00+02:00",
+      "court": "Court 3",
+      "court_order": 1,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "4"
+        },
+        {
+          "team_1": "6",
+          "team_2": "4"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 1588,
+            "self": "/api/players/1588",
+            "name": "Juan Manuel Lasgoity",
+            "nationality": "IT",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1588-545"
+            }
+          },
+          {
+            "id": 545,
+            "self": "/api/players/545",
+            "name": "Olivier Guy De Chamisso",
+            "nationality": "FR",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1588-545"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 1233,
+            "self": "/api/players/1233",
+            "name": "Noe Navarro Porras",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1233-179"
+            }
+          },
+          {
+            "id": 179,
+            "self": "/api/players/179",
+            "name": "Matteo Sargolini",
+            "nationality": "IT",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1233-179"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-10-22T11:45:06+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/764",
+        "headtohead": "/api/matches/14107/headtohead",
+        "next": "/api/matches/14134"
+      }
+    },
+    {
+      "id": 14108,
+      "self": "/api/matches/14108",
+      "name": "Rodriguez/Esteban - Alonso/Goñi",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 8,
+      "round_name": "Round of 16",
+      "index": 7,
+      "seeds": {
+        "team_1": null,
+        "team_2": "2"
+      },
+      "played_at": "2026-10-22",
+      "schedule_label": "Not before 3:30 PM",
+      "scheduled_at": "2026-10-22T15:30:00+02:00",
+      "scheduled_at_local": "2026-10-22T15:30:00+02:00",
+      "court": "Court 1",
+      "court_order": 3,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "3",
+          "team_2": "6"
+        },
+        {
+          "team_1": "1",
+          "team_2": "6"
+        }
+      ],
+      "winner": "team_2",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 630,
+            "self": "/api/players/630",
+            "name": "Adrian Rodriguez",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/630-1589"
+            }
+          },
+          {
+            "id": 1589,
+            "self": "/api/players/1589",
+            "name": "David Esteban Esposito",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/630-1589"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 101,
+            "self": "/api/players/101",
+            "name": "Edu Alonso",
+            "nationality": "ES",
+            "side": "drive",
+            "connections": {
+              "pair": "/api/pairs/101-465"
+            }
+          },
+          {
+            "id": 465,
+            "self": "/api/players/465",
+            "name": "Aimar Goñi",
+            "nationality": "ES",
+            "side": "backhand",
+            "connections": {
+              "pair": "/api/pairs/101-465"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-10-22T16:45:06+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/764",
+        "headtohead": "/api/matches/14108/headtohead",
+        "prev": "/api/matches/14105",
+        "next": "/api/matches/14103"
+      }
+    },
+    {
+      "id": 14132,
+      "self": "/api/matches/14132",
+      "name": "Virseda/Fassio - El Houari/Aoulad",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 8,
+      "round_name": "Round of 16",
+      "index": 0,
+      "seeds": {
+        "team_1": "1",
+        "team_2": null
+      },
+      "played_at": "2026-10-22",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Court 2",
+      "court_order": 4,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "1"
+        },
+        {
+          "team_1": "6",
+          "team_2": "0"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 497,
+            "self": "/api/players/497",
+            "name": "Veronica Virseda",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/497-440"
+            }
+          },
+          {
+            "id": 440,
+            "self": "/api/players/440",
+            "name": "Martina Fassio Goyeneche",
+            "nationality": "AR",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/497-440"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 2518,
+            "self": "/api/players/2518",
+            "name": "Zainab El Houari",
+            "nationality": "MA",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/2518-2313"
+            }
+          },
+          {
+            "id": 2313,
+            "self": "/api/players/2313",
+            "name": "Dina Aoulad Bouhmama",
+            "nationality": "MA",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/2518-2313"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-10-22T17:15:06+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/764",
+        "headtohead": "/api/matches/14132/headtohead",
+        "prev": "/api/matches/14135",
+        "next": "/api/matches/14104"
+      }
+    },
+    {
+      "id": 14133,
+      "self": "/api/matches/14133",
+      "name": "Caballero/Caballero - Fernandez/Guerra",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 8,
+      "round_name": "Round of 16",
+      "index": 1,
+      "seeds": {
+        "team_1": "WC",
+        "team_2": "7"
+      },
+      "played_at": "2026-10-22",
+      "schedule_label": "Starting at 5:00 PM",
+      "scheduled_at": "2026-10-22T17:00:00+02:00",
+      "scheduled_at_local": "2026-10-22T17:00:00+02:00",
+      "court": "Court 4",
+      "court_order": 1,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "2",
+          "team_2": "6"
+        },
+        {
+          "team_1": "2",
+          "team_2": "6"
+        }
+      ],
+      "winner": "team_2",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 1540,
+            "self": "/api/players/1540",
+            "name": "Ana Caballero Vico",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1540-1541"
+            }
+          },
+          {
+            "id": 1541,
+            "self": "/api/players/1541",
+            "name": "Adolfina Caballero Vico",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1540-1541"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 1611,
+            "self": "/api/players/1611",
+            "name": "Carla Fernandez Gonzalez",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1611-1612"
+            }
+          },
+          {
+            "id": 1612,
+            "self": "/api/players/1612",
+            "name": "Nerea Guerra Santana",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1611-1612"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-10-22T18:15:07+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/764",
+        "headtohead": "/api/matches/14133/headtohead"
+      }
+    },
+    {
+      "id": 14134,
+      "self": "/api/matches/14134",
+      "name": "Dominguez/Polo - Portillo/Ordoñez",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 8,
+      "round_name": "Round of 16",
+      "index": 2,
+      "seeds": {
+        "team_1": null,
+        "team_2": null
+      },
+      "played_at": "2026-10-22",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Court 3",
+      "court_order": 2,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "4"
+        },
+        {
+          "team_1": "6",
+          "team_2": "0"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 493,
+            "self": "/api/players/493",
+            "name": "Ana Dominguez Gracia",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/493-463"
+            }
+          },
+          {
+            "id": 463,
+            "self": "/api/players/463",
+            "name": "Julia Polo Bautista",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/493-463"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 515,
+            "self": "/api/players/515",
+            "name": "Maria Portillo Perez",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/515-724"
+            }
+          },
+          {
+            "id": 724,
+            "self": "/api/players/724",
+            "name": "Claudia Ordoñez Romero",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/515-724"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-10-22T13:15:08+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/764",
+        "headtohead": "/api/matches/14134/headtohead",
+        "prev": "/api/matches/14107",
+        "next": "/api/matches/14102"
+      }
+    },
+    {
+      "id": 14135,
+      "self": "/api/matches/14135",
+      "name": "Villar/Roman - Rufo/Iglesias",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 8,
+      "round_name": "Round of 16",
+      "index": 3,
+      "seeds": {
+        "team_1": null,
+        "team_2": "3"
+      },
+      "played_at": "2026-10-22",
+      "schedule_label": "Not before 3:30 PM",
+      "scheduled_at": "2026-10-22T15:30:00+02:00",
+      "scheduled_at_local": "2026-10-22T15:30:00+02:00",
+      "court": "Court 2",
+      "court_order": 3,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "0",
+          "team_2": "6"
+        },
+        {
+          "team_1": "0",
+          "team_2": "6"
+        }
+      ],
+      "winner": "team_2",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 790,
+            "self": "/api/players/790",
+            "name": "Carmen Villar Gonzalez",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/790-789"
+            }
+          },
+          {
+            "id": 789,
+            "self": "/api/players/789",
+            "name": "Patricia Roman Aldea",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/790-789"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 417,
+            "self": "/api/players/417",
+            "name": "Lorena Rufo Ortiz",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/417-430"
+            }
+          },
+          {
+            "id": 430,
+            "self": "/api/players/430",
+            "name": "Victoria Iglesias Segador",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/417-430"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-10-22T16:45:07+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/764",
+        "headtohead": "/api/matches/14135/headtohead",
+        "prev": "/api/matches/14106",
+        "next": "/api/matches/14132"
+      }
+    },
+    {
+      "id": 14136,
+      "self": "/api/matches/14136",
+      "name": "Rodriguez/Dal Pozzo - Portilla/Vera",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 8,
+      "round_name": "Round of 16",
+      "index": 4,
+      "seeds": {
+        "team_1": "4",
+        "team_2": null
+      },
+      "played_at": "2026-10-22",
+      "schedule_label": "Not before 6:00 PM",
+      "scheduled_at": "2026-10-22T18:00:00+02:00",
+      "scheduled_at_local": "2026-10-22T18:00:00+02:00",
+      "court": "Court 3",
+      "court_order": 5,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "2"
+        },
+        {
+          "team_1": "6",
+          "team_2": "2"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 457,
+            "self": "/api/players/457",
+            "name": "Nuria Rodriguez",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/457-489"
+            }
+          },
+          {
+            "id": 489,
+            "self": "/api/players/489",
+            "name": "Giulia Dal Pozzo",
+            "nationality": "IT",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/457-489"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 793,
+            "self": "/api/players/793",
+            "name": "Daniela Portilla Gomez",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/793-812"
+            }
+          },
+          {
+            "id": 812,
+            "self": "/api/players/812",
+            "name": "Martina Vera Cebollero",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/793-812"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-10-22T19:15:07+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/764",
+        "headtohead": "/api/matches/14136/headtohead",
+        "prev": "/api/matches/14137"
+      }
+    },
+    {
+      "id": 14137,
+      "self": "/api/matches/14137",
+      "name": "Mizzi/Martínez - Rodriguez/Castello",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 8,
+      "round_name": "Round of 16",
+      "index": 5,
+      "seeds": {
+        "team_1": null,
+        "team_2": "5"
+      },
+      "played_at": "2026-10-22",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Court 3",
+      "court_order": 4,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "3",
+          "team_2": "6"
+        },
+        {
+          "team_1": "1",
+          "team_2": "6"
+        }
+      ],
+      "winner": "team_2",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 3234,
+            "self": "/api/players/3234",
+            "name": "Maria Mizzi Rama",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/3234-3233"
+            }
+          },
+          {
+            "id": 3233,
+            "self": "/api/players/3233",
+            "name": "María Martínez Serón",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/3234-3233"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 426,
+            "self": "/api/players/426",
+            "name": "Maria Eulalia Rodriguez Abajo",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/426-416"
+            }
+          },
+          {
+            "id": 416,
+            "self": "/api/players/416",
+            "name": "Jessica Castello Lopez",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/426-416"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-10-22T18:15:08+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/764",
+        "headtohead": "/api/matches/14137/headtohead",
+        "prev": "/api/matches/14102",
+        "next": "/api/matches/14136"
+      }
+    },
+    {
+      "id": 14138,
+      "self": "/api/matches/14138",
+      "name": "Ntanou/Piltcher - Alonso/Dionisio",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 8,
+      "round_name": "Round of 16",
+      "index": 6,
+      "seeds": {
+        "team_1": "8",
+        "team_2": null
+      },
+      "played_at": "2026-10-22",
+      "schedule_label": "Starting at 10:00 AM",
+      "scheduled_at": "2026-10-22T10:00:00+02:00",
+      "scheduled_at_local": "2026-10-22T10:00:00+02:00",
+      "court": "Court 2",
+      "court_order": 1,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "4"
+        },
+        {
+          "team_1": "6",
+          "team_2": "2"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 1700,
+            "self": "/api/players/1700",
+            "name": "Christina-Styliani Ntanou",
+            "nationality": "GR",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1700-441"
+            }
+          },
+          {
+            "id": 441,
+            "self": "/api/players/441",
+            "name": "Raquel Piltcher",
+            "nationality": "BR",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1700-441"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 638,
+            "self": "/api/players/638",
+            "name": "Lorena Alonso De Lera",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/638-1212"
+            }
+          },
+          {
+            "id": 1212,
+            "self": "/api/players/1212",
+            "name": "Lucia Dionisio Laureano",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/638-1212"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-10-22T11:45:07+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/764",
+        "headtohead": "/api/matches/14138/headtohead",
+        "next": "/api/matches/14106"
+      }
+    },
+    {
+      "id": 14139,
+      "self": "/api/matches/14139",
+      "name": "Navarro/Eugenio - Eugenio/Caldera",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 8,
+      "round_name": "Round of 16",
+      "index": 7,
+      "seeds": {
+        "team_1": null,
+        "team_2": "2"
+      },
+      "played_at": "2026-10-22",
+      "schedule_label": "Starting at 10:00 AM",
+      "scheduled_at": "2026-10-22T10:00:00+02:00",
+      "scheduled_at_local": "2026-10-22T10:00:00+02:00",
+      "court": "Court 1",
+      "court_order": 1,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "3",
+          "team_2": "6"
+        },
+        {
+          "team_1": "3",
+          "team_2": "6"
+        }
+      ],
+      "winner": "team_2",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 562,
+            "self": "/api/players/562",
+            "name": "Ainhoa Navarro Fernandez",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/562-1564"
+            }
+          },
+          {
+            "id": 1564,
+            "self": "/api/players/1564",
+            "name": "Marta Eugenio Barrera",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/562-1564"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 409,
+            "self": "/api/players/409",
+            "name": "Raquel Eugenio Barrera",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/409-394"
+            }
+          },
+          {
+            "id": 394,
+            "self": "/api/players/394",
+            "name": "Beatriz Caldera Sanchez",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/409-394"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-10-22T11:15:07+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/764",
+        "headtohead": "/api/matches/14139/headtohead",
+        "next": "/api/matches/14105"
+      }
+    },
+    {
+      "id": 14085,
+      "self": "/api/matches/14085",
+      "name": "Arce/Tello - Jimenez/Cano",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 16,
+      "round_name": "Round of 32",
+      "index": 0,
+      "seeds": {
+        "team_1": "1",
+        "team_2": "LL"
+      },
+      "played_at": "2026-10-21",
+      "schedule_label": "Not before 6:00 PM",
+      "scheduled_at": "2026-10-21T18:00:00+02:00",
+      "scheduled_at_local": "2026-10-21T18:00:00+02:00",
+      "court": "Court 1",
+      "court_order": 5,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "1"
+        },
+        {
+          "team_1": "6",
+          "team_2": "1"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 452,
+            "self": "/api/players/452",
+            "name": "Maximiliano Arce",
+            "nationality": "AR",
+            "side": "drive",
+            "connections": {
+              "pair": "/api/pairs/452-94"
+            }
+          },
+          {
+            "id": 94,
+            "self": "/api/players/94",
+            "name": "Juan Tello",
+            "nationality": "AR",
+            "side": "backhand",
+            "connections": {
+              "pair": "/api/pairs/452-94"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 2673,
+            "self": "/api/players/2673",
+            "name": "Hugo Jimenez Reina",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/2673-2629"
+            }
+          },
+          {
+            "id": 2629,
+            "self": "/api/players/2629",
+            "name": "Leo Cano Gomez",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/2673-2629"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-10-21T19:15:05+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/764",
+        "headtohead": "/api/matches/14085/headtohead",
+        "prev": "/api/matches/14090"
+      }
+    },
+    {
+      "id": 14086,
+      "self": "/api/matches/14086",
+      "name": "Basso/Biron - Rodriguez/Peña",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 16,
+      "round_name": "Round of 32",
+      "index": 1,
+      "seeds": {
+        "team_1": "Q",
+        "team_2": null
+      },
+      "played_at": "2026-10-21",
+      "schedule_label": "Starting at 9:00 AM",
+      "scheduled_at": "2026-10-21T09:00:00+02:00",
+      "scheduled_at_local": "2026-10-21T09:00:00+02:00",
+      "court": "Court 1",
+      "court_order": 1,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "2"
+        },
+        {
+          "team_1": "6",
+          "team_2": "3"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 1876,
+            "self": "/api/players/1876",
+            "name": "Thomas Basso",
+            "nationality": "FR",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1876-870"
+            }
+          },
+          {
+            "id": 870,
+            "self": "/api/players/870",
+            "name": "Julien Biron",
+            "nationality": "FR",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1876-870"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 172,
+            "self": "/api/players/172",
+            "name": "Karlos Rodriguez Vidal",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/172-1235"
+            }
+          },
+          {
+            "id": 1235,
+            "self": "/api/players/1235",
+            "name": "Nicolas Peña Ruiz",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/172-1235"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-10-21T10:45:05+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/764",
+        "headtohead": "/api/matches/14086/headtohead",
+        "next": "/api/matches/14098"
+      }
+    },
+    {
+      "id": 14087,
+      "self": "/api/matches/14087",
+      "name": "Guinaldo/Perez - Bergeron/Joris",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 16,
+      "round_name": "Round of 32",
+      "index": 2,
+      "seeds": {
+        "team_1": null,
+        "team_2": null
+      },
+      "played_at": "2026-10-21",
+      "schedule_label": "Starting at 9:00 AM",
+      "scheduled_at": "2026-10-21T09:00:00+02:00",
+      "scheduled_at_local": "2026-10-21T09:00:00+02:00",
+      "court": "Court 2",
+      "court_order": 1,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "2",
+          "team_2": "6"
+        },
+        {
+          "team_1": "3",
+          "team_2": "6"
+        }
+      ],
+      "winner": "team_2",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 1386,
+            "self": "/api/players/1386",
+            "name": "Alejandro Guinaldo Martin",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1386-1448"
+            }
+          },
+          {
+            "id": 1448,
+            "self": "/api/players/1448",
+            "name": "Jaime Perez Martin",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1386-1448"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 292,
+            "self": "/api/players/292",
+            "name": "Johan Bergeron",
+            "nationality": "FR",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/292-359"
+            }
+          },
+          {
+            "id": 359,
+            "self": "/api/players/359",
+            "name": "Maxime Joris",
+            "nationality": "FR",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/292-359"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-10-21T10:45:05+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/764",
+        "headtohead": "/api/matches/14087/headtohead",
+        "next": "/api/matches/14091"
+      }
+    },
+    {
+      "id": 14088,
+      "self": "/api/matches/14088",
+      "name": "Lopez/La Punzina - Garcia/Fuertes",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 16,
+      "round_name": "Round of 32",
+      "index": 3,
+      "seeds": {
+        "team_1": null,
+        "team_2": "9"
+      },
+      "played_at": "2026-10-21",
+      "schedule_label": "Starting at 9:00 AM",
+      "scheduled_at": "2026-10-21T09:00:00+02:00",
+      "scheduled_at_local": "2026-10-21T09:00:00+02:00",
+      "court": "Court 3",
+      "court_order": 1,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "1",
+          "team_2": "6"
+        },
+        {
+          "team_1": "0",
+          "team_2": "6"
+        }
+      ],
+      "winner": "team_2",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 1409,
+            "self": "/api/players/1409",
+            "name": "Alvaro Lopez Luque",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1409-1840"
+            }
+          },
+          {
+            "id": 1840,
+            "self": "/api/players/1840",
+            "name": "Manfredi La Punzina",
+            "nationality": "IT",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1409-1840"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 712,
+            "self": "/api/players/712",
+            "name": "Alejandro Garcia Calahorro",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/712-908"
+            }
+          },
+          {
+            "id": 908,
+            "self": "/api/players/908",
+            "name": "Iago Fuertes Leonardo",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/712-908"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-10-21T11:15:05+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/764",
+        "headtohead": "/api/matches/14088/headtohead",
+        "next": "/api/matches/14094"
+      }
+    },
+    {
+      "id": 14089,
+      "self": "/api/matches/14089",
+      "name": "Romera/Calleja - Gutierrez/Ferreyra",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 16,
+      "round_name": "Round of 32",
+      "index": 4,
+      "seeds": {
+        "team_1": "7",
+        "team_2": "LL"
+      },
+      "played_at": "2026-10-21",
+      "schedule_label": "Starting at 9:00 AM",
+      "scheduled_at": "2026-10-21T09:00:00+02:00",
+      "scheduled_at_local": "2026-10-21T09:00:00+02:00",
+      "court": "Court 4",
+      "court_order": 1,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "3"
+        },
+        {
+          "team_1": "6",
+          "team_2": "7"
+        },
+        {
+          "team_1": "7",
+          "team_2": "5"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 138,
+            "self": "/api/players/138",
+            "name": "Jaume Romera Barcelo",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/138-327"
+            }
+          },
+          {
+            "id": 327,
+            "self": "/api/players/327",
+            "name": "Felipe Calleja",
+            "nationality": "AR",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/138-327"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 2049,
+            "self": "/api/players/2049",
+            "name": "Juan Carlos Gutierrez Guerrero",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/2049-262"
+            }
+          },
+          {
+            "id": 262,
+            "self": "/api/players/262",
+            "name": "Relis Ferreyra",
+            "nationality": "AR",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/2049-262"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-10-21T13:45:05+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/764",
+        "headtohead": "/api/matches/14089/headtohead",
+        "next": "/api/matches/14095"
+      }
+    },
+    {
+      "id": 14090,
+      "self": "/api/matches/14090",
+      "name": "Cordoba/Collantes - Castillo/Castro",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 16,
+      "round_name": "Round of 32",
+      "index": 5,
+      "seeds": {
+        "team_1": null,
+        "team_2": null
+      },
+      "played_at": "2026-10-21",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Court 1",
+      "court_order": 4,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "3",
+          "team_2": "6"
+        },
+        {
+          "team_1": "6",
+          "team_2": "3"
+        },
+        {
+          "team_1": "6",
+          "team_2": "2"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 269,
+            "self": "/api/players/269",
+            "name": "Marcos Cordoba",
+            "nationality": "ES",
+            "side": "drive",
+            "connections": {
+              "pair": "/api/pairs/269-2799"
+            }
+          },
+          {
+            "id": 2799,
+            "self": "/api/players/2799",
+            "name": "Javier Collantes Guijo",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/269-2799"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 353,
+            "self": "/api/players/353",
+            "name": "Pablo Castillo Valverde",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/353-15"
+            }
+          },
+          {
+            "id": 15,
+            "self": "/api/players/15",
+            "name": "Boris Castro Garcia",
+            "nationality": "ES",
+            "side": "backhand",
+            "connections": {
+              "pair": "/api/pairs/353-15"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-10-21T18:55:04+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/764",
+        "headtohead": "/api/matches/14090/headtohead",
+        "prev": "/api/matches/14093",
+        "next": "/api/matches/14085"
+      }
+    },
+    {
+      "id": 14091,
+      "self": "/api/matches/14091",
+      "name": "Lorenzo/Maldonado - Esteban/Graupera",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 16,
+      "round_name": "Round of 32",
+      "index": 6,
+      "seeds": {
+        "team_1": "LL",
+        "team_2": "Q"
+      },
+      "played_at": "2026-10-21",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Court 2",
+      "court_order": 2,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "4",
+          "team_2": "6"
+        },
+        {
+          "team_1": "3",
+          "team_2": "6"
+        }
+      ],
+      "winner": "team_2",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 1234,
+            "self": "/api/players/1234",
+            "name": "Hugo Lorenzo Serrano",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1234-1410"
+            }
+          },
+          {
+            "id": 1410,
+            "self": "/api/players/1410",
+            "name": "Daniel Maldonado Fornieles",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1234-1410"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 2025,
+            "self": "/api/players/2025",
+            "name": "Agustin Esteban Silva",
+            "nationality": "AR",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/2025-1440"
+            }
+          },
+          {
+            "id": 1440,
+            "self": "/api/players/1440",
+            "name": "Andres Graupera",
+            "nationality": "AR",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/2025-1440"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-10-21T11:45:05+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/764",
+        "headtohead": "/api/matches/14091/headtohead",
+        "prev": "/api/matches/14087",
+        "next": "/api/matches/14118"
+      }
+    },
+    {
+      "id": 14092,
+      "self": "/api/matches/14092",
+      "name": "Fernandez/Pozo - Garcia/Ruiz",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 16,
+      "round_name": "Round of 32",
+      "index": 7,
+      "seeds": {
+        "team_1": null,
+        "team_2": "4"
+      },
+      "played_at": "2026-10-21",
+      "schedule_label": "Not before 3:30 PM",
+      "scheduled_at": "2026-10-21T15:30:00+02:00",
+      "scheduled_at_local": "2026-10-21T15:30:00+02:00",
+      "court": "Court 2",
+      "court_order": 4,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "3",
+          "team_2": "6"
+        },
+        {
+          "team_1": "4",
+          "team_2": "6"
+        }
+      ],
+      "winner": "team_2",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 1264,
+            "self": "/api/players/1264",
+            "name": "Guillermo Fernandez Sanchez",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1264-1241"
+            }
+          },
+          {
+            "id": 1241,
+            "self": "/api/players/1241",
+            "name": "Alvaro Pozo Marroyo",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1264-1241"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 71,
+            "self": "/api/players/71",
+            "name": "Javier Garcia",
+            "nationality": "ES",
+            "side": "backhand",
+            "connections": {
+              "pair": "/api/pairs/71-111"
+            }
+          },
+          {
+            "id": 111,
+            "self": "/api/players/111",
+            "name": "Alex Ruiz",
+            "nationality": "ES",
+            "side": "drive",
+            "connections": {
+              "pair": "/api/pairs/71-111"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-10-21T17:15:05+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/764",
+        "headtohead": "/api/matches/14092/headtohead",
+        "prev": "/api/matches/14118",
+        "next": "/api/matches/14100"
+      }
+    },
+    {
+      "id": 14093,
+      "self": "/api/matches/14093",
+      "name": "Bautista/Bergamini - Olivera/Alami",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 16,
+      "round_name": "Round of 32",
+      "index": 8,
+      "seeds": {
+        "team_1": "3",
+        "team_2": null
+      },
+      "played_at": "2026-10-21",
+      "schedule_label": "Not before 3:30 PM",
+      "scheduled_at": "2026-10-21T15:30:00+02:00",
+      "scheduled_at_local": "2026-10-21T15:30:00+02:00",
+      "court": "Court 1",
+      "court_order": 3,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "3"
+        },
+        {
+          "team_1": "6",
+          "team_2": "3"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 81,
+            "self": "/api/players/81",
+            "name": "Jairo Bautista",
+            "nationality": "ES",
+            "side": "backhand",
+            "connections": {
+              "pair": "/api/pairs/81-76"
+            }
+          },
+          {
+            "id": 76,
+            "self": "/api/players/76",
+            "name": "Lucas Bergamini",
+            "nationality": "BR",
+            "side": "drive",
+            "connections": {
+              "pair": "/api/pairs/81-76"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 137,
+            "self": "/api/players/137",
+            "name": "Joel Olivera Palos",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/137-2307"
+            }
+          },
+          {
+            "id": 2307,
+            "self": "/api/players/2307",
+            "name": "Mohamed Alami",
+            "nationality": "MA",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/137-2307"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-10-21T17:15:05+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/764",
+        "headtohead": "/api/matches/14093/headtohead",
+        "prev": "/api/matches/14098",
+        "next": "/api/matches/14090"
+      }
+    },
+    {
+      "id": 14094,
+      "self": "/api/matches/14094",
+      "name": "Boronad/Robert - Nieto/Rutgersson",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 16,
+      "round_name": "Round of 32",
+      "index": 9,
+      "seeds": {
+        "team_1": null,
+        "team_2": null
+      },
+      "played_at": "2026-10-21",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Court 3",
+      "court_order": 2,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "2",
+          "team_2": "6"
+        },
+        {
+          "team_1": "5",
+          "team_2": "7"
+        }
+      ],
+      "winner": "team_2",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 473,
+            "self": "/api/players/473",
+            "name": "Yoan Boronad",
+            "nationality": "FR",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/473-1149"
+            }
+          },
+          {
+            "id": 1149,
+            "self": "/api/players/1149",
+            "name": "Jeremy Robert",
+            "nationality": "FR",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/473-1149"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 2660,
+            "self": "/api/players/2660",
+            "name": "Sergio Nieto Simon",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/2660-190"
+            }
+          },
+          {
+            "id": 190,
+            "self": "/api/players/190",
+            "name": "Douglas Rutgersson",
+            "nationality": "SE",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/2660-190"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-10-21T12:45:06+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/764",
+        "headtohead": "/api/matches/14094/headtohead",
+        "prev": "/api/matches/14088",
+        "next": "/api/matches/14097"
+      }
+    },
+    {
+      "id": 14095,
+      "self": "/api/matches/14095",
+      "name": "Luque/Jesus - Montalban/Nicocia",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 16,
+      "round_name": "Round of 32",
+      "index": 10,
+      "seeds": {
+        "team_1": null,
+        "team_2": "Q"
+      },
+      "played_at": "2026-10-21",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Court 4",
+      "court_order": 2,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "3",
+          "team_2": "6"
+        },
+        {
+          "team_1": "6",
+          "team_2": "3"
+        },
+        {
+          "team_1": "6",
+          "team_2": "4"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 246,
+            "self": "/api/players/246",
+            "name": "Antonio Luque",
+            "nationality": "PT",
+            "side": "backhand",
+            "connections": {
+              "pair": "/api/pairs/246-192"
+            }
+          },
+          {
+            "id": 192,
+            "self": "/api/players/192",
+            "name": "Diogo Jesus",
+            "nationality": "PT",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/246-192"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 2134,
+            "self": "/api/players/2134",
+            "name": "Jose Pedro Montalban Martin",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/2134-1592"
+            }
+          },
+          {
+            "id": 1592,
+            "self": "/api/players/1592",
+            "name": "Santino Nicocia",
+            "nationality": "IT",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/2134-1592"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-10-21T15:45:06+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/764",
+        "headtohead": "/api/matches/14095/headtohead",
+        "prev": "/api/matches/14089",
+        "next": "/api/matches/14099"
+      }
+    },
+    {
+      "id": 14096,
+      "self": "/api/matches/14096",
+      "name": "Vicente/Ramírez - Dorta/Aliaga",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 16,
+      "round_name": "Round of 32",
+      "index": 11,
+      "seeds": {
+        "team_1": "WC",
+        "team_2": "8"
+      },
+      "played_at": "2026-10-21",
+      "schedule_label": "Not before 6:00 PM",
+      "scheduled_at": "2026-10-21T18:00:00+02:00",
+      "scheduled_at_local": "2026-10-21T18:00:00+02:00",
+      "court": "Court 2",
+      "court_order": 6,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "3",
+          "team_2": "6"
+        },
+        {
+          "team_1": "1",
+          "team_2": "6"
+        }
+      ],
+      "winner": "team_2",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 3229,
+            "self": "/api/players/3229",
+            "name": "Juan Vicente Alcala Rios",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/3229-3230"
+            }
+          },
+          {
+            "id": 3230,
+            "self": "/api/players/3230",
+            "name": "Antonio Ramírez Muñoz",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/3229-3230"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 1210,
+            "self": "/api/players/1210",
+            "name": "Diego Dorta Diaz",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1210-334"
+            }
+          },
+          {
+            "id": 334,
+            "self": "/api/players/334",
+            "name": "Pepe Aliaga",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1210-334"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-10-21T19:15:06+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/764",
+        "headtohead": "/api/matches/14096/headtohead",
+        "prev": "/api/matches/14100"
+      }
+    },
+    {
+      "id": 14097,
+      "self": "/api/matches/14097",
+      "name": "Caiano/Calvo - Lasgoity/Guy De Chamisso",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 16,
+      "round_name": "Round of 32",
+      "index": 12,
+      "seeds": {
+        "team_1": "10",
+        "team_2": null
+      },
+      "played_at": "2026-10-21",
+      "schedule_label": "Not before 12:00 PM",
+      "scheduled_at": "2026-10-21T12:00:00+02:00",
+      "scheduled_at_local": "2026-10-21T12:00:00+02:00",
+      "court": "Court 3",
+      "court_order": 3,
+      "status": "retired",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "7"
+        }
+      ],
+      "winner": "team_2",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 6,
+            "self": "/api/players/6",
+            "name": "Joao Maria Caiano",
+            "nationality": "PT",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/6-61"
+            }
+          },
+          {
+            "id": 61,
+            "self": "/api/players/61",
+            "name": "Alejandro Calvo Perez",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/6-61"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 1588,
+            "self": "/api/players/1588",
+            "name": "Juan Manuel Lasgoity",
+            "nationality": "IT",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1588-545"
+            }
+          },
+          {
+            "id": 545,
+            "self": "/api/players/545",
+            "name": "Olivier Guy De Chamisso",
+            "nationality": "FR",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1588-545"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-10-21T13:45:06+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/764",
+        "headtohead": "/api/matches/14097/headtohead",
+        "prev": "/api/matches/14094",
+        "next": "/api/matches/14121"
+      }
+    },
+    {
+      "id": 14098,
+      "self": "/api/matches/14098",
+      "name": "Navarro/Sargolini - Diaz/Castillo",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 16,
+      "round_name": "Round of 32",
+      "index": 13,
+      "seeds": {
+        "team_1": null,
+        "team_2": "WC"
+      },
+      "played_at": "2026-10-21",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Court 1",
+      "court_order": 2,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "0"
+        },
+        {
+          "team_1": "6",
+          "team_2": "3"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 1233,
+            "self": "/api/players/1233",
+            "name": "Noe Navarro Porras",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1233-179"
+            }
+          },
+          {
+            "id": 179,
+            "self": "/api/players/179",
+            "name": "Matteo Sargolini",
+            "nationality": "IT",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1233-179"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 3231,
+            "self": "/api/players/3231",
+            "name": "Carlos Enrique Diaz Otero Lopez",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/3231-3232"
+            }
+          },
+          {
+            "id": 3232,
+            "self": "/api/players/3232",
+            "name": "Antonio Castillo Valverde",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/3231-3232"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-10-21T11:45:06+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/764",
+        "headtohead": "/api/matches/14098/headtohead",
+        "prev": "/api/matches/14086",
+        "next": "/api/matches/14122"
+      }
+    },
+    {
+      "id": 14099,
+      "self": "/api/matches/14099",
+      "name": "Rodriguez/Esteban - Sassano/Saura",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 16,
+      "round_name": "Round of 32",
+      "index": 14,
+      "seeds": {
+        "team_1": null,
+        "team_2": "Q"
+      },
+      "played_at": "2026-10-21",
+      "schedule_label": "Not before 12:00 PM",
+      "scheduled_at": "2026-10-21T12:00:00+02:00",
+      "scheduled_at_local": "2026-10-21T12:00:00+02:00",
+      "court": "Court 4",
+      "court_order": 3,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "7",
+          "team_2": "6"
+        },
+        {
+          "team_1": "6",
+          "team_2": "4"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 630,
+            "self": "/api/players/630",
+            "name": "Adrian Rodriguez",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/630-1589"
+            }
+          },
+          {
+            "id": 1589,
+            "self": "/api/players/1589",
+            "name": "David Esteban Esposito",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/630-1589"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 1594,
+            "self": "/api/players/1594",
+            "name": "Gonzalo Sassano",
+            "nationality": "IT",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1594-3235"
+            }
+          },
+          {
+            "id": 3235,
+            "self": "/api/players/3235",
+            "name": "Joaquin Saura Padilla",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1594-3235"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-10-21T15:45:06+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/764",
+        "headtohead": "/api/matches/14099/headtohead",
+        "prev": "/api/matches/14095",
+        "next": "/api/matches/14129"
+      }
+    },
+    {
+      "id": 14100,
+      "self": "/api/matches/14100",
+      "name": "Platania/Nicocia - Alonso/Goñi",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 16,
+      "round_name": "Round of 32",
+      "index": 15,
+      "seeds": {
+        "team_1": null,
+        "team_2": "2"
+      },
+      "played_at": "2026-10-21",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Court 2",
+      "court_order": 5,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "2",
+          "team_2": "6"
+        },
+        {
+          "team_1": "2",
+          "team_2": "6"
+        }
+      ],
+      "winner": "team_2",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 178,
+            "self": "/api/players/178",
+            "name": "Matteo Platania",
+            "nationality": "IT",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/178-1445"
+            }
+          },
+          {
+            "id": 1445,
+            "self": "/api/players/1445",
+            "name": "Filippo Nicocia",
+            "nationality": "AR",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/178-1445"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 101,
+            "self": "/api/players/101",
+            "name": "Edu Alonso",
+            "nationality": "ES",
+            "side": "drive",
+            "connections": {
+              "pair": "/api/pairs/101-465"
+            }
+          },
+          {
+            "id": 465,
+            "self": "/api/players/465",
+            "name": "Aimar Goñi",
+            "nationality": "ES",
+            "side": "backhand",
+            "connections": {
+              "pair": "/api/pairs/101-465"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-10-21T17:45:06+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/764",
+        "headtohead": "/api/matches/14100/headtohead",
+        "prev": "/api/matches/14092",
+        "next": "/api/matches/14096"
+      }
+    },
+    {
+      "id": 14118,
+      "self": "/api/matches/14118",
+      "name": "Suárez/Suarez - Caballero/Caballero",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 16,
+      "round_name": "Round of 32",
+      "index": 2,
+      "seeds": {
+        "team_1": "WC",
+        "team_2": "WC"
+      },
+      "played_at": "2026-10-21",
+      "schedule_label": "Not before 12:00 PM",
+      "scheduled_at": "2026-10-21T12:00:00+02:00",
+      "scheduled_at_local": "2026-10-21T12:00:00+02:00",
+      "court": "Court 2",
+      "court_order": 3,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "1",
+          "team_2": "6"
+        },
+        {
+          "team_1": "2",
+          "team_2": "6"
+        }
+      ],
+      "winner": "team_2",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 1937,
+            "self": "/api/players/1937",
+            "name": "Jimena Suárez García",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1937-1934"
+            }
+          },
+          {
+            "id": 1934,
+            "self": "/api/players/1934",
+            "name": "Angharad Suarez Garcia",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1937-1934"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 1541,
+            "self": "/api/players/1541",
+            "name": "Adolfina Caballero Vico",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1541-1540"
+            }
+          },
+          {
+            "id": 1540,
+            "self": "/api/players/1540",
+            "name": "Ana Caballero Vico",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1541-1540"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-10-21T14:15:07+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/764",
+        "headtohead": "/api/matches/14118/headtohead",
+        "prev": "/api/matches/14091",
+        "next": "/api/matches/14092"
+      }
+    },
+    {
+      "id": 14121,
+      "self": "/api/matches/14121",
+      "name": "Cano/Mesa - Portillo/Ordoñez",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 16,
+      "round_name": "Round of 32",
+      "index": 5,
+      "seeds": {
+        "team_1": null,
+        "team_2": null
+      },
+      "played_at": "2026-10-21",
+      "schedule_label": "Not before 3:30 PM",
+      "scheduled_at": "2026-10-21T15:30:00+02:00",
+      "scheduled_at_local": "2026-10-21T15:30:00+02:00",
+      "court": "Court 3",
+      "court_order": 4,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "4",
+          "team_2": "6"
+        },
+        {
+          "team_1": "3",
+          "team_2": "6"
+        }
+      ],
+      "winner": "team_2",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 911,
+            "self": "/api/players/911",
+            "name": "Vega Cano Ortin",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/911-403"
+            }
+          },
+          {
+            "id": 403,
+            "self": "/api/players/403",
+            "name": "Carla Mesa Salazar",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/911-403"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 515,
+            "self": "/api/players/515",
+            "name": "Maria Portillo Perez",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/515-724"
+            }
+          },
+          {
+            "id": 724,
+            "self": "/api/players/724",
+            "name": "Claudia Ordoñez Romero",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/515-724"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-10-21T17:15:07+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/764",
+        "headtohead": "/api/matches/14121/headtohead",
+        "prev": "/api/matches/14097",
+        "next": "/api/matches/14126"
+      }
+    },
+    {
+      "id": 14122,
+      "self": "/api/matches/14122",
+      "name": "Marques/Ribeiro - Roman/Villar",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 16,
+      "round_name": "Round of 32",
+      "index": 6,
+      "seeds": {
+        "team_1": null,
+        "team_2": null
+      },
+      "played_at": "2026-10-21",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Court 1",
+      "court_order": null,
+      "status": "walkover",
+      "score": null,
+      "winner": "team_2",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 561,
+            "self": "/api/players/561",
+            "name": "Mafalda Marques Fernandes",
+            "nationality": "PT",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/561-581"
+            }
+          },
+          {
+            "id": 581,
+            "self": "/api/players/581",
+            "name": "Patricia Maria Ribeiro",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/561-581"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 789,
+            "self": "/api/players/789",
+            "name": "Patricia Roman Aldea",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/789-790"
+            }
+          },
+          {
+            "id": 790,
+            "self": "/api/players/790",
+            "name": "Carmen Villar Gonzalez",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/789-790"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-10-21T09:55:07+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/764",
+        "headtohead": "/api/matches/14122/headtohead",
+        "prev": "/api/matches/14098"
+      }
+    },
+    {
+      "id": 14125,
+      "self": "/api/matches/14125",
+      "name": "Corrales/Ortiz - Vera/Portilla",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 16,
+      "round_name": "Round of 32",
+      "index": 9,
+      "seeds": {
+        "team_1": null,
+        "team_2": null
+      },
+      "played_at": "2026-10-21",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Court 4",
+      "court_order": 5,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "3",
+          "team_2": "6"
+        },
+        {
+          "team_1": "0",
+          "team_2": "6"
+        }
+      ],
+      "winner": "team_2",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 1579,
+            "self": "/api/players/1579",
+            "name": "Ainhoa Corrales Fernández",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1579-1597"
+            }
+          },
+          {
+            "id": 1597,
+            "self": "/api/players/1597",
+            "name": "Marta Ortiz Montoya",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1579-1597"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 812,
+            "self": "/api/players/812",
+            "name": "Martina Vera Cebollero",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/812-793"
+            }
+          },
+          {
+            "id": 793,
+            "self": "/api/players/793",
+            "name": "Daniela Portilla Gomez",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/812-793"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-10-21T19:15:09+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/764",
+        "headtohead": "/api/matches/14125/headtohead",
+        "prev": "/api/matches/14129"
+      }
+    },
+    {
+      "id": 14126,
+      "self": "/api/matches/14126",
+      "name": "Martínez/Mizzi - Silvan/Neumann",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 16,
+      "round_name": "Round of 32",
+      "index": 10,
+      "seeds": {
+        "team_1": null,
+        "team_2": null
+      },
+      "played_at": "2026-10-21",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Court 3",
+      "court_order": 5,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "1"
+        },
+        {
+          "team_1": "6",
+          "team_2": "1"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 3233,
+            "self": "/api/players/3233",
+            "name": "María Martínez Serón",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/3233-3234"
+            }
+          },
+          {
+            "id": 3234,
+            "self": "/api/players/3234",
+            "name": "Maria Mizzi Rama",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/3233-3234"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 1252,
+            "self": "/api/players/1252",
+            "name": "Lydia Silvan Ramiro",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1252-1257"
+            }
+          },
+          {
+            "id": 1257,
+            "self": "/api/players/1257",
+            "name": "Zoljargal Neumann",
+            "nationality": "DE",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1252-1257"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-10-21T18:15:07+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/764",
+        "headtohead": "/api/matches/14126/headtohead",
+        "prev": "/api/matches/14121"
+      }
+    },
+    {
+      "id": 14129,
+      "self": "/api/matches/14129",
+      "name": "Çiftçi/Sara - Dionisio/Alonso",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 16,
+      "round_name": "Round of 32",
+      "index": 13,
+      "seeds": {
+        "team_1": null,
+        "team_2": null
+      },
+      "played_at": "2026-10-21",
+      "schedule_label": "Not before 3:30 PM",
+      "scheduled_at": "2026-10-21T15:30:00+02:00",
+      "scheduled_at_local": "2026-10-21T15:30:00+02:00",
+      "court": "Court 4",
+      "court_order": 4,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "0",
+          "team_2": "6"
+        },
+        {
+          "team_1": "0",
+          "team_2": "6"
+        }
+      ],
+      "winner": "team_2",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 1566,
+            "self": "/api/players/1566",
+            "name": "Olivia Çiftçi",
+            "nationality": "GB",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1566-1565"
+            }
+          },
+          {
+            "id": 1565,
+            "self": "/api/players/1565",
+            "name": "Aurelia Sara Argentieri",
+            "nationality": "IT",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1566-1565"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 1212,
+            "self": "/api/players/1212",
+            "name": "Lucia Dionisio Laureano",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1212-638"
+            }
+          },
+          {
+            "id": 638,
+            "self": "/api/players/638",
+            "name": "Lorena Alonso De Lera",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1212-638"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-10-21T18:45:06+02:00",
+      "connections": {
+        "tournament": "/api/tournaments/764",
+        "headtohead": "/api/matches/14129/headtohead",
+        "prev": "/api/matches/14099",
+        "next": "/api/matches/14125"
+      }
+    }
+  ]
+}
