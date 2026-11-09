@@ -1,0 +1,957 @@
+{
+  "source": "padelapi",
+  "endpoint": "/tournaments/1192/matches",
+  "ingest_ts": "2026-11-09T16:13:12.909939+00:00",
+  "sha256": "026e66af0c50f0378d9ea58d6784cd0b7a164c4849079a499fa2d701c14ccc11",
+  "tournament": {
+    "id": 1192,
+    "name": "FIP Silver Women’s Padel Crossroads Maldives",
+    "country": "MV",
+    "level": "fip_silver",
+    "start_date": "2026-11-05",
+    "end_date": "2026-11-08"
+  },
+  "n_items": 10,
+  "items": [
+    {
+      "id": 14593,
+      "self": "/api/matches/14593",
+      "name": "Talavan/Rodriguez - Araus/Vazquez",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 2,
+      "round_name": "Semifinals",
+      "index": 0,
+      "seeds": {
+        "team_1": "1",
+        "team_2": null
+      },
+      "played_at": "2026-11-08",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Center Court",
+      "court_order": 2,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "4"
+        },
+        {
+          "team_1": "6",
+          "team_2": "1"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 420,
+            "self": "/api/players/420",
+            "name": "Marta Talavan",
+            "short_name": "Talavan",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/420-457"
+            }
+          },
+          {
+            "id": 457,
+            "self": "/api/players/457",
+            "name": "Nuria Rodriguez",
+            "short_name": "Rodriguez",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/420-457"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 546,
+            "self": "/api/players/546",
+            "name": "Patricia Araus Lopez",
+            "short_name": "Araus",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/546-1582"
+            }
+          },
+          {
+            "id": 1582,
+            "self": "/api/players/1582",
+            "name": "Alba Vazquez Gracia",
+            "short_name": "Vazquez",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/546-1582"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-11-08T23:55:15+01:00",
+      "connections": {
+        "tournament": "/api/tournaments/1192",
+        "headtohead": "/api/matches/14593/headtohead",
+        "prev": "/api/matches/14594",
+        "next": "/api/matches/14595"
+      }
+    },
+    {
+      "id": 14594,
+      "self": "/api/matches/14594",
+      "name": "Minetti/Pooley - Fernandez/Guerra",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 2,
+      "round_name": "Semifinals",
+      "index": 1,
+      "seeds": {
+        "team_1": null,
+        "team_2": "2"
+      },
+      "played_at": "2026-11-08",
+      "schedule_label": "Starting at 10:30 AM",
+      "scheduled_at": "2026-11-08T06:30:00+01:00",
+      "scheduled_at_local": "2026-11-08T10:30:00+05:00",
+      "court": "Center Court",
+      "court_order": 1,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "7"
+        },
+        {
+          "team_1": "0",
+          "team_2": "6"
+        }
+      ],
+      "winner": "team_2",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 565,
+            "self": "/api/players/565",
+            "name": "Martina Minetti",
+            "short_name": "Minetti",
+            "nationality": "FI",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/565-2137"
+            }
+          },
+          {
+            "id": 2137,
+            "self": "/api/players/2137",
+            "name": "Rosie Pooley",
+            "short_name": "Pooley",
+            "nationality": "GB",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/565-2137"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 1611,
+            "self": "/api/players/1611",
+            "name": "Carla Fernandez Gonzalez",
+            "short_name": "Fernandez",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1611-1612"
+            }
+          },
+          {
+            "id": 1612,
+            "self": "/api/players/1612",
+            "name": "Nerea Guerra Santana",
+            "short_name": "Guerra",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1611-1612"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-11-08T23:55:15+01:00",
+      "connections": {
+        "tournament": "/api/tournaments/1192",
+        "headtohead": "/api/matches/14594/headtohead",
+        "next": "/api/matches/14593"
+      }
+    },
+    {
+      "id": 14595,
+      "self": "/api/matches/14595",
+      "name": "Rodriguez/Talavan - Fernandez/Guerra",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 1,
+      "round_name": "Finals",
+      "index": 0,
+      "seeds": {
+        "team_1": "1",
+        "team_2": "2"
+      },
+      "played_at": "2026-11-08",
+      "schedule_label": "Not before 5:00 PM",
+      "scheduled_at": "2026-11-08T13:00:00+01:00",
+      "scheduled_at_local": "2026-11-08T17:00:00+05:00",
+      "court": "Center Court",
+      "court_order": 3,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "2"
+        },
+        {
+          "team_1": "6",
+          "team_2": "2"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 457,
+            "self": "/api/players/457",
+            "name": "Nuria Rodriguez",
+            "short_name": "Rodriguez",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/457-420"
+            }
+          },
+          {
+            "id": 420,
+            "self": "/api/players/420",
+            "name": "Marta Talavan",
+            "short_name": "Talavan",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/457-420"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 1611,
+            "self": "/api/players/1611",
+            "name": "Carla Fernandez Gonzalez",
+            "short_name": "Fernandez",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1611-1612"
+            }
+          },
+          {
+            "id": 1612,
+            "self": "/api/players/1612",
+            "name": "Nerea Guerra Santana",
+            "short_name": "Guerra",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1611-1612"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-11-08T15:15:42+01:00",
+      "connections": {
+        "tournament": "/api/tournaments/1192",
+        "headtohead": "/api/matches/14595/headtohead",
+        "prev": "/api/matches/14593"
+      }
+    },
+    {
+      "id": 14589,
+      "self": "/api/matches/14589",
+      "name": "Talavan/Rodriguez - Dionisio/Ntanou",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 4,
+      "round_name": "Quarter",
+      "index": 0,
+      "seeds": {
+        "team_1": "1",
+        "team_2": null
+      },
+      "played_at": "2026-11-07",
+      "schedule_label": "Not before 6:00 PM",
+      "scheduled_at": "2026-11-07T14:00:00+01:00",
+      "scheduled_at_local": "2026-11-07T18:00:00+05:00",
+      "court": "Center Court",
+      "court_order": 2,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "0"
+        },
+        {
+          "team_1": "6",
+          "team_2": "0"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 420,
+            "self": "/api/players/420",
+            "name": "Marta Talavan",
+            "short_name": "Talavan",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/420-457"
+            }
+          },
+          {
+            "id": 457,
+            "self": "/api/players/457",
+            "name": "Nuria Rodriguez",
+            "short_name": "Rodriguez",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/420-457"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 1212,
+            "self": "/api/players/1212",
+            "name": "Lucia Dionisio Laureano",
+            "short_name": "Dionisio",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1212-1700"
+            }
+          },
+          {
+            "id": 1700,
+            "self": "/api/players/1700",
+            "name": "Christina-Styliani Ntanou",
+            "short_name": "Ntanou",
+            "nationality": "GR",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1212-1700"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-11-08T23:55:15+01:00",
+      "connections": {
+        "tournament": "/api/tournaments/1192",
+        "headtohead": "/api/matches/14589/headtohead",
+        "prev": "/api/matches/14592",
+        "next": "/api/matches/14590"
+      }
+    },
+    {
+      "id": 14590,
+      "self": "/api/matches/14590",
+      "name": "Araus/Vazquez - Portillo/Guimet",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 4,
+      "round_name": "Quarter",
+      "index": 1,
+      "seeds": {
+        "team_1": null,
+        "team_2": "4"
+      },
+      "played_at": "2026-11-07",
+      "schedule_label": "Not before 10:30 AM",
+      "scheduled_at": "2026-11-07T06:30:00+01:00",
+      "scheduled_at_local": "2026-11-07T10:30:00+05:00",
+      "court": "Center Court",
+      "court_order": 3,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "3",
+          "team_2": "6"
+        },
+        {
+          "team_1": "6",
+          "team_2": "3"
+        },
+        {
+          "team_1": "6",
+          "team_2": "3"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 546,
+            "self": "/api/players/546",
+            "name": "Patricia Araus Lopez",
+            "short_name": "Araus",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/546-1582"
+            }
+          },
+          {
+            "id": 1582,
+            "self": "/api/players/1582",
+            "name": "Alba Vazquez Gracia",
+            "short_name": "Vazquez",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/546-1582"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 515,
+            "self": "/api/players/515",
+            "name": "Maria Portillo Perez",
+            "short_name": "Portillo",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/515-1204"
+            }
+          },
+          {
+            "id": 1204,
+            "self": "/api/players/1204",
+            "name": "Eugenia Guimet Bigas",
+            "short_name": "Guimet",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/515-1204"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-11-08T23:55:15+01:00",
+      "connections": {
+        "tournament": "/api/tournaments/1192",
+        "headtohead": "/api/matches/14590/headtohead",
+        "prev": "/api/matches/14589"
+      }
+    },
+    {
+      "id": 14592,
+      "self": "/api/matches/14592",
+      "name": "Zaccagnini/Varazi - Fernandez/Guerra",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 4,
+      "round_name": "Quarter",
+      "index": 3,
+      "seeds": {
+        "team_1": null,
+        "team_2": "2"
+      },
+      "played_at": "2026-11-07",
+      "schedule_label": "Starting at 8:30 AM",
+      "scheduled_at": "2026-11-07T04:30:00+01:00",
+      "scheduled_at_local": "2026-11-07T08:30:00+05:00",
+      "court": "Center Court",
+      "court_order": 1,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "1",
+          "team_2": "6"
+        },
+        {
+          "team_1": "4",
+          "team_2": "6"
+        }
+      ],
+      "winner": "team_2",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 701,
+            "self": "/api/players/701",
+            "name": "Michela Zaccagnini",
+            "short_name": "Zaccagnini",
+            "nationality": "IT",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/701-2991"
+            }
+          },
+          {
+            "id": 2991,
+            "self": "/api/players/2991",
+            "name": "Valentina Varazi",
+            "short_name": "Varazi",
+            "nationality": "IT",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/701-2991"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 1611,
+            "self": "/api/players/1611",
+            "name": "Carla Fernandez Gonzalez",
+            "short_name": "Fernandez",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1611-1612"
+            }
+          },
+          {
+            "id": 1612,
+            "self": "/api/players/1612",
+            "name": "Nerea Guerra Santana",
+            "short_name": "Guerra",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1611-1612"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-11-08T23:55:15+01:00",
+      "connections": {
+        "tournament": "/api/tournaments/1192",
+        "headtohead": "/api/matches/14592/headtohead",
+        "next": "/api/matches/14589"
+      }
+    },
+    {
+      "id": 14591,
+      "self": "/api/matches/14591",
+      "name": "Nikitina/Cañellas - Minetti/Pooley",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 4,
+      "round_name": "Quarter",
+      "index": 2,
+      "seeds": {
+        "team_1": "3",
+        "team_2": null
+      },
+      "played_at": "2026-11-06",
+      "schedule_label": "Starting at 4:00 PM",
+      "scheduled_at": "2026-11-06T12:00:00+01:00",
+      "scheduled_at_local": "2026-11-06T16:00:00+05:00",
+      "court": "Center Court",
+      "court_order": 1,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "4",
+          "team_2": "6"
+        },
+        {
+          "team_1": "4",
+          "team_2": "6"
+        }
+      ],
+      "winner": "team_2",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 1303,
+            "self": "/api/players/1303",
+            "name": "Ekaterina Nikitina",
+            "short_name": "Nikitina",
+            "nationality": "RU",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1303-484"
+            }
+          },
+          {
+            "id": 484,
+            "self": "/api/players/484",
+            "name": "Ariadna Cañellas Rodero",
+            "short_name": "Cañellas",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1303-484"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 565,
+            "self": "/api/players/565",
+            "name": "Martina Minetti",
+            "short_name": "Minetti",
+            "nationality": "FI",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/565-2137"
+            }
+          },
+          {
+            "id": 2137,
+            "self": "/api/players/2137",
+            "name": "Rosie Pooley",
+            "short_name": "Pooley",
+            "nationality": "GB",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/565-2137"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-11-06T15:30:32+01:00",
+      "connections": {
+        "tournament": "/api/tournaments/1192",
+        "headtohead": "/api/matches/14591/headtohead"
+      }
+    },
+    {
+      "id": 14582,
+      "self": "/api/matches/14582",
+      "name": "Dionisio/Ntanou - Vasileva/Radu",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 8,
+      "round_name": "Round of 16",
+      "index": 1,
+      "seeds": {
+        "team_1": null,
+        "team_2": null
+      },
+      "played_at": "2026-11-05",
+      "schedule_label": "Starting at 6:00 PM",
+      "scheduled_at": "2026-11-05T14:00:00+01:00",
+      "scheduled_at_local": "2026-11-05T18:00:00+05:00",
+      "court": "Center Court",
+      "court_order": 1,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "4"
+        },
+        {
+          "team_1": "7",
+          "team_2": "5"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 1212,
+            "self": "/api/players/1212",
+            "name": "Lucia Dionisio Laureano",
+            "short_name": "Dionisio",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1212-1700"
+            }
+          },
+          {
+            "id": 1700,
+            "self": "/api/players/1700",
+            "name": "Christina-Styliani Ntanou",
+            "short_name": "Ntanou",
+            "nationality": "GR",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1212-1700"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 1316,
+            "self": "/api/players/1316",
+            "name": "Alena Vasileva",
+            "short_name": "Vasileva",
+            "nationality": "RU",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1316-1745"
+            }
+          },
+          {
+            "id": 1745,
+            "self": "/api/players/1745",
+            "name": "Alice Radu",
+            "short_name": "Radu",
+            "nationality": "RO",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1316-1745"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-11-05T16:15:22+01:00",
+      "connections": {
+        "tournament": "/api/tournaments/1192",
+        "headtohead": "/api/matches/14582/headtohead",
+        "next": "/api/matches/14587"
+      }
+    },
+    {
+      "id": 14584,
+      "self": "/api/matches/14584",
+      "name": "Ershova/Naydenova - Portillo/Guimet",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 8,
+      "round_name": "Round of 16",
+      "index": 3,
+      "seeds": {
+        "team_1": null,
+        "team_2": "4"
+      },
+      "played_at": "2026-11-05",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Center Court",
+      "court_order": 3,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "1",
+          "team_2": "6"
+        },
+        {
+          "team_1": "0",
+          "team_2": "6"
+        }
+      ],
+      "winner": "team_2",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 3313,
+            "self": "/api/players/3313",
+            "name": "Iloanga Ershova",
+            "short_name": "Ershova",
+            "nationality": "RU",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/3313-3314"
+            }
+          },
+          {
+            "id": 3314,
+            "self": "/api/players/3314",
+            "name": "Sofiya Naydenova",
+            "short_name": "Naydenova",
+            "nationality": "RU",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/3313-3314"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 515,
+            "self": "/api/players/515",
+            "name": "Maria Portillo Perez",
+            "short_name": "Portillo",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/515-1204"
+            }
+          },
+          {
+            "id": 1204,
+            "self": "/api/players/1204",
+            "name": "Eugenia Guimet Bigas",
+            "short_name": "Guimet",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/515-1204"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-11-05T18:45:16+01:00",
+      "connections": {
+        "tournament": "/api/tournaments/1192",
+        "headtohead": "/api/matches/14584/headtohead",
+        "prev": "/api/matches/14587"
+      }
+    },
+    {
+      "id": 14587,
+      "self": "/api/matches/14587",
+      "name": "Al Balushi/Al Nabhani - Varazi/Zaccagnini",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 8,
+      "round_name": "Round of 16",
+      "index": 6,
+      "seeds": {
+        "team_1": null,
+        "team_2": null
+      },
+      "played_at": "2026-11-05",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Center Court",
+      "court_order": 2,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "2"
+        },
+        {
+          "team_1": "6",
+          "team_2": "7"
+        },
+        {
+          "team_1": "1",
+          "team_2": "6"
+        }
+      ],
+      "winner": "team_2",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 2226,
+            "self": "/api/players/2226",
+            "name": "Maryam Al Balushi",
+            "short_name": "Al Balushi",
+            "nationality": "OM",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/2226-514"
+            }
+          },
+          {
+            "id": 514,
+            "self": "/api/players/514",
+            "name": "Fatma Al Nabhani",
+            "short_name": "Al Nabhani",
+            "nationality": "OM",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/2226-514"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 2991,
+            "self": "/api/players/2991",
+            "name": "Valentina Varazi",
+            "short_name": "Varazi",
+            "nationality": "IT",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/2991-701"
+            }
+          },
+          {
+            "id": 701,
+            "self": "/api/players/701",
+            "name": "Michela Zaccagnini",
+            "short_name": "Zaccagnini",
+            "nationality": "IT",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/2991-701"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-11-05T18:15:15+01:00",
+      "connections": {
+        "tournament": "/api/tournaments/1192",
+        "headtohead": "/api/matches/14587/headtohead",
+        "prev": "/api/matches/14582",
+        "next": "/api/matches/14584"
+      }
+    }
+  ]
+}

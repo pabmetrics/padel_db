@@ -1,0 +1,3484 @@
+{
+  "source": "padelapi",
+  "endpoint": "/tournaments/749/matches",
+  "ingest_ts": "2026-11-09T16:13:20.610798+00:00",
+  "sha256": "490c55bcf9284d8d61f2e7cc80be396fe20d0b825cd77eb5f520189ad9614920",
+  "tournament": {
+    "id": 749,
+    "name": "FIP World Cup 2026",
+    "country": "QA",
+    "level": "fip_other",
+    "start_date": "2026-11-02",
+    "end_date": "2026-11-07"
+  },
+  "n_items": 32,
+  "items": [
+    {
+      "id": 14707,
+      "self": "/api/matches/14707",
+      "name": "Di Nenno/Augsburger - Goñi/Lebron",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "tie": {
+        "id": "men-main-1-0",
+        "group": null,
+        "team_1": "Argentina",
+        "team_2": "Spain",
+        "rubber": 1,
+        "score": {
+          "team_1": 1,
+          "team_2": 2
+        },
+        "winner": "team_2"
+      },
+      "watchability": "hidden_free_plan",
+      "round": 1,
+      "round_name": "Finals",
+      "index": 0,
+      "seeds": {
+        "team_1": null,
+        "team_2": null
+      },
+      "played_at": "2026-11-07",
+      "schedule_label": "Not before 6:00 PM",
+      "scheduled_at": "2026-11-07T16:00:00+01:00",
+      "scheduled_at_local": "2026-11-07T18:00:00+03:00",
+      "court": "Center Court",
+      "court_order": 3,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "7",
+          "team_2": "5"
+        },
+        {
+          "team_1": "5",
+          "team_2": "7"
+        },
+        {
+          "team_1": "2",
+          "team_2": "6"
+        }
+      ],
+      "winner": "team_2",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 103,
+            "self": "/api/players/103",
+            "name": "Martin Di Nenno",
+            "short_name": "Di Nenno",
+            "nationality": "AR",
+            "side": "drive",
+            "connections": {
+              "pair": "/api/pairs/103-84"
+            }
+          },
+          {
+            "id": 84,
+            "self": "/api/players/84",
+            "name": "Leo Augsburger",
+            "short_name": "Augsburger",
+            "nationality": "AR",
+            "side": "backhand",
+            "connections": {
+              "pair": "/api/pairs/103-84"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 465,
+            "self": "/api/players/465",
+            "name": "Aimar Goñi",
+            "short_name": "Goñi",
+            "nationality": "ES",
+            "side": "backhand",
+            "connections": {
+              "pair": "/api/pairs/465-88"
+            }
+          },
+          {
+            "id": 88,
+            "self": "/api/players/88",
+            "name": "Juan Lebron",
+            "short_name": "Lebron",
+            "nationality": "ES",
+            "side": "drive",
+            "connections": {
+              "pair": "/api/pairs/465-88"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-11-07T22:30:15+01:00",
+      "connections": {
+        "tournament": "/api/tournaments/749",
+        "headtohead": "/api/matches/14707/headtohead",
+        "stats": "/api/matches/14707/stats",
+        "live": "/api/matches/14707/live",
+        "prev": "/api/matches/14711",
+        "next": "/api/matches/14708"
+      }
+    },
+    {
+      "id": 14708,
+      "self": "/api/matches/14708",
+      "name": "Tapia/Chingotto - Navarro/Sanz",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "tie": {
+        "id": "men-main-1-0",
+        "group": null,
+        "team_1": "Argentina",
+        "team_2": "Spain",
+        "rubber": 2,
+        "score": {
+          "team_1": 1,
+          "team_2": 2
+        },
+        "winner": "team_2"
+      },
+      "watchability": "hidden_free_plan",
+      "round": 1,
+      "round_name": "Finals",
+      "index": 0,
+      "seeds": {
+        "team_1": null,
+        "team_2": null
+      },
+      "played_at": "2026-11-07",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Center Court",
+      "court_order": 4,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "1"
+        },
+        {
+          "team_1": "6",
+          "team_2": "2"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 66,
+            "self": "/api/players/66",
+            "name": "Agustin Tapia",
+            "short_name": "Tapia",
+            "nationality": "AR",
+            "side": "backhand",
+            "connections": {
+              "pair": "/api/pairs/66-114"
+            }
+          },
+          {
+            "id": 114,
+            "self": "/api/players/114",
+            "name": "Federico Chingotto",
+            "short_name": "Chingotto",
+            "nationality": "AR",
+            "side": "drive",
+            "connections": {
+              "pair": "/api/pairs/66-114"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 77,
+            "self": "/api/players/77",
+            "name": "Francisco Navarro",
+            "short_name": "Navarro",
+            "nationality": "ES",
+            "side": "backhand",
+            "connections": {
+              "pair": "/api/pairs/77-79"
+            }
+          },
+          {
+            "id": 79,
+            "self": "/api/players/79",
+            "name": "Jon Sanz",
+            "short_name": "Sanz",
+            "nationality": "ES",
+            "side": "drive",
+            "connections": {
+              "pair": "/api/pairs/77-79"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-11-07T22:30:15+01:00",
+      "connections": {
+        "tournament": "/api/tournaments/749",
+        "headtohead": "/api/matches/14708/headtohead",
+        "stats": "/api/matches/14708/stats",
+        "live": "/api/matches/14708/live",
+        "prev": "/api/matches/14707",
+        "next": "/api/matches/14709"
+      }
+    },
+    {
+      "id": 14709,
+      "self": "/api/matches/14709",
+      "name": "Alfonso/Libaak - Coello/Nieto",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "tie": {
+        "id": "men-main-1-0",
+        "group": null,
+        "team_1": "Argentina",
+        "team_2": "Spain",
+        "rubber": 3,
+        "score": {
+          "team_1": 1,
+          "team_2": 2
+        },
+        "winner": "team_2"
+      },
+      "watchability": "hidden_free_plan",
+      "round": 1,
+      "round_name": "Finals",
+      "index": 0,
+      "seeds": {
+        "team_1": null,
+        "team_2": null
+      },
+      "played_at": "2026-11-07",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Center Court",
+      "court_order": 5,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "3",
+          "team_2": "6"
+        },
+        {
+          "team_1": "2",
+          "team_2": "6"
+        }
+      ],
+      "winner": "team_2",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 18,
+            "self": "/api/players/18",
+            "name": "Gonzalo Alfonso",
+            "short_name": "Alfonso",
+            "nationality": "AR",
+            "side": "backhand",
+            "connections": {
+              "pair": "/api/pairs/18-93"
+            }
+          },
+          {
+            "id": 93,
+            "self": "/api/players/93",
+            "name": "Tino Libaak",
+            "short_name": "Libaak",
+            "nationality": "AR",
+            "side": "drive",
+            "connections": {
+              "pair": "/api/pairs/18-93"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 65,
+            "self": "/api/players/65",
+            "name": "Arturo Coello",
+            "short_name": "Coello",
+            "nationality": "ES",
+            "side": "drive",
+            "connections": {
+              "pair": "/api/pairs/65-90"
+            }
+          },
+          {
+            "id": 90,
+            "self": "/api/players/90",
+            "name": "Jorge Nieto",
+            "short_name": "Nieto",
+            "nationality": "ES",
+            "side": "backhand",
+            "connections": {
+              "pair": "/api/pairs/65-90"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-11-07T22:30:15+01:00",
+      "connections": {
+        "tournament": "/api/tournaments/749",
+        "headtohead": "/api/matches/14709/headtohead",
+        "stats": "/api/matches/14709/stats",
+        "live": "/api/matches/14709/live",
+        "prev": "/api/matches/14708"
+      }
+    },
+    {
+      "id": 14710,
+      "self": "/api/matches/14710",
+      "name": "Sanchez/Ustero - Osoro/Fassio",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "tie": {
+        "id": "women-main-1-0",
+        "group": null,
+        "team_1": "Spain",
+        "team_2": "Argentina",
+        "rubber": 1,
+        "score": {
+          "team_1": 2,
+          "team_2": 0
+        },
+        "winner": "team_1"
+      },
+      "watchability": "hidden_free_plan",
+      "round": 1,
+      "round_name": "Finals",
+      "index": 0,
+      "seeds": {
+        "team_1": null,
+        "team_2": null
+      },
+      "played_at": "2026-11-07",
+      "schedule_label": "Starting at 2:00 PM",
+      "scheduled_at": "2026-11-07T12:00:00+01:00",
+      "scheduled_at_local": "2026-11-07T14:00:00+03:00",
+      "court": "Center Court",
+      "court_order": 1,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "3"
+        },
+        {
+          "team_1": "6",
+          "team_2": "3"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 388,
+            "self": "/api/players/388",
+            "name": "Ariana Sanchez Fallada",
+            "short_name": "Sanchez",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/388-410"
+            }
+          },
+          {
+            "id": 410,
+            "self": "/api/players/410",
+            "name": "Andrea Ustero Prieto",
+            "short_name": "Ustero",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/388-410"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 406,
+            "self": "/api/players/406",
+            "name": "Aranzazu Osoro Ulrich",
+            "short_name": "Osoro",
+            "nationality": "AR",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/406-440"
+            }
+          },
+          {
+            "id": 440,
+            "self": "/api/players/440",
+            "name": "Martina Fassio Goyeneche",
+            "short_name": "Fassio",
+            "nationality": "AR",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/406-440"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-11-07T17:15:14+01:00",
+      "connections": {
+        "tournament": "/api/tournaments/749",
+        "headtohead": "/api/matches/14710/headtohead",
+        "stats": "/api/matches/14710/stats",
+        "live": "/api/matches/14710/live",
+        "next": "/api/matches/14711"
+      }
+    },
+    {
+      "id": 14711,
+      "self": "/api/matches/14711",
+      "name": "Josemaria/Triay - Brea/Jensen",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "tie": {
+        "id": "women-main-1-0",
+        "group": null,
+        "team_1": "Spain",
+        "team_2": "Argentina",
+        "rubber": 2,
+        "score": {
+          "team_1": 2,
+          "team_2": 0
+        },
+        "winner": "team_1"
+      },
+      "watchability": "hidden_free_plan",
+      "round": 1,
+      "round_name": "Finals",
+      "index": 0,
+      "seeds": {
+        "team_1": null,
+        "team_2": null
+      },
+      "played_at": "2026-11-07",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Center Court",
+      "court_order": 2,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "2"
+        },
+        {
+          "team_1": "6(5)",
+          "team_2": "7"
+        },
+        {
+          "team_1": "6",
+          "team_2": "3"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 389,
+            "self": "/api/players/389",
+            "name": "Paula Josemaria Martin",
+            "short_name": "Josemaria",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/389-433"
+            }
+          },
+          {
+            "id": 433,
+            "self": "/api/players/433",
+            "name": "Gemma Triay Pons",
+            "short_name": "Triay",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/389-433"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 434,
+            "self": "/api/players/434",
+            "name": "Delfina Brea Senesi",
+            "short_name": "Brea",
+            "nationality": "AR",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/434-399"
+            }
+          },
+          {
+            "id": 399,
+            "self": "/api/players/399",
+            "name": "Claudia Jensen",
+            "short_name": "Jensen",
+            "nationality": "AR",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/434-399"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-11-07T17:15:15+01:00",
+      "connections": {
+        "tournament": "/api/tournaments/749",
+        "headtohead": "/api/matches/14711/headtohead",
+        "stats": "/api/matches/14711/stats",
+        "live": "/api/matches/14711/live",
+        "prev": "/api/matches/14710",
+        "next": "/api/matches/14712"
+      }
+    },
+    {
+      "id": 14686,
+      "self": "/api/matches/14686",
+      "name": "Di Nenno/Augsburger - Montiel/Abbate",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "tie": {
+        "id": "men-main-2-0",
+        "group": null,
+        "team_1": "Argentina",
+        "team_2": "Italy",
+        "rubber": 1,
+        "score": {
+          "team_1": 2,
+          "team_2": 0
+        },
+        "winner": "team_1"
+      },
+      "watchability": "hidden_free_plan",
+      "round": 2,
+      "round_name": "Semifinals",
+      "index": 0,
+      "seeds": {
+        "team_1": null,
+        "team_2": null
+      },
+      "played_at": "2026-11-06",
+      "schedule_label": "Not before 6:00 PM",
+      "scheduled_at": "2026-11-06T16:00:00+01:00",
+      "scheduled_at_local": "2026-11-06T18:00:00+03:00",
+      "court": "Center Court",
+      "court_order": 3,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "1"
+        },
+        {
+          "team_1": "6",
+          "team_2": "1"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 103,
+            "self": "/api/players/103",
+            "name": "Martin Di Nenno",
+            "short_name": "Di Nenno",
+            "nationality": "AR",
+            "side": "drive",
+            "connections": {
+              "pair": "/api/pairs/103-84"
+            }
+          },
+          {
+            "id": 84,
+            "self": "/api/players/84",
+            "name": "Leo Augsburger",
+            "short_name": "Augsburger",
+            "nationality": "AR",
+            "side": "backhand",
+            "connections": {
+              "pair": "/api/pairs/103-84"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 228,
+            "self": "/api/players/228",
+            "name": "Alvaro Montiel Caruso",
+            "short_name": "Montiel",
+            "nationality": "IT",
+            "side": "backhand",
+            "connections": {
+              "pair": "/api/pairs/228-284"
+            }
+          },
+          {
+            "id": 284,
+            "self": "/api/players/284",
+            "name": "Flavio Abbate",
+            "short_name": "Abbate",
+            "nationality": "IT",
+            "side": "drive",
+            "connections": {
+              "pair": "/api/pairs/228-284"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-11-06T18:30:19+01:00",
+      "connections": {
+        "tournament": "/api/tournaments/749",
+        "headtohead": "/api/matches/14686/headtohead",
+        "stats": "/api/matches/14686/stats",
+        "live": "/api/matches/14686/live",
+        "prev": "/api/matches/14645",
+        "next": "/api/matches/14687"
+      }
+    },
+    {
+      "id": 14687,
+      "self": "/api/matches/14687",
+      "name": "Tapia/Chingotto - Patiniotis/Brambilla",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "tie": {
+        "id": "men-main-2-0",
+        "group": null,
+        "team_1": "Argentina",
+        "team_2": "Italy",
+        "rubber": 2,
+        "score": {
+          "team_1": 2,
+          "team_2": 0
+        },
+        "winner": "team_1"
+      },
+      "watchability": "hidden_free_plan",
+      "round": 2,
+      "round_name": "Semifinals",
+      "index": 0,
+      "seeds": {
+        "team_1": null,
+        "team_2": null
+      },
+      "played_at": "2026-11-06",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Center Court",
+      "court_order": 4,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "3"
+        },
+        {
+          "team_1": "6",
+          "team_2": "2"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 66,
+            "self": "/api/players/66",
+            "name": "Agustin Tapia",
+            "short_name": "Tapia",
+            "nationality": "AR",
+            "side": "backhand",
+            "connections": {
+              "pair": "/api/pairs/66-114"
+            }
+          },
+          {
+            "id": 114,
+            "self": "/api/players/114",
+            "name": "Federico Chingotto",
+            "short_name": "Chingotto",
+            "nationality": "AR",
+            "side": "drive",
+            "connections": {
+              "pair": "/api/pairs/66-114"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 150,
+            "self": "/api/players/150",
+            "name": "Aris Patiniotis",
+            "short_name": "Patiniotis",
+            "nationality": "IT",
+            "side": "drive",
+            "connections": {
+              "pair": "/api/pairs/150-1455"
+            }
+          },
+          {
+            "id": 1455,
+            "self": "/api/players/1455",
+            "name": "Michele Brambilla",
+            "short_name": "Brambilla",
+            "nationality": "IT",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/150-1455"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-11-06T18:30:19+01:00",
+      "connections": {
+        "tournament": "/api/tournaments/749",
+        "headtohead": "/api/matches/14687/headtohead",
+        "stats": "/api/matches/14687/stats",
+        "live": "/api/matches/14687/live",
+        "prev": "/api/matches/14686",
+        "next": "/api/matches/14688"
+      }
+    },
+    {
+      "id": 14680,
+      "self": "/api/matches/14680",
+      "name": "Goñi/Yanguas - Deus/Deus",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "tie": {
+        "id": "men-main-2-1",
+        "group": null,
+        "team_1": "Spain",
+        "team_2": "Portugal",
+        "rubber": 1,
+        "score": {
+          "team_1": 2,
+          "team_2": 0
+        },
+        "winner": "team_1"
+      },
+      "watchability": "hidden_free_plan",
+      "round": 2,
+      "round_name": "Semifinals",
+      "index": 1,
+      "seeds": {
+        "team_1": null,
+        "team_2": null
+      },
+      "played_at": "2026-11-06",
+      "schedule_label": "Not before 6:00 PM",
+      "scheduled_at": "2026-11-06T16:00:00+01:00",
+      "scheduled_at_local": "2026-11-06T18:00:00+03:00",
+      "court": "Grand Stand 1",
+      "court_order": 3,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "4",
+          "team_2": "6"
+        },
+        {
+          "team_1": "6",
+          "team_2": "3"
+        },
+        {
+          "team_1": "6",
+          "team_2": "2"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 465,
+            "self": "/api/players/465",
+            "name": "Aimar Goñi",
+            "short_name": "Goñi",
+            "nationality": "ES",
+            "side": "backhand",
+            "connections": {
+              "pair": "/api/pairs/465-89"
+            }
+          },
+          {
+            "id": 89,
+            "self": "/api/players/89",
+            "name": "Miguel Yanguas",
+            "short_name": "Yanguas",
+            "nationality": "ES",
+            "side": "drive",
+            "connections": {
+              "pair": "/api/pairs/465-89"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 165,
+            "self": "/api/players/165",
+            "name": "Miguel Deus",
+            "short_name": "Deus",
+            "nationality": "PT",
+            "side": "drive",
+            "connections": {
+              "pair": "/api/pairs/165-166"
+            }
+          },
+          {
+            "id": 166,
+            "self": "/api/players/166",
+            "name": "Nuno Deus",
+            "short_name": "Deus",
+            "nationality": "PT",
+            "side": "backhand",
+            "connections": {
+              "pair": "/api/pairs/165-166"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-11-06T19:15:15+01:00",
+      "connections": {
+        "tournament": "/api/tournaments/749",
+        "headtohead": "/api/matches/14680/headtohead",
+        "stats": "/api/matches/14680/stats",
+        "live": "/api/matches/14680/live",
+        "prev": "/api/matches/14648",
+        "next": "/api/matches/14681"
+      }
+    },
+    {
+      "id": 14681,
+      "self": "/api/matches/14681",
+      "name": "Lebron/Navarro - Araujo/Graca",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "tie": {
+        "id": "men-main-2-1",
+        "group": null,
+        "team_1": "Spain",
+        "team_2": "Portugal",
+        "rubber": 2,
+        "score": {
+          "team_1": 2,
+          "team_2": 0
+        },
+        "winner": "team_1"
+      },
+      "watchability": "hidden_free_plan",
+      "round": 2,
+      "round_name": "Semifinals",
+      "index": 1,
+      "seeds": {
+        "team_1": null,
+        "team_2": null
+      },
+      "played_at": "2026-11-06",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Grand Stand 1",
+      "court_order": 4,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "2"
+        },
+        {
+          "team_1": "6",
+          "team_2": "4"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 88,
+            "self": "/api/players/88",
+            "name": "Juan Lebron",
+            "short_name": "Lebron",
+            "nationality": "ES",
+            "side": "drive",
+            "connections": {
+              "pair": "/api/pairs/88-77"
+            }
+          },
+          {
+            "id": 77,
+            "self": "/api/players/77",
+            "name": "Francisco Navarro",
+            "short_name": "Navarro",
+            "nationality": "ES",
+            "side": "backhand",
+            "connections": {
+              "pair": "/api/pairs/88-77"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 301,
+            "self": "/api/players/301",
+            "name": "Pedro Araujo",
+            "short_name": "Araujo",
+            "nationality": "PT",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/301-1244"
+            }
+          },
+          {
+            "id": 1244,
+            "self": "/api/players/1244",
+            "name": "Pedro Graca",
+            "short_name": "Graca",
+            "nationality": "PT",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/301-1244"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-11-06T19:15:32+01:00",
+      "connections": {
+        "tournament": "/api/tournaments/749",
+        "headtohead": "/api/matches/14681/headtohead",
+        "stats": "/api/matches/14681/stats",
+        "live": "/api/matches/14681/live",
+        "prev": "/api/matches/14680",
+        "next": "/api/matches/14682"
+      }
+    },
+    {
+      "id": 14644,
+      "self": "/api/matches/14644",
+      "name": "Josemaria/Triay - Godallier/Mansart",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "tie": {
+        "id": "women-main-2-0",
+        "group": null,
+        "team_1": "Spain",
+        "team_2": "France",
+        "rubber": 1,
+        "score": {
+          "team_1": 2,
+          "team_2": 0
+        },
+        "winner": "team_1"
+      },
+      "watchability": "hidden_free_plan",
+      "round": 2,
+      "round_name": "Semifinals",
+      "index": 0,
+      "seeds": {
+        "team_1": null,
+        "team_2": null
+      },
+      "played_at": "2026-11-06",
+      "schedule_label": "Starting at 2:00 PM",
+      "scheduled_at": "2026-11-06T12:00:00+01:00",
+      "scheduled_at_local": "2026-11-06T14:00:00+03:00",
+      "court": "Center Court",
+      "court_order": 1,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "3"
+        },
+        {
+          "team_1": "6",
+          "team_2": "1"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 389,
+            "self": "/api/players/389",
+            "name": "Paula Josemaria Martin",
+            "short_name": "Josemaria",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/389-433"
+            }
+          },
+          {
+            "id": 433,
+            "self": "/api/players/433",
+            "name": "Gemma Triay Pons",
+            "short_name": "Triay",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/389-433"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 432,
+            "self": "/api/players/432",
+            "name": "Lea Godallier",
+            "short_name": "Godallier",
+            "nationality": "FR",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/432-1373"
+            }
+          },
+          {
+            "id": 1373,
+            "self": "/api/players/1373",
+            "name": "Clara Mansart",
+            "short_name": "Mansart",
+            "nationality": "FR",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/432-1373"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-11-06T14:30:13+01:00",
+      "connections": {
+        "tournament": "/api/tournaments/749",
+        "headtohead": "/api/matches/14644/headtohead",
+        "stats": "/api/matches/14644/stats",
+        "live": "/api/matches/14644/live",
+        "next": "/api/matches/14645"
+      }
+    },
+    {
+      "id": 14645,
+      "self": "/api/matches/14645",
+      "name": "Fernandez/Gonzalez - Collombon/Bahurel",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "tie": {
+        "id": "women-main-2-0",
+        "group": null,
+        "team_1": "Spain",
+        "team_2": "France",
+        "rubber": 2,
+        "score": {
+          "team_1": 2,
+          "team_2": 0
+        },
+        "winner": "team_1"
+      },
+      "watchability": "hidden_free_plan",
+      "round": 2,
+      "round_name": "Semifinals",
+      "index": 0,
+      "seeds": {
+        "team_1": null,
+        "team_2": null
+      },
+      "played_at": "2026-11-06",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Center Court",
+      "court_order": 2,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "0"
+        },
+        {
+          "team_1": "6",
+          "team_2": "0"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 412,
+            "self": "/api/players/412",
+            "name": "Claudia Fernandez Sanchez",
+            "short_name": "Fernandez",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/412-413"
+            }
+          },
+          {
+            "id": 413,
+            "self": "/api/players/413",
+            "name": "Beatriz Gonzalez Fernandez",
+            "short_name": "Gonzalez",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/412-413"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 392,
+            "self": "/api/players/392",
+            "name": "Alix Collombon",
+            "short_name": "Collombon",
+            "nationality": "FR",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/392-476"
+            }
+          },
+          {
+            "id": 476,
+            "self": "/api/players/476",
+            "name": "Louise Bahurel",
+            "short_name": "Bahurel",
+            "nationality": "FR",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/392-476"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-11-06T14:30:13+01:00",
+      "connections": {
+        "tournament": "/api/tournaments/749",
+        "headtohead": "/api/matches/14645/headtohead",
+        "stats": "/api/matches/14645/stats",
+        "live": "/api/matches/14645/live",
+        "prev": "/api/matches/14644",
+        "next": "/api/matches/14646"
+      }
+    },
+    {
+      "id": 14647,
+      "self": "/api/matches/14647",
+      "name": "Osoro/Fassio - Baldi/Sussarello",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "tie": {
+        "id": "women-main-2-1",
+        "group": null,
+        "team_1": "Argentina",
+        "team_2": "Italy",
+        "rubber": 1,
+        "score": {
+          "team_1": 2,
+          "team_2": 0
+        },
+        "winner": "team_1"
+      },
+      "watchability": "hidden_free_plan",
+      "round": 2,
+      "round_name": "Semifinals",
+      "index": 1,
+      "seeds": {
+        "team_1": null,
+        "team_2": null
+      },
+      "played_at": "2026-11-06",
+      "schedule_label": "Starting at 2:00 PM",
+      "scheduled_at": "2026-11-06T12:00:00+01:00",
+      "scheduled_at_local": "2026-11-06T14:00:00+03:00",
+      "court": "Grand Stand 1",
+      "court_order": 1,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "2"
+        },
+        {
+          "team_1": "6",
+          "team_2": "2"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 406,
+            "self": "/api/players/406",
+            "name": "Aranzazu Osoro Ulrich",
+            "short_name": "Osoro",
+            "nationality": "AR",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/406-440"
+            }
+          },
+          {
+            "id": 440,
+            "self": "/api/players/440",
+            "name": "Martina Fassio Goyeneche",
+            "short_name": "Fassio",
+            "nationality": "AR",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/406-440"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 589,
+            "self": "/api/players/589",
+            "name": "Caterina Maria Baldi",
+            "short_name": "Baldi",
+            "nationality": "IT",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/589-579"
+            }
+          },
+          {
+            "id": 579,
+            "self": "/api/players/579",
+            "name": "Giulia Sussarello",
+            "short_name": "Sussarello",
+            "nationality": "IT",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/589-579"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-11-06T15:15:23+01:00",
+      "connections": {
+        "tournament": "/api/tournaments/749",
+        "headtohead": "/api/matches/14647/headtohead",
+        "stats": "/api/matches/14647/stats",
+        "live": "/api/matches/14647/live",
+        "next": "/api/matches/14648"
+      }
+    },
+    {
+      "id": 14648,
+      "self": "/api/matches/14648",
+      "name": "Brea/Jensen - Dal Pozzo/Marchetti",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "tie": {
+        "id": "women-main-2-1",
+        "group": null,
+        "team_1": "Argentina",
+        "team_2": "Italy",
+        "rubber": 2,
+        "score": {
+          "team_1": 2,
+          "team_2": 0
+        },
+        "winner": "team_1"
+      },
+      "watchability": "hidden_free_plan",
+      "round": 2,
+      "round_name": "Semifinals",
+      "index": 1,
+      "seeds": {
+        "team_1": null,
+        "team_2": null
+      },
+      "played_at": "2026-11-06",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Grand Stand 1",
+      "court_order": 2,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "2"
+        },
+        {
+          "team_1": "6",
+          "team_2": "3"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 434,
+            "self": "/api/players/434",
+            "name": "Delfina Brea Senesi",
+            "short_name": "Brea",
+            "nationality": "AR",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/434-399"
+            }
+          },
+          {
+            "id": 399,
+            "self": "/api/players/399",
+            "name": "Claudia Jensen",
+            "short_name": "Jensen",
+            "nationality": "AR",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/434-399"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 489,
+            "self": "/api/players/489",
+            "name": "Giulia Dal Pozzo",
+            "short_name": "Dal Pozzo",
+            "nationality": "IT",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/489-449"
+            }
+          },
+          {
+            "id": 449,
+            "self": "/api/players/449",
+            "name": "Giorgia Marchetti",
+            "short_name": "Marchetti",
+            "nationality": "IT",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/489-449"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-11-06T15:21:09+01:00",
+      "connections": {
+        "tournament": "/api/tournaments/749",
+        "headtohead": "/api/matches/14648/headtohead",
+        "stats": "/api/matches/14648/stats",
+        "live": "/api/matches/14648/live",
+        "prev": "/api/matches/14647",
+        "next": "/api/matches/14680"
+      }
+    },
+    {
+      "id": 14596,
+      "self": "/api/matches/14596",
+      "name": "Chingotto/Alfonso - Reca/Wunner",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "tie": {
+        "id": "men-main-4-0",
+        "group": null,
+        "team_1": "Argentina",
+        "team_2": "Germany",
+        "rubber": 1,
+        "score": {
+          "team_1": 3,
+          "team_2": 0
+        },
+        "winner": "team_1"
+      },
+      "watchability": "hidden_free_plan",
+      "round": 4,
+      "round_name": "Quarter",
+      "index": 0,
+      "seeds": {
+        "team_1": null,
+        "team_2": null
+      },
+      "played_at": "2026-11-05",
+      "schedule_label": "Not before 6:00 PM",
+      "scheduled_at": "2026-11-05T16:00:00+01:00",
+      "scheduled_at_local": "2026-11-05T18:00:00+03:00",
+      "court": "Grand Stand 2",
+      "court_order": 3,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "1"
+        },
+        {
+          "team_1": "6",
+          "team_2": "1"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 114,
+            "self": "/api/players/114",
+            "name": "Federico Chingotto",
+            "short_name": "Chingotto",
+            "nationality": "AR",
+            "side": "drive",
+            "connections": {
+              "pair": "/api/pairs/114-18"
+            }
+          },
+          {
+            "id": 18,
+            "self": "/api/players/18",
+            "name": "Gonzalo Alfonso",
+            "short_name": "Alfonso",
+            "nationality": "AR",
+            "side": "backhand",
+            "connections": {
+              "pair": "/api/pairs/114-18"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 532,
+            "self": "/api/players/532",
+            "name": "Agustin Reca",
+            "short_name": "Reca",
+            "nationality": "DE",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/532-531"
+            }
+          },
+          {
+            "id": 531,
+            "self": "/api/players/531",
+            "name": "Matthias Wunner",
+            "short_name": "Wunner",
+            "nationality": "DE",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/532-531"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-11-05T19:00:10+01:00",
+      "connections": {
+        "tournament": "/api/tournaments/749",
+        "headtohead": "/api/matches/14596/headtohead",
+        "stats": "/api/matches/14596/stats",
+        "live": "/api/matches/14596/live",
+        "prev": "/api/matches/14624",
+        "next": "/api/matches/14597"
+      }
+    },
+    {
+      "id": 14597,
+      "self": "/api/matches/14597",
+      "name": "Augsburger/Di Nenno - Lindmeyer/Fitzon",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "tie": {
+        "id": "men-main-4-0",
+        "group": null,
+        "team_1": "Argentina",
+        "team_2": "Germany",
+        "rubber": 2,
+        "score": {
+          "team_1": 3,
+          "team_2": 0
+        },
+        "winner": "team_1"
+      },
+      "watchability": "hidden_free_plan",
+      "round": 4,
+      "round_name": "Quarter",
+      "index": 0,
+      "seeds": {
+        "team_1": null,
+        "team_2": null
+      },
+      "played_at": "2026-11-05",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Grand Stand 2",
+      "court_order": 4,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "0"
+        },
+        {
+          "team_1": "6",
+          "team_2": "4"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 84,
+            "self": "/api/players/84",
+            "name": "Leo Augsburger",
+            "short_name": "Augsburger",
+            "nationality": "AR",
+            "side": "backhand",
+            "connections": {
+              "pair": "/api/pairs/84-103"
+            }
+          },
+          {
+            "id": 103,
+            "self": "/api/players/103",
+            "name": "Martin Di Nenno",
+            "short_name": "Di Nenno",
+            "nationality": "AR",
+            "side": "drive",
+            "connections": {
+              "pair": "/api/pairs/84-103"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 530,
+            "self": "/api/players/530",
+            "name": "Johannes Lindmeyer",
+            "short_name": "Lindmeyer",
+            "nationality": "DE",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/530-3152"
+            }
+          },
+          {
+            "id": 3152,
+            "self": "/api/players/3152",
+            "name": "Benjamin Fitzon",
+            "short_name": "Fitzon",
+            "nationality": "DE",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/530-3152"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-11-05T19:00:10+01:00",
+      "connections": {
+        "tournament": "/api/tournaments/749",
+        "headtohead": "/api/matches/14597/headtohead",
+        "stats": "/api/matches/14597/stats",
+        "live": "/api/matches/14597/live",
+        "prev": "/api/matches/14596",
+        "next": "/api/matches/14598"
+      }
+    },
+    {
+      "id": 14598,
+      "self": "/api/matches/14598",
+      "name": "Stupaczuk/Arce - Boehnke/Merten",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "tie": {
+        "id": "men-main-4-0",
+        "group": null,
+        "team_1": "Argentina",
+        "team_2": "Germany",
+        "rubber": 3,
+        "score": {
+          "team_1": 3,
+          "team_2": 0
+        },
+        "winner": "team_1"
+      },
+      "watchability": "hidden_free_plan",
+      "round": 4,
+      "round_name": "Quarter",
+      "index": 0,
+      "seeds": {
+        "team_1": null,
+        "team_2": null
+      },
+      "played_at": "2026-11-05",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Grand Stand 2",
+      "court_order": 5,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "3"
+        },
+        {
+          "team_1": "6",
+          "team_2": "0"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 87,
+            "self": "/api/players/87",
+            "name": "Franco Stupaczuk",
+            "short_name": "Stupaczuk",
+            "nationality": "AR",
+            "side": "backhand",
+            "connections": {
+              "pair": "/api/pairs/87-452"
+            }
+          },
+          {
+            "id": 452,
+            "self": "/api/players/452",
+            "name": "Maximiliano Arce",
+            "short_name": "Arce",
+            "nationality": "AR",
+            "side": "drive",
+            "connections": {
+              "pair": "/api/pairs/87-452"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 3154,
+            "self": "/api/players/3154",
+            "name": "Christian Boehnke",
+            "short_name": "Boehnke",
+            "nationality": "DE",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/3154-3147"
+            }
+          },
+          {
+            "id": 3147,
+            "self": "/api/players/3147",
+            "name": "Nick Merten",
+            "short_name": "Merten",
+            "nationality": "DE",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/3154-3147"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-11-05T19:55:12+01:00",
+      "connections": {
+        "tournament": "/api/tournaments/749",
+        "headtohead": "/api/matches/14598/headtohead",
+        "stats": "/api/matches/14598/stats",
+        "live": "/api/matches/14598/live",
+        "prev": "/api/matches/14597"
+      }
+    },
+    {
+      "id": 14599,
+      "self": "/api/matches/14599",
+      "name": "Montiel/Abbate - Olsson/Rutgersson",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "tie": {
+        "id": "men-main-4-1",
+        "group": null,
+        "team_1": "Italy",
+        "team_2": "Sweden",
+        "rubber": 1,
+        "score": {
+          "team_1": 2,
+          "team_2": 0
+        },
+        "winner": "team_1"
+      },
+      "watchability": "hidden_free_plan",
+      "round": 4,
+      "round_name": "Quarter",
+      "index": 1,
+      "seeds": {
+        "team_1": null,
+        "team_2": null
+      },
+      "played_at": "2026-11-05",
+      "schedule_label": "Not before 6:00 PM",
+      "scheduled_at": "2026-11-05T16:00:00+01:00",
+      "scheduled_at_local": "2026-11-05T18:00:00+03:00",
+      "court": "Court 5",
+      "court_order": 3,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6(8)",
+          "team_2": "7"
+        },
+        {
+          "team_1": "6",
+          "team_2": "3"
+        },
+        {
+          "team_1": "6",
+          "team_2": "2"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 228,
+            "self": "/api/players/228",
+            "name": "Alvaro Montiel Caruso",
+            "short_name": "Montiel",
+            "nationality": "IT",
+            "side": "backhand",
+            "connections": {
+              "pair": "/api/pairs/228-284"
+            }
+          },
+          {
+            "id": 284,
+            "self": "/api/players/284",
+            "name": "Flavio Abbate",
+            "short_name": "Abbate",
+            "nationality": "IT",
+            "side": "drive",
+            "connections": {
+              "pair": "/api/pairs/228-284"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 189,
+            "self": "/api/players/189",
+            "name": "Albin Olsson",
+            "short_name": "Olsson",
+            "nationality": "SE",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/189-190"
+            }
+          },
+          {
+            "id": 190,
+            "self": "/api/players/190",
+            "name": "Douglas Rutgersson",
+            "short_name": "Rutgersson",
+            "nationality": "SE",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/189-190"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-11-05T20:15:08+01:00",
+      "connections": {
+        "tournament": "/api/tournaments/749",
+        "headtohead": "/api/matches/14599/headtohead",
+        "stats": "/api/matches/14599/stats",
+        "live": "/api/matches/14599/live",
+        "prev": "/api/matches/14630",
+        "next": "/api/matches/14600"
+      }
+    },
+    {
+      "id": 14600,
+      "self": "/api/matches/14600",
+      "name": "Patiniotis/Graziotti - Släryd/Axelsson",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "tie": {
+        "id": "men-main-4-1",
+        "group": null,
+        "team_1": "Italy",
+        "team_2": "Sweden",
+        "rubber": 2,
+        "score": {
+          "team_1": 2,
+          "team_2": 0
+        },
+        "winner": "team_1"
+      },
+      "watchability": "hidden_free_plan",
+      "round": 4,
+      "round_name": "Quarter",
+      "index": 1,
+      "seeds": {
+        "team_1": null,
+        "team_2": null
+      },
+      "played_at": "2026-11-05",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Court 5",
+      "court_order": 4,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "2",
+          "team_2": "6"
+        },
+        {
+          "team_1": "6",
+          "team_2": "2"
+        },
+        {
+          "team_1": "6",
+          "team_2": "4"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 150,
+            "self": "/api/players/150",
+            "name": "Aris Patiniotis",
+            "short_name": "Patiniotis",
+            "nationality": "IT",
+            "side": "drive",
+            "connections": {
+              "pair": "/api/pairs/150-285"
+            }
+          },
+          {
+            "id": 285,
+            "self": "/api/players/285",
+            "name": "Giulio Graziotti",
+            "short_name": "Graziotti",
+            "nationality": "IT",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/150-285"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 1408,
+            "self": "/api/players/1408",
+            "name": "Willy Släryd",
+            "short_name": "Släryd",
+            "nationality": "SE",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1408-141"
+            }
+          },
+          {
+            "id": 141,
+            "self": "/api/players/141",
+            "name": "Adam Axelsson",
+            "short_name": "Axelsson",
+            "nationality": "SE",
+            "side": "backhand",
+            "connections": {
+              "pair": "/api/pairs/1408-141"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-11-05T20:15:08+01:00",
+      "connections": {
+        "tournament": "/api/tournaments/749",
+        "headtohead": "/api/matches/14600/headtohead",
+        "stats": "/api/matches/14600/stats",
+        "live": "/api/matches/14600/live",
+        "prev": "/api/matches/14599",
+        "next": "/api/matches/14601"
+      }
+    },
+    {
+      "id": 14602,
+      "self": "/api/matches/14602",
+      "name": "Nieto/Sanz - Fernandes/De Avila Simonato",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "tie": {
+        "id": "men-main-4-2",
+        "group": null,
+        "team_1": "Spain",
+        "team_2": "Brazil",
+        "rubber": 1,
+        "score": {
+          "team_1": 2,
+          "team_2": 0
+        },
+        "winner": "team_1"
+      },
+      "watchability": "hidden_free_plan",
+      "round": 4,
+      "round_name": "Quarter",
+      "index": 2,
+      "seeds": {
+        "team_1": null,
+        "team_2": null
+      },
+      "played_at": "2026-11-05",
+      "schedule_label": "Not before 6:00 PM",
+      "scheduled_at": "2026-11-05T16:00:00+01:00",
+      "scheduled_at_local": "2026-11-05T18:00:00+03:00",
+      "court": "Center Court",
+      "court_order": 4,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "2"
+        },
+        {
+          "team_1": "6",
+          "team_2": "2"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 90,
+            "self": "/api/players/90",
+            "name": "Jorge Nieto",
+            "short_name": "Nieto",
+            "nationality": "ES",
+            "side": "backhand",
+            "connections": {
+              "pair": "/api/pairs/90-79"
+            }
+          },
+          {
+            "id": 79,
+            "self": "/api/players/79",
+            "name": "Jon Sanz",
+            "short_name": "Sanz",
+            "nationality": "ES",
+            "side": "drive",
+            "connections": {
+              "pair": "/api/pairs/90-79"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 1423,
+            "self": "/api/players/1423",
+            "name": "Lucas Fernandes",
+            "short_name": "Fernandes",
+            "nationality": "BR",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1423-1432"
+            }
+          },
+          {
+            "id": 1432,
+            "self": "/api/players/1432",
+            "name": "Matheus De Avila Simonato",
+            "short_name": "De Avila Simonato",
+            "nationality": "BR",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1423-1432"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-11-05T18:30:07+01:00",
+      "connections": {
+        "tournament": "/api/tournaments/749",
+        "headtohead": "/api/matches/14602/headtohead",
+        "stats": "/api/matches/14602/stats",
+        "live": "/api/matches/14602/live",
+        "prev": "/api/matches/14628",
+        "next": "/api/matches/14603"
+      }
+    },
+    {
+      "id": 14603,
+      "self": "/api/matches/14603",
+      "name": "Leal/Coello - Freitas/Correa",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "tie": {
+        "id": "men-main-4-2",
+        "group": null,
+        "team_1": "Spain",
+        "team_2": "Brazil",
+        "rubber": 2,
+        "score": {
+          "team_1": 2,
+          "team_2": 0
+        },
+        "winner": "team_1"
+      },
+      "watchability": "hidden_free_plan",
+      "round": 4,
+      "round_name": "Quarter",
+      "index": 2,
+      "seeds": {
+        "team_1": null,
+        "team_2": null
+      },
+      "played_at": "2026-11-05",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Center Court",
+      "court_order": 5,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "2"
+        },
+        {
+          "team_1": "6",
+          "team_2": "1"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 95,
+            "self": "/api/players/95",
+            "name": "Javier Leal",
+            "short_name": "Leal",
+            "nationality": "ES",
+            "side": "backhand",
+            "connections": {
+              "pair": "/api/pairs/95-65"
+            }
+          },
+          {
+            "id": 65,
+            "self": "/api/players/65",
+            "name": "Arturo Coello",
+            "short_name": "Coello",
+            "nationality": "ES",
+            "side": "drive",
+            "connections": {
+              "pair": "/api/pairs/95-65"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 1431,
+            "self": "/api/players/1431",
+            "name": "Andre Freitas",
+            "short_name": "Freitas",
+            "nationality": "BR",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1431-2588"
+            }
+          },
+          {
+            "id": 2588,
+            "self": "/api/players/2588",
+            "name": "Diogo Correa Rodrigues",
+            "short_name": "Correa",
+            "nationality": "BR",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1431-2588"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-11-05T18:30:07+01:00",
+      "connections": {
+        "tournament": "/api/tournaments/749",
+        "headtohead": "/api/matches/14603/headtohead",
+        "stats": "/api/matches/14603/stats",
+        "live": "/api/matches/14603/live",
+        "prev": "/api/matches/14602",
+        "next": "/api/matches/14604"
+      }
+    },
+    {
+      "id": 14605,
+      "self": "/api/matches/14605",
+      "name": "Deus/Deus - Richters/Roper",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "tie": {
+        "id": "men-main-4-3",
+        "group": null,
+        "team_1": "Portugal",
+        "team_2": "Netherlands",
+        "rubber": 1,
+        "score": {
+          "team_1": 2,
+          "team_2": 0
+        },
+        "winner": "team_1"
+      },
+      "watchability": "hidden_free_plan",
+      "round": 4,
+      "round_name": "Quarter",
+      "index": 3,
+      "seeds": {
+        "team_1": null,
+        "team_2": null
+      },
+      "played_at": "2026-11-05",
+      "schedule_label": "Not before 6:00 PM",
+      "scheduled_at": "2026-11-05T16:00:00+01:00",
+      "scheduled_at_local": "2026-11-05T18:00:00+03:00",
+      "court": "Court 6",
+      "court_order": 4,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "2"
+        },
+        {
+          "team_1": "6",
+          "team_2": "1"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 165,
+            "self": "/api/players/165",
+            "name": "Miguel Deus",
+            "short_name": "Deus",
+            "nationality": "PT",
+            "side": "drive",
+            "connections": {
+              "pair": "/api/pairs/165-166"
+            }
+          },
+          {
+            "id": 166,
+            "self": "/api/players/166",
+            "name": "Nuno Deus",
+            "short_name": "Deus",
+            "nationality": "PT",
+            "side": "backhand",
+            "connections": {
+              "pair": "/api/pairs/165-166"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 124,
+            "self": "/api/players/124",
+            "name": "Sten Richters",
+            "short_name": "Richters",
+            "nationality": "NL",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/124-11"
+            }
+          },
+          {
+            "id": 11,
+            "self": "/api/players/11",
+            "name": "Thijs Roper",
+            "short_name": "Roper",
+            "nationality": "NL",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/124-11"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-11-05T20:00:20+01:00",
+      "connections": {
+        "tournament": "/api/tournaments/749",
+        "headtohead": "/api/matches/14605/headtohead",
+        "stats": "/api/matches/14605/stats",
+        "live": "/api/matches/14605/live",
+        "prev": "/api/matches/14634",
+        "next": "/api/matches/14606"
+      }
+    },
+    {
+      "id": 14606,
+      "self": "/api/matches/14606",
+      "name": "Araujo/Graca - Van Opstal/Prins",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "tie": {
+        "id": "men-main-4-3",
+        "group": null,
+        "team_1": "Portugal",
+        "team_2": "Netherlands",
+        "rubber": 2,
+        "score": {
+          "team_1": 2,
+          "team_2": 0
+        },
+        "winner": "team_1"
+      },
+      "watchability": "hidden_free_plan",
+      "round": 4,
+      "round_name": "Quarter",
+      "index": 3,
+      "seeds": {
+        "team_1": null,
+        "team_2": null
+      },
+      "played_at": "2026-11-05",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Court 6",
+      "court_order": 5,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "3"
+        },
+        {
+          "team_1": "6",
+          "team_2": "4"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 301,
+            "self": "/api/players/301",
+            "name": "Pedro Araujo",
+            "short_name": "Araujo",
+            "nationality": "PT",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/301-1244"
+            }
+          },
+          {
+            "id": 1244,
+            "self": "/api/players/1244",
+            "name": "Pedro Graca",
+            "short_name": "Graca",
+            "nationality": "PT",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/301-1244"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 358,
+            "self": "/api/players/358",
+            "name": "Bart Van Opstal",
+            "short_name": "Van Opstal",
+            "nationality": "NL",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/358-184"
+            }
+          },
+          {
+            "id": 184,
+            "self": "/api/players/184",
+            "name": "Julian Prins",
+            "short_name": "Prins",
+            "nationality": "NL",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/358-184"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-11-05T20:00:20+01:00",
+      "connections": {
+        "tournament": "/api/tournaments/749",
+        "headtohead": "/api/matches/14606/headtohead",
+        "stats": "/api/matches/14606/stats",
+        "live": "/api/matches/14606/live",
+        "prev": "/api/matches/14605",
+        "next": "/api/matches/14607"
+      }
+    },
+    {
+      "id": 14620,
+      "self": "/api/matches/14620",
+      "name": "Josemaria/Gonzalez - Behram/Sjöland",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "tie": {
+        "id": "women-main-4-0",
+        "group": null,
+        "team_1": "Spain",
+        "team_2": "Sweden",
+        "rubber": 1,
+        "score": {
+          "team_1": 3,
+          "team_2": 0
+        },
+        "winner": "team_1"
+      },
+      "watchability": "hidden_free_plan",
+      "round": 4,
+      "round_name": "Quarter",
+      "index": 0,
+      "seeds": {
+        "team_1": null,
+        "team_2": null
+      },
+      "played_at": "2026-11-05",
+      "schedule_label": "Starting at 2:00 PM",
+      "scheduled_at": "2026-11-05T12:00:00+01:00",
+      "scheduled_at_local": "2026-11-05T14:00:00+03:00",
+      "court": "Grand Stand 1",
+      "court_order": 1,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "0"
+        },
+        {
+          "team_1": "6",
+          "team_2": "1"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 389,
+            "self": "/api/players/389",
+            "name": "Paula Josemaria Martin",
+            "short_name": "Josemaria",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/389-413"
+            }
+          },
+          {
+            "id": 413,
+            "self": "/api/players/413",
+            "name": "Beatriz Gonzalez Fernandez",
+            "short_name": "Gonzalez",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/389-413"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 2211,
+            "self": "/api/players/2211",
+            "name": "Ajla Behram",
+            "short_name": "Behram",
+            "nationality": "SE",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/2211-2199"
+            }
+          },
+          {
+            "id": 2199,
+            "self": "/api/players/2199",
+            "name": "Juni Sjöland",
+            "short_name": "Sjöland",
+            "nationality": "SE",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/2211-2199"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-11-05T14:45:24+01:00",
+      "connections": {
+        "tournament": "/api/tournaments/749",
+        "headtohead": "/api/matches/14620/headtohead",
+        "stats": "/api/matches/14620/stats",
+        "live": "/api/matches/14620/live",
+        "next": "/api/matches/14621"
+      }
+    },
+    {
+      "id": 14621,
+      "self": "/api/matches/14621",
+      "name": "Ortega/Calvo - Andersson/Girdo",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "tie": {
+        "id": "women-main-4-0",
+        "group": null,
+        "team_1": "Spain",
+        "team_2": "Sweden",
+        "rubber": 2,
+        "score": {
+          "team_1": 3,
+          "team_2": 0
+        },
+        "winner": "team_1"
+      },
+      "watchability": "hidden_free_plan",
+      "round": 4,
+      "round_name": "Quarter",
+      "index": 0,
+      "seeds": {
+        "team_1": null,
+        "team_2": null
+      },
+      "played_at": "2026-11-05",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Grand Stand 1",
+      "court_order": 2,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "0"
+        },
+        {
+          "team_1": "6",
+          "team_2": "2"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 422,
+            "self": "/api/players/422",
+            "name": "Marta Ortega Gallego",
+            "short_name": "Ortega",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/422-469"
+            }
+          },
+          {
+            "id": 469,
+            "self": "/api/players/469",
+            "name": "Martina Calvo Santamaria",
+            "short_name": "Calvo",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/422-469"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 2214,
+            "self": "/api/players/2214",
+            "name": "Zoe Andersson",
+            "short_name": "Andersson",
+            "nationality": "SE",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/2214-639"
+            }
+          },
+          {
+            "id": 639,
+            "self": "/api/players/639",
+            "name": "Amanda Girdo",
+            "short_name": "Girdo",
+            "nationality": "SE",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/2214-639"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-11-05T14:45:23+01:00",
+      "connections": {
+        "tournament": "/api/tournaments/749",
+        "headtohead": "/api/matches/14621/headtohead",
+        "stats": "/api/matches/14621/stats",
+        "live": "/api/matches/14621/live",
+        "prev": "/api/matches/14620",
+        "next": "/api/matches/14622"
+      }
+    },
+    {
+      "id": 14622,
+      "self": "/api/matches/14622",
+      "name": "Ustero/Sanchez - Kjaergaard/Björk",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "tie": {
+        "id": "women-main-4-0",
+        "group": null,
+        "team_1": "Spain",
+        "team_2": "Sweden",
+        "rubber": 3,
+        "score": {
+          "team_1": 3,
+          "team_2": 0
+        },
+        "winner": "team_1"
+      },
+      "watchability": "hidden_free_plan",
+      "round": 4,
+      "round_name": "Quarter",
+      "index": 0,
+      "seeds": {
+        "team_1": null,
+        "team_2": null
+      },
+      "played_at": "2026-11-05",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Grand Stand 1",
+      "court_order": 3,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "1"
+        },
+        {
+          "team_1": "6",
+          "team_2": "2"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 410,
+            "self": "/api/players/410",
+            "name": "Andrea Ustero Prieto",
+            "short_name": "Ustero",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/410-388"
+            }
+          },
+          {
+            "id": 388,
+            "self": "/api/players/388",
+            "name": "Ariana Sanchez Fallada",
+            "short_name": "Sanchez",
+            "nationality": "ES",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/410-388"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 2215,
+            "self": "/api/players/2215",
+            "name": "Silje Kjaergaard",
+            "short_name": "Kjaergaard",
+            "nationality": "SE",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/2215-2205"
+            }
+          },
+          {
+            "id": 2205,
+            "self": "/api/players/2205",
+            "name": "Linnea Björk",
+            "short_name": "Björk",
+            "nationality": "SE",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/2215-2205"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-11-05T14:55:31+01:00",
+      "connections": {
+        "tournament": "/api/tournaments/749",
+        "headtohead": "/api/matches/14622/headtohead",
+        "stats": "/api/matches/14622/stats",
+        "live": "/api/matches/14622/live",
+        "prev": "/api/matches/14621",
+        "next": "/api/matches/14608"
+      }
+    },
+    {
+      "id": 14623,
+      "self": "/api/matches/14623",
+      "name": "Hemmes/De Vocht - Collombon/Bahurel",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "tie": {
+        "id": "women-main-4-1",
+        "group": null,
+        "team_1": "Netherlands",
+        "team_2": "France",
+        "rubber": 1,
+        "score": {
+          "team_1": 0,
+          "team_2": 2
+        },
+        "winner": "team_2"
+      },
+      "watchability": "hidden_free_plan",
+      "round": 4,
+      "round_name": "Quarter",
+      "index": 1,
+      "seeds": {
+        "team_1": null,
+        "team_2": null
+      },
+      "played_at": "2026-11-05",
+      "schedule_label": "Starting at 2:00 PM",
+      "scheduled_at": "2026-11-05T12:00:00+01:00",
+      "scheduled_at_local": "2026-11-05T14:00:00+03:00",
+      "court": "Grand Stand 2",
+      "court_order": 1,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "0",
+          "team_2": "6"
+        },
+        {
+          "team_1": "3",
+          "team_2": "6"
+        }
+      ],
+      "winner": "team_2",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 539,
+            "self": "/api/players/539",
+            "name": "Janine Hemmes",
+            "short_name": "Hemmes",
+            "nationality": "NL",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/539-886"
+            }
+          },
+          {
+            "id": 886,
+            "self": "/api/players/886",
+            "name": "Tess De Vocht",
+            "short_name": "De Vocht",
+            "nationality": "NL",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/539-886"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 392,
+            "self": "/api/players/392",
+            "name": "Alix Collombon",
+            "short_name": "Collombon",
+            "nationality": "FR",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/392-476"
+            }
+          },
+          {
+            "id": 476,
+            "self": "/api/players/476",
+            "name": "Louise Bahurel",
+            "short_name": "Bahurel",
+            "nationality": "FR",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/392-476"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-11-05T15:30:16+01:00",
+      "connections": {
+        "tournament": "/api/tournaments/749",
+        "headtohead": "/api/matches/14623/headtohead",
+        "stats": "/api/matches/14623/stats",
+        "live": "/api/matches/14623/live",
+        "next": "/api/matches/14624"
+      }
+    },
+    {
+      "id": 14624,
+      "self": "/api/matches/14624",
+      "name": "Koek/Luttikhuis - Touly/Pothier",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "tie": {
+        "id": "women-main-4-1",
+        "group": null,
+        "team_1": "Netherlands",
+        "team_2": "France",
+        "rubber": 2,
+        "score": {
+          "team_1": 0,
+          "team_2": 2
+        },
+        "winner": "team_2"
+      },
+      "watchability": "hidden_free_plan",
+      "round": 4,
+      "round_name": "Quarter",
+      "index": 1,
+      "seeds": {
+        "team_1": null,
+        "team_2": null
+      },
+      "played_at": "2026-11-05",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Grand Stand 2",
+      "court_order": 2,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6(6)",
+          "team_2": "7"
+        },
+        {
+          "team_1": "2",
+          "team_2": "6"
+        }
+      ],
+      "winner": "team_2",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 536,
+            "self": "/api/players/536",
+            "name": "Marcella Koek",
+            "short_name": "Koek",
+            "nationality": "NL",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/536-538"
+            }
+          },
+          {
+            "id": 538,
+            "self": "/api/players/538",
+            "name": "Bo Luttikhuis",
+            "short_name": "Luttikhuis",
+            "nationality": "NL",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/536-538"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 479,
+            "self": "/api/players/479",
+            "name": "Carla Touly",
+            "short_name": "Touly",
+            "nationality": "FR",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/479-477"
+            }
+          },
+          {
+            "id": 477,
+            "self": "/api/players/477",
+            "name": "Lucile Pothier",
+            "short_name": "Pothier",
+            "nationality": "FR",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/479-477"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-11-05T15:30:16+01:00",
+      "connections": {
+        "tournament": "/api/tournaments/749",
+        "headtohead": "/api/matches/14624/headtohead",
+        "stats": "/api/matches/14624/stats",
+        "live": "/api/matches/14624/live",
+        "prev": "/api/matches/14623",
+        "next": "/api/matches/14625"
+      }
+    },
+    {
+      "id": 14626,
+      "self": "/api/matches/14626",
+      "name": "Brea/Jensen - Simas/Santos",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "tie": {
+        "id": "women-main-4-2",
+        "group": null,
+        "team_1": "Argentina",
+        "team_2": "Portugal",
+        "rubber": 1,
+        "score": {
+          "team_1": 3,
+          "team_2": 0
+        },
+        "winner": "team_1"
+      },
+      "watchability": "hidden_free_plan",
+      "round": 4,
+      "round_name": "Quarter",
+      "index": 2,
+      "seeds": {
+        "team_1": null,
+        "team_2": null
+      },
+      "played_at": "2026-11-05",
+      "schedule_label": "Starting at 2:00 PM",
+      "scheduled_at": "2026-11-05T12:00:00+01:00",
+      "scheduled_at_local": "2026-11-05T14:00:00+03:00",
+      "court": "Center Court",
+      "court_order": 1,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "0"
+        },
+        {
+          "team_1": "6",
+          "team_2": "0"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 434,
+            "self": "/api/players/434",
+            "name": "Delfina Brea Senesi",
+            "short_name": "Brea",
+            "nationality": "AR",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/434-399"
+            }
+          },
+          {
+            "id": 399,
+            "self": "/api/players/399",
+            "name": "Claudia Jensen",
+            "short_name": "Jensen",
+            "nationality": "AR",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/434-399"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 1929,
+            "self": "/api/players/1929",
+            "name": "Simone Simas",
+            "short_name": "Simas",
+            "nationality": "PT",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1929-798"
+            }
+          },
+          {
+            "id": 798,
+            "self": "/api/players/798",
+            "name": "Maria Francisca Santos",
+            "short_name": "Santos",
+            "nationality": "PT",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1929-798"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-11-05T16:00:21+01:00",
+      "connections": {
+        "tournament": "/api/tournaments/749",
+        "headtohead": "/api/matches/14626/headtohead",
+        "stats": "/api/matches/14626/stats",
+        "live": "/api/matches/14626/live",
+        "next": "/api/matches/14627"
+      }
+    },
+    {
+      "id": 14627,
+      "self": "/api/matches/14627",
+      "name": "Osoro/Fassio - Silva/Santos",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "tie": {
+        "id": "women-main-4-2",
+        "group": null,
+        "team_1": "Argentina",
+        "team_2": "Portugal",
+        "rubber": 2,
+        "score": {
+          "team_1": 3,
+          "team_2": 0
+        },
+        "winner": "team_1"
+      },
+      "watchability": "hidden_free_plan",
+      "round": 4,
+      "round_name": "Quarter",
+      "index": 2,
+      "seeds": {
+        "team_1": null,
+        "team_2": null
+      },
+      "played_at": "2026-11-05",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Center Court",
+      "court_order": 2,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "1"
+        },
+        {
+          "team_1": "6",
+          "team_2": "3"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 406,
+            "self": "/api/players/406",
+            "name": "Aranzazu Osoro Ulrich",
+            "short_name": "Osoro",
+            "nationality": "AR",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/406-440"
+            }
+          },
+          {
+            "id": 440,
+            "self": "/api/players/440",
+            "name": "Martina Fassio Goyeneche",
+            "short_name": "Fassio",
+            "nationality": "AR",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/406-440"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 560,
+            "self": "/api/players/560",
+            "name": "Alexandra Silva",
+            "short_name": "Silva",
+            "nationality": "PT",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/560-688"
+            }
+          },
+          {
+            "id": 688,
+            "self": "/api/players/688",
+            "name": "Clarinha Santos",
+            "short_name": "Santos",
+            "nationality": "PT",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/560-688"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-11-05T16:00:21+01:00",
+      "connections": {
+        "tournament": "/api/tournaments/749",
+        "headtohead": "/api/matches/14627/headtohead",
+        "stats": "/api/matches/14627/stats",
+        "live": "/api/matches/14627/live",
+        "prev": "/api/matches/14626",
+        "next": "/api/matches/14628"
+      }
+    },
+    {
+      "id": 14628,
+      "self": "/api/matches/14628",
+      "name": "Riera/Bidahorria - Araujo/Batlle",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "tie": {
+        "id": "women-main-4-2",
+        "group": null,
+        "team_1": "Argentina",
+        "team_2": "Portugal",
+        "rubber": 3,
+        "score": {
+          "team_1": 3,
+          "team_2": 0
+        },
+        "winner": "team_1"
+      },
+      "watchability": "hidden_free_plan",
+      "round": 4,
+      "round_name": "Quarter",
+      "index": 2,
+      "seeds": {
+        "team_1": null,
+        "team_2": null
+      },
+      "played_at": "2026-11-05",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Center Court",
+      "court_order": 3,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "2"
+        },
+        {
+          "team_1": "6",
+          "team_2": "0"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 496,
+            "self": "/api/players/496",
+            "name": "Virginia Riera",
+            "short_name": "Riera",
+            "nationality": "AR",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/496-451"
+            }
+          },
+          {
+            "id": 451,
+            "self": "/api/players/451",
+            "name": "Julieta Evangelina Bidahorria",
+            "short_name": "Bidahorria",
+            "nationality": "AR",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/496-451"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 411,
+            "self": "/api/players/411",
+            "name": "Sofia Araujo",
+            "short_name": "Araujo",
+            "nationality": "PT",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/411-2867"
+            }
+          },
+          {
+            "id": 2867,
+            "self": "/api/players/2867",
+            "name": "Andrea Batlle Achando",
+            "short_name": "Batlle",
+            "nationality": "PT",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/411-2867"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-11-05T16:56:27+01:00",
+      "connections": {
+        "tournament": "/api/tournaments/749",
+        "headtohead": "/api/matches/14628/headtohead",
+        "stats": "/api/matches/14628/stats",
+        "live": "/api/matches/14628/live",
+        "prev": "/api/matches/14627",
+        "next": "/api/matches/14602"
+      }
+    },
+    {
+      "id": 14629,
+      "self": "/api/matches/14629",
+      "name": "Dal Pozzo/Stellato - Piltcher/Abbud",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "tie": {
+        "id": "women-main-4-3",
+        "group": null,
+        "team_1": "Italy",
+        "team_2": "Brazil",
+        "rubber": 1,
+        "score": {
+          "team_1": 2,
+          "team_2": 0
+        },
+        "winner": "team_1"
+      },
+      "watchability": "hidden_free_plan",
+      "round": 4,
+      "round_name": "Quarter",
+      "index": 3,
+      "seeds": {
+        "team_1": null,
+        "team_2": null
+      },
+      "played_at": "2026-11-05",
+      "schedule_label": "Starting at 2:00 PM",
+      "scheduled_at": "2026-11-05T12:00:00+01:00",
+      "scheduled_at_local": "2026-11-05T14:00:00+03:00",
+      "court": "Court 5",
+      "court_order": 1,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "0"
+        },
+        {
+          "team_1": "6",
+          "team_2": "2"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 489,
+            "self": "/api/players/489",
+            "name": "Giulia Dal Pozzo",
+            "short_name": "Dal Pozzo",
+            "nationality": "IT",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/489-578"
+            }
+          },
+          {
+            "id": 578,
+            "self": "/api/players/578",
+            "name": "Emily Stellato",
+            "short_name": "Stellato",
+            "nationality": "IT",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/489-578"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 441,
+            "self": "/api/players/441",
+            "name": "Raquel Piltcher",
+            "short_name": "Piltcher",
+            "nationality": "BR",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/441-3008"
+            }
+          },
+          {
+            "id": 3008,
+            "self": "/api/players/3008",
+            "name": "Alessandra Abbud De Barros",
+            "short_name": "Abbud",
+            "nationality": "BR",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/441-3008"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-11-05T15:00:11+01:00",
+      "connections": {
+        "tournament": "/api/tournaments/749",
+        "headtohead": "/api/matches/14629/headtohead",
+        "stats": "/api/matches/14629/stats",
+        "live": "/api/matches/14629/live",
+        "next": "/api/matches/14630"
+      }
+    },
+    {
+      "id": 14630,
+      "self": "/api/matches/14630",
+      "name": "Margherita/Sussarello - Cirne/Giusti",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "tie": {
+        "id": "women-main-4-3",
+        "group": null,
+        "team_1": "Italy",
+        "team_2": "Brazil",
+        "rubber": 2,
+        "score": {
+          "team_1": 2,
+          "team_2": 0
+        },
+        "winner": "team_1"
+      },
+      "watchability": "hidden_free_plan",
+      "round": 4,
+      "round_name": "Quarter",
+      "index": 3,
+      "seeds": {
+        "team_1": null,
+        "team_2": null
+      },
+      "played_at": "2026-11-05",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Court 5",
+      "court_order": 2,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "1"
+        },
+        {
+          "team_1": "7",
+          "team_2": "6(5)"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 1375,
+            "self": "/api/players/1375",
+            "name": "Clarissa Margherita Aima",
+            "short_name": "Margherita",
+            "nationality": "IT",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1375-579"
+            }
+          },
+          {
+            "id": 579,
+            "self": "/api/players/579",
+            "name": "Giulia Sussarello",
+            "short_name": "Sussarello",
+            "nationality": "IT",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/1375-579"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 3051,
+            "self": "/api/players/3051",
+            "name": "Cristina Cirne",
+            "short_name": "Cirne",
+            "nationality": "BR",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/3051-2495"
+            }
+          },
+          {
+            "id": 2495,
+            "self": "/api/players/2495",
+            "name": "Julia Giusti Gomes",
+            "short_name": "Giusti",
+            "nationality": "BR",
+            "side": null,
+            "connections": {
+              "pair": "/api/pairs/3051-2495"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-11-05T15:00:11+01:00",
+      "connections": {
+        "tournament": "/api/tournaments/749",
+        "headtohead": "/api/matches/14630/headtohead",
+        "stats": "/api/matches/14630/stats",
+        "live": "/api/matches/14630/live",
+        "prev": "/api/matches/14629",
+        "next": "/api/matches/14631"
+      }
+    }
+  ]
+}
