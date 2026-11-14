@@ -338,3 +338,27 @@ actual (`site/`) sigue leyendo directamente el JSON de gold y dibujando
 tablas HTML, no los gráficos de `chart_factory`. Es trabajo de la propia
 Fase 4 (migración a la web definitiva de Astro), no de este cierre de
 `chart_factory`.
+
+## Ángulos nuevos (14/11/2026)
+
+Cuatro series nuevas para los huecos que deja el filtro de repetidos
+(`content/copy_factory/historial.py`, ver `docs/campos-copy-factory.md`).
+Ninguna está en el calendario como serie propia: entran como ángulo
+alternativo de un hueco (`candidatos.ANGULOS`).
+
+| Serie | Gold | Qué enseña | Hueco |
+|---|---|---|---|
+| Remontadas | `remontadas` (`build_gold_remontadas.py`, F2) | % de partidos ganados tras perder el primer set, con la media del circuito como línea de referencia (≈11-12 % en 2026) | miércoles (parejas) y viernes |
+| Matagigantes | `matagigantes` (`build_gold_matagigantes.py`, F2) | Victorias de la temporada ante una pareja mejor sembrada en ese torneo | miércoles (h2h) y viernes |
+| Tercer set | `tercer_set` (`build_gold_tercer_set.py`, F2) | % de partidos ganados de los que llegaron al tercer set | viernes |
+| Saque y resto | `stats_parejas` (ya existía, F1) | Dispersión saque/resto con medianas: los cuadrantes se leen solos | martes impar (stats) |
+
+- Remontadas, matagigantes y tercer set comparten el dibujo
+  (`_barras_pareja.py`): barras, la primera en énfasis y el resto en gris.
+- **Empate en cabeza**: si varias parejas comparten la cifra máxima, el
+  título no nombra a una sola ("7 victorias…: máximo compartido por 2
+  parejas"), se destacan todas y `values` lleva
+  `parejas_empatadas_en_cabeza` y un aviso.
+- "El torneo en datos" (`sorpresas.py`): solo el torneo con partidos en los
+  últimos 4 días, con ronda y marcador en cada etiqueta; con una o dos
+  sorpresas las barras guardan su grosor normal.

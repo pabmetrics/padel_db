@@ -36,7 +36,7 @@ jobs:
 
       - name: Generar candidatos (gráfico + texto + cola)
         env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}  # capa gratuita (copy_factory/gemini.py)
           SERIE: ${{ inputs.serie }}
         run: python -m content.copy_factory.candidatos ${SERIE:+--serie "$SERIE"}
 

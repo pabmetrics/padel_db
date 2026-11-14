@@ -24,6 +24,7 @@ from content.chart_factory import (
     ganancias,
     h2h,
     licencias,
+    matagigantes,
     mercado,
     parejas,
     perfil,
@@ -31,14 +32,19 @@ from content.chart_factory import (
     ranking_moves,
     ranking_puntos,
     ranking_top10,
+    remontadas,
+    saque_resto,
     sorpresas,
     stats_resto,
+    tercer_set,
     torneo_previa,
     trends,
 )
+from content.chart_factory.marca import devolver_registro
 from content.copy_factory.calendario import cargar_torneos, series_del_dia
 from content.copy_factory.cola import QUEUE_ROOT, anadir_candidato
 from content.copy_factory.copy_factory import _cliente, generar_texto
+from content.copy_factory.historial import DIAS_SIN_REPETIR, candidato_repetido
 from content.copy_factory.nombres import normalizar_nombres, verificar_nombres
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
@@ -59,7 +65,31 @@ GENERADORES_CON_PARAMETRO: dict[str, tuple[Callable[[str], dict], tuple[str, str
     "sorpresas": (sorpresas.build, ("men", "women")),
     "stats_resto": (stats_resto.build, ("M", "F")),
     "torneo_previa": (torneo_previa.build, ("men", "women")),
+    "saque_resto": (saque_resto.build, ("M", "F")),
+    "remontadas": (remontadas.build, ("men", "women")),
+    "matagigantes": (matagigantes.build, ("men", "women")),
+    "tercer_set": (tercer_set.build, ("men", "women")),
 }
+
+# Huecos del calendario con varios ángulos (14/11/2026). Cada serie elige el
+# extremo de una métrica que cambia despacio, así que muchas semanas el
+# candidato repite al anterior y `historial.py` lo descarta: entonces se
+# prueba el siguiente ángulo del hueco, en vez de dejar el día vacío. El
+# orden rota cada semana para que los ángulos nuevos no salgan solo de
+# relleno. El primer valor del parámetro es masculino y el segundo femenino
+# en todos los generadores, así que se recorren a la par.
+ANGULOS: dict[str, tuple[str, ...]] = {
+    "stats_resto": ("stats_resto", "saque_resto"),
+    "parejas": ("parejas", "remontadas"),
+    "h2h": ("h2h", "matagigantes"),
+    "forma_reciente": ("forma_reciente", "tercer_set", "remontadas", "matagigantes"),
+}
+
+
+def orden_angulos(hueco: str, hoy: date) -> list[str]:
+    angulos = list(ANGULOS.get(hueco, (hueco,)))
+    giro = hoy.isocalendar().week % len(angulos)
+    return angulos[giro:] + angulos[:giro]
 
 # Generadores de una sola serie, sin distinción de sexo/categoría.
 GENERADORES_SIN_PARAMETRO: dict[str, Callable[[], dict]] = {
@@ -87,12 +117,19 @@ def _copiar_png(png: Path, registro: str, fecha_cola: str) -> Path:
     return destino
 
 
-def _escribir_candidato(metadatos: dict, fecha_cola: str) -> Path:
+def _escribir_candidato(metadatos: dict, fecha_cola: str, filtrar_repetidos: bool = True) -> Path:
     """`metadatos` puede traer `publicable` (False si el propio gráfico sabe
     que el dato no da para un post) y `avisos`. Un candidato no publicable
     se guarda igualmente, con sus gráficos y el motivo, pero sin borrador:
     un texto pulido invita a publicarlo ("si dudas del dato, no sale")."""
     values = normalizar_nombres(metadatos["values"])
+    # Un gráfico a medida o una serie pedida a mano los pide una persona: salen aunque repitan.
+    if filtrar_repetidos and "pedido" not in metadatos:
+        anterior = candidato_repetido(metadatos["serie"], values, date.fromisoformat(fecha_cola), queue_root=QUEUE_ROOT)
+        if anterior:
+            devolver_registro(metadatos["registro"])
+            raise ValueError(f"repite {anterior['registro']} ({anterior['serie']}) de hace menos de "
+                             f"{DIAS_SIN_REPETIR} días; no se encola")
     avisos = list(metadatos.get("avisos", []))
     publicable = metadatos.get("publicable", True)
 
@@ -100,7 +137,11 @@ def _escribir_candidato(metadatos: dict, fecha_cola: str) -> Path:
     avisos += avisos_nombres
     publicable = publicable and not bloquea
 
-    textos = generar_texto(metadatos["serie"], values, metadatos["fuente_txt"]) if publicable else None
+    try:
+        textos = generar_texto(metadatos["serie"], values, metadatos["fuente_txt"]) if publicable else None
+    except ValueError:
+        devolver_registro(metadatos["registro"])  # no va a la cola: que su número no quede como hueco
+        raise
 
     candidato = {
         "registro": metadatos["registro"],
@@ -119,6 +160,8 @@ def _escribir_candidato(metadatos: dict, fecha_cola: str) -> Path:
     }
     if "pedido" in metadatos:  # gráfico a medida (chart_factory/adhoc.py): queda el pedido original
         candidato["pedido"] = metadatos["pedido"]
+    if "noticia" in metadatos:  # "La noticia en datos": titular y enlace, para la revisión humana
+        candidato["noticia"] = metadatos["noticia"]
 
     out_file = anadir_candidato(candidato, fecha_cola)
     print(f"{metadatos['registro']} {metadatos['serie']} -> {out_file.relative_to(REPO_ROOT)}")
@@ -128,12 +171,41 @@ def _escribir_candidato(metadatos: dict, fecha_cola: str) -> Path:
     return out_file
 
 
-def generar_candidato(generador: Callable[[str], dict], parametro: str, fecha_cola: str) -> Path:
-    return _escribir_candidato(generador(parametro), fecha_cola)
+def generar_candidato(generador: Callable[[str], dict], parametro: str, fecha_cola: str,
+                      filtrar_repetidos: bool = True) -> Path:
+    return _escribir_candidato(generador(parametro), fecha_cola, filtrar_repetidos)
 
 
-def generar_candidato_simple(generador: Callable[[], dict], fecha_cola: str) -> Path:
-    return _escribir_candidato(generador(), fecha_cola)
+def generar_candidato_simple(generador: Callable[[], dict], fecha_cola: str, filtrar_repetidos: bool = True) -> Path:
+    return _escribir_candidato(generador(), fecha_cola, filtrar_repetidos)
+
+
+def generar_noticia_del_dia(fecha_cola: date) -> int:
+    """"La noticia en datos" (`noticias.py`): de la historia más fuerte del
+    día a la más débil, hasta que `MAX_POR_DIA` salgan bien. Devuelve
+    cuántas han ido a la cola."""
+    import tempfile
+
+    from content.chart_factory import adhoc
+    from content.chart_factory.marca import siguiente_registro
+    from content.copy_factory import noticias
+    from transform.build_fact_noticia import cargar_top
+
+    hechas = 0
+    for pedido, noticia in noticias.pedidos_del_dia(fecha_cola, cargar_top()):
+        if hechas >= noticias.MAX_POR_DIA:
+            break
+        print(f"noticia: {noticia['titulo']!r} -> {', '.join(pedido['jugadores'])}")
+        with tempfile.TemporaryDirectory() as tmp:
+            try:
+                adhoc.build(pedido, Path(tmp) / "validacion", "#PREVIA")  # valida antes de gastar un registro
+                meta = adhoc.build(pedido, Path(tmp), siguiente_registro())
+                meta["noticia"] = noticia
+                _escribir_candidato(meta, fecha_cola.isoformat())
+                hechas += 1
+            except (adhoc.PedidoInvalido, ValueError) as e:
+                print(f"  descartada: {e}")
+    return hechas
 
 
 SERIES_DISPONIBLES = sorted({*GENERADORES_CON_PARAMETRO, *GENERADORES_SIN_PARAMETRO})
@@ -160,32 +232,47 @@ def main(argv: list[str] | None = None) -> int:
         if series is not None:
             print(f"{args.fecha} ({args.fecha:%A}): series que tocan -> {sorted(series) or 'ninguna'}")
 
+    filtrar = not args.serie  # pedido a mano: sin filtro de repetidos (historial.py)
+
     # Falla antes de dibujar nada: cada gráfico consume un número de registro.
     _cliente()
 
     errores = 0
-    for nombre, (generador, valores) in GENERADORES_CON_PARAMETRO.items():
-        if series is not None and nombre not in series:
+    for hueco in GENERADORES_CON_PARAMETRO:
+        if series is not None and hueco not in series:
             continue
-        for valor in valores:
-            try:
-                generar_candidato(generador, valor, args.fecha.isoformat())
-            except (ValueError, SystemExit) as e:  # chart_factory corta con SystemExit si no hay filas publicables
-                print(f"  descartado ({nombre}, {valor}): {e}")
-            except Exception as e:  # noqa: BLE001 - un fallo (API, red) no debe tumbar el resto
-                errores += 1
-                print(f"  ERROR ({nombre}, {valor}): {type(e).__name__}: {e}")
+        # Con el calendario, varios ángulos por hueco; a mano o con --todas, la serie tal cual.
+        angulos = orden_angulos(hueco, args.fecha) if (filtrar and series is not None) else [hueco]
+        for i in range(2):
+            for nombre in angulos:
+                generador, valores = GENERADORES_CON_PARAMETRO[nombre]
+                try:
+                    generar_candidato(generador, valores[i], args.fecha.isoformat(), filtrar)
+                    break
+                except (ValueError, SystemExit) as e:  # chart_factory corta con SystemExit si no hay filas publicables
+                    print(f"  descartado ({nombre}, {valores[i]}): {e}")
+                except Exception as e:  # noqa: BLE001 - un fallo (API, red) no debe tumbar el resto
+                    errores += 1
+                    print(f"  ERROR ({nombre}, {valores[i]}): {type(e).__name__}: {e}")
+                    break
 
     for nombre, generador in GENERADORES_SIN_PARAMETRO.items():
         if series is not None and nombre not in series:
             continue
         try:
-            generar_candidato_simple(generador, args.fecha.isoformat())
+            generar_candidato_simple(generador, args.fecha.isoformat(), filtrar)
         except (ValueError, SystemExit) as e:
             print(f"  descartado ({nombre}): {e}")
         except Exception as e:  # noqa: BLE001
             errores += 1
             print(f"  ERROR ({nombre}): {type(e).__name__}: {e}")
+
+    if not args.serie:  # la noticia del día, cada día, también en fin de semana
+        try:
+            generar_noticia_del_dia(args.fecha)
+        except Exception as e:  # noqa: BLE001 - sin noticia no se cae el resto de la cola
+            errores += 1
+            print(f"  ERROR (noticia del día): {type(e).__name__}: {e}")
 
     return 1 if errores else 0
 

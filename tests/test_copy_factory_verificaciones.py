@@ -46,7 +46,13 @@ def test_textos_que_deben_rechazarse(cuerpo):
 
 def test_hashtags_invalidos():
     with pytest.raises(ValueError):
-        _ok("Maria Laura Ferreyra sube 3 puestos.", hashtags="#a #b #c #d")
+        _ok("Maria Laura Ferreyra sube 3 puestos.", hashtags="padel PadelDB")
+
+
+def test_hashtags_de_mas_se_recortan_a_tres():
+    # Gemini pone a menudo 4 o más: se quedan los 3 primeros (14/11/2026).
+    textos = _ok("Maria Laura Ferreyra sube 3 puestos.", hashtags="#a #b #c #d")
+    assert textos["instagram"].endswith("#a #b #c")
 
 
 def test_texto_de_x_por_encima_del_limite():

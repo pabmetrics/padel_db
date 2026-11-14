@@ -35,7 +35,7 @@ jobs:
       # comando: es texto libre y podría inyectar shell.
       - name: Generar el gráfico a medida
         env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}  # capa gratuita (copy_factory/gemini.py)
           PEDIDO: ${{ inputs.pedido }}
         run: python -m content.chart_factory.adhoc "$PEDIDO"
 

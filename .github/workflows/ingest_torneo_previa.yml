@@ -37,11 +37,25 @@ jobs:
       - name: Gold — torneo_previa
         run: python transform/build_gold_torneo_previa.py
 
+      # Noticias del día para "La noticia en datos" (content/copy_factory/noticias.py).
+      # Van aquí porque este workflow dispara content_candidates al terminar.
+      # Si fallan, la cola sale igual, sin noticia.
+      - name: Ingesta — titulares del día (Google News RSS)
+        continue-on-error: true
+        run: python -m ingest.noticias.rss
+
+      - name: Silver — fact_noticia (jugadores y tipo de cada titular)
+        continue-on-error: true
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}  # solo para titulares dudosos (capa gratuita)
+        run: python transform/build_fact_noticia.py
+
       - name: Commit
         run: |
           git config user.name "padeldb-bot"
           git config user.email "actions@users.noreply.github.com"
           git add bronze/padelapi/draw silver/fact_cuadro_previo gold/torneo_previa
+          for d in bronze/noticias silver/fact_noticia; do if [ -e "$d" ]; then git add "$d"; fi; done  # pueden no existir si fallaron
           git diff --cached --quiet || git commit -m "ingest_torneo_previa: $(date -u +%F)"
           for intento in 1 2 3 4 5; do
             git push && break

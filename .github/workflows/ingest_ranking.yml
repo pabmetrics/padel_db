@@ -24,11 +24,18 @@ jobs:
       - name: Ingesta F1 (ranking premierpadel.com)
         run: python ingest/premierpadel/rankings.py --gender both --max-pages 25
 
+      # Calendario: dim_torneo decide qué serie toca cada día (calendario.py).
+      # Solo se había bajado una vez (16/09/2026); sin esto, la temporada 2027
+      # no entraría nunca.
+      - name: Ingesta F1 (calendario de torneos)
+        continue-on-error: true  # si falla, que no se pierda el snapshot del ranking
+        run: python ingest/premierpadel/tournaments.py
+
       - name: Commit del nuevo snapshot
         run: |
           git config user.name "padeldb-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add bronze/premierpadel/rankings
+          git add bronze/premierpadel/rankings bronze/premierpadel/tournaments
           git diff --cached --quiet || git commit -m "ingest_ranking: snapshot semanal $(date -u +%F)"
           for intento in 1 2 3 4 5; do
             git push && break

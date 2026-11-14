@@ -1,5 +1,6 @@
 """copy_factory (doc 01 §3.4, doc 02 §6) — genera el texto de cada
-candidato a partir de la fila gold, con la API de Claude.
+candidato a partir de la fila gold, con Gemini (capa gratuita; hasta el
+14/11/2026, con la API de Claude, de pago por uso: ver `gemini.py`).
 
 Reglas duras del prompt (doc 02 §6, doc 03 §4 "Instrucciones del
 proyecto"): solo cifras que estén en los datos, formato numérico español,
@@ -27,7 +28,6 @@ descarta.
 from __future__ import annotations
 
 import json
-import os
 import re
 from pathlib import Path
 from typing import Any
@@ -38,13 +38,10 @@ from dotenv import load_dotenv  # noqa: E402
 
 load_dotenv(REPO_ROOT / ".env")
 
-import anthropic  # noqa: E402
-
+from content.copy_factory import gemini  # noqa: E402
 from content.copy_factory.nombres import normalizar_nombres  # noqa: E402
 from content.copy_factory.verificaciones import comprobar_texto  # noqa: E402
 
-MODEL = "claude-haiku-4-5-20251001"  # modelo económico (doc 01 §4: "el input es una fila de datos")
-MAX_TOKENS = 600
 MAX_CARACTERES_X_OBJETIVO = 240  # doc 02 §6, plantilla de texto
 LIMITE_DURO_X = 280  # límite real de X sin Premium (doc 02 §8)
 MAX_INTENTOS = 2
@@ -75,14 +72,10 @@ Si recibes "error_intento_anterior", tu respuesta anterior incumplió una regla:
 Responde solo con un JSON {"x": "...", "instagram": "...", "hashtags": "#... #..."}, sin explicación ni texto fuera del JSON."""
 
 
-def _cliente() -> anthropic.Anthropic:
-    api_key = os.environ.get("ANTHROPIC_API_KEY")
-    if not api_key:
-        raise RuntimeError(
-            "Falta ANTHROPIC_API_KEY. En local: añádela a un fichero .env en la raíz del repo "
-            "(ANTHROPIC_API_KEY=sk-ant-...). En producción: secreto de GitHub Actions."
-        )
-    return anthropic.Anthropic(api_key=api_key)
+def _cliente() -> None:
+    """Falla pronto, antes de dibujar y gastar números de registro, si no
+    hay clave del modelo de texto."""
+    gemini.clave()
 
 
 def _formatear_numero_es(valor: int | float) -> str:
@@ -140,7 +133,9 @@ def _quitar_valla_markdown(texto: str) -> str:
 def _validar_y_ensamblar(salida: dict[str, Any], serie: str, values: dict[str, Any], fuente_txt: str) -> dict[str, str]:
     cuerpo_x = str(salida.get("x", "")).strip()
     cuerpo_ig = str(salida.get("instagram", "")).strip()
-    hashtags = str(salida.get("hashtags", "")).strip()
+    # Gemini tiende a poner hashtags de más (visto en la primera prueba, 4):
+    # quedarse con los 3 primeros es mecánico y no cambia el texto.
+    hashtags = " ".join(re.findall(r"#\w+", str(salida.get("hashtags", "")))[:3])
     if not cuerpo_x or not cuerpo_ig:
         raise ValueError(f"Respuesta incompleta del modelo: {salida!r}")
     if not re.fullmatch(r"(?:#\w+\s*){1,3}", hashtags):
@@ -175,7 +170,6 @@ def generar_texto(serie: str, values: dict[str, Any], fuente_txt: str) -> dict[s
     `MAX_INTENTOS` intentos — mejor que la función falle aquí a que un
     texto con una cifra inventada o una valoración llegue a la cola."""
     values_norm = normalizar_nombres(values)
-    cliente = _cliente()
 
     pie = f"Fuente: {fuente_txt}"
     mensaje: dict[str, Any] = {
@@ -186,13 +180,14 @@ def generar_texto(serie: str, values: dict[str, Any], fuente_txt: str) -> dict[s
 
     ultimo_error: ValueError | None = None
     for _ in range(MAX_INTENTOS):
-        respuesta = cliente.messages.create(
-            model=MODEL,
-            max_tokens=MAX_TOKENS,
-            system=PROMPT_SISTEMA,
-            messages=[{"role": "user", "content": json.dumps(mensaje, ensure_ascii=False)}],
-        )
-        texto_bruto = _quitar_valla_markdown(respuesta.content[0].text.strip())
+        try:
+            respuesta = gemini.generar(PROMPT_SISTEMA, json.dumps(mensaje, ensure_ascii=False))
+        except gemini.GeminiSinClave:
+            raise
+        except gemini.GeminiError as e:
+            # Sin modelo no hay borrador: el candidato no va a la cola.
+            raise ValueError(str(e)) from None
+        texto_bruto = _quitar_valla_markdown(respuesta.strip())
         try:
             salida = json.loads(texto_bruto)
             if not isinstance(salida, dict):

@@ -143,3 +143,60 @@ contrastado. Cambios:
   la preview web y el propio repo no lo muestran en ningún sitio — es un
   campo a la espera de que exista el rito de revisión (doc 03 §5.1) que sí
   lo necesite.
+
+## Sin repetir protagonista ni dato (14/11/2026)
+
+Cada serie elegía la fila extrema de una métrica que cambia despacio, así que
+salía lo mismo semana tras semana. Revisando la cola del 20/10 al 13/11: de
+59 candidatos de las series con filtro, 51 repetían a uno anterior (el cara a
+cara del 4/11 y el del 11/11 eran idénticos; la misma sorpresa de Milano P1
+salió cinco días seguidos).
+
+- `content/copy_factory/historial.py`: un candidato no entra en la cola si,
+  en los 28 días anteriores, otro de la misma serie y circuito comparte
+  algún protagonista (jugador, aunque venga en pareja, o país) o tiene los
+  mismos `values`. Se descarta antes de llamar a la API y el número de
+  registro se devuelve al contador (`marca.devolver_registro`), para no
+  dejar huecos.
+- Entre series distintas, la misma pareja tampoco encabeza dos días
+  seguidos (`DIAS_OTRA_SERIE = 2`). Con 7 días la semana se quedaba casi
+  vacía: Tapia/Coello y Triay/Brea encabezan casi todas las métricas y los
+  títulos son superlativos, así que no se puede "elegir a otra".
+- Si un candidato repite, se prueba el siguiente ángulo de su hueco
+  (`candidatos.ANGULOS`; el orden rota cada semana ISO). Los ángulos
+  nuevos están en `docs/campos-chart-factory.md`.
+- Sin filtro: #RankingLunes, Campeones de la semana, Cierre de torneo y
+  Previa en datos (repetir líder es el dato), los gráficos a medida y las
+  series pedidas a mano con `--serie`.
+- "El torneo en datos" (`sorpresas.py`) solo mira el torneo con partidos en
+  los últimos 4 días, no toda la temporada. `gold.torneo_sorpresas` suma a
+  F2 las sorpresas del cuadro principal de Premier Padel desde
+  `fact_partido_stats`, que se actualiza a diario (`ingest_match_stats`
+  reconstruye ahora este gold); sin eso, el torneo en curso no se veía
+  hasta el lunes. Un partido que esté en las dos fuentes cuenta una vez.
+- El calendario (`dim_torneo`) solo se había bajado el 16/09/2026: ahora
+  `ingest_ranking` lo baja cada lunes.
+
+Simulación del 17 al 27/11 con la cola real: de 0 a 3 candidatos por día
+de martes a viernes, ninguno repetido (antes, 2-4 al día, casi todos
+repetidos). Si un candidato no llega a la cola porque el texto falla las
+comprobaciones, su número de registro también se devuelve.
+
+## De Claude a Gemini (14/11/2026)
+
+Para mantener el proyecto a coste cero, el texto lo escribe Gemini (capa
+gratuita de Google AI Studio) en vez de la API de Claude (de pago por uso).
+`content/copy_factory/gemini.py`: API REST con `httpx`, modelos
+`gemini-flash-latest` y de respaldo `gemini-flash-lite-latest`, reintentos
+si está saturado o al límite, parada en seco si falla la clave. Secreto
+`GEMINI_API_KEY` en GitHub Actions; `ANTHROPIC_API_KEY` deja de usarse y
+`anthropic` sale de `requirements.txt`.
+
+- Nada cambia en las reglas: mismo prompt y mismas comprobaciones duras
+  (cifras, léxico, nombres, límite de X). Si Gemini no responde, el
+  candidato no va a la cola y su número de registro se devuelve.
+- Primera prueba real (remontadas de Tapia/Coello): JSON válido, cifras
+  correctas, pero 4 hashtags. Ahora se recortan a los 3 primeros en vez de
+  gastar un reintento.
+- La capa gratuita permite a Google usar lo que recibe: solo se le mandan
+  datos públicos del circuito.

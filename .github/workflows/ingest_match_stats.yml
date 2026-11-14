@@ -8,6 +8,10 @@ on:
     - cron: "30 6 * * *"
   workflow_dispatch: {}
 
+concurrency:
+  group: gold  # build_silver_gold también escribe gold/torneo_sorpresas: en serie, no a la vez
+  cancel-in-progress: false
+
 jobs:
   ingest_match_stats:
     runs-on: ubuntu-latest
@@ -35,11 +39,16 @@ jobs:
       - name: Gold — stats_parejas
         run: python transform/build_gold_stats_parejas.py
 
+      # Sorpresas del torneo en curso: Premier Padel trae el cuadro a diario,
+      # padelapi solo los lunes ("El torneo en datos", historial.py).
+      - name: Gold — torneo_sorpresas
+        run: python transform/build_gold_torneo_sorpresas.py
+
       - name: Commit
         run: |
           git config user.name "padeldb-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add bronze/premierpadel/match_stats silver/fact_partido_stats silver/_reconciliacion gold/stats_parejas
+          git add bronze/premierpadel/match_stats silver/fact_partido_stats silver/_reconciliacion gold/stats_parejas gold/torneo_sorpresas
           git diff --cached --quiet || git commit -m "ingest_match_stats: $(date -u +%F)"
           for intento in 1 2 3 4 5; do
             git push && break

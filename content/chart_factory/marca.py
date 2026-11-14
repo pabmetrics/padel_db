@@ -132,6 +132,21 @@ def siguiente_registro() -> str:
     return f"#{estado['ultimo']:04d}"
 
 
+def devolver_registro(registro: str) -> bool:
+    """Devuelve al contador un número que se acaba de sacar para un gráfico
+    que al final no va a la cola (p. ej. porque repite uno reciente), para
+    no dejar huecos en la numeración visible. Solo si es el último emitido:
+    si ya se ha sacado otro detrás, el hueco no se puede cerrar."""
+    if not REGISTRO_PATH.exists():
+        return False
+    estado = json.loads(REGISTRO_PATH.read_text(encoding="utf-8"))
+    if f"#{estado['ultimo']:04d}" != registro:
+        return False
+    estado["ultimo"] -= 1
+    REGISTRO_PATH.write_text(json.dumps(estado), encoding="utf-8")
+    return True
+
+
 def nueva_figura(tamano: tuple[float, float], tema: Tema) -> tuple[plt.Figure, plt.Axes]:
     colores = colores_tema(tema)
     fig, ax = plt.subplots(figsize=tamano, dpi=DPI)
