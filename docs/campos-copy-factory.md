@@ -200,3 +200,18 @@ si está saturado o al límite, parada en seco si falla la clave. Secreto
   gastar un reintento.
 - La capa gratuita permite a Google usar lo que recibe: solo se le mandan
   datos públicos del circuito.
+
+## Candidatos al Telegram de Pablo (15/11/2026)
+
+`publish/telegram.py`, al final de `content_candidates` y de `adhoc_chart`:
+por cada candidato nuevo de la cola del día, el gráfico 16:9 (con número,
+serie, avisos y la noticia si la hay) y, aparte, solo el borrador de X para
+copiarlo. No publica nada: publicar sigue siendo de una persona.
+
+- Bot propio de PadelDB, distinto del del agente del mini PC. Secretos de
+  Actions: `PADELDB_TELEGRAM_TOKEN` y `PADELDB_TELEGRAM_CHAT_ID`. Sin ellos,
+  el paso no hace nada.
+- Lo enviado se apunta en `queue/<fecha>/telegram.json`: no se repite.
+- Por qué Telegram y no los borradores de X: X no permite crear borradores
+  desde fuera (ni con API), y Typefully, que sí tiene API de borradores, se
+  queda en unos 10 posts al mes en el plan gratuito.

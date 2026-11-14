@@ -40,6 +40,15 @@ jobs:
           SERIE: ${{ inputs.serie }}
         run: python -m content.copy_factory.candidatos ${SERIE:+--serie "$SERIE"}
 
+      # Candidatos nuevos al Telegram de Pablo (publish/telegram.py). No publica nada.
+      - name: Enviar candidatos a Telegram
+        if: ${{ !cancelled() }}
+        continue-on-error: true
+        env:
+          PADELDB_TELEGRAM_TOKEN: ${{ secrets.PADELDB_TELEGRAM_TOKEN }}
+          PADELDB_TELEGRAM_CHAT_ID: ${{ secrets.PADELDB_TELEGRAM_CHAT_ID }}
+        run: python -m publish.telegram
+
       # Aunque un candidato falle (el job queda en rojo y salta la alerta),
       # se guardan los que sí se generaron.
       - name: Commit
