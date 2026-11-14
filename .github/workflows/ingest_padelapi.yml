@@ -26,6 +26,13 @@ jobs:
           PADEL_API_TOKEN: ${{ secrets.PADEL_API_TOKEN }}
         run: python -m ingest.padelapi.snapshot --what both --max-pages 60
 
+      # Race de las Premier Padel Finals (content/chart_factory/carrera_finals.py).
+      - name: Ingesta F2 — ranking Race
+        continue-on-error: true
+        env:
+          PADEL_API_TOKEN: ${{ secrets.PADEL_API_TOKEN }}
+        run: python -m ingest.padelapi.snapshot --what race
+
       - name: Commit del nuevo snapshot
         run: |
           git config user.name "padeldb-bot"

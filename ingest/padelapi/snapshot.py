@@ -87,9 +87,26 @@ def fetch_players(client: PadelApiClient, max_pages: int) -> Path:
     return _write_snapshot("players", "/players", {}, items)
 
 
+RACE_PAGINAS_POR_CATEGORIA = 2  # 100 por categoría: el corte de las Finals es el 16.º
+
+
+def fetch_race(client: PadelApiClient) -> Path:
+    """Ranking Race (15/11/2026): puntos del año que deciden las 16 plazas
+    individuales por categoría de las Premier Padel Finals. Viene ordenado
+    por puesto, así que bastan las primeras páginas de cada categoría."""
+    items: list[dict[str, Any]] = []
+    for categoria in ("men", "women"):
+        for pagina in range(1, RACE_PAGINAS_POR_CATEGORIA + 1):
+            payload = client.get("/rankings", params={"type": "race", "category": categoria, "per_page": 50, "page": pagina})
+            items += payload.get("data", [])
+            if pagina >= payload.get("meta", {}).get("last_page", pagina):
+                break
+    return _write_snapshot("race", "/rankings", {"type": "race"}, items)
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--what", choices=["rankings", "players", "both"], default="both")
+    parser.add_argument("--what", choices=["rankings", "players", "both", "race"], default="both")
     parser.add_argument(
         "--max-pages",
         type=int,
@@ -102,6 +119,9 @@ def main() -> None:
         if args.what in ("rankings", "both"):
             out = fetch_rankings(client)
             print(f"rankings -> {out.relative_to(REPO_ROOT)}")
+        if args.what == "race":
+            out = fetch_race(client)
+            print(f"race -> {out.relative_to(REPO_ROOT)}")
         if args.what in ("players", "both"):
             out = fetch_players(client, args.max_pages)
             print(f"players -> {out.relative_to(REPO_ROOT)}")

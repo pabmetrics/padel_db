@@ -68,6 +68,18 @@ def empieza_torneo_pronto(hoy: date, torneos: list[dict[str, Any]], dias: int = 
     return False
 
 
+DIAS_CARRERA_FINALS = 45
+
+
+def faltan_dias_finals(hoy: date, torneos: list[dict[str, Any]]) -> int | None:
+    """Días hasta las Premier Padel Finals (categoría FINALS en dim_torneo)."""
+    for t in torneos:
+        ini = _fecha(t.get("fecha_ini"))
+        if ini and (t.get("categoria") or "").upper() == "FINALS" and hoy < ini:
+            return (ini - hoy).days
+    return None
+
+
 def series_del_dia(hoy: date, torneos: list[dict[str, Any]]) -> set[str]:
     series: set[str] = set()
     dia = hoy.weekday()
@@ -80,6 +92,10 @@ def series_del_dia(hoy: date, torneos: list[dict[str, Any]]) -> set[str]:
         series |= {"ranking_top10", "ranking_puntos", "ganadores"}
         if termino_torneo_esta_semana(hoy, torneos):
             series.add("ganancias")
+        # Carrera a las Finals (15/11/2026): los lunes del último mes y medio.
+        faltan = faltan_dias_finals(hoy, torneos)
+        if faltan is not None and faltan <= DIAS_CARRERA_FINALS:
+            series.add("carrera_finals")
     elif dia == MARTES and hoy.isocalendar().week % 2 == 0:
         series |= {"mercado", "licencias"}
     elif dia == MARTES:

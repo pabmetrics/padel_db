@@ -39,6 +39,7 @@ SERIES_SIN_FILTRO = {
     "Campeones de la semana",
     "Cierre de torneo",
     "Previa en datos",
+    "Carrera a las Finals",
 }
 CLAVES_PROTAGONISTA = (
     "jugador", "pareja", "jugador_1", "jugador_2", "pareja_1", "pareja_2",

@@ -362,3 +362,24 @@ alternativo de un hueco (`candidatos.ANGULOS`).
 - "El torneo en datos" (`sorpresas.py`): solo el torneo con partidos en los
   últimos 4 días, con ronda y marcador en cada etiqueta; con una o dos
   sorpresas las barras guardan su grosor normal.
+
+## Carrera a las Finals (15/11/2026)
+
+`content/chart_factory/carrera_finals.py`, gold `carrera_finals`
+(`transform/build_gold_carrera_finals.py`), fuente el ranking **Race** de
+padelapi (`/rankings?type=race`, plan gratuito; probado con el workflow
+manual `probar_race`). Ingesta semanal: `ingest_padelapi.yml`,
+`snapshot --what race` (100 primeros por categoría).
+
+- **Reglas** (StudyPadel, foto del 12/10/2026, pasada por el usuario): se
+  clasifican los 16 primeros y las 16 primeras del Race, a título
+  individual; una pareja solo entra si los dos están dentro y puede haber
+  parejas nuevas. El Race cierra tras el Major de México (23-29/11). Finals
+  en Barcelona, del 10 al 13 de diciembre (en `dim_torneo` figura el 7:
+  sin aclarar).
+- **Gráfico**: los 20 primeros, los 16 de dentro en énfasis, línea del
+  corte. El título es el primero de fuera y los puntos que le faltan.
+- **Cuándo**: los lunes de los 45 días anteriores a las Finals
+  (`calendario.faltan_dias_finals`). Sin filtro de repetidos.
+- **Sin comprobar**: el mínimo de 15 torneos de Premier Padel en el año.
+  Cada candidato lo lleva como aviso para la revisión.

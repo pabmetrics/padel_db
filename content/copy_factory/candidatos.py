@@ -19,6 +19,7 @@ from pathlib import Path
 from typing import Callable
 
 from content.chart_factory import (
+    carrera_finals,
     forma_reciente,
     ganadores,
     ganancias,
@@ -69,6 +70,7 @@ GENERADORES_CON_PARAMETRO: dict[str, tuple[Callable[[str], dict], tuple[str, str
     "remontadas": (remontadas.build, ("men", "women")),
     "matagigantes": (matagigantes.build, ("men", "women")),
     "tercer_set": (tercer_set.build, ("men", "women")),
+    "carrera_finals": (carrera_finals.build, ("men", "women")),
 }
 
 # Huecos del calendario con varios ángulos (14/11/2026). Cada serie elige el

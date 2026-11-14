@@ -98,6 +98,9 @@ jobs:
       - name: Gold — tercer_set
         run: python transform/build_gold_tercer_set.py
 
+      - name: Gold — carrera_finals (Race de las Premier Padel Finals)
+        run: python transform/build_gold_carrera_finals.py
+
       - name: Gold — torneo_sorpresas
         run: python transform/build_gold_torneo_sorpresas.py
 
