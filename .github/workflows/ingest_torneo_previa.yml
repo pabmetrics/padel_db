@@ -48,7 +48,7 @@ jobs:
         continue-on-error: true
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}  # solo para titulares dudosos (capa gratuita)
-        run: python transform/build_fact_noticia.py
+        run: python -m transform.build_fact_noticia
 
       - name: Commit
         run: |

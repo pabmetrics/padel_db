@@ -85,14 +85,14 @@ def _silver(tmp_path, titulares):
     (d / "data.json").write_text(json.dumps(filas, ensure_ascii=False), encoding="utf-8")
 
 
-def test_misma_historia_desde_dos_lados_y_con_su_pareja(tmp_path):
-    _silver(tmp_path, ["Triay y Brea caen en cuartos", "Icardo da la campanada ante Triay y Brea",
-                       "Ale Galán, campeón en Dubái"])
+def test_misma_historia_con_su_pareja_y_cara_a_cara(tmp_path):
+    _silver(tmp_path, ["Icardo da la campanada ante Triay y Brea", "Icardo y Jensen eliminan a Triay y Brea",
+                       "Triay cae en cuartos", "Ale Galán, campeón en Dubái"])
     pedidos = nt.pedidos_del_dia(date(2026, 11, 14), TOP, silver_root=tmp_path / "silver",
                                  queue_root=tmp_path / "queue", companero=COMPANERO)
     (h2h, forma), noticia = pedidos[0]
-    # Dos titulares de la misma historia; Jensen entra por ser pareja de Icardo,
-    # y como son dos parejas, primero se intenta su cara a cara.
+    # Dos titulares de la misma historia (Jensen entra por ser pareja de
+    # Icardo); como son dos parejas, primero se intenta su cara a cara.
     assert h2h["tipo"] == "h2h"
     assert {frozenset(h2h["pareja_1"]), frozenset(h2h["pareja_2"])} == {
         frozenset({"Gemma Triay Pons", "Delfina Brea Senesi"}), frozenset({"Tamara Icardo Alcorisa", "Claudia Jensen"})}
@@ -100,8 +100,21 @@ def test_misma_historia_desde_dos_lados_y_con_su_pareja(tmp_path):
                                        "Claudia Jensen"}
     assert noticia["tipo"] == "eliminacion" and len(noticia["otros_titulares"]) == 1
     assert h2h["contexto"] == forma["contexto"] == nt.CONTEXTO["eliminacion"]
-    # Galán solo, sin pareja activa en el top: no hay comparación posible.
-    assert len(pedidos) == 1
+    # "Triay cae" es otra historia (solo Triay/Brea), no se mezcla con la anterior;
+    # Galán solo, sin pareja en el top, no da para un gráfico.
+    assert [p[0]["jugadores"] for p, _ in pedidos[1:]] == [["Gemma Triay Pons", "Delfina Brea Senesi"]]
+
+
+def test_no_mezcla_categorias_ni_resumenes_de_jornada():
+    jug = {j["jugador_id"]: j for j in TOP}
+    # Hombres y una mujer: se quedan los hombres.
+    assert [j["nombre"] for j in nt.una_categoria([jug["tapia"], jug["triay"], jug["coello"]])] == [
+        "Agustin Tapia", "Arturo Coello"]
+    # Tres parejas en un titular: resumen de jornada, no historia.
+    noticias = [{"titulo": "x", "enlace": "e", "tipo": "resultado",
+                 "jugadores": [jug[i] for i in ("tapia", "galan", "juan")]}]
+    companero = {"tapia": "coello", "galan": "pascual", "juan": "psanchez"}
+    assert nt.historias(noticias, jug, companero) == []
 
 
 def test_no_repite_la_historia_de_dias_anteriores(tmp_path):

@@ -51,27 +51,40 @@ def cargar(hoy: date, silver_root: Path = SILVER_ROOT) -> list[dict[str, Any]]:
     return []
 
 
-def historias(noticias: list[dict[str, Any]]) -> list[dict[str, Any]]:
-    """Titulares que comparten algún jugador, juntos (la misma historia
-    contada por varios medios, o desde los dos lados: "Triay y Brea caen" y
-    "la campanada de Icardo ante Triay y Brea"), de más a menos fuerte: tipo
-    de noticia, cuántos titulares la cuentan y lo arriba que están en el
-    ranking quienes salen."""
-    grupos: list[tuple[set[str], list[dict[str, Any]]]] = []
+MAX_JUGADORES_HISTORIA = 4  # una o dos parejas: más es un resumen de jornada, no una historia
+
+
+def una_categoria(jugadores: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    """Un gráfico no mezcla circuitos: si el titular nombra a hombres y a
+    mujeres ("Lebrón a la final y Bea González, a por el triplete"), se
+    queda la categoría más nombrada; a igualdad, la del primero nombrado."""
+    sexos = [j["sexo"] for j in jugadores]
+    if len(set(sexos)) <= 1:
+        return jugadores
+    elegido = max(set(sexos), key=lambda x: (sexos.count(x), -sexos.index(x)))
+    return [j for j in jugadores if j["sexo"] == elegido]
+
+
+def historias(noticias: list[dict[str, Any]], top: dict[str, dict[str, Any]],
+              companero: dict[str, str]) -> list[dict[str, Any]]:
+    """Titulares que hablan de las mismas parejas, juntos (la misma historia
+    contada por varios medios), de más a menos fuerte: tipo de noticia,
+    cuántos titulares la cuentan y lo arriba que están en el ranking quienes
+    salen. Cada titular se completa antes con las parejas actuales ("Triay
+    cae en cuartos" = Triay y Brea). Solo se junta lo idéntico: juntar por
+    cualquier jugador en común encadenaba la jornada entera en una sola
+    "historia" de 12 jugadores, hombres y mujeres (Dubái, 14/11/2026)."""
+    grupos: dict[frozenset[str], list[tuple[dict[str, Any], list[dict[str, Any]]]]] = {}
     for n in noticias:
-        ids = {j["jugador_id"] for j in n["jugadores"]}
-        juntos = [g for g in grupos if g[0] & ids]
-        for g in juntos:
-            grupos.remove(g)
-        grupos.append((ids.union(*(g[0] for g in juntos)), [t for g in juntos for t in g[1]] + [n]))
+        jugadores = una_categoria(con_pareja(n["jugadores"], top, companero))
+        if not 2 <= len(jugadores) <= MAX_JUGADORES_HISTORIA:
+            continue
+        grupos.setdefault(frozenset(j["jugador_id"] for j in jugadores), []).append((n, jugadores))
     salida = []
-    for ids, titulares in grupos:
+    for ids, entradas in grupos.items():
+        titulares = [n for n, _ in entradas]
         principal = max(titulares, key=lambda n: PESO_TIPO.get(n["tipo"], 0))
-        vistos: dict[str, dict[str, Any]] = {}
-        for t in titulares:
-            for j in t["jugadores"]:
-                vistos.setdefault(j["jugador_id"], j)
-        jugadores = sorted(vistos.values(), key=lambda j: j["posicion"])
+        jugadores = sorted(entradas[0][1], key=lambda j: j["posicion"])
         puntos = (PESO_TIPO.get(principal["tipo"], 0) + PESO_MEDIO * (len(titulares) - 1)
                   + sum(_puntos_ranking(j["posicion"]) for j in jugadores))
         salida.append({"ids": ids, "principal": principal, "titulares": titulares, "jugadores": jugadores,
@@ -180,8 +193,8 @@ def pedidos_del_dia(hoy: date, top: list[dict[str, Any]], *, silver_root: Path =
     por_id = {j["jugador_id"]: j for j in top}
     companero = pareja_actual() if companero is None else companero
     salida = []
-    for h in historias(cargar(hoy, silver_root)):
-        jugadores = con_pareja(h["jugadores"], por_id, companero)
+    for h in historias(cargar(hoy, silver_root), por_id, companero):
+        jugadores = h["jugadores"]
         ids = {j["jugador_id"] for j in jugadores}
         if len(jugadores) < 2 or any(t["enlace"] in enlaces for t in h["titulares"]) or any(ids & c for c in conjuntos):
             continue

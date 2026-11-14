@@ -24,13 +24,18 @@ da el "por qué hoy"; las cifras salen siempre de gold.
      si el tipo lo decide Gemini.
 3. `content/copy_factory/noticias.py`, desde `candidatos.py` (cada día,
    también en fin de semana; no con `--serie`):
-   - Junta los titulares que comparten algún jugador (la misma historia en
-     varios medios, o desde los dos lados) y ordena por tipo, número de
-     titulares y ranking de los protagonistas.
    - Completa a cada jugador con su pareja actual, la de su último partido
      de Premier Padel (`fact_partido_stats`). No se usa `dim_pareja`: sus
      tramos "activos" salen de torneos sueltos y el 14/11 no tenía activa a
      Tapia/Coello.
+   - Junta los titulares que hablan exactamente de las mismas parejas (la
+     misma historia en varios medios) y ordena por tipo, número de
+     titulares y ranking de los protagonistas. Una historia es de una o dos
+     parejas y de una sola categoría: los resúmenes de jornada (tres parejas
+     o más) se descartan, y si un titular nombra hombres y mujeres se queda
+     la categoría más nombrada. Juntar por "algún jugador en común"
+     encadenaba la jornada entera de Dubái (14/11) en una sola historia de
+     12 jugadores, hombres y mujeres.
    - No repite enlace ni jugadores de una noticia de los 3 días anteriores.
    - La historia más fuerte se convierte en un pedido de gráfico a medida
      (`adhoc.py`). Si los protagonistas son exactamente dos parejas, primero
@@ -66,5 +71,7 @@ sin noticias, la cola sale igual.
 - `forma_al_dia` cuenta como mucho un partido por jugador y día (algún
   jugador viene sin identificar en Premier y el mismo partido no casaría
   por sus cuatro ids): dos partidos el mismo día cuentan como uno.
-- Sin probar contra el RSS real desde el mini PC (sin permiso de red allí):
-  la primera ejecución en Actions es la prueba.
+- Primera ejecución real (14/11, Actions): 69 titulares descargados bien,
+  pero `build_fact_noticia` falló al lanzarse como fichero
+  (`python transform/...`): no encontraba `content` al importar Gemini para
+  los titulares dudosos. Se lanza como módulo (`python -m transform...`).
