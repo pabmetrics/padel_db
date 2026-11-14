@@ -33,9 +33,15 @@ da el "por qué hoy"; las cifras salen siempre de gold.
      Tapia/Coello.
    - No repite enlace ni jugadores de una noticia de los 3 días anteriores.
    - La historia más fuerte se convierte en un pedido de gráfico a medida
-     (`adhoc.py`, tipo "jugadores"): forma de las últimas 8 semanas, o
-     ganancias de 2026 si la noticia va de premios. Serie "La noticia en
-     datos", una al día (`MAX_POR_DIA`).
+     (`adhoc.py`). Si los protagonistas son exactamente dos parejas, primero
+     su **cara a cara** (tipo "h2h"); si nunca se han enfrentado, o no son
+     dos parejas, la **forma al día** de los protagonistas (tipo
+     "jugadores", métrica `forma_al_dia`), o sus ganancias de 2026 si la
+     noticia va de premios. Serie "La noticia en datos", una al día
+     (`MAX_POR_DIA`).
+   - Las dos fuentes de partidos se juntan sin duplicar: padelapi
+     (`fact_partido`, lunes) y Premier Padel (`fact_partido_stats`, a
+     diario), así que en semana de torneo entra el partido de ayer.
 
 ## Qué lleva el candidato
 
@@ -55,9 +61,10 @@ sin noticias, la cola sale igual.
 
 ## Límites conocidos
 
-- La forma reciente sale de padelapi (se ingiere los lunes): en semana de
-  torneo, el gráfico no incluye todavía los partidos de esa semana.
-- Cuando un titular enfrenta a dos parejas, el gráfico ideal sería su cara
-  a cara; `adhoc.py` aún no tiene ese tipo.
+- Fuera de Premier Padel (FIP Tour), los partidos de la semana no entran
+  hasta el lunes: solo Premier se ingiere a diario.
+- `forma_al_dia` cuenta como mucho un partido por jugador y día (algún
+  jugador viene sin identificar en Premier y el mismo partido no casaría
+  por sus cuatro ids): dos partidos el mismo día cuentan como uno.
 - Sin probar contra el RSS real desde el mini PC (sin permiso de red allí):
   la primera ejecución en Actions es la prueba.

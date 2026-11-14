@@ -90,12 +90,16 @@ def test_misma_historia_desde_dos_lados_y_con_su_pareja(tmp_path):
                        "Ale Galán, campeón en Dubái"])
     pedidos = nt.pedidos_del_dia(date(2026, 11, 14), TOP, silver_root=tmp_path / "silver",
                                  queue_root=tmp_path / "queue", companero=COMPANERO)
-    pedido, noticia = pedidos[0]
-    # Dos titulares de la misma historia; Jensen entra por ser pareja de Icardo.
-    assert set(pedido["jugadores"]) == {"Gemma Triay Pons", "Delfina Brea Senesi", "Tamara Icardo Alcorisa",
-                                        "Claudia Jensen"}
+    (h2h, forma), noticia = pedidos[0]
+    # Dos titulares de la misma historia; Jensen entra por ser pareja de Icardo,
+    # y como son dos parejas, primero se intenta su cara a cara.
+    assert h2h["tipo"] == "h2h"
+    assert {frozenset(h2h["pareja_1"]), frozenset(h2h["pareja_2"])} == {
+        frozenset({"Gemma Triay Pons", "Delfina Brea Senesi"}), frozenset({"Tamara Icardo Alcorisa", "Claudia Jensen"})}
+    assert set(forma["jugadores"]) == {"Gemma Triay Pons", "Delfina Brea Senesi", "Tamara Icardo Alcorisa",
+                                       "Claudia Jensen"}
     assert noticia["tipo"] == "eliminacion" and len(noticia["otros_titulares"]) == 1
-    assert pedido["contexto"] == nt.CONTEXTO["eliminacion"]
+    assert h2h["contexto"] == forma["contexto"] == nt.CONTEXTO["eliminacion"]
     # Galán solo, sin pareja activa en el top: no hay comparación posible.
     assert len(pedidos) == 1
 
@@ -119,3 +123,51 @@ def test_pareja_actual_es_la_del_ultimo_partido_de_premier(tmp_path):
     ]))
     actual = nt.pareja_actual(ruta)
     assert actual["icardo"] == "cjensen" and actual["cjensen"] == "icardo"
+
+
+def test_partidos_entre_dos_parejas_sin_duplicar_y_desde_la_pareja_1():
+    from content.chart_factory.adhoc import partidos_entre
+
+    def jug(i):
+        return {"jugador_id": i}
+    p1, p2 = frozenset({"a", "b"}), frozenset({"c", "d"})
+    f2 = [  # padelapi: la pareja 1 juega de equipo 2
+        {"fecha": "2026-07-01", "torneo_nombre": "Bordeaux P2 2026", "ronda": "Finals", "ganador": "team_2",
+         "marcador_txt": "6-3, 1-6, 1-6", "equipo_1_jugador_1": jug("c"), "equipo_1_jugador_2": jug("d"),
+         "equipo_2_jugador_1": jug("a"), "equipo_2_jugador_2": jug("b")},
+        {"fecha": "2026-08-01", "torneo_nombre": "Otro", "ronda": "Finals", "ganador": "team_1",  # otra pareja
+         "marcador_txt": "6-3, 6-3", "equipo_1_jugador_1": jug("a"), "equipo_1_jugador_2": jug("x"),
+         "equipo_2_jugador_1": jug("c"), "equipo_2_jugador_2": jug("d")},
+    ]
+    def f1(equipo, ids, gana, juegos, fecha="2026-11-13", pid="PP2-1"):
+        return {"partido_id": pid, "bloque": "partido", "equipo": equipo, "fecha": fecha, "torneo_slug": "dubai-p1-3",
+                "ronda": "QF", "gana": gana, "jugador_1_id": ids[0], "jugador_2_id": ids[1], "juegos_por_set": juegos}
+    f1_filas = [f1(1, ("c", "d"), False, [3, 6, 1]), f1(2, ("a", "b"), True, [6, 3, 6]),
+                # el mismo partido de Bordeaux, también en Premier: no cuenta dos veces
+                f1(1, ("a", "b"), True, [3, 6, 6], "2026-07-01", "PP2-0"), f1(2, ("c", "d"), False, [6, 1, 1], "2026-07-01", "PP2-0")]
+    partidos = partidos_entre(p1, p2, f2, f1_filas, lambda slug, fecha: "Dubai P1 2026")
+    assert [(r["fecha"], r["gana_1"], r["marcador"], r["ronda"]) for r in partidos] == [
+        ("2026-11-13", True, "6-3, 3-6, 6-1", "Cuartos"),
+        ("2026-07-01", True, "3-6, 6-1, 6-1", "Final"),
+    ]
+
+
+def test_forma_al_dia_no_cuenta_dos_veces_un_partido_con_un_jugador_sin_id():
+    from content.chart_factory.adhoc import resultados_por_jugador
+
+    def jug(i):
+        return {"jugador_id": i}
+    f2 = [{"fecha": "2026-11-10", "ganador": "team_1", "equipo_1_jugador_1": jug("a"), "equipo_1_jugador_2": jug("b"),
+           "equipo_2_jugador_1": jug("c"), "equipo_2_jugador_2": jug("d")}]
+    f1 = [  # el mismo partido en Premier, con "b" sin identificar; y uno nuevo de esta semana
+        {"partido_id": "1", "bloque": "partido", "equipo": 1, "fecha": "2026-11-10", "gana": True,
+         "jugador_1_id": "a", "jugador_2_id": None},
+        {"partido_id": "1", "bloque": "partido", "equipo": 2, "fecha": "2026-11-10", "gana": False,
+         "jugador_1_id": "c", "jugador_2_id": "d"},
+        {"partido_id": "2", "bloque": "partido", "equipo": 1, "fecha": "2026-11-13", "gana": False,
+         "jugador_1_id": "a", "jugador_2_id": "b"},
+        {"partido_id": "2", "bloque": "partido", "equipo": 2, "fecha": "2026-11-13", "gana": True,
+         "jugador_1_id": "e", "jugador_2_id": "f"},
+    ]
+    cuenta = resultados_por_jugador({"a", "b", "c"}, "2026-09-18", f2, f1)
+    assert cuenta == {"a": [1, 2], "b": [1, 2], "c": [0, 1]}

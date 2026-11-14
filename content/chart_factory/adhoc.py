@@ -9,7 +9,9 @@ del pedido.
 Tipos de pedido:
 
     {"tipo": "jugadores", "jugadores": ["Alejandro Galan", "..."],
-     "metrica": "forma_reciente" | "ganancias"}
+     "metrica": "forma_reciente" | "ganancias" | "forma_al_dia"}
+
+    {"tipo": "h2h", "pareja_1": ["A", "B"], "pareja_2": ["C", "D"]}
 
     {"tipo": "perfil_top100", "sexo": "M" | "F", "dimension": "altura_cm" | "edad"}
 
@@ -43,9 +45,10 @@ import argparse
 import difflib
 import json
 import random
+import re
 import statistics
 import tempfile
-from datetime import date
+from datetime import date, timedelta
 from pathlib import Path
 from typing import Any
 
@@ -56,6 +59,7 @@ import matplotlib.pyplot as plt  # noqa: E402
 from unidecode import unidecode  # noqa: E402
 
 from content.chart_factory.marca import (  # noqa: E402
+    CORAL,
     CRISTAL,
     GRIS_PARED,
     MARGEN_DERECHO,
@@ -160,8 +164,10 @@ def _datos_jugadores(pedido: dict) -> dict:
     if not isinstance(nombres, list) or not 2 <= len(nombres) <= MAX_JUGADORES:
         raise PedidoInvalido(f"'jugadores' debe ser una lista de 2 a {MAX_JUGADORES} nombres")
     metrica = pedido.get("metrica", "forma_reciente")
-    if metrica not in ("forma_reciente", "ganancias"):
-        raise PedidoInvalido("'metrica' debe ser 'forma_reciente' o 'ganancias'")
+    if metrica not in ("forma_reciente", "ganancias", "forma_al_dia"):
+        raise PedidoInvalido("'metrica' debe ser 'forma_reciente', 'ganancias' o 'forma_al_dia'")
+    if metrica == "forma_al_dia":
+        return _datos_forma_al_dia(nombres)
 
     jugadores = resolver_jugadores(nombres)
     tabla = "forma_reciente" if metrica == "forma_reciente" else "ganancias_temporada"
@@ -244,7 +250,7 @@ def _dibujar_jugadores(d: dict, titulo: str, subtitulo: str, serie: str, tamano,
     limpiar_ejes(ax, tema)
     ax.set_xlim(0, maximo * 1.45)
     for i, b in enumerate(barras):
-        if d["metrica"] == "forma_reciente":
+        if d["metrica"] in ("forma_reciente", "forma_al_dia"):
             etiqueta = f"{b['valor']:.0f}% ({b['victorias']}/{b['partidos']})"
         else:
             etiqueta = f"{_formato_es(b['valor'])} €"
@@ -257,6 +263,89 @@ def _dibujar_jugadores(d: dict, titulo: str, subtitulo: str, serie: str, tamano,
     pie_de_grafico(fig, f"{d['fuente_txt']} — {d['fecha']}", tema, registro)
     fig.subplots_adjust(left=margen_izq, right=1 - MARGEN_DERECHO, top=top, bottom=0.1 if tamano == TAMANO_X else 0.09)
     return fig
+
+
+# --- métrica "forma_al_dia" (14/11/2026) --------------------------------------
+# Como "forma_reciente" (victorias de las últimas 8 semanas), pero calculada
+# hoy con los partidos de padelapi y los de Premier Padel, que se actualizan a
+# diario: en semana de torneo entran los partidos de esa semana. Es la de "La
+# noticia en datos", donde lo que pasó ayer es justo el motivo del gráfico.
+
+VENTANA_FORMA_DIAS = 56
+
+
+def resultados_por_jugador(ids: set[str], desde: str, f2: list[dict], f1: list[dict]) -> dict[str, list[int]]:
+    """jugador_id -> [victorias, partidos] desde `desde`, sin contar dos
+    veces un partido que esté en las dos fuentes. Se cuenta como mucho un
+    partido por jugador y día: en Premier Padel algún jugador viene sin
+    identificar, y entonces el mismo partido no casa por sus cuatro ids (se
+    vio con Triay 13/17 y Brea 13/18 jugando juntas). Dos partidos el mismo
+    día (qualy) quedan como uno: mejor quedarse corto que contar de más."""
+    vistos: set[tuple[str, str]] = set()
+    cuenta = {i: [0, 0] for i in ids}
+
+    def anotar(fecha: str, ganadores: set[str], perdedores: set[str]) -> None:
+        for j in (ganadores | perdedores) & ids:
+            if (j, fecha) in vistos:
+                continue
+            vistos.add((j, fecha))
+            cuenta[j][1] += 1
+            cuenta[j][0] += j in ganadores
+
+    for p in f2:
+        if p.get("fecha", "") < desde or p.get("marcador_incoherente") or p.get("ganador") not in ("team_1", "team_2"):
+            continue
+        e = {t: {(p.get(f"equipo_{t}_jugador_{k}") or {}).get("jugador_id") for k in (1, 2)} for t in (1, 2)}
+        g = 1 if p["ganador"] == "team_1" else 2
+        anotar(p["fecha"], e[g], e[3 - g])
+    por_partido: dict[str, dict[int, dict]] = {}
+    for f in f1:
+        if f.get("bloque") == "partido" and f.get("fecha", "") >= desde:
+            por_partido.setdefault(f["partido_id"], {})[f["equipo"]] = f
+    for eq in por_partido.values():
+        if set(eq) != {1, 2} or eq[1].get("gana") is None:
+            continue
+        lados = {k: {e.get("jugador_1_id"), e.get("jugador_2_id")} for k, e in eq.items()}
+        g = 1 if eq[1]["gana"] else 2
+        anotar(eq[1]["fecha"], lados[g], lados[3 - g])
+    return cuenta
+
+
+def _datos_forma_al_dia(nombres: list[str]) -> dict:
+    jugadores = resolver_jugadores(nombres)
+    f2 = json.loads(FACT_PARTIDO.read_text(encoding="utf-8")) if FACT_PARTIDO.exists() else []
+    f1 = json.loads(FACT_PARTIDO_STATS.read_text(encoding="utf-8")) if FACT_PARTIDO_STATS.exists() else []
+    hasta = max([p["fecha"] for p in f2 if p.get("fecha")] + [f["fecha"] for f in f1 if f.get("fecha")])
+    desde = (date.fromisoformat(hasta) - timedelta(days=VENTANA_FORMA_DIAS)).isoformat()
+    cuenta = resultados_por_jugador({j["jugador_id"] for j in jugadores}, desde, f2, f1)
+    _, perfil = _ultimo(GOLD / "perfil_top100")
+    ranking = {(f["jugador_nombre"], f["sexo"]): f["ranking"] for f in perfil if f["publicable"]}
+
+    avisos, barras = [], []
+    for nombre, j in zip(nombres, jugadores):
+        victorias, partidos = cuenta[j["jugador_id"]]
+        if partidos < 3:
+            avisos.append(f"{nombre!r} ({j['nombre_canonico']}) fuera del gráfico: {partidos} partidos en 8 semanas")
+            continue
+        if partidos < 8:
+            avisos.append(f"{j['nombre_canonico']}: solo {partidos} partidos en 8 semanas")
+        barras.append({"nombre": j["nombre_canonico"], "ranking": ranking.get((j["nombre_canonico"], j["sexo"])),
+                       "valor": round(100 * victorias / partidos, 1), "victorias": victorias, "partidos": partidos})
+    if len(barras) < 2:
+        raise PedidoInvalido("Menos de 2 jugadores con partidos suficientes: no hay gráfico")
+    barras.sort(key=lambda b: -b["valor"])
+    values: dict[str, Any] = {"n_jugadores": len(barras)}
+    for i, b in enumerate(barras, 1):
+        values |= {f"jugador_{i}": b["nombre"], f"pct_victorias_{i}": b["valor"], f"victorias_{i}": b["victorias"],
+                   f"partidos_{i}": b["partidos"]}
+        if b["ranking"] is not None:
+            values[f"ranking_{i}"] = b["ranking"]
+    return {
+        "tabla_gold": "fact_partido", "fecha": hasta, "fuente_txt": "padelapi.org / Premier Padel · elaboración propia",
+        "barras": barras, "metrica": "forma_al_dia", "values": values, "avisos": avisos,
+        "titulo": "Victorias en las últimas 8 semanas",
+        "subtitulo": f"% de victorias en las últimas 8 semanas, con los partidos de esta semana (victorias/partidos) y ranking · {hasta}",
+    }
 
 
 # --- tipo "perfil_top100" ---------------------------------------------------
@@ -620,9 +709,148 @@ def _dibujar_parejas_nacionalidad(d: dict, titulo: str, subtitulo: str, serie: s
     return fig
 
 
+# --- tipo "h2h" -------------------------------------------------------------
+# {"tipo": "h2h", "pareja_1": ["A", "B"], "pareja_2": ["C", "D"]} (14/11/2026)
+# Cara a cara exacto entre dos parejas (los mismos dos jugadores a cada lado),
+# con los partidos de padelapi (`fact_partido`, se ingiere los lunes) y los de
+# Premier Padel (`fact_partido_stats`, a diario: entra el partido de esta
+# semana). Un partido en las dos fuentes cuenta una vez.
+
+FACT_PARTIDO = REPO_ROOT / "silver" / "fact_partido" / "data.json"
+FACT_PARTIDO_STATS = REPO_ROOT / "silver" / "fact_partido_stats" / "data.json"
+MAX_PARTIDOS_LISTA = 7
+RONDAS_ES = {
+    "Round of 64": "1/32", "Round of 32": "1/16", "Round of 16": "Octavos", "Quarter": "Cuartos",
+    "Semifinals": "Semifinal", "Finals": "Final",
+    "R64": "1/32", "R32": "1/16", "R16": "Octavos", "QF": "Cuartos", "SF": "Semifinal", "F": "Final",
+}
+
+
+def _girar(marcador: str) -> str:
+    return ", ".join("-".join(reversed(s.split("-"))) for s in re.findall(r"\d+-\d+", marcador))
+
+
+def partidos_entre(p1: frozenset[str], p2: frozenset[str], f2: list[dict], f1: list[dict],
+                   nombre_f1) -> list[dict]:
+    """Partidos entre las dos parejas, del más reciente al más antiguo, con
+    el marcador visto desde la pareja 1."""
+    vistos: set[tuple[str, frozenset[str]]] = set()
+    salida = []
+    for p in f2:
+        if p.get("marcador_incoherente") or p.get("ganador") not in ("team_1", "team_2"):
+            continue
+        e1 = frozenset((p.get(k) or {}).get("jugador_id") for k in ("equipo_1_jugador_1", "equipo_1_jugador_2"))
+        e2 = frozenset((p.get(k) or {}).get("jugador_id") for k in ("equipo_2_jugador_1", "equipo_2_jugador_2"))
+        if {e1, e2} != {p1, p2}:
+            continue
+        p1_es_1 = e1 == p1
+        marcador = p.get("marcador_txt") or ""
+        if not re.search(r"\d+-\d+", marcador):
+            marcador = ""
+        salida.append({"fecha": p["fecha"], "torneo": p["torneo_nombre"], "ronda": RONDAS_ES.get(p.get("ronda"), p.get("ronda")),
+                       "gana_1": (p["ganador"] == "team_1") == p1_es_1,
+                       "marcador": marcador if p1_es_1 else _girar(marcador)})
+        vistos.add((p["fecha"], p1 | p2))
+    por_partido: dict[str, dict[int, dict]] = {}
+    for f in f1:
+        if f.get("bloque") == "partido":
+            por_partido.setdefault(f["partido_id"], {})[f["equipo"]] = f
+    for eq in por_partido.values():
+        if set(eq) != {1, 2} or eq[1].get("gana") is None:
+            continue
+        lados = {k: frozenset((e.get("jugador_1_id"), e.get("jugador_2_id"))) for k, e in eq.items()}
+        if set(lados.values()) != {p1, p2} or (eq[1]["fecha"], p1 | p2) in vistos:
+            continue
+        mio, rival = (eq[1], eq[2]) if lados[1] == p1 else (eq[2], eq[1])
+        juegos = list(zip(mio.get("juegos_por_set") or [], rival.get("juegos_por_set") or []))
+        salida.append({"fecha": mio["fecha"], "torneo": nombre_f1(mio["torneo_slug"], mio["fecha"]),
+                       "ronda": RONDAS_ES.get(mio.get("ronda"), mio.get("ronda")), "gana_1": bool(mio["gana"]),
+                       "marcador": ", ".join(f"{a}-{b}" for a, b in juegos)})
+    return sorted(salida, key=lambda r: r["fecha"], reverse=True)
+
+
+def _datos_h2h(pedido: dict) -> dict:
+    parejas = [pedido.get("pareja_1"), pedido.get("pareja_2")]
+    if not all(isinstance(p, list) and len(p) == 2 for p in parejas):
+        raise PedidoInvalido("'pareja_1' y 'pareja_2' deben ser listas de 2 nombres")
+    jugadores = resolver_jugadores(parejas[0] + parejas[1])
+    p1 = frozenset(j["jugador_id"] for j in jugadores[:2])
+    p2 = frozenset(j["jugador_id"] for j in jugadores[2:])
+    nombres = [" / ".join(j["nombre_canonico"] for j in jugadores[:2]), " / ".join(j["nombre_canonico"] for j in jugadores[2:])]
+
+    from transform.build_gold_torneo_sorpresas import _nombres_calendario, nombre_torneo_f1
+
+    calendario = _nombres_calendario()
+    f2 = json.loads(FACT_PARTIDO.read_text(encoding="utf-8")) if FACT_PARTIDO.exists() else []
+    f1 = json.loads(FACT_PARTIDO_STATS.read_text(encoding="utf-8")) if FACT_PARTIDO_STATS.exists() else []
+    partidos = partidos_entre(p1, p2, f2, f1, lambda slug, fecha: f"{nombre_torneo_f1(slug, calendario)} {fecha[:4]}")
+    if not partidos:
+        raise PedidoInvalido(f"{nombres[0]} y {nombres[1]} no se han enfrentado en los datos")
+
+    v1 = sum(r["gana_1"] for r in partidos)
+    desde = min(p["fecha"] for p in f2 + [x for x in f1 if x.get("fecha")]) if (f2 or f1) else partidos[-1]["fecha"]
+    ultimo = partidos[0]
+    values = {
+        "pareja_1": nombres[0], "pareja_2": nombres[1],
+        "victorias_pareja_1": v1, "victorias_pareja_2": len(partidos) - v1, "total_enfrentamientos": len(partidos),
+        "ultimo_ganador": nombres[0] if ultimo["gana_1"] else nombres[1], "ultimo_torneo": ultimo["torneo"],
+        "ultimo_fecha": ultimo["fecha"], "datos_desde": desde,
+    }
+    total_txt = "1 partido" if len(partidos) == 1 else f"{len(partidos)} partidos"
+    return {
+        "tabla_gold": "fact_partido", "fecha": max(r["fecha"] for r in partidos),
+        "fuente_txt": "padelapi.org / Premier Padel · elaboración propia",
+        "partidos": partidos, "nombres": nombres, "values": values, "avisos": [],
+        "titulo": f"Cara a cara: {v1}-{len(partidos) - v1} en {total_txt}",
+        "subtitulo": f"Partidos entre las dos parejas desde el {desde} · el más reciente, arriba",
+    }
+
+
+def _dibujar_h2h(d: dict, titulo: str, subtitulo: str, serie: str, tamano, registro: str) -> plt.Figure:
+    tema = "claro"
+    colores = colores_tema(tema)
+    fig, ax = nueva_figura(tamano, tema)
+    ax.axis("off")
+    ancho = tamano == TAMANO_X
+    v = d["values"]
+    # Marcador grande: cristal la pareja 1, coral la 2 (como el h2h de la serie semanal).
+    for x, ha, nombre, victorias, color in ((0.0, "left", d["nombres"][0], v["victorias_pareja_1"], CRISTAL),
+                                            (1.0, "right", d["nombres"][1], v["victorias_pareja_2"], CORAL)):
+        ax.text(x, 0.97, str(victorias), ha=ha, va="top", fontproperties=Fuentes.cifra(), fontsize=54 if ancho else 46,
+                color=color, transform=ax.transAxes)
+        ax.text(x, 0.74 if ancho else 0.86, nombre.replace(" / ", "\n"), ha=ha, va="top", fontsize=13 if ancho else 12,
+                color=colores["texto_principal"], transform=ax.transAxes, linespacing=1.3)
+    ax.text(0.5, 0.92, "victorias · el color marca quién ganó cada partido", ha="center", va="top", fontsize=11,
+            color=colores["texto_secundario"], transform=ax.transAxes)
+
+    filas = d["partidos"][:MAX_PARTIDOS_LISTA]
+    arriba = 0.5 if ancho else 0.66  # en 4:5 sobra alto: la lista sube hacia el marcador
+    alto = arriba / max(len(filas), 4)
+    for i, r in enumerate(filas):
+        y = arriba - i * alto
+        ax.plot([0, 1], [y + alto * 0.5] * 2, color=colores["grid"], linewidth=0.6, transform=ax.transAxes)
+        ax.text(0.0, y, f"{r['fecha']}  ·  {r['torneo']}  ·  {r['ronda']}", ha="left", va="center", fontsize=11 if ancho else 9.5,
+                color=colores["texto_secundario"], transform=ax.transAxes)
+        ax.text(0.95, y, r["marcador"], ha="right", va="center", fontproperties=Fuentes.cifra(),
+                fontsize=11 if ancho else 9.5, color=colores["texto_principal"], transform=ax.transAxes)
+        # Quién ganó: un cuadrado del color de esa pareja en el marcador grande.
+        ax.plot([0.985], [y], marker="s", markersize=11, color=CRISTAL if r["gana_1"] else CORAL,
+                transform=ax.transAxes, clip_on=False)
+    if len(d["partidos"]) > len(filas):
+        ax.text(0.0, arriba - len(filas) * alto, f"… y {len(d['partidos']) - len(filas)} más", ha="left", va="center",
+                fontsize=10, color=colores["texto_secundario"], transform=ax.transAxes)
+
+    pildora_serie(fig, serie, tema)
+    top = titulo_y_subtitulo(fig, titulo, subtitulo, tema)
+    pie_de_grafico(fig, f"{d['fuente_txt']} — {d['fecha']}", tema, registro)
+    fig.subplots_adjust(left=MARGEN_IZQUIERDO, right=1 - MARGEN_DERECHO, top=top - 0.02, bottom=0.12 if ancho else 0.1)
+    return fig
+
+
 # --- común ------------------------------------------------------------------
 
 TIPOS = {
+    "h2h": (_datos_h2h, _dibujar_h2h),
     "jugadores": (_datos_jugadores, _dibujar_jugadores),
     "perfil_top100": (_datos_perfil, _dibujar_perfil),
     "parejas_nacionalidad": (_datos_parejas_nacionalidad, _dibujar_parejas_nacionalidad),

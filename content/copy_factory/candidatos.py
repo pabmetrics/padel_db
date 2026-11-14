@@ -192,19 +192,25 @@ def generar_noticia_del_dia(fecha_cola: date) -> int:
     from transform.build_fact_noticia import cargar_top
 
     hechas = 0
-    for pedido, noticia in noticias.pedidos_del_dia(fecha_cola, cargar_top()):
+    for pedidos, noticia in noticias.pedidos_del_dia(fecha_cola, cargar_top()):
         if hechas >= noticias.MAX_POR_DIA:
             break
-        print(f"noticia: {noticia['titulo']!r} -> {', '.join(pedido['jugadores'])}")
-        with tempfile.TemporaryDirectory() as tmp:
-            try:
-                adhoc.build(pedido, Path(tmp) / "validacion", "#PREVIA")  # valida antes de gastar un registro
-                meta = adhoc.build(pedido, Path(tmp), siguiente_registro())
-                meta["noticia"] = noticia
-                _escribir_candidato(meta, fecha_cola.isoformat())
-                hechas += 1
-            except (adhoc.PedidoInvalido, ValueError) as e:
-                print(f"  descartada: {e}")
+        print(f"noticia: {noticia['titulo']!r}")
+        for pedido in pedidos:  # cara a cara si se puede; si no, la forma de los protagonistas
+            with tempfile.TemporaryDirectory() as tmp:
+                try:
+                    adhoc.build(pedido, Path(tmp) / "validacion", "#PREVIA")  # valida antes de gastar un registro
+                except adhoc.PedidoInvalido as e:
+                    print(f"  sin gráfico {pedido['tipo']}: {e}")
+                    continue
+                try:
+                    meta = adhoc.build(pedido, Path(tmp), siguiente_registro())
+                    meta["noticia"] = noticia
+                    _escribir_candidato(meta, fecha_cola.isoformat())
+                    hechas += 1
+                except ValueError as e:
+                    print(f"  descartada: {e}")
+                break  # con gráfico válido, no se prueba el de respaldo aunque falle el texto
     return hechas
 
 

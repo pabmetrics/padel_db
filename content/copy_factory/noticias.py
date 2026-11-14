@@ -128,13 +128,42 @@ def con_pareja(jugadores: list[dict[str, Any]], top: dict[str, dict[str, Any]],
     return salida
 
 
+def dos_parejas(jugadores: list[dict[str, Any]], companero: dict[str, str]) -> list[list[dict[str, Any]]] | None:
+    """Si los jugadores son exactamente dos parejas actuales, esas dos."""
+    por_id = {j["jugador_id"]: j for j in jugadores}
+    parejas: list[list[dict[str, Any]]] = []
+    vistos: set[str] = set()
+    for j in jugadores:
+        otro = companero.get(j["jugador_id"])
+        if j["jugador_id"] in vistos or otro not in por_id:
+            continue
+        parejas.append([j, por_id[otro]])
+        vistos |= {j["jugador_id"], otro}
+    return parejas if len(parejas) == 2 and len(vistos) == len(jugadores) else None
+
+
+def pedidos_de(historia: dict[str, Any], jugadores: list[dict[str, Any]],
+               companero: dict[str, str]) -> list[dict[str, Any]]:
+    """Pedidos posibles, del mejor al de respaldo: si la noticia enfrenta a
+    dos parejas, su cara a cara (con el partido de esta semana si es de
+    Premier Padel); si no se han cruzado nunca o no son dos parejas, la
+    forma (o las ganancias) de los protagonistas."""
+    contexto = CONTEXTO.get(historia["principal"]["tipo"], CONTEXTO["otro"])
+    pedidos = []
+    if parejas := dos_parejas(jugadores, companero):
+        pedidos.append({"tipo": "h2h", "pareja_1": [j["nombre"] for j in parejas[0]],
+                        "pareja_2": [j["nombre"] for j in parejas[1]], "serie": SERIE, "contexto": contexto})
+    pedidos.append(pedido_de(historia, jugadores))
+    return pedidos
+
+
 def pedido_de(historia: dict[str, Any], jugadores: list[dict[str, Any]]) -> dict[str, Any]:
     tipo = historia["principal"]["tipo"]
     dinero = tipo == "dinero"
     return {
         "tipo": "jugadores",
         "jugadores": [j["nombre"] for j in jugadores],
-        "metrica": "ganancias" if dinero else "forma_reciente",
+        "metrica": "ganancias" if dinero else "forma_al_dia",  # con los partidos de esta semana
         "serie": SERIE,
         "titulo": "Son noticia hoy: sus ganancias de 2026" if dinero else "Son noticia hoy: sus victorias en 8 semanas",
         "contexto": CONTEXTO.get(tipo, CONTEXTO["otro"]),
@@ -143,10 +172,10 @@ def pedido_de(historia: dict[str, Any], jugadores: list[dict[str, Any]]) -> dict
 
 def pedidos_del_dia(hoy: date, top: list[dict[str, Any]], *, silver_root: Path = SILVER_ROOT,
                     queue_root: Path = QUEUE_ROOT, companero: dict[str, str] | None = None
-                    ) -> list[tuple[dict[str, Any], dict[str, Any]]]:
-    """(pedido para adhoc, noticia para el candidato), de la historia más
-    fuerte a la más débil. Quien llama se queda con las `MAX_POR_DIA`
-    primeras que salgan bien."""
+                    ) -> list[tuple[list[dict[str, Any]], dict[str, Any]]]:
+    """(pedidos para adhoc, del mejor al de respaldo; noticia para el
+    candidato), de la historia más fuerte a la más débil. Quien llama se
+    queda con las `MAX_POR_DIA` primeras que salgan bien."""
     enlaces, conjuntos = _ya_contadas(hoy, queue_root)
     por_id = {j["jugador_id"]: j for j in top}
     companero = pareja_actual() if companero is None else companero
@@ -163,5 +192,5 @@ def pedidos_del_dia(hoy: date, top: list[dict[str, Any]], *, silver_root: Path =
             "otros_titulares": [t["titulo"] for t in h["titulares"] if t is not principal][:5],
             "jugador_ids": sorted(ids),
         }
-        salida.append((pedido_de(h, jugadores), noticia))
+        salida.append((pedidos_de(h, jugadores, companero), noticia))
     return salida
