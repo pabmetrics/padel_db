@@ -41,6 +41,9 @@ SERIES_SIN_FILTRO = {
     "Previa en datos",
     "Carrera a las Finals",
 }
+# Series de un torneo concreto: repetir pareja en otro torneo es otra
+# historia (Garrido/De Pascual, sorpresa en Milano P1 y otra vez en Dubái P1).
+SERIES_POR_TORNEO = {"El torneo en datos"}
 CLAVES_PROTAGONISTA = (
     "jugador", "pareja", "jugador_1", "jugador_2", "pareja_1", "pareja_2",
     "equipo_ganador", "equipo_perdedor", "pais",
@@ -96,6 +99,8 @@ def candidato_repetido(
             continue
         comparten = bool(mios & protagonistas(previos))
         if anterior.get("serie") == serie:
+            if serie in SERIES_POR_TORNEO and previos.get("torneo") != values.get("torneo"):
+                continue
             if previos == values or comparten:
                 return anterior
         elif comparten and fecha >= otra_serie_desde:

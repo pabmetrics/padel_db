@@ -143,3 +143,13 @@ def test_el_torneo_en_datos_solo_mira_el_torneo_reciente():
     assert top[0]["diferencia_semillas"] == 9
     # Sin partidos en los últimos días, no hay serie (antes salía Milano otra vez).
     assert sorpresas_del_ultimo_torneo(rows, "men", date(2026, 11, 25)) == []
+
+
+def test_el_torneo_en_datos_solo_repite_dentro_del_mismo_torneo(tmp_path):
+    milano = {"registro": "#0271", "serie": "El torneo en datos",
+              "values": {"equipo_ganador": "Javier Garrido / Juan Ignacio De Pascual", "torneo": "Milano P1 2026",
+                         "circuito": "masculino"}}
+    _cola(tmp_path, "2026-11-09", milano)
+    dubai = {**milano["values"], "torneo": "Dubai P1 2026"}
+    assert candidato_repetido("El torneo en datos", dubai, date(2026, 11, 14), queue_root=tmp_path) is None
+    assert candidato_repetido("El torneo en datos", milano["values"], date(2026, 11, 14), queue_root=tmp_path)

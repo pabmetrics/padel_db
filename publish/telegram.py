@@ -8,7 +8,9 @@ cosa de una persona (CLAUDE.md, doc 02 §6).
 
 Lo ya enviado se apunta en `queue/<fecha>/telegram.json` (registros), para
 no repetir si el workflow corre dos veces o si un gráfico a medida llega
-después. Sin `PADELDB_TELEGRAM_TOKEN` o `PADELDB_TELEGRAM_CHAT_ID` no hace
+después. Se miran la cola de hoy y la de ayer: la cola se fecha cuando
+empieza a generarse y el envío puede caer pasada la medianoche (pasó el
+14/11: cola del 14, envío ya el 15, nada enviado). Sin `PADELDB_TELEGRAM_TOKEN` o `PADELDB_TELEGRAM_CHAT_ID` no hace
 nada: el bot es uno propio de PadelDB, distinto del del agente del mini PC
 (dos programas con el mismo bot se roban los mensajes).
 
@@ -20,7 +22,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
-from datetime import date
+from datetime import date, timedelta
 from pathlib import Path
 from typing import Any
 
@@ -83,7 +85,8 @@ def enviar(fecha: str, *, token: str, chat_id: str, cliente: httpx.Client, queue
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__.split("\n")[0])
-    parser.add_argument("--fecha", type=date.fromisoformat, default=date.today())
+    parser.add_argument("--fecha", type=date.fromisoformat, default=date.today(),
+                        help="se envía lo pendiente de este día y del anterior")
     args = parser.parse_args()
     token, chat_id = os.environ.get("PADELDB_TELEGRAM_TOKEN"), os.environ.get("PADELDB_TELEGRAM_CHAT_ID")
     if not token or not chat_id:
@@ -91,7 +94,8 @@ def main() -> int:
         return 0
     with httpx.Client(timeout=60) as cliente:
         try:
-            n = enviar(args.fecha.isoformat(), token=token, chat_id=chat_id, cliente=cliente)
+            n = sum(enviar(dia.isoformat(), token=token, chat_id=chat_id, cliente=cliente)
+                    for dia in (args.fecha - timedelta(days=1), args.fecha))
         except httpx.HTTPStatusError as e:
             # Nunca se imprime la excepción entera: su URL lleva el token.
             print(f"Telegram respondió {e.response.status_code}: {e.response.text[:300]}")
