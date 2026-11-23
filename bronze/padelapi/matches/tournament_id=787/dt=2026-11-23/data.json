@@ -1,0 +1,5232 @@
+{
+  "source": "padelapi",
+  "endpoint": "/tournaments/787/matches",
+  "ingest_ts": "2026-11-23T18:02:24.552809+00:00",
+  "sha256": "e47da6270e04a21ebf51f15b57a962112d90a7dd28219d79ec84a5b699b38ddb",
+  "tournament": {
+    "id": 787,
+    "name": "FIP Platinum Aguascalientes",
+    "country": "MX",
+    "level": "fip_platinum",
+    "start_date": "2026-11-15",
+    "end_date": "2026-11-21"
+  },
+  "n_items": 52,
+  "items": [
+    {
+      "id": 14977,
+      "self": "/api/matches/14977",
+      "name": "Alonso/Goñi - Bergamini/Gala",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 1,
+      "round_name": "Finals",
+      "index": 0,
+      "seeds": {
+        "team_1": "5",
+        "team_2": "7"
+      },
+      "played_at": "2026-11-21",
+      "schedule_label": "Not before 8:00 PM",
+      "scheduled_at": "2026-11-22T03:00:00+01:00",
+      "scheduled_at_local": "2026-11-21T20:00:00-06:00",
+      "court": "Center Court",
+      "court_order": 2,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "4",
+          "team_2": "6"
+        },
+        {
+          "team_1": "2",
+          "team_2": "6"
+        }
+      ],
+      "winner": "team_2",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 101,
+            "self": "/api/players/101",
+            "name": "Edu Alonso",
+            "short_name": "Alonso",
+            "nationality": "ES",
+            "side": "drive",
+            "photo_url": "https://media.padelapi.org/player-api/edu-alonso.webp",
+            "connections": {
+              "pair": "/api/pairs/101-465"
+            }
+          },
+          {
+            "id": 465,
+            "self": "/api/players/465",
+            "name": "Aimar Goñi",
+            "short_name": "Goñi",
+            "nationality": "ES",
+            "side": "backhand",
+            "photo_url": "https://media.padelapi.org/player-api/aimar-goni.webp",
+            "connections": {
+              "pair": "/api/pairs/101-465"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 76,
+            "self": "/api/players/76",
+            "name": "Lucas Bergamini",
+            "short_name": "Bergamini",
+            "nationality": "BR",
+            "side": "drive",
+            "photo_url": "https://media.padelapi.org/player-api/lucas-bergamini.webp",
+            "connections": {
+              "pair": "/api/pairs/76-151"
+            }
+          },
+          {
+            "id": 151,
+            "self": "/api/players/151",
+            "name": "David Gala",
+            "short_name": "Gala",
+            "nationality": "ES",
+            "side": "backhand",
+            "photo_url": "https://media.padelapi.org/player-api/david-gala.webp",
+            "connections": {
+              "pair": "/api/pairs/76-151"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-11-22T06:10:12+01:00",
+      "connections": {
+        "tournament": "/api/tournaments/787",
+        "headtohead": "/api/matches/14977/headtohead",
+        "stats": "/api/matches/14977/stats",
+        "live": "/api/matches/14977/live",
+        "prev": "/api/matches/15008"
+      }
+    },
+    {
+      "id": 15008,
+      "self": "/api/matches/15008",
+      "name": "Osoro/Jensen - Castello/Rodriguez",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 1,
+      "round_name": "Finals",
+      "index": 0,
+      "seeds": {
+        "team_1": "1",
+        "team_2": "6"
+      },
+      "played_at": "2026-11-21",
+      "schedule_label": "Starting at 7:00 PM",
+      "scheduled_at": "2026-11-22T02:00:00+01:00",
+      "scheduled_at_local": "2026-11-21T19:00:00-06:00",
+      "court": "Center Court",
+      "court_order": 1,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "1",
+          "team_2": "6"
+        },
+        {
+          "team_1": "7",
+          "team_2": "5"
+        },
+        {
+          "team_1": "7",
+          "team_2": "5"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 406,
+            "self": "/api/players/406",
+            "name": "Aranzazu Osoro Ulrich",
+            "short_name": "Osoro",
+            "nationality": "AR",
+            "side": "drive",
+            "photo_url": "https://media.padelapi.org/player-api/aranzazu-osoro-ulrich.webp",
+            "connections": {
+              "pair": "/api/pairs/406-399"
+            }
+          },
+          {
+            "id": 399,
+            "self": "/api/players/399",
+            "name": "Claudia Jensen",
+            "short_name": "Jensen",
+            "nationality": "AR",
+            "side": "drive",
+            "photo_url": "https://media.padelapi.org/player-api/claudia-jensen.webp",
+            "connections": {
+              "pair": "/api/pairs/406-399"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 416,
+            "self": "/api/players/416",
+            "name": "Jessica Castello Lopez",
+            "short_name": "Castello",
+            "nationality": "ES",
+            "side": "backhand",
+            "photo_url": "https://media.padelapi.org/player-api/jessica-castello-lopez.webp",
+            "connections": {
+              "pair": "/api/pairs/416-426"
+            }
+          },
+          {
+            "id": 426,
+            "self": "/api/players/426",
+            "name": "Maria Eulalia Rodriguez Abajo",
+            "short_name": "Rodriguez",
+            "nationality": "ES",
+            "side": "drive",
+            "photo_url": "https://media.padelapi.org/player-api/maria-eulalia-rodriguez-abajo.webp",
+            "connections": {
+              "pair": "/api/pairs/416-426"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-11-22T04:58:30+01:00",
+      "connections": {
+        "tournament": "/api/tournaments/787",
+        "headtohead": "/api/matches/15008/headtohead",
+        "stats": "/api/matches/15008/stats",
+        "live": "/api/matches/15008/live",
+        "next": "/api/matches/14977"
+      }
+    },
+    {
+      "id": 14975,
+      "self": "/api/matches/14975",
+      "name": "Gutierrez/Sanchez - Alonso/Goñi",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 2,
+      "round_name": "Semifinals",
+      "index": 0,
+      "seeds": {
+        "team_1": null,
+        "team_2": "5"
+      },
+      "played_at": "2026-11-20",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Center Court",
+      "court_order": 3,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "3",
+          "team_2": "6"
+        },
+        {
+          "team_1": "4",
+          "team_2": "6"
+        }
+      ],
+      "winner": "team_2",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 96,
+            "self": "/api/players/96",
+            "name": "Sanyo Gutierrez",
+            "short_name": "Gutierrez",
+            "nationality": "AR",
+            "side": "drive",
+            "photo_url": "https://media.padelapi.org/player-api/sanyo-gutierrez.webp",
+            "connections": {
+              "pair": "/api/pairs/96-252"
+            }
+          },
+          {
+            "id": 252,
+            "self": "/api/players/252",
+            "name": "Maxi Sanchez Blasco",
+            "short_name": "Sanchez",
+            "nationality": "AR",
+            "side": "backhand",
+            "photo_url": "https://media.padelapi.org/player-api/maxi-sanchez-blasco.webp",
+            "connections": {
+              "pair": "/api/pairs/96-252"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 101,
+            "self": "/api/players/101",
+            "name": "Edu Alonso",
+            "short_name": "Alonso",
+            "nationality": "ES",
+            "side": "drive",
+            "photo_url": "https://media.padelapi.org/player-api/edu-alonso.webp",
+            "connections": {
+              "pair": "/api/pairs/101-465"
+            }
+          },
+          {
+            "id": 465,
+            "self": "/api/players/465",
+            "name": "Aimar Goñi",
+            "short_name": "Goñi",
+            "nationality": "ES",
+            "side": "backhand",
+            "photo_url": "https://media.padelapi.org/player-api/aimar-goni.webp",
+            "connections": {
+              "pair": "/api/pairs/101-465"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-11-21T06:18:07+01:00",
+      "connections": {
+        "tournament": "/api/tournaments/787",
+        "headtohead": "/api/matches/14975/headtohead",
+        "stats": "/api/matches/14975/stats",
+        "live": "/api/matches/14975/live",
+        "prev": "/api/matches/14976"
+      }
+    },
+    {
+      "id": 14976,
+      "self": "/api/matches/14976",
+      "name": "Bergamini/Gala - Leal/Guerrero",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 2,
+      "round_name": "Semifinals",
+      "index": 1,
+      "seeds": {
+        "team_1": "7",
+        "team_2": "2"
+      },
+      "played_at": "2026-11-20",
+      "schedule_label": "Not before 7:00 PM",
+      "scheduled_at": "2026-11-21T02:00:00+01:00",
+      "scheduled_at_local": "2026-11-20T19:00:00-06:00",
+      "court": "Center Court",
+      "court_order": 2,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "1",
+          "team_2": "6"
+        },
+        {
+          "team_1": "7",
+          "team_2": "6"
+        },
+        {
+          "team_1": "6",
+          "team_2": "4"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 76,
+            "self": "/api/players/76",
+            "name": "Lucas Bergamini",
+            "short_name": "Bergamini",
+            "nationality": "BR",
+            "side": "drive",
+            "photo_url": "https://media.padelapi.org/player-api/lucas-bergamini.webp",
+            "connections": {
+              "pair": "/api/pairs/76-151"
+            }
+          },
+          {
+            "id": 151,
+            "self": "/api/players/151",
+            "name": "David Gala",
+            "short_name": "Gala",
+            "nationality": "ES",
+            "side": "backhand",
+            "photo_url": "https://media.padelapi.org/player-api/david-gala.webp",
+            "connections": {
+              "pair": "/api/pairs/76-151"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 95,
+            "self": "/api/players/95",
+            "name": "Javier Leal",
+            "short_name": "Leal",
+            "nationality": "ES",
+            "side": "backhand",
+            "photo_url": "https://media.padelapi.org/player-api/javier-leal.webp",
+            "connections": {
+              "pair": "/api/pairs/95-82"
+            }
+          },
+          {
+            "id": 82,
+            "self": "/api/players/82",
+            "name": "Francisco Guerrero",
+            "short_name": "Guerrero",
+            "nationality": "ES",
+            "side": "drive",
+            "photo_url": "https://media.padelapi.org/player-api/francisco-guerrero.webp",
+            "connections": {
+              "pair": "/api/pairs/95-82"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-11-21T06:12:07+01:00",
+      "connections": {
+        "tournament": "/api/tournaments/787",
+        "headtohead": "/api/matches/14976/headtohead",
+        "stats": "/api/matches/14976/stats",
+        "live": "/api/matches/14976/live",
+        "prev": "/api/matches/15006",
+        "next": "/api/matches/14975"
+      }
+    },
+    {
+      "id": 15006,
+      "self": "/api/matches/15006",
+      "name": "Osoro/Jensen - Virseda/Rufo",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 2,
+      "round_name": "Semifinals",
+      "index": 0,
+      "seeds": {
+        "team_1": "1",
+        "team_2": "4"
+      },
+      "played_at": "2026-11-20",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Center Court",
+      "court_order": 1,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "3"
+        },
+        {
+          "team_1": "6",
+          "team_2": "3"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 406,
+            "self": "/api/players/406",
+            "name": "Aranzazu Osoro Ulrich",
+            "short_name": "Osoro",
+            "nationality": "AR",
+            "side": "drive",
+            "photo_url": "https://media.padelapi.org/player-api/aranzazu-osoro-ulrich.webp",
+            "connections": {
+              "pair": "/api/pairs/406-399"
+            }
+          },
+          {
+            "id": 399,
+            "self": "/api/players/399",
+            "name": "Claudia Jensen",
+            "short_name": "Jensen",
+            "nationality": "AR",
+            "side": "drive",
+            "photo_url": "https://media.padelapi.org/player-api/claudia-jensen.webp",
+            "connections": {
+              "pair": "/api/pairs/406-399"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 497,
+            "self": "/api/players/497",
+            "name": "Veronica Virseda",
+            "short_name": "Virseda",
+            "nationality": "ES",
+            "side": "backhand",
+            "photo_url": "https://media.padelapi.org/player-api/veronica-virseda.webp",
+            "connections": {
+              "pair": "/api/pairs/497-417"
+            }
+          },
+          {
+            "id": 417,
+            "self": "/api/players/417",
+            "name": "Lorena Rufo Ortiz",
+            "short_name": "Rufo",
+            "nationality": "ES",
+            "side": "drive",
+            "photo_url": "https://media.padelapi.org/player-api/lorena-rufo-ortiz.webp",
+            "connections": {
+              "pair": "/api/pairs/497-417"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-11-21T02:25:15+01:00",
+      "connections": {
+        "tournament": "/api/tournaments/787",
+        "headtohead": "/api/matches/15006/headtohead",
+        "stats": "/api/matches/15006/stats",
+        "live": "/api/matches/15006/live",
+        "next": "/api/matches/14976"
+      }
+    },
+    {
+      "id": 15007,
+      "self": "/api/matches/15007",
+      "name": "Rodriguez/Dal Pozzo - Castello/Rodriguez",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 2,
+      "round_name": "Semifinals",
+      "index": 1,
+      "seeds": {
+        "team_1": "5",
+        "team_2": "6"
+      },
+      "played_at": "2026-11-20",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Center Court",
+      "court_order": null,
+      "status": "walkover",
+      "score": null,
+      "winner": "team_2",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 457,
+            "self": "/api/players/457",
+            "name": "Nuria Rodriguez",
+            "short_name": "Rodriguez",
+            "nationality": "ES",
+            "side": "backhand",
+            "photo_url": "https://media.padelapi.org/player-api/nuria-rodriguez.webp",
+            "connections": {
+              "pair": "/api/pairs/457-489"
+            }
+          },
+          {
+            "id": 489,
+            "self": "/api/players/489",
+            "name": "Giulia Dal Pozzo",
+            "short_name": "Dal Pozzo",
+            "nationality": "IT",
+            "side": "drive",
+            "photo_url": "https://media.padelapi.org/player-api/giulia-dal-pozzo.webp",
+            "connections": {
+              "pair": "/api/pairs/457-489"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 416,
+            "self": "/api/players/416",
+            "name": "Jessica Castello Lopez",
+            "short_name": "Castello",
+            "nationality": "ES",
+            "side": "backhand",
+            "photo_url": "https://media.padelapi.org/player-api/jessica-castello-lopez.webp",
+            "connections": {
+              "pair": "/api/pairs/416-426"
+            }
+          },
+          {
+            "id": 426,
+            "self": "/api/players/426",
+            "name": "Maria Eulalia Rodriguez Abajo",
+            "short_name": "Rodriguez",
+            "nationality": "ES",
+            "side": "drive",
+            "photo_url": "https://media.padelapi.org/player-api/maria-eulalia-rodriguez-abajo.webp",
+            "connections": {
+              "pair": "/api/pairs/416-426"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-11-21T01:55:22+01:00",
+      "connections": {
+        "tournament": "/api/tournaments/787",
+        "headtohead": "/api/matches/15007/headtohead",
+        "stats": "/api/matches/15007/stats",
+        "live": "/api/matches/15007/live"
+      }
+    },
+    {
+      "id": 14971,
+      "self": "/api/matches/14971",
+      "name": "Nieto/Yanguas - Gutierrez/Sanchez",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 4,
+      "round_name": "Quarter",
+      "index": 0,
+      "seeds": {
+        "team_1": "1",
+        "team_2": null
+      },
+      "played_at": "2026-11-19",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Center Court",
+      "court_order": 4,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "2",
+          "team_2": "6"
+        },
+        {
+          "team_1": "6",
+          "team_2": "7"
+        }
+      ],
+      "winner": "team_2",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 90,
+            "self": "/api/players/90",
+            "name": "Jorge Nieto",
+            "short_name": "Nieto",
+            "nationality": "ES",
+            "side": "backhand",
+            "photo_url": "https://media.padelapi.org/player-api/jorge-nieto.webp",
+            "connections": {
+              "pair": "/api/pairs/90-89"
+            }
+          },
+          {
+            "id": 89,
+            "self": "/api/players/89",
+            "name": "Miguel Yanguas",
+            "short_name": "Yanguas",
+            "nationality": "ES",
+            "side": "drive",
+            "photo_url": "https://media.padelapi.org/player-api/miguel-yanguas.webp",
+            "connections": {
+              "pair": "/api/pairs/90-89"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 96,
+            "self": "/api/players/96",
+            "name": "Sanyo Gutierrez",
+            "short_name": "Gutierrez",
+            "nationality": "AR",
+            "side": "drive",
+            "photo_url": "https://media.padelapi.org/player-api/sanyo-gutierrez.webp",
+            "connections": {
+              "pair": "/api/pairs/96-252"
+            }
+          },
+          {
+            "id": 252,
+            "self": "/api/players/252",
+            "name": "Maxi Sanchez Blasco",
+            "short_name": "Sanchez",
+            "nationality": "AR",
+            "side": "backhand",
+            "photo_url": "https://media.padelapi.org/player-api/maxi-sanchez-blasco.webp",
+            "connections": {
+              "pair": "/api/pairs/96-252"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-11-20T05:35:45+01:00",
+      "connections": {
+        "tournament": "/api/tournaments/787",
+        "headtohead": "/api/matches/14971/headtohead",
+        "stats": "/api/matches/14971/stats",
+        "live": "/api/matches/14971/live",
+        "prev": "/api/matches/14974"
+      }
+    },
+    {
+      "id": 14972,
+      "self": "/api/matches/14972",
+      "name": "Alonso/Goñi - Tello/Arce",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 4,
+      "round_name": "Quarter",
+      "index": 1,
+      "seeds": {
+        "team_1": "5",
+        "team_2": "4"
+      },
+      "played_at": "2026-11-19",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Court 2",
+      "court_order": 4,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "5",
+          "team_2": "7"
+        },
+        {
+          "team_1": "6",
+          "team_2": "3"
+        },
+        {
+          "team_1": "6",
+          "team_2": "2"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 101,
+            "self": "/api/players/101",
+            "name": "Edu Alonso",
+            "short_name": "Alonso",
+            "nationality": "ES",
+            "side": "drive",
+            "photo_url": "https://media.padelapi.org/player-api/edu-alonso.webp",
+            "connections": {
+              "pair": "/api/pairs/101-465"
+            }
+          },
+          {
+            "id": 465,
+            "self": "/api/players/465",
+            "name": "Aimar Goñi",
+            "short_name": "Goñi",
+            "nationality": "ES",
+            "side": "backhand",
+            "photo_url": "https://media.padelapi.org/player-api/aimar-goni.webp",
+            "connections": {
+              "pair": "/api/pairs/101-465"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 94,
+            "self": "/api/players/94",
+            "name": "Juan Tello",
+            "short_name": "Tello",
+            "nationality": "AR",
+            "side": "backhand",
+            "photo_url": "https://media.padelapi.org/player-api/juan-tello.webp",
+            "connections": {
+              "pair": "/api/pairs/94-452"
+            }
+          },
+          {
+            "id": 452,
+            "self": "/api/players/452",
+            "name": "Maximiliano Arce",
+            "short_name": "Arce",
+            "nationality": "AR",
+            "side": "drive",
+            "photo_url": "https://media.padelapi.org/player-api/maximiliano-arce.webp",
+            "connections": {
+              "pair": "/api/pairs/94-452"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-11-20T05:35:45+01:00",
+      "connections": {
+        "tournament": "/api/tournaments/787",
+        "headtohead": "/api/matches/14972/headtohead",
+        "stats": "/api/matches/14972/stats",
+        "live": "/api/matches/14972/live",
+        "prev": "/api/matches/14973"
+      }
+    },
+    {
+      "id": 14973,
+      "self": "/api/matches/14973",
+      "name": "Gonzalez/Campagnolo - Bergamini/Gala",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 4,
+      "round_name": "Quarter",
+      "index": 2,
+      "seeds": {
+        "team_1": "3",
+        "team_2": "7"
+      },
+      "played_at": "2026-11-19",
+      "schedule_label": "Not before 7:00 PM",
+      "scheduled_at": "2026-11-20T02:00:00+01:00",
+      "scheduled_at_local": "2026-11-19T19:00:00-06:00",
+      "court": "Court 2",
+      "court_order": 3,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "3",
+          "team_2": "6"
+        },
+        {
+          "team_1": "5",
+          "team_2": "7"
+        }
+      ],
+      "winner": "team_2",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 78,
+            "self": "/api/players/78",
+            "name": "Momo Gonzalez",
+            "short_name": "Gonzalez",
+            "nationality": "ES",
+            "side": "backhand",
+            "photo_url": "https://media.padelapi.org/player-api/momo-gonzalez.webp",
+            "connections": {
+              "pair": "/api/pairs/78-72"
+            }
+          },
+          {
+            "id": 72,
+            "self": "/api/players/72",
+            "name": "Lucas Campagnolo",
+            "short_name": "Campagnolo",
+            "nationality": "BR",
+            "side": "drive",
+            "photo_url": "https://media.padelapi.org/player-api/lucas-campagnolo.webp",
+            "connections": {
+              "pair": "/api/pairs/78-72"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 76,
+            "self": "/api/players/76",
+            "name": "Lucas Bergamini",
+            "short_name": "Bergamini",
+            "nationality": "BR",
+            "side": "drive",
+            "photo_url": "https://media.padelapi.org/player-api/lucas-bergamini.webp",
+            "connections": {
+              "pair": "/api/pairs/76-151"
+            }
+          },
+          {
+            "id": 151,
+            "self": "/api/players/151",
+            "name": "David Gala",
+            "short_name": "Gala",
+            "nationality": "ES",
+            "side": "backhand",
+            "photo_url": "https://media.padelapi.org/player-api/david-gala.webp",
+            "connections": {
+              "pair": "/api/pairs/76-151"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-11-20T04:16:11+01:00",
+      "connections": {
+        "tournament": "/api/tournaments/787",
+        "headtohead": "/api/matches/14973/headtohead",
+        "stats": "/api/matches/14973/stats",
+        "live": "/api/matches/14973/live",
+        "prev": "/api/matches/15003",
+        "next": "/api/matches/14972"
+      }
+    },
+    {
+      "id": 14974,
+      "self": "/api/matches/14974",
+      "name": "Libaak/Alfonso - Leal/Guerrero",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 4,
+      "round_name": "Quarter",
+      "index": 3,
+      "seeds": {
+        "team_1": "6",
+        "team_2": "2"
+      },
+      "played_at": "2026-11-19",
+      "schedule_label": "Not before 7:00 PM",
+      "scheduled_at": "2026-11-20T02:00:00+01:00",
+      "scheduled_at_local": "2026-11-19T19:00:00-06:00",
+      "court": "Center Court",
+      "court_order": 3,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "4",
+          "team_2": "6"
+        },
+        {
+          "team_1": "4",
+          "team_2": "6"
+        }
+      ],
+      "winner": "team_2",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 93,
+            "self": "/api/players/93",
+            "name": "Tino Libaak",
+            "short_name": "Libaak",
+            "nationality": "AR",
+            "side": "drive",
+            "photo_url": "https://media.padelapi.org/player-api/tino-libaak.webp",
+            "connections": {
+              "pair": "/api/pairs/93-18"
+            }
+          },
+          {
+            "id": 18,
+            "self": "/api/players/18",
+            "name": "Gonzalo Alfonso",
+            "short_name": "Alfonso",
+            "nationality": "AR",
+            "side": "backhand",
+            "photo_url": "https://media.padelapi.org/player-api/gonzalo-alfonso.webp",
+            "connections": {
+              "pair": "/api/pairs/93-18"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 95,
+            "self": "/api/players/95",
+            "name": "Javier Leal",
+            "short_name": "Leal",
+            "nationality": "ES",
+            "side": "backhand",
+            "photo_url": "https://media.padelapi.org/player-api/javier-leal.webp",
+            "connections": {
+              "pair": "/api/pairs/95-82"
+            }
+          },
+          {
+            "id": 82,
+            "self": "/api/players/82",
+            "name": "Francisco Guerrero",
+            "short_name": "Guerrero",
+            "nationality": "ES",
+            "side": "drive",
+            "photo_url": "https://media.padelapi.org/player-api/francisco-guerrero.webp",
+            "connections": {
+              "pair": "/api/pairs/95-82"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-11-20T04:16:19+01:00",
+      "connections": {
+        "tournament": "/api/tournaments/787",
+        "headtohead": "/api/matches/14974/headtohead",
+        "stats": "/api/matches/14974/stats",
+        "live": "/api/matches/14974/live",
+        "prev": "/api/matches/15002",
+        "next": "/api/matches/14971"
+      }
+    },
+    {
+      "id": 15002,
+      "self": "/api/matches/15002",
+      "name": "Osoro/Jensen - Aguilar/Escacena",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 4,
+      "round_name": "Quarter",
+      "index": 0,
+      "seeds": {
+        "team_1": "1",
+        "team_2": "7"
+      },
+      "played_at": "2026-11-19",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Center Court",
+      "court_order": 2,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "4"
+        },
+        {
+          "team_1": "6",
+          "team_2": "1"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 406,
+            "self": "/api/players/406",
+            "name": "Aranzazu Osoro Ulrich",
+            "short_name": "Osoro",
+            "nationality": "AR",
+            "side": "drive",
+            "photo_url": "https://media.padelapi.org/player-api/aranzazu-osoro-ulrich.webp",
+            "connections": {
+              "pair": "/api/pairs/406-399"
+            }
+          },
+          {
+            "id": 399,
+            "self": "/api/players/399",
+            "name": "Claudia Jensen",
+            "short_name": "Jensen",
+            "nationality": "AR",
+            "side": "drive",
+            "photo_url": "https://media.padelapi.org/player-api/claudia-jensen.webp",
+            "connections": {
+              "pair": "/api/pairs/406-399"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 462,
+            "self": "/api/players/462",
+            "name": "Noemi Aguilar Carrillo",
+            "short_name": "Aguilar",
+            "nationality": "ES",
+            "side": "backhand",
+            "photo_url": "https://media.padelapi.org/player-api/noemi-aguilar-carrillo.webp",
+            "connections": {
+              "pair": "/api/pairs/462-661"
+            }
+          },
+          {
+            "id": 661,
+            "self": "/api/players/661",
+            "name": "Claudia Escacena Montero",
+            "short_name": "Escacena",
+            "nationality": "ES",
+            "side": "backhand",
+            "photo_url": null,
+            "connections": {
+              "pair": "/api/pairs/462-661"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-11-20T06:00:10+01:00",
+      "connections": {
+        "tournament": "/api/tournaments/787",
+        "headtohead": "/api/matches/15002/headtohead",
+        "stats": "/api/matches/15002/stats",
+        "live": "/api/matches/15002/live",
+        "prev": "/api/matches/15005",
+        "next": "/api/matches/14974"
+      }
+    },
+    {
+      "id": 15003,
+      "self": "/api/matches/15003",
+      "name": "Carrascosa/Fernandez - Rufo/Virseda",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 4,
+      "round_name": "Quarter",
+      "index": 1,
+      "seeds": {
+        "team_1": null,
+        "team_2": "4"
+      },
+      "played_at": "2026-11-19",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Court 2",
+      "court_order": 2,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "2",
+          "team_2": "6"
+        },
+        {
+          "team_1": "4",
+          "team_2": "6"
+        }
+      ],
+      "winner": "team_2",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 1621,
+            "self": "/api/players/1621",
+            "name": "Cristina Carrascosa Cazorla",
+            "short_name": "Carrascosa",
+            "nationality": "ES",
+            "side": "drive",
+            "photo_url": null,
+            "connections": {
+              "pair": "/api/pairs/1621-806"
+            }
+          },
+          {
+            "id": 806,
+            "self": "/api/players/806",
+            "name": "Marisol Fernandez Garcia",
+            "short_name": "Fernandez",
+            "nationality": "ES",
+            "side": "backhand",
+            "photo_url": null,
+            "connections": {
+              "pair": "/api/pairs/1621-806"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 417,
+            "self": "/api/players/417",
+            "name": "Lorena Rufo Ortiz",
+            "short_name": "Rufo",
+            "nationality": "ES",
+            "side": "drive",
+            "photo_url": "https://media.padelapi.org/player-api/lorena-rufo-ortiz.webp",
+            "connections": {
+              "pair": "/api/pairs/417-497"
+            }
+          },
+          {
+            "id": 497,
+            "self": "/api/players/497",
+            "name": "Veronica Virseda",
+            "short_name": "Virseda",
+            "nationality": "ES",
+            "side": "backhand",
+            "photo_url": "https://media.padelapi.org/player-api/veronica-virseda.webp",
+            "connections": {
+              "pair": "/api/pairs/417-497"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-11-20T01:50:11+01:00",
+      "connections": {
+        "tournament": "/api/tournaments/787",
+        "headtohead": "/api/matches/15003/headtohead",
+        "stats": "/api/matches/15003/stats",
+        "live": "/api/matches/15003/live",
+        "prev": "/api/matches/15004",
+        "next": "/api/matches/14973"
+      }
+    },
+    {
+      "id": 15004,
+      "self": "/api/matches/15004",
+      "name": "Caldera/Goenaga - Rodriguez/Dal Pozzo",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 4,
+      "round_name": "Quarter",
+      "index": 2,
+      "seeds": {
+        "team_1": "3",
+        "team_2": "5"
+      },
+      "played_at": "2026-11-19",
+      "schedule_label": "Starting at 4:00 PM",
+      "scheduled_at": "2026-11-19T23:00:00+01:00",
+      "scheduled_at_local": "2026-11-19T16:00:00-06:00",
+      "court": "Court 2",
+      "court_order": 1,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "2",
+          "team_2": "6"
+        },
+        {
+          "team_1": "4",
+          "team_2": "6"
+        }
+      ],
+      "winner": "team_2",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 394,
+            "self": "/api/players/394",
+            "name": "Beatriz Caldera Sanchez",
+            "short_name": "Caldera",
+            "nationality": "ES",
+            "side": "drive",
+            "photo_url": "https://media.padelapi.org/player-api/beatriz-caldera-sanchez.webp",
+            "connections": {
+              "pair": "/api/pairs/394-395"
+            }
+          },
+          {
+            "id": 395,
+            "self": "/api/players/395",
+            "name": "Carmen Goenaga Garcia",
+            "short_name": "Goenaga",
+            "nationality": "ES",
+            "side": "backhand",
+            "photo_url": "https://media.padelapi.org/player-api/carmen-goenaga-garcia.webp",
+            "connections": {
+              "pair": "/api/pairs/394-395"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 457,
+            "self": "/api/players/457",
+            "name": "Nuria Rodriguez",
+            "short_name": "Rodriguez",
+            "nationality": "ES",
+            "side": "backhand",
+            "photo_url": "https://media.padelapi.org/player-api/nuria-rodriguez.webp",
+            "connections": {
+              "pair": "/api/pairs/457-489"
+            }
+          },
+          {
+            "id": 489,
+            "self": "/api/players/489",
+            "name": "Giulia Dal Pozzo",
+            "short_name": "Dal Pozzo",
+            "nationality": "IT",
+            "side": "drive",
+            "photo_url": "https://media.padelapi.org/player-api/giulia-dal-pozzo.webp",
+            "connections": {
+              "pair": "/api/pairs/457-489"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-11-20T00:36:03+01:00",
+      "connections": {
+        "tournament": "/api/tournaments/787",
+        "headtohead": "/api/matches/15004/headtohead",
+        "stats": "/api/matches/15004/stats",
+        "live": "/api/matches/15004/live",
+        "next": "/api/matches/15003"
+      }
+    },
+    {
+      "id": 15005,
+      "self": "/api/matches/15005",
+      "name": "Rodriguez/Castello - Guinart/Alonso",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 4,
+      "round_name": "Quarter",
+      "index": 3,
+      "seeds": {
+        "team_1": "6",
+        "team_2": "2"
+      },
+      "played_at": "2026-11-19",
+      "schedule_label": "Starting at 4:00 PM",
+      "scheduled_at": "2026-11-19T23:00:00+01:00",
+      "scheduled_at_local": "2026-11-19T16:00:00-06:00",
+      "court": "Center Court",
+      "court_order": 1,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "7"
+        },
+        {
+          "team_1": "7",
+          "team_2": "6"
+        },
+        {
+          "team_1": "6",
+          "team_2": "2"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 426,
+            "self": "/api/players/426",
+            "name": "Maria Eulalia Rodriguez Abajo",
+            "short_name": "Rodriguez",
+            "nationality": "ES",
+            "side": "drive",
+            "photo_url": "https://media.padelapi.org/player-api/maria-eulalia-rodriguez-abajo.webp",
+            "connections": {
+              "pair": "/api/pairs/426-416"
+            }
+          },
+          {
+            "id": 416,
+            "self": "/api/players/416",
+            "name": "Jessica Castello Lopez",
+            "short_name": "Castello",
+            "nationality": "ES",
+            "side": "backhand",
+            "photo_url": "https://media.padelapi.org/player-api/jessica-castello-lopez.webp",
+            "connections": {
+              "pair": "/api/pairs/426-416"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 429,
+            "self": "/api/players/429",
+            "name": "Marina Guinart",
+            "short_name": "Guinart",
+            "nationality": "ES",
+            "side": "drive",
+            "photo_url": "https://media.padelapi.org/player-api/marina-guinart-espana.webp",
+            "connections": {
+              "pair": "/api/pairs/429-398"
+            }
+          },
+          {
+            "id": 398,
+            "self": "/api/players/398",
+            "name": "Alejandra Alonso De Villa",
+            "short_name": "Alonso",
+            "nationality": "ES",
+            "side": "backhand",
+            "photo_url": "https://media.padelapi.org/player-api/alejandra-alonso-de-villa.webp",
+            "connections": {
+              "pair": "/api/pairs/429-398"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-11-20T01:22:12+01:00",
+      "connections": {
+        "tournament": "/api/tournaments/787",
+        "headtohead": "/api/matches/15005/headtohead",
+        "stats": "/api/matches/15005/stats",
+        "live": "/api/matches/15005/live",
+        "next": "/api/matches/15002"
+      }
+    },
+    {
+      "id": 14963,
+      "self": "/api/matches/14963",
+      "name": "Nieto/Yanguas - Rubini/Aguirre",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 8,
+      "round_name": "Round of 16",
+      "index": 0,
+      "seeds": {
+        "team_1": "1",
+        "team_2": null
+      },
+      "played_at": "2026-11-18",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Center Court",
+      "court_order": 6,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "7"
+        },
+        {
+          "team_1": "6",
+          "team_2": "3"
+        },
+        {
+          "team_1": "7",
+          "team_2": "6"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 90,
+            "self": "/api/players/90",
+            "name": "Jorge Nieto",
+            "short_name": "Nieto",
+            "nationality": "ES",
+            "side": "backhand",
+            "photo_url": "https://media.padelapi.org/player-api/jorge-nieto.webp",
+            "connections": {
+              "pair": "/api/pairs/90-89"
+            }
+          },
+          {
+            "id": 89,
+            "self": "/api/players/89",
+            "name": "Miguel Yanguas",
+            "short_name": "Yanguas",
+            "nationality": "ES",
+            "side": "drive",
+            "photo_url": "https://media.padelapi.org/player-api/miguel-yanguas.webp",
+            "connections": {
+              "pair": "/api/pairs/90-89"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 48,
+            "self": "/api/players/48",
+            "name": "Juan Ignacio Rubini",
+            "short_name": "Rubini",
+            "nationality": "AR",
+            "side": "drive",
+            "photo_url": "https://media.padelapi.org/player-api/juan-ignacio-rubini.webp",
+            "connections": {
+              "pair": "/api/pairs/48-17"
+            }
+          },
+          {
+            "id": 17,
+            "self": "/api/players/17",
+            "name": "Tolito Aguirre",
+            "short_name": "Aguirre",
+            "nationality": "AR",
+            "side": "drive",
+            "photo_url": "https://media.padelapi.org/player-api/tolito-aguirre.webp",
+            "connections": {
+              "pair": "/api/pairs/48-17"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-11-19T05:10:16+01:00",
+      "connections": {
+        "tournament": "/api/tournaments/787",
+        "headtohead": "/api/matches/14963/headtohead",
+        "stats": "/api/matches/14963/stats",
+        "live": "/api/matches/14963/live",
+        "prev": "/api/matches/14965"
+      }
+    },
+    {
+      "id": 14964,
+      "self": "/api/matches/14964",
+      "name": "Gutierrez/Sanchez - Valdes/Nuñez",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 8,
+      "round_name": "Round of 16",
+      "index": 1,
+      "seeds": {
+        "team_1": null,
+        "team_2": null
+      },
+      "played_at": "2026-11-18",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Court 2",
+      "court_order": 6,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "7",
+          "team_2": "5"
+        },
+        {
+          "team_1": "7",
+          "team_2": "6"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 96,
+            "self": "/api/players/96",
+            "name": "Sanyo Gutierrez",
+            "short_name": "Gutierrez",
+            "nationality": "AR",
+            "side": "drive",
+            "photo_url": "https://media.padelapi.org/player-api/sanyo-gutierrez.webp",
+            "connections": {
+              "pair": "/api/pairs/96-252"
+            }
+          },
+          {
+            "id": 252,
+            "self": "/api/players/252",
+            "name": "Maxi Sanchez Blasco",
+            "short_name": "Sanchez",
+            "nationality": "AR",
+            "side": "backhand",
+            "photo_url": "https://media.padelapi.org/player-api/maxi-sanchez-blasco.webp",
+            "connections": {
+              "pair": "/api/pairs/96-252"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 201,
+            "self": "/api/players/201",
+            "name": "Javier Valdes",
+            "short_name": "Valdes",
+            "nationality": "CL",
+            "side": "drive",
+            "photo_url": "https://media.padelapi.org/player-api/javier-valdes.webp",
+            "connections": {
+              "pair": "/api/pairs/201-382"
+            }
+          },
+          {
+            "id": 382,
+            "self": "/api/players/382",
+            "name": "Renzo Gabriel Nuñez",
+            "short_name": "Nuñez",
+            "nationality": "AR",
+            "side": "backhand",
+            "photo_url": null,
+            "connections": {
+              "pair": "/api/pairs/201-382"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-11-19T03:50:20+01:00",
+      "connections": {
+        "tournament": "/api/tournaments/787",
+        "headtohead": "/api/matches/14964/headtohead",
+        "stats": "/api/matches/14964/stats",
+        "live": "/api/matches/14964/live",
+        "prev": "/api/matches/14969"
+      }
+    },
+    {
+      "id": 14965,
+      "self": "/api/matches/14965",
+      "name": "Alonso/Goñi - Patiniotis/Roper",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 8,
+      "round_name": "Round of 16",
+      "index": 2,
+      "seeds": {
+        "team_1": "5",
+        "team_2": null
+      },
+      "played_at": "2026-11-18",
+      "schedule_label": "Not before 6:00 PM",
+      "scheduled_at": "2026-11-19T01:00:00+01:00",
+      "scheduled_at_local": "2026-11-18T18:00:00-06:00",
+      "court": "Center Court",
+      "court_order": 5,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "3"
+        },
+        {
+          "team_1": "6",
+          "team_2": "3"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 101,
+            "self": "/api/players/101",
+            "name": "Edu Alonso",
+            "short_name": "Alonso",
+            "nationality": "ES",
+            "side": "drive",
+            "photo_url": "https://media.padelapi.org/player-api/edu-alonso.webp",
+            "connections": {
+              "pair": "/api/pairs/101-465"
+            }
+          },
+          {
+            "id": 465,
+            "self": "/api/players/465",
+            "name": "Aimar Goñi",
+            "short_name": "Goñi",
+            "nationality": "ES",
+            "side": "backhand",
+            "photo_url": "https://media.padelapi.org/player-api/aimar-goni.webp",
+            "connections": {
+              "pair": "/api/pairs/101-465"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 150,
+            "self": "/api/players/150",
+            "name": "Aris Patiniotis",
+            "short_name": "Patiniotis",
+            "nationality": "IT",
+            "side": "drive",
+            "photo_url": "https://media.padelapi.org/player-api/aris-patiniotis.webp",
+            "connections": {
+              "pair": "/api/pairs/150-11"
+            }
+          },
+          {
+            "id": 11,
+            "self": "/api/players/11",
+            "name": "Thijs Roper",
+            "short_name": "Roper",
+            "nationality": "NL",
+            "side": "backhand",
+            "photo_url": null,
+            "connections": {
+              "pair": "/api/pairs/150-11"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-11-19T02:34:20+01:00",
+      "connections": {
+        "tournament": "/api/tournaments/787",
+        "headtohead": "/api/matches/14965/headtohead",
+        "stats": "/api/matches/14965/stats",
+        "live": "/api/matches/14965/live",
+        "prev": "/api/matches/14970",
+        "next": "/api/matches/14963"
+      }
+    },
+    {
+      "id": 14966,
+      "self": "/api/matches/14966",
+      "name": "Almada/Mambrini - Arce/Tello",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 8,
+      "round_name": "Round of 16",
+      "index": 3,
+      "seeds": {
+        "team_1": "Q",
+        "team_2": "4"
+      },
+      "played_at": "2026-11-18",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Court 3",
+      "court_order": 4,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "7"
+        },
+        {
+          "team_1": "3",
+          "team_2": "6"
+        }
+      ],
+      "winner": "team_2",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 9,
+            "self": "/api/players/9",
+            "name": "Oscar Matias Almada",
+            "short_name": "Almada",
+            "nationality": "AR",
+            "side": "drive",
+            "photo_url": null,
+            "connections": {
+              "pair": "/api/pairs/9-752"
+            }
+          },
+          {
+            "id": 752,
+            "self": "/api/players/752",
+            "name": "Lautaro Mambrini",
+            "short_name": "Mambrini",
+            "nationality": "AR",
+            "side": "drive",
+            "photo_url": null,
+            "connections": {
+              "pair": "/api/pairs/9-752"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 452,
+            "self": "/api/players/452",
+            "name": "Maximiliano Arce",
+            "short_name": "Arce",
+            "nationality": "AR",
+            "side": "drive",
+            "photo_url": "https://media.padelapi.org/player-api/maximiliano-arce.webp",
+            "connections": {
+              "pair": "/api/pairs/452-94"
+            }
+          },
+          {
+            "id": 94,
+            "self": "/api/players/94",
+            "name": "Juan Tello",
+            "short_name": "Tello",
+            "nationality": "AR",
+            "side": "backhand",
+            "photo_url": "https://media.padelapi.org/player-api/juan-tello.webp",
+            "connections": {
+              "pair": "/api/pairs/452-94"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-11-19T00:45:34+01:00",
+      "connections": {
+        "tournament": "/api/tournaments/787",
+        "headtohead": "/api/matches/14966/headtohead",
+        "stats": "/api/matches/14966/stats",
+        "live": "/api/matches/14966/live",
+        "prev": "/api/matches/14968"
+      }
+    },
+    {
+      "id": 14967,
+      "self": "/api/matches/14967",
+      "name": "Gonzalez/Campagnolo - Goenaga/Collado",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 8,
+      "round_name": "Round of 16",
+      "index": 4,
+      "seeds": {
+        "team_1": "3",
+        "team_2": null
+      },
+      "played_at": "2026-11-18",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Court 2",
+      "court_order": 4,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "2"
+        },
+        {
+          "team_1": "6",
+          "team_2": "3"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 78,
+            "self": "/api/players/78",
+            "name": "Momo Gonzalez",
+            "short_name": "Gonzalez",
+            "nationality": "ES",
+            "side": "backhand",
+            "photo_url": "https://media.padelapi.org/player-api/momo-gonzalez.webp",
+            "connections": {
+              "pair": "/api/pairs/78-72"
+            }
+          },
+          {
+            "id": 72,
+            "self": "/api/players/72",
+            "name": "Lucas Campagnolo",
+            "short_name": "Campagnolo",
+            "nationality": "BR",
+            "side": "drive",
+            "photo_url": "https://media.padelapi.org/player-api/lucas-campagnolo.webp",
+            "connections": {
+              "pair": "/api/pairs/78-72"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 163,
+            "self": "/api/players/163",
+            "name": "Enrique Goenaga",
+            "short_name": "Goenaga",
+            "nationality": "ES",
+            "side": "drive",
+            "photo_url": "https://media.padelapi.org/player-api/enrique-goenaga.webp",
+            "connections": {
+              "pair": "/api/pairs/163-210"
+            }
+          },
+          {
+            "id": 210,
+            "self": "/api/players/210",
+            "name": "Guillermo Collado",
+            "short_name": "Collado",
+            "nationality": "ES",
+            "side": "backhand",
+            "photo_url": "https://media.padelapi.org/player-api/guillermo-collado.webp",
+            "connections": {
+              "pair": "/api/pairs/163-210"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-11-18T22:02:10+01:00",
+      "connections": {
+        "tournament": "/api/tournaments/787",
+        "headtohead": "/api/matches/14967/headtohead",
+        "stats": "/api/matches/14967/stats",
+        "live": "/api/matches/14967/live",
+        "prev": "/api/matches/14995",
+        "next": "/api/matches/14969"
+      }
+    },
+    {
+      "id": 14968,
+      "self": "/api/matches/14968",
+      "name": "Calleja/Romera - Bergamini/Gala",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 8,
+      "round_name": "Round of 16",
+      "index": 5,
+      "seeds": {
+        "team_1": null,
+        "team_2": "7"
+      },
+      "played_at": "2026-11-18",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Court 3",
+      "court_order": 3,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "3",
+          "team_2": "6"
+        },
+        {
+          "team_1": "4",
+          "team_2": "6"
+        }
+      ],
+      "winner": "team_2",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 327,
+            "self": "/api/players/327",
+            "name": "Felipe Calleja",
+            "short_name": "Calleja",
+            "nationality": "AR",
+            "side": "drive",
+            "photo_url": null,
+            "connections": {
+              "pair": "/api/pairs/327-138"
+            }
+          },
+          {
+            "id": 138,
+            "self": "/api/players/138",
+            "name": "Jaume Romera Barcelo",
+            "short_name": "Romera",
+            "nationality": "ES",
+            "side": "backhand",
+            "photo_url": null,
+            "connections": {
+              "pair": "/api/pairs/327-138"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 76,
+            "self": "/api/players/76",
+            "name": "Lucas Bergamini",
+            "short_name": "Bergamini",
+            "nationality": "BR",
+            "side": "drive",
+            "photo_url": "https://media.padelapi.org/player-api/lucas-bergamini.webp",
+            "connections": {
+              "pair": "/api/pairs/76-151"
+            }
+          },
+          {
+            "id": 151,
+            "self": "/api/players/151",
+            "name": "David Gala",
+            "short_name": "Gala",
+            "nationality": "ES",
+            "side": "backhand",
+            "photo_url": "https://media.padelapi.org/player-api/david-gala.webp",
+            "connections": {
+              "pair": "/api/pairs/76-151"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-11-18T23:20:09+01:00",
+      "connections": {
+        "tournament": "/api/tournaments/787",
+        "headtohead": "/api/matches/14968/headtohead",
+        "stats": "/api/matches/14968/stats",
+        "live": "/api/matches/14968/live",
+        "prev": "/api/matches/14996",
+        "next": "/api/matches/14966"
+      }
+    },
+    {
+      "id": 14969,
+      "self": "/api/matches/14969",
+      "name": "Libaak/Alfonso - Belluati/Abud",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 8,
+      "round_name": "Round of 16",
+      "index": 6,
+      "seeds": {
+        "team_1": "6",
+        "team_2": null
+      },
+      "played_at": "2026-11-18",
+      "schedule_label": "Not before 6:00 PM",
+      "scheduled_at": "2026-11-19T01:00:00+01:00",
+      "scheduled_at_local": "2026-11-18T18:00:00-06:00",
+      "court": "Court 2",
+      "court_order": 5,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "3"
+        },
+        {
+          "team_1": "6",
+          "team_2": "2"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 93,
+            "self": "/api/players/93",
+            "name": "Tino Libaak",
+            "short_name": "Libaak",
+            "nationality": "AR",
+            "side": "drive",
+            "photo_url": "https://media.padelapi.org/player-api/tino-libaak.webp",
+            "connections": {
+              "pair": "/api/pairs/93-18"
+            }
+          },
+          {
+            "id": 18,
+            "self": "/api/players/18",
+            "name": "Gonzalo Alfonso",
+            "short_name": "Alfonso",
+            "nationality": "AR",
+            "side": "backhand",
+            "photo_url": "https://media.padelapi.org/player-api/gonzalo-alfonso.webp",
+            "connections": {
+              "pair": "/api/pairs/93-18"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 161,
+            "self": "/api/players/161",
+            "name": "Juan Cruz Belluati",
+            "short_name": "Belluati",
+            "nationality": "AR",
+            "side": "drive",
+            "photo_url": "https://media.padelapi.org/player-api/juan-cruz-belluati.webp",
+            "connections": {
+              "pair": "/api/pairs/161-212"
+            }
+          },
+          {
+            "id": 212,
+            "self": "/api/players/212",
+            "name": "Martin Abud",
+            "short_name": "Abud",
+            "nationality": "PY",
+            "side": "backhand",
+            "photo_url": "https://media.padelapi.org/player-api/martin-abud.webp",
+            "connections": {
+              "pair": "/api/pairs/161-212"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-11-19T02:34:22+01:00",
+      "connections": {
+        "tournament": "/api/tournaments/787",
+        "headtohead": "/api/matches/14969/headtohead",
+        "stats": "/api/matches/14969/stats",
+        "live": "/api/matches/14969/live",
+        "prev": "/api/matches/14967",
+        "next": "/api/matches/14964"
+      }
+    },
+    {
+      "id": 14970,
+      "self": "/api/matches/14970",
+      "name": "Dametto/Archieri - Leal/Guerrero",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 8,
+      "round_name": "Round of 16",
+      "index": 7,
+      "seeds": {
+        "team_1": null,
+        "team_2": "2"
+      },
+      "played_at": "2026-11-18",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Center Court",
+      "court_order": 4,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "1",
+          "team_2": "6"
+        },
+        {
+          "team_1": "6",
+          "team_2": "7"
+        }
+      ],
+      "winner": "team_2",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 379,
+            "self": "/api/players/379",
+            "name": "Juan Pablo Dametto",
+            "short_name": "Dametto",
+            "nationality": "AR",
+            "side": "backhand",
+            "photo_url": null,
+            "connections": {
+              "pair": "/api/pairs/379-1880"
+            }
+          },
+          {
+            "id": 1880,
+            "self": "/api/players/1880",
+            "name": "Ignacio Archieri",
+            "short_name": "Archieri",
+            "nationality": "AR",
+            "side": "drive",
+            "photo_url": null,
+            "connections": {
+              "pair": "/api/pairs/379-1880"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 95,
+            "self": "/api/players/95",
+            "name": "Javier Leal",
+            "short_name": "Leal",
+            "nationality": "ES",
+            "side": "backhand",
+            "photo_url": "https://media.padelapi.org/player-api/javier-leal.webp",
+            "connections": {
+              "pair": "/api/pairs/95-82"
+            }
+          },
+          {
+            "id": 82,
+            "self": "/api/players/82",
+            "name": "Francisco Guerrero",
+            "short_name": "Guerrero",
+            "nationality": "ES",
+            "side": "drive",
+            "photo_url": "https://media.padelapi.org/player-api/francisco-guerrero.webp",
+            "connections": {
+              "pair": "/api/pairs/95-82"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-11-18T22:36:04+01:00",
+      "connections": {
+        "tournament": "/api/tournaments/787",
+        "headtohead": "/api/matches/14970/headtohead",
+        "stats": "/api/matches/14970/stats",
+        "live": "/api/matches/14970/live",
+        "prev": "/api/matches/14994",
+        "next": "/api/matches/14965"
+      }
+    },
+    {
+      "id": 14994,
+      "self": "/api/matches/14994",
+      "name": "Osoro/Jensen - Peralta/Montoya",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 8,
+      "round_name": "Round of 16",
+      "index": 0,
+      "seeds": {
+        "team_1": "1",
+        "team_2": "WC"
+      },
+      "played_at": "2026-11-18",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Center Court",
+      "court_order": 3,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "0"
+        },
+        {
+          "team_1": "6",
+          "team_2": "1"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 406,
+            "self": "/api/players/406",
+            "name": "Aranzazu Osoro Ulrich",
+            "short_name": "Osoro",
+            "nationality": "AR",
+            "side": "drive",
+            "photo_url": "https://media.padelapi.org/player-api/aranzazu-osoro-ulrich.webp",
+            "connections": {
+              "pair": "/api/pairs/406-399"
+            }
+          },
+          {
+            "id": 399,
+            "self": "/api/players/399",
+            "name": "Claudia Jensen",
+            "short_name": "Jensen",
+            "nationality": "AR",
+            "side": "drive",
+            "photo_url": "https://media.padelapi.org/player-api/claudia-jensen.webp",
+            "connections": {
+              "pair": "/api/pairs/406-399"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 690,
+            "self": "/api/players/690",
+            "name": "Dafne Paola Peralta Sanchez",
+            "short_name": "Peralta",
+            "nationality": "MX",
+            "side": null,
+            "photo_url": null,
+            "connections": {
+              "pair": "/api/pairs/690-684"
+            }
+          },
+          {
+            "id": 684,
+            "self": "/api/players/684",
+            "name": "Maria Jose Montoya",
+            "short_name": "Montoya",
+            "nationality": "MX",
+            "side": "backhand",
+            "photo_url": null,
+            "connections": {
+              "pair": "/api/pairs/690-684"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-11-18T20:56:03+01:00",
+      "connections": {
+        "tournament": "/api/tournaments/787",
+        "headtohead": "/api/matches/14994/headtohead",
+        "stats": "/api/matches/14994/stats",
+        "live": "/api/matches/14994/live",
+        "prev": "/api/matches/15001",
+        "next": "/api/matches/14970"
+      }
+    },
+    {
+      "id": 14995,
+      "self": "/api/matches/14995",
+      "name": "Ciccardini/Albujar - Aguilar/Escacena",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 8,
+      "round_name": "Round of 16",
+      "index": 1,
+      "seeds": {
+        "team_1": null,
+        "team_2": "7"
+      },
+      "played_at": "2026-11-18",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Court 2",
+      "court_order": 3,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "1",
+          "team_2": "6"
+        },
+        {
+          "team_1": "0",
+          "team_2": "6"
+        }
+      ],
+      "winner": "team_2",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 3320,
+            "self": "/api/players/3320",
+            "name": "Emilia Ciccardini",
+            "short_name": "Ciccardini",
+            "nationality": "AR",
+            "side": null,
+            "photo_url": null,
+            "connections": {
+              "pair": "/api/pairs/3320-3319"
+            }
+          },
+          {
+            "id": 3319,
+            "self": "/api/players/3319",
+            "name": "Daniela Albujar",
+            "short_name": "Albujar",
+            "nationality": "PE",
+            "side": null,
+            "photo_url": null,
+            "connections": {
+              "pair": "/api/pairs/3320-3319"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 462,
+            "self": "/api/players/462",
+            "name": "Noemi Aguilar Carrillo",
+            "short_name": "Aguilar",
+            "nationality": "ES",
+            "side": "backhand",
+            "photo_url": "https://media.padelapi.org/player-api/noemi-aguilar-carrillo.webp",
+            "connections": {
+              "pair": "/api/pairs/462-661"
+            }
+          },
+          {
+            "id": 661,
+            "self": "/api/players/661",
+            "name": "Claudia Escacena Montero",
+            "short_name": "Escacena",
+            "nationality": "ES",
+            "side": "backhand",
+            "photo_url": null,
+            "connections": {
+              "pair": "/api/pairs/462-661"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-11-18T20:56:04+01:00",
+      "connections": {
+        "tournament": "/api/tournaments/787",
+        "headtohead": "/api/matches/14995/headtohead",
+        "stats": "/api/matches/14995/stats",
+        "live": "/api/matches/14995/live",
+        "prev": "/api/matches/14997",
+        "next": "/api/matches/14967"
+      }
+    },
+    {
+      "id": 14996,
+      "self": "/api/matches/14996",
+      "name": "Navarro/Lobo - Carrascosa/Fernandez",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 8,
+      "round_name": "Round of 16",
+      "index": 2,
+      "seeds": {
+        "team_1": "8",
+        "team_2": null
+      },
+      "played_at": "2026-11-18",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Court 3",
+      "court_order": 2,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "4",
+          "team_2": "6"
+        },
+        {
+          "team_1": "5",
+          "team_2": "7"
+        }
+      ],
+      "winner": "team_2",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 421,
+            "self": "/api/players/421",
+            "name": "Teresa Navarro Lopez-Barajas",
+            "short_name": "Navarro",
+            "nationality": "ES",
+            "side": "backhand",
+            "photo_url": "https://media.padelapi.org/player-api/teresa-navarro-lopez-barajas.webp",
+            "connections": {
+              "pair": "/api/pairs/421-456"
+            }
+          },
+          {
+            "id": 456,
+            "self": "/api/players/456",
+            "name": "Marina Lobo",
+            "short_name": "Lobo",
+            "nationality": "ES",
+            "side": "drive",
+            "photo_url": "https://media.padelapi.org/player-api/marina-lobo.webp",
+            "connections": {
+              "pair": "/api/pairs/421-456"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 1621,
+            "self": "/api/players/1621",
+            "name": "Cristina Carrascosa Cazorla",
+            "short_name": "Carrascosa",
+            "nationality": "ES",
+            "side": "drive",
+            "photo_url": null,
+            "connections": {
+              "pair": "/api/pairs/1621-806"
+            }
+          },
+          {
+            "id": 806,
+            "self": "/api/players/806",
+            "name": "Marisol Fernandez Garcia",
+            "short_name": "Fernandez",
+            "nationality": "ES",
+            "side": "backhand",
+            "photo_url": null,
+            "connections": {
+              "pair": "/api/pairs/1621-806"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-11-18T21:50:09+01:00",
+      "connections": {
+        "tournament": "/api/tournaments/787",
+        "headtohead": "/api/matches/14996/headtohead",
+        "stats": "/api/matches/14996/stats",
+        "live": "/api/matches/14996/live",
+        "prev": "/api/matches/15000",
+        "next": "/api/matches/14968"
+      }
+    },
+    {
+      "id": 14997,
+      "self": "/api/matches/14997",
+      "name": "Val Lopez/Bahurel - Rufo/Virseda",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 8,
+      "round_name": "Round of 16",
+      "index": 3,
+      "seeds": {
+        "team_1": null,
+        "team_2": "4"
+      },
+      "played_at": "2026-11-18",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Court 2",
+      "court_order": 2,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "2",
+          "team_2": "6"
+        },
+        {
+          "team_1": "4",
+          "team_2": "6"
+        }
+      ],
+      "winner": "team_2",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 553,
+            "self": "/api/players/553",
+            "name": "Ivet Val Lopez",
+            "short_name": "Val Lopez",
+            "nationality": "ES",
+            "side": "drive",
+            "photo_url": null,
+            "connections": {
+              "pair": "/api/pairs/553-476"
+            }
+          },
+          {
+            "id": 476,
+            "self": "/api/players/476",
+            "name": "Louise Bahurel",
+            "short_name": "Bahurel",
+            "nationality": "FR",
+            "side": "backhand",
+            "photo_url": null,
+            "connections": {
+              "pair": "/api/pairs/553-476"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 417,
+            "self": "/api/players/417",
+            "name": "Lorena Rufo Ortiz",
+            "short_name": "Rufo",
+            "nationality": "ES",
+            "side": "drive",
+            "photo_url": "https://media.padelapi.org/player-api/lorena-rufo-ortiz.webp",
+            "connections": {
+              "pair": "/api/pairs/417-497"
+            }
+          },
+          {
+            "id": 497,
+            "self": "/api/players/497",
+            "name": "Veronica Virseda",
+            "short_name": "Virseda",
+            "nationality": "ES",
+            "side": "backhand",
+            "photo_url": "https://media.padelapi.org/player-api/veronica-virseda.webp",
+            "connections": {
+              "pair": "/api/pairs/417-497"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-11-18T20:10:07+01:00",
+      "connections": {
+        "tournament": "/api/tournaments/787",
+        "headtohead": "/api/matches/14997/headtohead",
+        "stats": "/api/matches/14997/stats",
+        "live": "/api/matches/14997/live",
+        "prev": "/api/matches/14998",
+        "next": "/api/matches/14995"
+      }
+    },
+    {
+      "id": 14998,
+      "self": "/api/matches/14998",
+      "name": "Caldera/Goenaga - Vazquez/Gallardo",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 8,
+      "round_name": "Round of 16",
+      "index": 4,
+      "seeds": {
+        "team_1": "3",
+        "team_2": null
+      },
+      "played_at": "2026-11-18",
+      "schedule_label": "Starting at 11:00 AM",
+      "scheduled_at": "2026-11-18T18:00:00+01:00",
+      "scheduled_at_local": "2026-11-18T11:00:00-06:00",
+      "court": "Court 2",
+      "court_order": 1,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "0"
+        },
+        {
+          "team_1": "6",
+          "team_2": "2"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 394,
+            "self": "/api/players/394",
+            "name": "Beatriz Caldera Sanchez",
+            "short_name": "Caldera",
+            "nationality": "ES",
+            "side": "drive",
+            "photo_url": "https://media.padelapi.org/player-api/beatriz-caldera-sanchez.webp",
+            "connections": {
+              "pair": "/api/pairs/394-395"
+            }
+          },
+          {
+            "id": 395,
+            "self": "/api/players/395",
+            "name": "Carmen Goenaga Garcia",
+            "short_name": "Goenaga",
+            "nationality": "ES",
+            "side": "backhand",
+            "photo_url": "https://media.padelapi.org/player-api/carmen-goenaga-garcia.webp",
+            "connections": {
+              "pair": "/api/pairs/394-395"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 774,
+            "self": "/api/players/774",
+            "name": "Quetzali Dafne Vazquez Montesinos",
+            "short_name": "Vazquez",
+            "nationality": "MX",
+            "side": "backhand",
+            "photo_url": null,
+            "connections": {
+              "pair": "/api/pairs/774-679"
+            }
+          },
+          {
+            "id": 679,
+            "self": "/api/players/679",
+            "name": "Aranzazu Gallardo Muñoz",
+            "short_name": "Gallardo",
+            "nationality": "MX",
+            "side": null,
+            "photo_url": null,
+            "connections": {
+              "pair": "/api/pairs/774-679"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-11-18T18:51:04+01:00",
+      "connections": {
+        "tournament": "/api/tournaments/787",
+        "headtohead": "/api/matches/14998/headtohead",
+        "stats": "/api/matches/14998/stats",
+        "live": "/api/matches/14998/live",
+        "next": "/api/matches/14997"
+      }
+    },
+    {
+      "id": 14999,
+      "self": "/api/matches/14999",
+      "name": "Martinez/Giusti - Dal Pozzo/Rodriguez",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 8,
+      "round_name": "Round of 16",
+      "index": 5,
+      "seeds": {
+        "team_1": null,
+        "team_2": "5"
+      },
+      "played_at": "2026-11-18",
+      "schedule_label": "Starting at 11:00 AM",
+      "scheduled_at": "2026-11-18T18:00:00+01:00",
+      "scheduled_at_local": "2026-11-18T11:00:00-06:00",
+      "court": "Center Court",
+      "court_order": 1,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "2",
+          "team_2": "6"
+        },
+        {
+          "team_1": "1",
+          "team_2": "6"
+        }
+      ],
+      "winner": "team_2",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 704,
+            "self": "/api/players/704",
+            "name": "Renata Martinez Becerra",
+            "short_name": "Martinez",
+            "nationality": "MX",
+            "side": "backhand",
+            "photo_url": null,
+            "connections": {
+              "pair": "/api/pairs/704-2495"
+            }
+          },
+          {
+            "id": 2495,
+            "self": "/api/players/2495",
+            "name": "Julia Giusti Gomes",
+            "short_name": "Giusti",
+            "nationality": "BR",
+            "side": "drive",
+            "photo_url": null,
+            "connections": {
+              "pair": "/api/pairs/704-2495"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 489,
+            "self": "/api/players/489",
+            "name": "Giulia Dal Pozzo",
+            "short_name": "Dal Pozzo",
+            "nationality": "IT",
+            "side": "drive",
+            "photo_url": "https://media.padelapi.org/player-api/giulia-dal-pozzo.webp",
+            "connections": {
+              "pair": "/api/pairs/489-457"
+            }
+          },
+          {
+            "id": 457,
+            "self": "/api/players/457",
+            "name": "Nuria Rodriguez",
+            "short_name": "Rodriguez",
+            "nationality": "ES",
+            "side": "backhand",
+            "photo_url": "https://media.padelapi.org/player-api/nuria-rodriguez.webp",
+            "connections": {
+              "pair": "/api/pairs/489-457"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-11-18T19:00:26+01:00",
+      "connections": {
+        "tournament": "/api/tournaments/787",
+        "headtohead": "/api/matches/14999/headtohead",
+        "stats": "/api/matches/14999/stats",
+        "live": "/api/matches/14999/live",
+        "next": "/api/matches/15001"
+      }
+    },
+    {
+      "id": 15000,
+      "self": "/api/matches/15000",
+      "name": "Castello/Rodriguez - Martinez/Lopez",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 8,
+      "round_name": "Round of 16",
+      "index": 6,
+      "seeds": {
+        "team_1": "6",
+        "team_2": null
+      },
+      "played_at": "2026-11-18",
+      "schedule_label": "Starting at 11:00 AM",
+      "scheduled_at": "2026-11-18T18:00:00+01:00",
+      "scheduled_at_local": "2026-11-18T11:00:00-06:00",
+      "court": "Court 3",
+      "court_order": 1,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "3"
+        },
+        {
+          "team_1": "3",
+          "team_2": "6"
+        },
+        {
+          "team_1": "7",
+          "team_2": "6"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 416,
+            "self": "/api/players/416",
+            "name": "Jessica Castello Lopez",
+            "short_name": "Castello",
+            "nationality": "ES",
+            "side": "backhand",
+            "photo_url": "https://media.padelapi.org/player-api/jessica-castello-lopez.webp",
+            "connections": {
+              "pair": "/api/pairs/416-426"
+            }
+          },
+          {
+            "id": 426,
+            "self": "/api/players/426",
+            "name": "Maria Eulalia Rodriguez Abajo",
+            "short_name": "Rodriguez",
+            "nationality": "ES",
+            "side": "drive",
+            "photo_url": "https://media.padelapi.org/player-api/maria-eulalia-rodriguez-abajo.webp",
+            "connections": {
+              "pair": "/api/pairs/416-426"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 492,
+            "self": "/api/players/492",
+            "name": "Aida Martinez Sanjuan",
+            "short_name": "Martinez",
+            "nationality": "ES",
+            "side": "drive",
+            "photo_url": "https://media.padelapi.org/player-api/aida-martinez-sanjuan.webp",
+            "connections": {
+              "pair": "/api/pairs/492-481"
+            }
+          },
+          {
+            "id": 481,
+            "self": "/api/players/481",
+            "name": "Natividad Lopez Diaz",
+            "short_name": "Lopez",
+            "nationality": "ES",
+            "side": "backhand",
+            "photo_url": "https://media.padelapi.org/player-api/natividad-lopez-diaz.webp",
+            "connections": {
+              "pair": "/api/pairs/492-481"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-11-18T20:20:24+01:00",
+      "connections": {
+        "tournament": "/api/tournaments/787",
+        "headtohead": "/api/matches/15000/headtohead",
+        "stats": "/api/matches/15000/stats",
+        "live": "/api/matches/15000/live",
+        "next": "/api/matches/14996"
+      }
+    },
+    {
+      "id": 15001,
+      "self": "/api/matches/15001",
+      "name": "Paula/Holguín - Guinart/Alonso",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 8,
+      "round_name": "Round of 16",
+      "index": 7,
+      "seeds": {
+        "team_1": null,
+        "team_2": "2"
+      },
+      "played_at": "2026-11-18",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Center Court",
+      "court_order": 2,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "0",
+          "team_2": "6"
+        },
+        {
+          "team_1": "3",
+          "team_2": "6"
+        }
+      ],
+      "winner": "team_2",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 3316,
+            "self": "/api/players/3316",
+            "name": "Maria Paula Torres Draxl",
+            "short_name": "Paula",
+            "nationality": "PE",
+            "side": null,
+            "photo_url": null,
+            "connections": {
+              "pair": "/api/pairs/3316-3317"
+            }
+          },
+          {
+            "id": 3317,
+            "self": "/api/players/3317",
+            "name": "Marinés Holguín Reyes",
+            "short_name": "Holguín",
+            "nationality": "EC",
+            "side": null,
+            "photo_url": null,
+            "connections": {
+              "pair": "/api/pairs/3316-3317"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 429,
+            "self": "/api/players/429",
+            "name": "Marina Guinart",
+            "short_name": "Guinart",
+            "nationality": "ES",
+            "side": "drive",
+            "photo_url": "https://media.padelapi.org/player-api/marina-guinart-espana.webp",
+            "connections": {
+              "pair": "/api/pairs/429-398"
+            }
+          },
+          {
+            "id": 398,
+            "self": "/api/players/398",
+            "name": "Alejandra Alonso De Villa",
+            "short_name": "Alonso",
+            "nationality": "ES",
+            "side": "backhand",
+            "photo_url": "https://media.padelapi.org/player-api/alejandra-alonso-de-villa.webp",
+            "connections": {
+              "pair": "/api/pairs/429-398"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-11-18T20:10:08+01:00",
+      "connections": {
+        "tournament": "/api/tournaments/787",
+        "headtohead": "/api/matches/15001/headtohead",
+        "stats": "/api/matches/15001/stats",
+        "live": "/api/matches/15001/live",
+        "prev": "/api/matches/14999",
+        "next": "/api/matches/14994"
+      }
+    },
+    {
+      "id": 14948,
+      "self": "/api/matches/14948",
+      "name": "Rubini/Aguirre - Geens/Guichard",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 16,
+      "round_name": "Round of 32",
+      "index": 1,
+      "seeds": {
+        "team_1": null,
+        "team_2": null
+      },
+      "played_at": "2026-11-17",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Court 2",
+      "court_order": 6,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "4"
+        },
+        {
+          "team_1": "6(4)",
+          "team_2": "7"
+        },
+        {
+          "team_1": "6",
+          "team_2": "4"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 48,
+            "self": "/api/players/48",
+            "name": "Juan Ignacio Rubini",
+            "short_name": "Rubini",
+            "nationality": "AR",
+            "side": "drive",
+            "photo_url": "https://media.padelapi.org/player-api/juan-ignacio-rubini.webp",
+            "connections": {
+              "pair": "/api/pairs/48-17"
+            }
+          },
+          {
+            "id": 17,
+            "self": "/api/players/17",
+            "name": "Tolito Aguirre",
+            "short_name": "Aguirre",
+            "nationality": "AR",
+            "side": "drive",
+            "photo_url": "https://media.padelapi.org/player-api/tolito-aguirre.webp",
+            "connections": {
+              "pair": "/api/pairs/48-17"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 122,
+            "self": "/api/players/122",
+            "name": "Clement Geens",
+            "short_name": "Geens",
+            "nationality": "BE",
+            "side": "backhand",
+            "photo_url": "https://media.padelapi.org/player-api/clement-geens.webp",
+            "connections": {
+              "pair": "/api/pairs/122-281"
+            }
+          },
+          {
+            "id": 281,
+            "self": "/api/players/281",
+            "name": "Dylan Guichard",
+            "short_name": "Guichard",
+            "nationality": "FR",
+            "side": "drive",
+            "photo_url": "https://media.padelapi.org/player-api/dylan-guichard.webp",
+            "connections": {
+              "pair": "/api/pairs/122-281"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-11-18T04:56:03+01:00",
+      "connections": {
+        "tournament": "/api/tournaments/787",
+        "headtohead": "/api/matches/14948/headtohead",
+        "stats": "/api/matches/14948/stats",
+        "live": "/api/matches/14948/live",
+        "prev": "/api/matches/14959"
+      }
+    },
+    {
+      "id": 14949,
+      "self": "/api/matches/14949",
+      "name": "Padilla/Amora - Sanchez/Gutierrez",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 16,
+      "round_name": "Round of 32",
+      "index": 2,
+      "seeds": {
+        "team_1": "WC",
+        "team_2": null
+      },
+      "played_at": "2026-11-17",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Center Court",
+      "court_order": 6,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "3",
+          "team_2": "6"
+        },
+        {
+          "team_1": "3",
+          "team_2": "6"
+        }
+      ],
+      "winner": "team_2",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 143,
+            "self": "/api/players/143",
+            "name": "Jose Pablo Padilla",
+            "short_name": "Padilla",
+            "nationality": "MX",
+            "side": "backhand",
+            "photo_url": null,
+            "connections": {
+              "pair": "/api/pairs/143-368"
+            }
+          },
+          {
+            "id": 368,
+            "self": "/api/players/368",
+            "name": "Pablo Francisco Amora Hernandez",
+            "short_name": "Amora",
+            "nationality": "MX",
+            "side": "backhand",
+            "photo_url": null,
+            "connections": {
+              "pair": "/api/pairs/143-368"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 252,
+            "self": "/api/players/252",
+            "name": "Maxi Sanchez Blasco",
+            "short_name": "Sanchez",
+            "nationality": "AR",
+            "side": "backhand",
+            "photo_url": "https://media.padelapi.org/player-api/maxi-sanchez-blasco.webp",
+            "connections": {
+              "pair": "/api/pairs/252-96"
+            }
+          },
+          {
+            "id": 96,
+            "self": "/api/players/96",
+            "name": "Sanyo Gutierrez",
+            "short_name": "Gutierrez",
+            "nationality": "AR",
+            "side": "drive",
+            "photo_url": "https://media.padelapi.org/player-api/sanyo-gutierrez.webp",
+            "connections": {
+              "pair": "/api/pairs/252-96"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-11-18T02:57:25+01:00",
+      "connections": {
+        "tournament": "/api/tournaments/787",
+        "headtohead": "/api/matches/14949/headtohead",
+        "stats": "/api/matches/14949/stats",
+        "live": "/api/matches/14949/live",
+        "prev": "/api/matches/14951"
+      }
+    },
+    {
+      "id": 14950,
+      "self": "/api/matches/14950",
+      "name": "Valdes/Nuñez - Esbri/Hernandez",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 16,
+      "round_name": "Round of 32",
+      "index": 3,
+      "seeds": {
+        "team_1": null,
+        "team_2": "9"
+      },
+      "played_at": "2026-11-17",
+      "schedule_label": "Not before 4:00 PM",
+      "scheduled_at": "2026-11-17T23:00:00+01:00",
+      "scheduled_at_local": "2026-11-17T16:00:00-06:00",
+      "court": "Court 2",
+      "court_order": 4,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "7",
+          "team_2": "6"
+        },
+        {
+          "team_1": "4",
+          "team_2": "6"
+        },
+        {
+          "team_1": "6",
+          "team_2": "3"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 201,
+            "self": "/api/players/201",
+            "name": "Javier Valdes",
+            "short_name": "Valdes",
+            "nationality": "CL",
+            "side": "drive",
+            "photo_url": "https://media.padelapi.org/player-api/javier-valdes.webp",
+            "connections": {
+              "pair": "/api/pairs/201-382"
+            }
+          },
+          {
+            "id": 382,
+            "self": "/api/players/382",
+            "name": "Renzo Gabriel Nuñez",
+            "short_name": "Nuñez",
+            "nationality": "AR",
+            "side": "backhand",
+            "photo_url": null,
+            "connections": {
+              "pair": "/api/pairs/201-382"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 153,
+            "self": "/api/players/153",
+            "name": "Juanlu Esbri",
+            "short_name": "Esbri",
+            "nationality": "ES",
+            "side": "backhand",
+            "photo_url": "https://media.padelapi.org/player-api/juanlu-esbri.webp",
+            "connections": {
+              "pair": "/api/pairs/153-157"
+            }
+          },
+          {
+            "id": 157,
+            "self": "/api/players/157",
+            "name": "Pol Hernandez",
+            "short_name": "Hernandez",
+            "nationality": "ES",
+            "side": "drive",
+            "photo_url": "https://media.padelapi.org/player-api/pol-hernandez.webp",
+            "connections": {
+              "pair": "/api/pairs/153-157"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-11-18T01:22:21+01:00",
+      "connections": {
+        "tournament": "/api/tournaments/787",
+        "headtohead": "/api/matches/14950/headtohead",
+        "stats": "/api/matches/14950/stats",
+        "live": "/api/matches/14950/live",
+        "prev": "/api/matches/14983",
+        "next": "/api/matches/14959"
+      }
+    },
+    {
+      "id": 14951,
+      "self": "/api/matches/14951",
+      "name": "Alonso/Goñi - Alvarez/Lamperti",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 16,
+      "round_name": "Round of 32",
+      "index": 4,
+      "seeds": {
+        "team_1": "5",
+        "team_2": null
+      },
+      "played_at": "2026-11-17",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Center Court",
+      "court_order": 5,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "4",
+          "team_2": "6"
+        },
+        {
+          "team_1": "6",
+          "team_2": "1"
+        },
+        {
+          "team_1": "6",
+          "team_2": "2"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 101,
+            "self": "/api/players/101",
+            "name": "Edu Alonso",
+            "short_name": "Alonso",
+            "nationality": "ES",
+            "side": "drive",
+            "photo_url": "https://media.padelapi.org/player-api/edu-alonso.webp",
+            "connections": {
+              "pair": "/api/pairs/101-465"
+            }
+          },
+          {
+            "id": 465,
+            "self": "/api/players/465",
+            "name": "Aimar Goñi",
+            "short_name": "Goñi",
+            "nationality": "ES",
+            "side": "backhand",
+            "photo_url": "https://media.padelapi.org/player-api/aimar-goni.webp",
+            "connections": {
+              "pair": "/api/pairs/101-465"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 767,
+            "self": "/api/players/767",
+            "name": "Octavio Alvarez",
+            "short_name": "Alvarez",
+            "nationality": "AR",
+            "side": "drive",
+            "photo_url": null,
+            "connections": {
+              "pair": "/api/pairs/767-63"
+            }
+          },
+          {
+            "id": 63,
+            "self": "/api/players/63",
+            "name": "Miguel Lamperti",
+            "short_name": "Lamperti",
+            "nationality": "AR",
+            "side": "backhand",
+            "photo_url": "https://media.padelapi.org/player-api/miguel-lamperti.webp",
+            "connections": {
+              "pair": "/api/pairs/767-63"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-11-18T02:42:13+01:00",
+      "connections": {
+        "tournament": "/api/tournaments/787",
+        "headtohead": "/api/matches/14951/headtohead",
+        "stats": "/api/matches/14951/stats",
+        "live": "/api/matches/14951/live",
+        "prev": "/api/matches/14960",
+        "next": "/api/matches/14949"
+      }
+    },
+    {
+      "id": 14952,
+      "self": "/api/matches/14952",
+      "name": "Rodriguez/Garcia - Roper/Patiniotis",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 16,
+      "round_name": "Round of 32",
+      "index": 5,
+      "seeds": {
+        "team_1": null,
+        "team_2": null
+      },
+      "played_at": "2026-11-17",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Court 3",
+      "court_order": 5,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "4"
+        },
+        {
+          "team_1": "4",
+          "team_2": "6"
+        },
+        {
+          "team_1": "6",
+          "team_2": "7"
+        }
+      ],
+      "winner": "team_2",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 47,
+            "self": "/api/players/47",
+            "name": "Alonso Rodriguez Martinez",
+            "short_name": "Rodriguez",
+            "nationality": "ES",
+            "side": "backhand",
+            "photo_url": "https://media.padelapi.org/player-api/alonso-rodriguez-martinez.webp",
+            "connections": {
+              "pair": "/api/pairs/47-199"
+            }
+          },
+          {
+            "id": 199,
+            "self": "/api/players/199",
+            "name": "Pablo Garcia",
+            "short_name": "Garcia",
+            "nationality": "ES",
+            "side": "drive",
+            "photo_url": "https://media.padelapi.org/player-api/pablo-garcia-rodrigo.webp",
+            "connections": {
+              "pair": "/api/pairs/47-199"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 11,
+            "self": "/api/players/11",
+            "name": "Thijs Roper",
+            "short_name": "Roper",
+            "nationality": "NL",
+            "side": "backhand",
+            "photo_url": null,
+            "connections": {
+              "pair": "/api/pairs/11-150"
+            }
+          },
+          {
+            "id": 150,
+            "self": "/api/players/150",
+            "name": "Aris Patiniotis",
+            "short_name": "Patiniotis",
+            "nationality": "IT",
+            "side": "drive",
+            "photo_url": "https://media.padelapi.org/player-api/aris-patiniotis.webp",
+            "connections": {
+              "pair": "/api/pairs/11-150"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-11-18T04:00:20+01:00",
+      "connections": {
+        "tournament": "/api/tournaments/787",
+        "headtohead": "/api/matches/14952/headtohead",
+        "stats": "/api/matches/14952/stats",
+        "live": "/api/matches/14952/live",
+        "prev": "/api/matches/14961"
+      }
+    },
+    {
+      "id": 14953,
+      "self": "/api/matches/14953",
+      "name": "Castillo/Lopez - Almada/Mambrini",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 16,
+      "round_name": "Round of 32",
+      "index": 6,
+      "seeds": {
+        "team_1": "Q",
+        "team_2": "Q"
+      },
+      "played_at": "2026-11-17",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Court 4",
+      "court_order": 5,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "2",
+          "team_2": "6"
+        },
+        {
+          "team_1": "4",
+          "team_2": "6"
+        }
+      ],
+      "winner": "team_2",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 36,
+            "self": "/api/players/36",
+            "name": "Juan Pablo Castillo",
+            "short_name": "Castillo",
+            "nationality": "MX",
+            "side": "drive",
+            "photo_url": null,
+            "connections": {
+              "pair": "/api/pairs/36-955"
+            }
+          },
+          {
+            "id": 955,
+            "self": "/api/players/955",
+            "name": "Gonzalo Federico Lopez",
+            "short_name": "Lopez",
+            "nationality": "AR",
+            "side": "backhand",
+            "photo_url": null,
+            "connections": {
+              "pair": "/api/pairs/36-955"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 9,
+            "self": "/api/players/9",
+            "name": "Oscar Matias Almada",
+            "short_name": "Almada",
+            "nationality": "AR",
+            "side": "drive",
+            "photo_url": null,
+            "connections": {
+              "pair": "/api/pairs/9-752"
+            }
+          },
+          {
+            "id": 752,
+            "self": "/api/players/752",
+            "name": "Lautaro Mambrini",
+            "short_name": "Mambrini",
+            "nationality": "AR",
+            "side": "drive",
+            "photo_url": null,
+            "connections": {
+              "pair": "/api/pairs/9-752"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-11-18T02:15:25+01:00",
+      "connections": {
+        "tournament": "/api/tournaments/787",
+        "headtohead": "/api/matches/14953/headtohead",
+        "stats": "/api/matches/14953/stats",
+        "live": "/api/matches/14953/live",
+        "prev": "/api/matches/14958"
+      }
+    },
+    {
+      "id": 14956,
+      "self": "/api/matches/14956",
+      "name": "Graupera/Contreras - Goenaga/Collado",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 16,
+      "round_name": "Round of 32",
+      "index": 9,
+      "seeds": {
+        "team_1": "Q",
+        "team_2": null
+      },
+      "played_at": "2026-11-17",
+      "schedule_label": "Not before 4:00 PM",
+      "scheduled_at": "2026-11-17T23:00:00+01:00",
+      "scheduled_at_local": "2026-11-17T16:00:00-06:00",
+      "court": "Court 4",
+      "court_order": 3,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "2",
+          "team_2": "6"
+        },
+        {
+          "team_1": "2",
+          "team_2": "6"
+        }
+      ],
+      "winner": "team_2",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 1440,
+            "self": "/api/players/1440",
+            "name": "Andres Graupera",
+            "short_name": "Graupera",
+            "nationality": "AR",
+            "side": "drive",
+            "photo_url": null,
+            "connections": {
+              "pair": "/api/pairs/1440-1956"
+            }
+          },
+          {
+            "id": 1956,
+            "self": "/api/players/1956",
+            "name": "Santino Contreras",
+            "short_name": "Contreras",
+            "nationality": "AR",
+            "side": "drive",
+            "photo_url": null,
+            "connections": {
+              "pair": "/api/pairs/1440-1956"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 163,
+            "self": "/api/players/163",
+            "name": "Enrique Goenaga",
+            "short_name": "Goenaga",
+            "nationality": "ES",
+            "side": "drive",
+            "photo_url": "https://media.padelapi.org/player-api/enrique-goenaga.webp",
+            "connections": {
+              "pair": "/api/pairs/163-210"
+            }
+          },
+          {
+            "id": 210,
+            "self": "/api/players/210",
+            "name": "Guillermo Collado",
+            "short_name": "Collado",
+            "nationality": "ES",
+            "side": "backhand",
+            "photo_url": "https://media.padelapi.org/player-api/guillermo-collado.webp",
+            "connections": {
+              "pair": "/api/pairs/163-210"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-11-18T00:05:48+01:00",
+      "connections": {
+        "tournament": "/api/tournaments/787",
+        "headtohead": "/api/matches/14956/headtohead",
+        "stats": "/api/matches/14956/stats",
+        "live": "/api/matches/14956/live",
+        "prev": "/api/matches/14980",
+        "next": "/api/matches/14958"
+      }
+    },
+    {
+      "id": 14957,
+      "self": "/api/matches/14957",
+      "name": "Romera/Calleja - Moragues/Fonteny",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 16,
+      "round_name": "Round of 32",
+      "index": 10,
+      "seeds": {
+        "team_1": null,
+        "team_2": null
+      },
+      "played_at": "2026-11-17",
+      "schedule_label": "Not before 4:00 PM",
+      "scheduled_at": "2026-11-17T23:00:00+01:00",
+      "scheduled_at_local": "2026-11-17T16:00:00-06:00",
+      "court": "Court 3",
+      "court_order": 3,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "4"
+        },
+        {
+          "team_1": "6",
+          "team_2": "4"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 138,
+            "self": "/api/players/138",
+            "name": "Jaume Romera Barcelo",
+            "short_name": "Romera",
+            "nationality": "ES",
+            "side": "backhand",
+            "photo_url": null,
+            "connections": {
+              "pair": "/api/pairs/138-327"
+            }
+          },
+          {
+            "id": 327,
+            "self": "/api/players/327",
+            "name": "Felipe Calleja",
+            "short_name": "Calleja",
+            "nationality": "AR",
+            "side": "drive",
+            "photo_url": null,
+            "connections": {
+              "pair": "/api/pairs/138-327"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 128,
+            "self": "/api/players/128",
+            "name": "Nacho Moragues Moltò",
+            "short_name": "Moragues",
+            "nationality": "ES",
+            "side": "drive",
+            "photo_url": "https://media.padelapi.org/player-api/nacho-moragues-molto.webp",
+            "connections": {
+              "pair": "/api/pairs/128-474"
+            }
+          },
+          {
+            "id": 474,
+            "self": "/api/players/474",
+            "name": "Timeo Fonteny",
+            "short_name": "Fonteny",
+            "nationality": "FR",
+            "side": "backhand",
+            "photo_url": null,
+            "connections": {
+              "pair": "/api/pairs/128-474"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-11-18T00:05:53+01:00",
+      "connections": {
+        "tournament": "/api/tournaments/787",
+        "headtohead": "/api/matches/14957/headtohead",
+        "stats": "/api/matches/14957/stats",
+        "live": "/api/matches/14957/live",
+        "prev": "/api/matches/14979",
+        "next": "/api/matches/14961"
+      }
+    },
+    {
+      "id": 14958,
+      "self": "/api/matches/14958",
+      "name": "Funes/Crosio - Gala/Bergamini",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 16,
+      "round_name": "Round of 32",
+      "index": 11,
+      "seeds": {
+        "team_1": "LL",
+        "team_2": "7"
+      },
+      "played_at": "2026-11-17",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Court 4",
+      "court_order": 4,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "1",
+          "team_2": "6"
+        },
+        {
+          "team_1": "0",
+          "team_2": "6"
+        }
+      ],
+      "winner": "team_2",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 748,
+            "self": "/api/players/748",
+            "name": "Jose Alberto Funes Ontivero",
+            "short_name": "Funes",
+            "nationality": "AR",
+            "side": null,
+            "photo_url": null,
+            "connections": {
+              "pair": "/api/pairs/748-37"
+            }
+          },
+          {
+            "id": 37,
+            "self": "/api/players/37",
+            "name": "Nicolas Crosio",
+            "short_name": "Crosio",
+            "nationality": "AR",
+            "side": "backhand",
+            "photo_url": null,
+            "connections": {
+              "pair": "/api/pairs/748-37"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 151,
+            "self": "/api/players/151",
+            "name": "David Gala",
+            "short_name": "Gala",
+            "nationality": "ES",
+            "side": "backhand",
+            "photo_url": "https://media.padelapi.org/player-api/david-gala.webp",
+            "connections": {
+              "pair": "/api/pairs/151-76"
+            }
+          },
+          {
+            "id": 76,
+            "self": "/api/players/76",
+            "name": "Lucas Bergamini",
+            "short_name": "Bergamini",
+            "nationality": "BR",
+            "side": "drive",
+            "photo_url": "https://media.padelapi.org/player-api/lucas-bergamini.webp",
+            "connections": {
+              "pair": "/api/pairs/151-76"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-11-18T00:50:22+01:00",
+      "connections": {
+        "tournament": "/api/tournaments/787",
+        "headtohead": "/api/matches/14958/headtohead",
+        "stats": "/api/matches/14958/stats",
+        "live": "/api/matches/14958/live",
+        "prev": "/api/matches/14956",
+        "next": "/api/matches/14953"
+      }
+    },
+    {
+      "id": 14959,
+      "self": "/api/matches/14959",
+      "name": "Libaak/Alfonso - Puppo/Maldonado",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 16,
+      "round_name": "Round of 32",
+      "index": 12,
+      "seeds": {
+        "team_1": "6",
+        "team_2": "Q"
+      },
+      "played_at": "2026-11-17",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Court 2",
+      "court_order": 5,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "4",
+          "team_2": "6"
+        },
+        {
+          "team_1": "6",
+          "team_2": "3"
+        },
+        {
+          "team_1": "6",
+          "team_2": "1"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 93,
+            "self": "/api/players/93",
+            "name": "Tino Libaak",
+            "short_name": "Libaak",
+            "nationality": "AR",
+            "side": "drive",
+            "photo_url": "https://media.padelapi.org/player-api/tino-libaak.webp",
+            "connections": {
+              "pair": "/api/pairs/93-18"
+            }
+          },
+          {
+            "id": 18,
+            "self": "/api/players/18",
+            "name": "Gonzalo Alfonso",
+            "short_name": "Alfonso",
+            "nationality": "AR",
+            "side": "backhand",
+            "photo_url": "https://media.padelapi.org/player-api/gonzalo-alfonso.webp",
+            "connections": {
+              "pair": "/api/pairs/93-18"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 332,
+            "self": "/api/players/332",
+            "name": "Luciano Puppo",
+            "short_name": "Puppo",
+            "nationality": "AR",
+            "side": "backhand",
+            "photo_url": null,
+            "connections": {
+              "pair": "/api/pairs/332-750"
+            }
+          },
+          {
+            "id": 750,
+            "self": "/api/players/750",
+            "name": "Maximo Jesus Maldonado",
+            "short_name": "Maldonado",
+            "nationality": "AR",
+            "side": "drive",
+            "photo_url": null,
+            "connections": {
+              "pair": "/api/pairs/332-750"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-11-18T03:27:38+01:00",
+      "connections": {
+        "tournament": "/api/tournaments/787",
+        "headtohead": "/api/matches/14959/headtohead",
+        "stats": "/api/matches/14959/stats",
+        "live": "/api/matches/14959/live",
+        "prev": "/api/matches/14950",
+        "next": "/api/matches/14948"
+      }
+    },
+    {
+      "id": 14960,
+      "self": "/api/matches/14960",
+      "name": "Arredondo/Alvarez - Abud/Belluati",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 16,
+      "round_name": "Round of 32",
+      "index": 13,
+      "seeds": {
+        "team_1": "WC",
+        "team_2": null
+      },
+      "played_at": "2026-11-17",
+      "schedule_label": "Not before 4:00 PM",
+      "scheduled_at": "2026-11-17T23:00:00+01:00",
+      "scheduled_at_local": "2026-11-17T16:00:00-06:00",
+      "court": "Center Court",
+      "court_order": 4,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "2",
+          "team_2": "6"
+        },
+        {
+          "team_1": "4",
+          "team_2": "6"
+        }
+      ],
+      "winner": "team_2",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 34,
+            "self": "/api/players/34",
+            "name": "Diego Arredondo Garcia",
+            "short_name": "Arredondo",
+            "nationality": "MX",
+            "side": "drive",
+            "photo_url": null,
+            "connections": {
+              "pair": "/api/pairs/34-51"
+            }
+          },
+          {
+            "id": 51,
+            "self": "/api/players/51",
+            "name": "Mateo Alvarez",
+            "short_name": "Alvarez",
+            "nationality": "AR",
+            "side": "drive",
+            "photo_url": null,
+            "connections": {
+              "pair": "/api/pairs/34-51"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 212,
+            "self": "/api/players/212",
+            "name": "Martin Abud",
+            "short_name": "Abud",
+            "nationality": "PY",
+            "side": "backhand",
+            "photo_url": "https://media.padelapi.org/player-api/martin-abud.webp",
+            "connections": {
+              "pair": "/api/pairs/212-161"
+            }
+          },
+          {
+            "id": 161,
+            "self": "/api/players/161",
+            "name": "Juan Cruz Belluati",
+            "short_name": "Belluati",
+            "nationality": "AR",
+            "side": "drive",
+            "photo_url": "https://media.padelapi.org/player-api/juan-cruz-belluati.webp",
+            "connections": {
+              "pair": "/api/pairs/212-161"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-11-18T00:05:57+01:00",
+      "connections": {
+        "tournament": "/api/tournaments/787",
+        "headtohead": "/api/matches/14960/headtohead",
+        "stats": "/api/matches/14960/stats",
+        "live": "/api/matches/14960/live",
+        "prev": "/api/matches/14984",
+        "next": "/api/matches/14951"
+      }
+    },
+    {
+      "id": 14961,
+      "self": "/api/matches/14961",
+      "name": "Naranjo/Zapata - Dametto/Archieri",
+      "url": null,
+      "category": "men",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 16,
+      "round_name": "Round of 32",
+      "index": 14,
+      "seeds": {
+        "team_1": null,
+        "team_2": null
+      },
+      "played_at": "2026-11-17",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Court 3",
+      "court_order": 4,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "7"
+        },
+        {
+          "team_1": "6",
+          "team_2": "7"
+        }
+      ],
+      "winner": "team_2",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 132,
+            "self": "/api/players/132",
+            "name": "Adrian Naranjo Martinez",
+            "short_name": "Naranjo",
+            "nationality": "ES",
+            "side": "drive",
+            "photo_url": null,
+            "connections": {
+              "pair": "/api/pairs/132-164"
+            }
+          },
+          {
+            "id": 164,
+            "self": "/api/players/164",
+            "name": "Teodoro Zapata",
+            "short_name": "Zapata",
+            "nationality": "ES",
+            "side": "backhand",
+            "photo_url": "https://media.padelapi.org/player-api/teodoro-zapata.webp",
+            "connections": {
+              "pair": "/api/pairs/132-164"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 379,
+            "self": "/api/players/379",
+            "name": "Juan Pablo Dametto",
+            "short_name": "Dametto",
+            "nationality": "AR",
+            "side": "backhand",
+            "photo_url": null,
+            "connections": {
+              "pair": "/api/pairs/379-1880"
+            }
+          },
+          {
+            "id": 1880,
+            "self": "/api/players/1880",
+            "name": "Ignacio Archieri",
+            "short_name": "Archieri",
+            "nationality": "AR",
+            "side": "drive",
+            "photo_url": null,
+            "connections": {
+              "pair": "/api/pairs/379-1880"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-11-18T01:40:33+01:00",
+      "connections": {
+        "tournament": "/api/tournaments/787",
+        "headtohead": "/api/matches/14961/headtohead",
+        "stats": "/api/matches/14961/stats",
+        "live": "/api/matches/14961/live",
+        "prev": "/api/matches/14957",
+        "next": "/api/matches/14952"
+      }
+    },
+    {
+      "id": 14979,
+      "self": "/api/matches/14979",
+      "name": "Arenas/Afonso - Montoya/Peralta",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 16,
+      "round_name": "Round of 32",
+      "index": 1,
+      "seeds": {
+        "team_1": null,
+        "team_2": "WC"
+      },
+      "played_at": "2026-11-17",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Court 3",
+      "court_order": 2,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "2",
+          "team_2": "6"
+        },
+        {
+          "team_1": "2",
+          "team_2": "6"
+        }
+      ],
+      "winner": "team_2",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 685,
+            "self": "/api/players/685",
+            "name": "Annie Frida Arenas Mondragón",
+            "short_name": "Arenas",
+            "nationality": "MX",
+            "side": null,
+            "photo_url": null,
+            "connections": {
+              "pair": "/api/pairs/685-3009"
+            }
+          },
+          {
+            "id": 3009,
+            "self": "/api/players/3009",
+            "name": "Laura Afonso Maas",
+            "short_name": "Afonso",
+            "nationality": "BR",
+            "side": "drive",
+            "photo_url": null,
+            "connections": {
+              "pair": "/api/pairs/685-3009"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 684,
+            "self": "/api/players/684",
+            "name": "Maria Jose Montoya",
+            "short_name": "Montoya",
+            "nationality": "MX",
+            "side": "backhand",
+            "photo_url": null,
+            "connections": {
+              "pair": "/api/pairs/684-690"
+            }
+          },
+          {
+            "id": 690,
+            "self": "/api/players/690",
+            "name": "Dafne Paola Peralta Sanchez",
+            "short_name": "Peralta",
+            "nationality": "MX",
+            "side": null,
+            "photo_url": null,
+            "connections": {
+              "pair": "/api/pairs/684-690"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-11-17T19:34:11+01:00",
+      "connections": {
+        "tournament": "/api/tournaments/787",
+        "headtohead": "/api/matches/14979/headtohead",
+        "stats": "/api/matches/14979/stats",
+        "live": "/api/matches/14979/live",
+        "prev": "/api/matches/14987",
+        "next": "/api/matches/14957"
+      }
+    },
+    {
+      "id": 14980,
+      "self": "/api/matches/14980",
+      "name": "Rosas/Botella - Albujar/Ciccardini",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 16,
+      "round_name": "Round of 32",
+      "index": 2,
+      "seeds": {
+        "team_1": null,
+        "team_2": null
+      },
+      "played_at": "2026-11-17",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Court 4",
+      "court_order": 2,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "1",
+          "team_2": "6"
+        },
+        {
+          "team_1": "6",
+          "team_2": "7"
+        }
+      ],
+      "winner": "team_2",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 3318,
+            "self": "/api/players/3318",
+            "name": "Sarah Rosas",
+            "short_name": "Rosas",
+            "nationality": "MX",
+            "side": null,
+            "photo_url": null,
+            "connections": {
+              "pair": "/api/pairs/3318-678"
+            }
+          },
+          {
+            "id": 678,
+            "self": "/api/players/678",
+            "name": "Fantine Botella",
+            "short_name": "Botella",
+            "nationality": "FR",
+            "side": null,
+            "photo_url": null,
+            "connections": {
+              "pair": "/api/pairs/3318-678"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 3319,
+            "self": "/api/players/3319",
+            "name": "Daniela Albujar",
+            "short_name": "Albujar",
+            "nationality": "PE",
+            "side": null,
+            "photo_url": null,
+            "connections": {
+              "pair": "/api/pairs/3319-3320"
+            }
+          },
+          {
+            "id": 3320,
+            "self": "/api/players/3320",
+            "name": "Emilia Ciccardini",
+            "short_name": "Ciccardini",
+            "nationality": "AR",
+            "side": null,
+            "photo_url": null,
+            "connections": {
+              "pair": "/api/pairs/3319-3320"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-11-17T19:21:15+01:00",
+      "connections": {
+        "tournament": "/api/tournaments/787",
+        "headtohead": "/api/matches/14980/headtohead",
+        "stats": "/api/matches/14980/stats",
+        "live": "/api/matches/14980/live",
+        "prev": "/api/matches/14991",
+        "next": "/api/matches/14956"
+      }
+    },
+    {
+      "id": 14981,
+      "self": "/api/matches/14981",
+      "name": "Perches/Julia - Aguilar/Escacena",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 16,
+      "round_name": "Round of 32",
+      "index": 3,
+      "seeds": {
+        "team_1": null,
+        "team_2": "7"
+      },
+      "played_at": "2026-11-17",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Court 2",
+      "court_order": 2,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "1",
+          "team_2": "6"
+        },
+        {
+          "team_1": "1",
+          "team_2": "6"
+        }
+      ],
+      "winner": "team_2",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 676,
+            "self": "/api/players/676",
+            "name": "Ivana Perches Arredondo",
+            "short_name": "Perches",
+            "nationality": "MX",
+            "side": "backhand",
+            "photo_url": null,
+            "connections": {
+              "pair": "/api/pairs/676-3276"
+            }
+          },
+          {
+            "id": 3276,
+            "self": "/api/players/3276",
+            "name": "Ana Julia Acunha De Oliveira",
+            "short_name": "Julia",
+            "nationality": "BR",
+            "side": null,
+            "photo_url": null,
+            "connections": {
+              "pair": "/api/pairs/676-3276"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 462,
+            "self": "/api/players/462",
+            "name": "Noemi Aguilar Carrillo",
+            "short_name": "Aguilar",
+            "nationality": "ES",
+            "side": "backhand",
+            "photo_url": "https://media.padelapi.org/player-api/noemi-aguilar-carrillo.webp",
+            "connections": {
+              "pair": "/api/pairs/462-661"
+            }
+          },
+          {
+            "id": 661,
+            "self": "/api/players/661",
+            "name": "Claudia Escacena Montero",
+            "short_name": "Escacena",
+            "nationality": "ES",
+            "side": "backhand",
+            "photo_url": null,
+            "connections": {
+              "pair": "/api/pairs/462-661"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-11-17T20:01:22+01:00",
+      "connections": {
+        "tournament": "/api/tournaments/787",
+        "headtohead": "/api/matches/14981/headtohead",
+        "stats": "/api/matches/14981/stats",
+        "live": "/api/matches/14981/live",
+        "prev": "/api/matches/14992",
+        "next": "/api/matches/14983"
+      }
+    },
+    {
+      "id": 14982,
+      "self": "/api/matches/14982",
+      "name": "Lobo/Navarro - Çiftçi/Indjin",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 16,
+      "round_name": "Round of 32",
+      "index": 4,
+      "seeds": {
+        "team_1": "8",
+        "team_2": null
+      },
+      "played_at": "2026-11-17",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Center Court",
+      "court_order": 2,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "0"
+        },
+        {
+          "team_1": "6",
+          "team_2": "1"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 456,
+            "self": "/api/players/456",
+            "name": "Marina Lobo",
+            "short_name": "Lobo",
+            "nationality": "ES",
+            "side": "drive",
+            "photo_url": "https://media.padelapi.org/player-api/marina-lobo.webp",
+            "connections": {
+              "pair": "/api/pairs/456-421"
+            }
+          },
+          {
+            "id": 421,
+            "self": "/api/players/421",
+            "name": "Teresa Navarro Lopez-Barajas",
+            "short_name": "Navarro",
+            "nationality": "ES",
+            "side": "backhand",
+            "photo_url": "https://media.padelapi.org/player-api/teresa-navarro-lopez-barajas.webp",
+            "connections": {
+              "pair": "/api/pairs/456-421"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 1566,
+            "self": "/api/players/1566",
+            "name": "Olivia Çiftçi",
+            "short_name": "Çiftçi",
+            "nationality": "GB",
+            "side": "backhand",
+            "photo_url": null,
+            "connections": {
+              "pair": "/api/pairs/1566-2777"
+            }
+          },
+          {
+            "id": 2777,
+            "self": "/api/players/2777",
+            "name": "Ena Indjin",
+            "short_name": "Indjin",
+            "nationality": "CA",
+            "side": null,
+            "photo_url": null,
+            "connections": {
+              "pair": "/api/pairs/1566-2777"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-11-17T18:56:12+01:00",
+      "connections": {
+        "tournament": "/api/tournaments/787",
+        "headtohead": "/api/matches/14982/headtohead",
+        "stats": "/api/matches/14982/stats",
+        "live": "/api/matches/14982/live",
+        "prev": "/api/matches/14988",
+        "next": "/api/matches/14984"
+      }
+    },
+    {
+      "id": 14983,
+      "self": "/api/matches/14983",
+      "name": "Carrascosa/Fernandez - Garcia/Fernanda",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 16,
+      "round_name": "Round of 32",
+      "index": 5,
+      "seeds": {
+        "team_1": null,
+        "team_2": "WC"
+      },
+      "played_at": "2026-11-17",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Court 2",
+      "court_order": 3,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "6",
+          "team_2": "0"
+        },
+        {
+          "team_1": "6",
+          "team_2": "1"
+        }
+      ],
+      "winner": "team_1",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 1621,
+            "self": "/api/players/1621",
+            "name": "Cristina Carrascosa Cazorla",
+            "short_name": "Carrascosa",
+            "nationality": "ES",
+            "side": "drive",
+            "photo_url": null,
+            "connections": {
+              "pair": "/api/pairs/1621-806"
+            }
+          },
+          {
+            "id": 806,
+            "self": "/api/players/806",
+            "name": "Marisol Fernandez Garcia",
+            "short_name": "Fernandez",
+            "nationality": "ES",
+            "side": "backhand",
+            "photo_url": null,
+            "connections": {
+              "pair": "/api/pairs/1621-806"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 3390,
+            "self": "/api/players/3390",
+            "name": "Melissa Garcia Luna Diaz",
+            "short_name": "Garcia",
+            "nationality": "MX",
+            "side": null,
+            "photo_url": null,
+            "connections": {
+              "pair": "/api/pairs/3390-3391"
+            }
+          },
+          {
+            "id": 3391,
+            "self": "/api/players/3391",
+            "name": "Julia Fernanda",
+            "short_name": "Fernanda",
+            "nationality": "MX",
+            "side": null,
+            "photo_url": null,
+            "connections": {
+              "pair": "/api/pairs/3390-3391"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-11-17T20:36:24+01:00",
+      "connections": {
+        "tournament": "/api/tournaments/787",
+        "headtohead": "/api/matches/14983/headtohead",
+        "stats": "/api/matches/14983/stats",
+        "live": "/api/matches/14983/live",
+        "prev": "/api/matches/14981",
+        "next": "/api/matches/14950"
+      }
+    },
+    {
+      "id": 14984,
+      "self": "/api/matches/14984",
+      "name": "Rose/Luttikhuis - Val Lopez/Bahurel",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 16,
+      "round_name": "Round of 32",
+      "index": 6,
+      "seeds": {
+        "team_1": null,
+        "team_2": null
+      },
+      "played_at": "2026-11-17",
+      "schedule_label": null,
+      "scheduled_at": null,
+      "scheduled_at_local": null,
+      "court": "Center Court",
+      "court_order": 3,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "3",
+          "team_2": "6"
+        },
+        {
+          "team_1": "6",
+          "team_2": "7"
+        }
+      ],
+      "winner": "team_2",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 1505,
+            "self": "/api/players/1505",
+            "name": "Catherine Rose",
+            "short_name": "Rose",
+            "nationality": "GB",
+            "side": "drive",
+            "photo_url": null,
+            "connections": {
+              "pair": "/api/pairs/1505-538"
+            }
+          },
+          {
+            "id": 538,
+            "self": "/api/players/538",
+            "name": "Bo Luttikhuis",
+            "short_name": "Luttikhuis",
+            "nationality": "NL",
+            "side": "drive",
+            "photo_url": "https://media.padelapi.org/player-api/bo-luttikhuis.webp",
+            "connections": {
+              "pair": "/api/pairs/1505-538"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 553,
+            "self": "/api/players/553",
+            "name": "Ivet Val Lopez",
+            "short_name": "Val Lopez",
+            "nationality": "ES",
+            "side": "drive",
+            "photo_url": null,
+            "connections": {
+              "pair": "/api/pairs/553-476"
+            }
+          },
+          {
+            "id": 476,
+            "self": "/api/players/476",
+            "name": "Louise Bahurel",
+            "short_name": "Bahurel",
+            "nationality": "FR",
+            "side": "backhand",
+            "photo_url": null,
+            "connections": {
+              "pair": "/api/pairs/553-476"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-11-17T20:26:03+01:00",
+      "connections": {
+        "tournament": "/api/tournaments/787",
+        "headtohead": "/api/matches/14984/headtohead",
+        "stats": "/api/matches/14984/stats",
+        "live": "/api/matches/14984/live",
+        "prev": "/api/matches/14982",
+        "next": "/api/matches/14960"
+      }
+    },
+    {
+      "id": 14987,
+      "self": "/api/matches/14987",
+      "name": "Rodriguez/Manzanera - Vazquez/Gallardo",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 16,
+      "round_name": "Round of 32",
+      "index": 9,
+      "seeds": {
+        "team_1": null,
+        "team_2": null
+      },
+      "played_at": "2026-11-17",
+      "schedule_label": "Starting at 10:00 AM",
+      "scheduled_at": "2026-11-17T17:00:00+01:00",
+      "scheduled_at_local": "2026-11-17T10:00:00-06:00",
+      "court": "Court 3",
+      "court_order": 1,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "3",
+          "team_2": "6"
+        },
+        {
+          "team_1": "2",
+          "team_2": "6"
+        }
+      ],
+      "winner": "team_2",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 782,
+            "self": "/api/players/782",
+            "name": "Melissa Rodriguez Mayen",
+            "short_name": "Rodriguez",
+            "nationality": "MX",
+            "side": null,
+            "photo_url": null,
+            "connections": {
+              "pair": "/api/pairs/782-3315"
+            }
+          },
+          {
+            "id": 3315,
+            "self": "/api/players/3315",
+            "name": "Itzel Manzanera Aldana",
+            "short_name": "Manzanera",
+            "nationality": "MX",
+            "side": null,
+            "photo_url": null,
+            "connections": {
+              "pair": "/api/pairs/782-3315"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 774,
+            "self": "/api/players/774",
+            "name": "Quetzali Dafne Vazquez Montesinos",
+            "short_name": "Vazquez",
+            "nationality": "MX",
+            "side": "backhand",
+            "photo_url": null,
+            "connections": {
+              "pair": "/api/pairs/774-679"
+            }
+          },
+          {
+            "id": 679,
+            "self": "/api/players/679",
+            "name": "Aranzazu Gallardo Muñoz",
+            "short_name": "Gallardo",
+            "nationality": "MX",
+            "side": null,
+            "photo_url": null,
+            "connections": {
+              "pair": "/api/pairs/774-679"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-11-17T18:25:11+01:00",
+      "connections": {
+        "tournament": "/api/tournaments/787",
+        "headtohead": "/api/matches/14987/headtohead",
+        "stats": "/api/matches/14987/stats",
+        "live": "/api/matches/14987/live",
+        "next": "/api/matches/14979"
+      }
+    },
+    {
+      "id": 14988,
+      "self": "/api/matches/14988",
+      "name": "Ortiz/Campa - Martinez/Giusti",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 16,
+      "round_name": "Round of 32",
+      "index": 10,
+      "seeds": {
+        "team_1": "WC",
+        "team_2": null
+      },
+      "played_at": "2026-11-17",
+      "schedule_label": "Starting at 10:00 AM",
+      "scheduled_at": "2026-11-17T17:00:00+01:00",
+      "scheduled_at_local": "2026-11-17T10:00:00-06:00",
+      "court": "Center Court",
+      "court_order": 1,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "4",
+          "team_2": "6"
+        },
+        {
+          "team_1": "1",
+          "team_2": "6"
+        }
+      ],
+      "winner": "team_2",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 2572,
+            "self": "/api/players/2572",
+            "name": "Jimena Ortiz Lozano",
+            "short_name": "Ortiz",
+            "nationality": "MX",
+            "side": "backhand",
+            "photo_url": null,
+            "connections": {
+              "pair": "/api/pairs/2572-2743"
+            }
+          },
+          {
+            "id": 2743,
+            "self": "/api/players/2743",
+            "name": "Mya Campa Labossière",
+            "short_name": "Campa",
+            "nationality": "MX",
+            "side": null,
+            "photo_url": null,
+            "connections": {
+              "pair": "/api/pairs/2572-2743"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 704,
+            "self": "/api/players/704",
+            "name": "Renata Martinez Becerra",
+            "short_name": "Martinez",
+            "nationality": "MX",
+            "side": "backhand",
+            "photo_url": null,
+            "connections": {
+              "pair": "/api/pairs/704-2495"
+            }
+          },
+          {
+            "id": 2495,
+            "self": "/api/players/2495",
+            "name": "Julia Giusti Gomes",
+            "short_name": "Giusti",
+            "nationality": "BR",
+            "side": "drive",
+            "photo_url": null,
+            "connections": {
+              "pair": "/api/pairs/704-2495"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-11-17T18:10:04+01:00",
+      "connections": {
+        "tournament": "/api/tournaments/787",
+        "headtohead": "/api/matches/14988/headtohead",
+        "stats": "/api/matches/14988/stats",
+        "live": "/api/matches/14988/live",
+        "next": "/api/matches/14982"
+      }
+    },
+    {
+      "id": 14991,
+      "self": "/api/matches/14991",
+      "name": "Sara/Silva - Lopez/Martinez",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 16,
+      "round_name": "Round of 32",
+      "index": 13,
+      "seeds": {
+        "team_1": null,
+        "team_2": null
+      },
+      "played_at": "2026-11-17",
+      "schedule_label": "Starting at 10:00 AM",
+      "scheduled_at": "2026-11-17T17:00:00+01:00",
+      "scheduled_at_local": "2026-11-17T10:00:00-06:00",
+      "court": "Court 4",
+      "court_order": 1,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "2",
+          "team_2": "6"
+        },
+        {
+          "team_1": "1",
+          "team_2": "6"
+        }
+      ],
+      "winner": "team_2",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 1565,
+            "self": "/api/players/1565",
+            "name": "Aurelia Sara Argentieri",
+            "short_name": "Sara",
+            "nationality": "IT",
+            "side": "backhand",
+            "photo_url": null,
+            "connections": {
+              "pair": "/api/pairs/1565-2744"
+            }
+          },
+          {
+            "id": 2744,
+            "self": "/api/players/2744",
+            "name": "Alexa Silva Saavedra",
+            "short_name": "Silva",
+            "nationality": "MX",
+            "side": null,
+            "photo_url": null,
+            "connections": {
+              "pair": "/api/pairs/1565-2744"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 481,
+            "self": "/api/players/481",
+            "name": "Natividad Lopez Diaz",
+            "short_name": "Lopez",
+            "nationality": "ES",
+            "side": "backhand",
+            "photo_url": "https://media.padelapi.org/player-api/natividad-lopez-diaz.webp",
+            "connections": {
+              "pair": "/api/pairs/481-492"
+            }
+          },
+          {
+            "id": 492,
+            "self": "/api/players/492",
+            "name": "Aida Martinez Sanjuan",
+            "short_name": "Martinez",
+            "nationality": "ES",
+            "side": "drive",
+            "photo_url": "https://media.padelapi.org/player-api/aida-martinez-sanjuan.webp",
+            "connections": {
+              "pair": "/api/pairs/481-492"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-11-17T18:00:50+01:00",
+      "connections": {
+        "tournament": "/api/tournaments/787",
+        "headtohead": "/api/matches/14991/headtohead",
+        "stats": "/api/matches/14991/stats",
+        "live": "/api/matches/14991/live",
+        "next": "/api/matches/14980"
+      }
+    },
+    {
+      "id": 14992,
+      "self": "/api/matches/14992",
+      "name": "Marruffo/Derbis - Paula/Holguín",
+      "url": null,
+      "category": "women",
+      "draw": "main",
+      "watchability": "hidden_free_plan",
+      "round": 16,
+      "round_name": "Round of 32",
+      "index": 14,
+      "seeds": {
+        "team_1": null,
+        "team_2": null
+      },
+      "played_at": "2026-11-17",
+      "schedule_label": "Starting at 10:00 AM",
+      "scheduled_at": "2026-11-17T17:00:00+01:00",
+      "scheduled_at_local": "2026-11-17T10:00:00-06:00",
+      "court": "Court 2",
+      "court_order": 1,
+      "status": "finished",
+      "score": [
+        {
+          "team_1": "3",
+          "team_2": "6"
+        },
+        {
+          "team_1": "6",
+          "team_2": "3"
+        },
+        {
+          "team_1": "3",
+          "team_2": "6"
+        }
+      ],
+      "winner": "team_2",
+      "started_time": "hidden_free_plan",
+      "started_time_local": "hidden_free_plan",
+      "duration": "hidden_free_plan",
+      "players": {
+        "team_1": [
+          {
+            "id": 778,
+            "self": "/api/players/778",
+            "name": "Lorena Marruffo",
+            "short_name": "Marruffo",
+            "nationality": "VE",
+            "side": "backhand",
+            "photo_url": null,
+            "connections": {
+              "pair": "/api/pairs/778-696"
+            }
+          },
+          {
+            "id": 696,
+            "self": "/api/players/696",
+            "name": "Nerea Derbis",
+            "short_name": "Derbis",
+            "nationality": "ES",
+            "side": "drive",
+            "photo_url": "https://media.padelapi.org/player-api/nerea-derbis.webp",
+            "connections": {
+              "pair": "/api/pairs/778-696"
+            }
+          }
+        ],
+        "team_2": [
+          {
+            "id": 3316,
+            "self": "/api/players/3316",
+            "name": "Maria Paula Torres Draxl",
+            "short_name": "Paula",
+            "nationality": "PE",
+            "side": null,
+            "photo_url": null,
+            "connections": {
+              "pair": "/api/pairs/3316-3317"
+            }
+          },
+          {
+            "id": 3317,
+            "self": "/api/players/3317",
+            "name": "Marinés Holguín Reyes",
+            "short_name": "Holguín",
+            "nationality": "EC",
+            "side": null,
+            "photo_url": null,
+            "connections": {
+              "pair": "/api/pairs/3316-3317"
+            }
+          }
+        ]
+      },
+      "updated_at": "2026-11-17T18:50:04+01:00",
+      "connections": {
+        "tournament": "/api/tournaments/787",
+        "headtohead": "/api/matches/14992/headtohead",
+        "stats": "/api/matches/14992/stats",
+        "live": "/api/matches/14992/live",
+        "next": "/api/matches/14981"
+      }
+    }
+  ]
+}
